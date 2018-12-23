@@ -13,7 +13,7 @@ namespace Text_analyzer
 {
     public partial class Form1 : Form
     {
-
+        // category, and words in each text
         Dictionary<string, WordFreq> texts = new Dictionary<string, WordFreq>();
 
 
@@ -22,18 +22,19 @@ namespace Text_analyzer
             InitializeComponent();
         }
 
+       
 
-        private void btnNext_Click(object sender, EventArgs e)
+        private void btnTf_Click(object sender, EventArgs e)
         {
             string catg = categoryName.Text; // category
-            string peeledText = "";
+            string peeledText = "", toOutToLbWords="", toOutToLbBig="";
             
 
             string news = Regex.Replace(tbNews.Text.ToString(), @"\s+", " ");
 
             lbRawNews.Text = "";
             lbWords.Text = "";
-            lbTf.Text = "";
+            lbBig.Text = "";
             peeledText = "";
 
             foreach (char sumbol in news)
@@ -51,7 +52,7 @@ namespace Text_analyzer
 
             foreach (string word in texts[catg].allWords)
             {
-                lbWords.Text += word + "\n";
+                toOutToLbWords += word + "\n";
             
             }
             foreach (string word in texts[catg].allWords)
@@ -67,22 +68,78 @@ namespace Text_analyzer
 
             }
 
-            
+                
+            // TF
             foreach (KeyValuePair<string, int> item in texts[catg].n.OrderByDescending(key => key.Value))
             {
                 // do something with item.Key and item.Value
-                lbTf.Text += item.Key + " : " + texts[catg].n[item.Key] + ",    "
+                toOutToLbBig += item.Key + " : " + texts[catg].n[item.Key] + ",    "
                     + texts[catg].getTf(item.Key)
                     + "%" + "\n";
             }
-            //
+            lbWords.Text = toOutToLbWords;
+            lbBig.Text = toOutToLbBig;
+            
         }
 
 
 
+        
+        private void btnIdf_Click(object sender, EventArgs e)
+        {
+            lbBig.Text = "";
+            string catg = categoryName.Text, textToOut="Idf"; // category
+            // IDF
+            int categories = 0;
+            //foreach (WordFreq text in texts.Values)
+
+            foreach (string word in texts[catg].allWords)
+            {
+                categories = 1;
+                foreach (KeyValuePair<string, WordFreq> text in texts)
+                {
+                    if (text.Key == catg) continue;
+                    foreach (string wordInOtherTexts in text.Value.allWords)
+                    {
+                        if (word == wordInOtherTexts)
+                        {
+                            categories++;
+                            break;
+                        }
+                    }
+                }
+                textToOut +=word + ":" +
+                texts[catg].getIdf(word, texts.Count, categories).ToString("0.####")
+                + "\n";
+                /* IDF*/
+            }
+
+            lbBig.Text = textToOut;
+        }
+
+        private void btnTfIdf_Click(object sender, EventArgs e)
+        {
+            lbBig.Text = "TFIDF Error\n";
+            string toOutLbBig = "TFIDF\n";
+
+            string catg = categoryName.Text; // category
+            if (texts[catg].flagTf && texts[catg].flagIdf)
+            {
+                foreach (string word in texts[catg].allWords)
+                {
+                    toOutLbBig += word + ":" + (texts[catg].TF[word]* texts[catg].IDF[word]).ToString("0.####") + "\n";
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error. Please press TF, than IDF, and finally TFIDF to get the TFIDF of " + catg + " category");
+            }
+            lbBig.Text = toOutLbBig;
+        }
+
         private bool isCyrillic(int letterCode)
         {
-            switch(letterCode)
+            switch (letterCode)
             {
                 case 1028: // Є
                 case 1108: // є
@@ -92,7 +149,7 @@ namespace Text_analyzer
                 case 1169: // ґ
                 case 32:  // " "
                 case 39:  // '
-                //case 45:  // -
+                          //case 45:  // -
                     return true;
                 default:
                     return
@@ -103,11 +160,6 @@ namespace Text_analyzer
                         letterCode != 1098  // ъ
                         ;
             }
-              
-        }
-
-        private void btnIdf_Click(object sender, EventArgs e)
-        {
 
         }
     }
