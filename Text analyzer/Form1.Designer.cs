@@ -47,28 +47,30 @@
             // 
             // categoryName
             // 
-            this.categoryName.Location = new System.Drawing.Point(141, 14);
+            this.categoryName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.categoryName.Location = new System.Drawing.Point(157, 28);
             this.categoryName.Name = "categoryName";
-            this.categoryName.Size = new System.Drawing.Size(52, 20);
+            this.categoryName.Size = new System.Drawing.Size(137, 21);
             this.categoryName.TabIndex = 0;
             // 
             // lbCategory
             // 
             this.lbCategory.AutoSize = true;
-            this.lbCategory.Location = new System.Drawing.Point(9, 17);
+            this.lbCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lbCategory.Location = new System.Drawing.Point(12, 31);
             this.lbCategory.Name = "lbCategory";
-            this.lbCategory.Size = new System.Drawing.Size(126, 13);
+            this.lbCategory.Size = new System.Drawing.Size(133, 15);
             this.lbCategory.TabIndex = 1;
-            this.lbCategory.Text = "Enter number of category";
+            this.lbCategory.Text = "Enter name of category";
             // 
             // tbNews
             // 
-            this.tbNews.Location = new System.Drawing.Point(13, 41);
+            this.tbNews.Location = new System.Drawing.Point(15, 68);
             this.tbNews.MaxLength = 100000;
             this.tbNews.Multiline = true;
             this.tbNews.Name = "tbNews";
             this.tbNews.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbNews.Size = new System.Drawing.Size(488, 511);
+            this.tbNews.Size = new System.Drawing.Size(483, 540);
             this.tbNews.TabIndex = 2;
             // 
             // lbRawNews
@@ -79,10 +81,12 @@
             this.lbRawNews.Size = new System.Drawing.Size(32, 13);
             this.lbRawNews.TabIndex = 3;
             this.lbRawNews.Text = "string";
+            this.lbRawNews.Visible = false;
             // 
             // btnTf
             // 
-            this.btnTf.Location = new System.Drawing.Point(12, 558);
+            this.btnTf.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnTf.Location = new System.Drawing.Point(300, 12);
             this.btnTf.Name = "btnTf";
             this.btnTf.Size = new System.Drawing.Size(50, 50);
             this.btnTf.TabIndex = 4;
@@ -98,15 +102,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(321, 50);
             this.panel1.TabIndex = 6;
+            this.panel1.Visible = false;
             // 
             // lbWords
             // 
             this.lbWords.AutoSize = true;
             this.lbWords.Location = new System.Drawing.Point(3, 0);
             this.lbWords.Name = "lbWords";
-            this.lbWords.Size = new System.Drawing.Size(35, 13);
+            this.lbWords.Size = new System.Drawing.Size(0, 13);
             this.lbWords.TabIndex = 4;
-            this.lbWords.Text = "words";
             // 
             // panel2
             // 
@@ -137,7 +141,9 @@
             // 
             // btnIdf
             // 
-            this.btnIdf.Location = new System.Drawing.Point(68, 558);
+            this.btnIdf.Enabled = false;
+            this.btnIdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnIdf.Location = new System.Drawing.Point(375, 12);
             this.btnIdf.Name = "btnIdf";
             this.btnIdf.Size = new System.Drawing.Size(50, 50);
             this.btnIdf.TabIndex = 9;
@@ -147,7 +153,9 @@
             // 
             // btnTfIdf
             // 
-            this.btnTfIdf.Location = new System.Drawing.Point(124, 558);
+            this.btnTfIdf.Enabled = false;
+            this.btnTfIdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnTfIdf.Location = new System.Drawing.Point(450, 12);
             this.btnTfIdf.Name = "btnTfIdf";
             this.btnTfIdf.Size = new System.Drawing.Size(50, 50);
             this.btnTfIdf.TabIndex = 10;
@@ -159,7 +167,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 623);
+            this.ClientSize = new System.Drawing.Size(1335, 623);
             this.Controls.Add(this.btnTfIdf);
             this.Controls.Add(this.btnIdf);
             this.Controls.Add(this.panel3);
@@ -170,7 +178,8 @@
             this.Controls.Add(this.categoryName);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Text analyzer";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

@@ -79,7 +79,8 @@ namespace Text_analyzer
             }
             lbWords.Text = toOutToLbWords;
             lbBig.Text = toOutToLbBig;
-            
+
+            btnIdf.Enabled = true;
         }
 
 
@@ -115,6 +116,12 @@ namespace Text_analyzer
             }
 
             lbBig.Text = textToOut;
+
+            if(texts[catg].flagTf && texts[catg].flagIdf)
+            {
+                btnTfIdf.Enabled = true;
+            }
+
         }
 
         private void btnTfIdf_Click(object sender, EventArgs e)
@@ -125,16 +132,13 @@ namespace Text_analyzer
             string catg = categoryName.Text; // category
             if (texts[catg].flagTf && texts[catg].flagIdf)
             {
-                foreach (string word in texts[catg].allWords)
-                {
-                    toOutLbBig += word + ":" + (texts[catg].TF[word]* texts[catg].IDF[word]).ToString("0.####") + "\n";
-                }
+                lbBig.Text = texts[catg].getTfIdf();
             }
             else
             {
                 MessageBox.Show("Error. Please press TF, than IDF, and finally TFIDF to get the TFIDF of " + catg + " category");
             }
-            lbBig.Text = toOutLbBig;
+            
         }
 
         private bool isCyrillic(int letterCode)
@@ -160,6 +164,11 @@ namespace Text_analyzer
                         letterCode != 1098  // ъ
                         ;
             }
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
 
         }
     }

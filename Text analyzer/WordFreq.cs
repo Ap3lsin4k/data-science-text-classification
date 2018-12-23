@@ -12,6 +12,8 @@ namespace Text_analyzer
         public Dictionary<string, int> n;  // частота входжень обраного слова
         public Dictionary<string, double> TF;
         public Dictionary<string, double> IDF;
+        public Dictionary<string, double> TFIDF;
+
         public bool flagTf, flagIdf;
 
         public string[] allWords;
@@ -38,6 +40,22 @@ namespace Text_analyzer
             flagIdf = true;
             IDF[key] = Math.Log10((float)D / (float)t);
             return IDF[key];
+        }
+
+        public string getTfIdf() // inverse document frequency
+        {
+            string toOutLbBig = "TFIDF\n";
+
+            foreach (string word in n.Keys)
+            {
+                TFIDF[word] = TF[word] * IDF[word];
+            }
+            foreach (KeyValuePair<string, double> wordTI in TFIDF.OrderByDescending(key => key.Value))
+            {
+                toOutLbBig += wordTI.Key + " : " + (wordTI.Value).ToString("0.####") + "\n"; ;
+            }
+
+            return toOutLbBig;
         }
     }
 }
