@@ -23,6 +23,7 @@ namespace Text_analyzer
             n = new Dictionary<string, int>();
             TF = new Dictionary<string, double>();
             IDF = new Dictionary<string, double>();
+            TFIDF = new Dictionary<string, double>();
             allWords = words;
         }
 
@@ -42,20 +43,14 @@ namespace Text_analyzer
             return IDF[key];
         }
 
-        public string getTfIdf() // inverse document frequency
+        public void getTfIdf() // inverse document frequency
         {
-            string toOutLbBig = "TFIDF\n";
-
+            
             foreach (string word in n.Keys)
             {
                 TFIDF[word] = TF[word] * IDF[word];
             }
-            foreach (KeyValuePair<string, double> wordTI in TFIDF.OrderByDescending(key => key.Value))
-            {
-                toOutLbBig += wordTI.Key + " : " + (wordTI.Value).ToString("0.####") + "\n"; ;
-            }
-
-            return toOutLbBig;
+          
         }
     }
 }

@@ -40,6 +40,8 @@
             this.lbBig = new System.Windows.Forms.Label();
             this.btnIdf = new System.Windows.Forms.Button();
             this.btnTfIdf = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -118,16 +120,16 @@
             this.panel2.Controls.Add(this.lbWords);
             this.panel2.Location = new System.Drawing.Point(507, 12);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(100, 596);
+            this.panel2.Size = new System.Drawing.Size(130, 596);
             this.panel2.TabIndex = 7;
             // 
             // panel3
             // 
             this.panel3.AutoScroll = true;
             this.panel3.Controls.Add(this.lbBig);
-            this.panel3.Location = new System.Drawing.Point(613, 12);
+            this.panel3.Location = new System.Drawing.Point(643, 12);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(175, 596);
+            this.panel3.Size = new System.Drawing.Size(183, 596);
             this.panel3.TabIndex = 8;
             // 
             // lbBig
@@ -135,9 +137,8 @@
             this.lbBig.AutoSize = true;
             this.lbBig.Location = new System.Drawing.Point(3, 0);
             this.lbBig.Name = "lbBig";
-            this.lbBig.Size = new System.Drawing.Size(20, 13);
+            this.lbBig.Size = new System.Drawing.Size(0, 13);
             this.lbBig.TabIndex = 0;
-            this.lbBig.Text = "TF";
             // 
             // btnIdf
             // 
@@ -163,11 +164,33 @@
             this.btnTfIdf.UseVisualStyleBackColor = true;
             this.btnTfIdf.Click += new System.EventHandler(this.btnTfIdf_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(832, 12);
+            this.textBox1.MaxLength = 100000;
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.textBox1.Size = new System.Drawing.Size(250, 596);
+            this.textBox1.TabIndex = 11;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(1088, 12);
+            this.textBox2.MaxLength = 100000;
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.textBox2.Size = new System.Drawing.Size(250, 596);
+            this.textBox2.TabIndex = 12;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1335, 623);
+            this.ClientSize = new System.Drawing.Size(831, 623);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnTfIdf);
             this.Controls.Add(this.btnIdf);
             this.Controls.Add(this.panel3);
@@ -179,7 +202,6 @@
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "Text analyzer";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -205,6 +227,8 @@
         private System.Windows.Forms.Label lbBig;
         private System.Windows.Forms.Button btnIdf;
         private System.Windows.Forms.Button btnTfIdf;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
 

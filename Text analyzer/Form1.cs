@@ -89,7 +89,7 @@ namespace Text_analyzer
         private void btnIdf_Click(object sender, EventArgs e)
         {
             lbBig.Text = "";
-            string catg = categoryName.Text, textToOut="Idf"; // category
+            string catg = categoryName.Text, textToOut="Idf\n"; // category
             // IDF
             int categories = 0;
             //foreach (WordFreq text in texts.Values)
@@ -132,7 +132,19 @@ namespace Text_analyzer
             string catg = categoryName.Text; // category
             if (texts[catg].flagTf && texts[catg].flagIdf)
             {
-                lbBig.Text = texts[catg].getTfIdf();
+                texts[catg].getTfIdf();
+                string toOutName = "", toOutValue = "";
+
+                foreach (KeyValuePair<string, double> wordTI in texts[catg].TFIDF.OrderByDescending(key => key.Value))
+                {
+                    toOutName += wordTI.Key + "_*_";
+                    toOutValue += (wordTI.Value).ToString("0.#####") + "_*_";
+                    toOutLbBig += wordTI.Key + " : " + (wordTI.Value).ToString("0.####") + "\n"; ;
+                }
+                textBox1.Text = toOutName;
+                textBox2.Text = toOutValue;
+                lbBig.Text = toOutLbBig;
+           
             }
             else
             {
@@ -167,10 +179,6 @@ namespace Text_analyzer
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
 
