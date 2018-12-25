@@ -23,20 +23,12 @@ namespace Text_analyzer
         }
 
        
-
-        private void btnTf_Click(object sender, EventArgs e)
+        private string getRawText(string notClearedText)
         {
-            string catg = categoryName.Text; // category
-            string peeledText = "", toOutToLbWords="", toOutToLbBig="";
+            string news = Regex.Replace(notClearedText, @"\s+", " ");
+            string peeledText = "";
             
-
-            string news = Regex.Replace(tbNews.Text.ToString(), @"\s+", " ");
-
-            lbRawNews.Text = "";
-            lbWords.Text = "";
-            lbBig.Text = "";
-            peeledText = "";
-
+           
             foreach (char sumbol in news)
             {
                 if (isCyrillic(sumbol))
@@ -44,10 +36,23 @@ namespace Text_analyzer
             }
 
             peeledText = Regex.Replace(peeledText, @"\s+", " "); // To delete redundant space
-//            peeledText = peeledText;
+                                                                 //            peeledText = peeledText;
 
+            
+            return peeledText;
+        }
+
+        private void btnTf_Click(object sender, EventArgs e)
+        {
+            string catg = categoryName.Text; // category
+            string toOutToLbWords="", toOutToLbBig="";
+
+            lbRawNews.Text = "";
+            lbWords.Text = "";
+            lbBig.Text = "";
+
+            string peeledText = getRawText(tbNews.Text.ToString());
             lbRawNews.Text = peeledText;
-
             texts[catg] = new WordFreq(peeledText.Split());
 
             foreach (string word in texts[catg].allWords)
@@ -141,8 +146,8 @@ namespace Text_analyzer
                     toOutValue += (wordTI.Value).ToString("0.#####") + "_*_";
                     toOutLbBig += wordTI.Key + " : " + (wordTI.Value).ToString("0.####") + "\n"; ;
                 }
-                textBox1.Text = toOutName;
-                textBox2.Text = toOutValue;
+                //textBox1.Text = toOutName;
+                //textBox2.Text = toOutValue;
                 lbBig.Text = toOutLbBig;
            
             }
@@ -179,6 +184,45 @@ namespace Text_analyzer
 
         }
 
+        private void btnAnalysis_Click(object sender, EventArgs e)
+        {
+            string unknownText = getRawText(tbNewText.Text);  // Text with unknown category
+            string[] unknownWords = unknownText.Split();
+            myGrid.Rows.Clear();
+
+
+            foreach (KeyValuePair<string, WordFreq> text in texts)
+            {
+                // here we have Category(text.Key) and array of unrepeated words(text.Value.allWords)
+                // on the other hand, we have array of repeated words(unknownWords)
+                int n = myGrid.Rows.Add(), countOfCommonElem=0, score=0;
+                myGrid.Rows[n].Cells[0].Value = text.Key;  // category
+                foreach (string word in unknownWords)
+                {
+                    int break_counter = 0;
+                    foreach (KeyValuePair<string, int> wordCategory in text.Value.n.OrderByDescending(key => key.Value))
+                    {
+                        if (word == wordCategory.Key) // if word from unknown category equals word from category we know
+                        {
+                            ++countOfCommonElem;
+                            score += wordCategory.Value;
+                        }
+                        break_counter++;
+                        if (break_counter >= 30) break;
+                    }
+                    
+                }
+
+                myGrid.Rows[n].Cells[1].Value = score;  // category
+                myGrid.Rows[n].Cells[2].Value = (float)
+                    countOfCommonElem / unknownWords.Length * 100;
+                    /*/ 
+                    (unknownWords.Length + text.Value.allWords.Length-countOfCommonElem) ;
+                    */
+            }
+            //            
+
+        }
     }
 }
 
