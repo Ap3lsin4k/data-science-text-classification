@@ -8,43 +8,29 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
+
 
 namespace Text_analyzer
 {
     public partial class Form1 : Form
     {
         // category, and words in each text
-        Dictionary<string, WordFreq> texts = new Dictionary<string, WordFreq>();
-
+//        Dictionary<string, WordFreq> texts = new Dictionary<string, WordFreq>();
+        TextJson newsJson = new TextJson();
 
         public Form1()
         {
             InitializeComponent();
+            newsJson.load();
         }
 
        
-        private string getRawText(string notClearedText)
-        {
-            string news = Regex.Replace(notClearedText, @"\s+", " ");
-            string peeledText = "";
-            
-           
-            foreach (char sumbol in news)
-            {
-                if (isCyrillic(sumbol))
-                    peeledText += Char.ToLower(sumbol);
-            }
-
-            peeledText = Regex.Replace(peeledText, @"\s+", " "); // To delete redundant space
-                                                                 //            peeledText = peeledText;
-
-            
-            return peeledText;
-        }
+        
 
         private void btnTf_Click(object sender, EventArgs e)
         {
+
+           // newsJson = new TextJson();
             string catg = categoryName.Text; // category
             string toOutToLbWords="", toOutToLbBig="";
 
@@ -53,33 +39,33 @@ namespace Text_analyzer
 
             string peeledText = getRawText(tbNews.Text.ToString());
             lbRawNews.Text = peeledText;
-            texts[catg] = new WordFreq(peeledText.Split());
+            newsJson.texts[catg] = new WordFreq(peeledText.Split());
 
-            foreach (string word in texts[catg].allWords)
+            foreach (string word in newsJson.texts[catg].allWords)
             {
                 toOutToLbWords += word + "\n";
             
             }
-            foreach (string word in texts[catg].allWords)
+            foreach (string word in newsJson.texts[catg].allWords)
             {
-                if (texts[catg].n.ContainsKey(word))
+                if (newsJson.texts[catg].n.ContainsKey(word))
                 {
-                    ++texts[catg].n[word];
+                    ++newsJson.texts[catg].n[word];
                 }
                 else
                 {
-                    texts[catg].n[word] = 1;
+                    newsJson.texts[catg].n[word] = 1;
                 }
 
             }
 
                 
             // TF
-            foreach (KeyValuePair<string, int> item in texts[catg].n.OrderByDescending(key => key.Value))
+            foreach (KeyValuePair<string, int> item in newsJson.texts[catg].n.OrderByDescending(key => key.Value))
             {
                 // do something with item.Key and item.Value
-                toOutToLbBig += item.Key + " : " + texts[catg].n[item.Key] + ",    "
-                    + texts[catg].getTf(item.Key)
+                toOutToLbBig += item.Key + " : " + newsJson.texts[catg].n[item.Key] + ",    "
+                    + newsJson.texts[catg].getTf(item.Key)
                     + "%" + "\n";
             }
             lbWords.Text = toOutToLbWords;
@@ -99,10 +85,10 @@ namespace Text_analyzer
             int categories = 0;
             //foreach (WordFreq text in texts.Values)
 
-            foreach (string word in texts[catg].allWords)
+            foreach (string word in newsJson.texts[catg].allWords)
             {
                 categories = 1;
-                foreach (KeyValuePair<string, WordFreq> text in texts)
+                foreach (KeyValuePair<string, WordFreq> text in newsJson.texts)
                 {
                     if (text.Key == catg) continue;
                     foreach (string wordInOtherTexts in text.Value.allWords)
@@ -115,14 +101,14 @@ namespace Text_analyzer
                     }
                 }
                 textToOut +=word + ":" +
-                texts[catg].getIdf(word, texts.Count, categories).ToString("0.####")
+                newsJson.texts[catg].getIdf(word, newsJson.texts.Count, categories).ToString("0.####")
                 + "\n";
                 /* IDF*/
             }
 
             lbBig.Text = textToOut;
 
-            if(texts[catg].flagTf && texts[catg].flagIdf)
+            if(newsJson.texts[catg].flagTf && newsJson.texts[catg].flagIdf)
             {
                 btnTfIdf.Enabled = true;
             }
@@ -135,12 +121,12 @@ namespace Text_analyzer
             string toOutLbBig = "TFIDF\n";
 
             string catg = categoryName.Text; // category
-            if (texts[catg].flagTf && texts[catg].flagIdf)
+            if (newsJson.texts[catg].flagTf && newsJson.texts[catg].flagIdf)
             {
-                texts[catg].getTfIdf();
+                newsJson.texts[catg].getTfIdf();
                 string toOutName = "", toOutValue = "";
 
-                foreach (KeyValuePair<string, double> wordTI in texts[catg].TFIDF.OrderByDescending(key => key.Value))
+                foreach (KeyValuePair<string, double> wordTI in newsJson.texts[catg].TFIDF.OrderByDescending(key => key.Value))
                 {
                     toOutName += wordTI.Key + "_*_";
                     toOutValue += (wordTI.Value).ToString("0.#####") + "_*_";
@@ -184,6 +170,26 @@ namespace Text_analyzer
 
         }
 
+        private string getRawText(string notClearedText)
+        {
+            string news = Regex.Replace(notClearedText, @"\s+", " ");
+            string peeledText = "";
+
+
+            foreach (char sumbol in news)
+            {
+                if (isCyrillic(sumbol))
+                    peeledText += Char.ToLower(sumbol);
+            }
+
+            peeledText = Regex.Replace(peeledText, @"\s+", " "); // To delete redundant space
+                                                                 //            peeledText = peeledText;
+
+
+            return peeledText;
+        }
+
+        //      ========PROGRAM_#2========
         private void btnAnalysis_Click(object sender, EventArgs e)
         {
             string unknownText = getRawText(tbNewText.Text);  // Text with unknown category
@@ -191,7 +197,7 @@ namespace Text_analyzer
             myGrid.Rows.Clear();
 
 
-            foreach (KeyValuePair<string, WordFreq> text in texts)
+            foreach (KeyValuePair<string, WordFreq> text in newsJson.texts)
             {
                 // here we have Category(text.Key) and array of unrepeated words(text.Value.allWords)
                 // on the other hand, we have array of repeated words(unknownWords)
@@ -228,7 +234,7 @@ namespace Text_analyzer
         
         private void btnSave_Click(object sender, EventArgs e)
         {
-            TextJson textJson = new TextJson(this.texts);
+            newsJson.save();
             /*FileInfo f = new FileInfo("Mytext.txt");
             StreamWriter w = f.CreateText();
             w.WriteLine("This is from");
@@ -237,6 +243,11 @@ namespace Text_analyzer
             w.Write(w.NewLine);
             w.WriteLine("Thanks for your time");
             w.Close();*/
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            newsJson.load();
         }
     }
 }

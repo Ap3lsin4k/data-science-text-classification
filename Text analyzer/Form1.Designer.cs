@@ -49,6 +49,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbRawNews = new System.Windows.Forms.Label();
+            this.btnLoad = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.myGrid)).BeginInit();
@@ -243,11 +244,23 @@
             this.lbRawNews.TabIndex = 0;
             this.lbRawNews.Text = "lbRawNews";
             // 
+            // btnLoad
+            // 
+            this.btnLoad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnLoad.Location = new System.Drawing.Point(1317, 12);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.Size = new System.Drawing.Size(75, 50);
+            this.btnLoad.TabIndex = 17;
+            this.btnLoad.Text = "Load";
+            this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1440, 618);
+            this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.myGrid);
@@ -300,6 +313,7 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lbRawNews;
+        private System.Windows.Forms.Button btnLoad;
     }
 }
 

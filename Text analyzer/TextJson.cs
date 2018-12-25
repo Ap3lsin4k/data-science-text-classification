@@ -4,8 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//json
+// work with files
+using System.IO;
+// json
 using Newtonsoft.Json;
+
+
 namespace Text_analyzer
 {
     class TextJson
@@ -13,6 +17,11 @@ namespace Text_analyzer
         public Dictionary<string, WordFreq> texts;
         public string json;
 
+        public TextJson()
+        {
+            texts = new Dictionary<string, WordFreq>();
+        }
+        /*
         public TextJson(Dictionary<string, WordFreq> texts)
         {
             this.texts = texts;
@@ -29,21 +38,47 @@ namespace Text_analyzer
             //}
 
             //WordFreq deserializedProduct = JsonConvert.DeserializeObject<WordFreq>(json);
-        }
-
+*/
         public void save()
         {
-            this.json = JsonConvert.SerializeObject(this.texts);
             //save json to file
+            this.json = JsonConvert.SerializeObject(this.texts);
+
+            FileInfo f = new FileInfo("analysis.json");
+            StreamWriter w = f.CreateText();
+            w.Write(this.json);
+            /*w.WriteLine("Chapter 6");
+            w.WriteLine("Of C# Module");
+            w.WriteLine("Thanks for your time");
+            
+            */w.Close();
         }
         public void show()
         {
+            this.json = JsonConvert.SerializeObject(this.texts);
             MessageBox.Show(json);
         }
         public void load()
         {
-            //load from file
-            this.texts = JsonConvert.DeserializeObject<Dictionary<string, WordFreq>>(json);
+            try
+            {
+                //load from file
+                this.json = File.ReadAllText("analysis.json");
+                //this.texts = JsonConvert.DeserializeObject<Dictionary<string, WordFreq>>(this.json);
+
+                Dictionary<string, WordFreq> deserialize = JsonConvert.DeserializeObject<Dictionary<string, WordFreq>>(this.json);
+                if (deserialize != null)
+                    this.texts = deserialize;
+                else
+                {
+                    this.texts = new Dictionary<string, WordFreq>();
+                    MessageBox.Show("Could not find analysis file. I will create new");
+                }
+            }
+            catch (System.IO.FileNotFoundException e)
+            {
+                MessageBox.Show("Could not find analysis.json file. I will create new");
+            }
         }
     }
 }
