@@ -8,3 +8,7 @@ D:\projects\C#\Text analyzer\Text analyzer\obj\Release\Text analyzer.csproj.Core
 D:\projects\C#\Text analyzer\Text analyzer\obj\Release\Text analyzer.exe
 D:\projects\C#\Text analyzer\Text analyzer\obj\Release\Text analyzer.pdb
 D:\projects\C#\Text analyzer\Text analyzer\obj\Release\Text analyzer.csprojAssemblyReference.cache
+D:\projects\C#\Text analyzer\Text analyzer\bin\Release\Newtonsoft.Json.dll
+D:\projects\C#\Text analyzer\Text analyzer\bin\Release\Newtonsoft.Json.pdb
+D:\projects\C#\Text analyzer\Text analyzer\bin\Release\Newtonsoft.Json.xml
+D:\projects\C#\Text analyzer\Text analyzer\obj\Release\Text analyzer.csproj.CopyComplete

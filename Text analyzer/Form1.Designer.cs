@@ -31,9 +31,7 @@
             this.categoryName = new System.Windows.Forms.TextBox();
             this.lbCategory = new System.Windows.Forms.Label();
             this.tbNews = new System.Windows.Forms.TextBox();
-            this.lbRawNews = new System.Windows.Forms.Label();
             this.btnTf = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.lbWords = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -48,10 +46,13 @@
             this.Topic = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numberOfMatches = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.percentOfMatches = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel1.SuspendLayout();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lbRawNews = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.myGrid)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // categoryName
@@ -79,18 +80,8 @@
             this.tbNews.Multiline = true;
             this.tbNews.Name = "tbNews";
             this.tbNews.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbNews.Size = new System.Drawing.Size(483, 540);
+            this.tbNews.Size = new System.Drawing.Size(503, 543);
             this.tbNews.TabIndex = 2;
-            // 
-            // lbRawNews
-            // 
-            this.lbRawNews.AutoSize = true;
-            this.lbRawNews.Location = new System.Drawing.Point(3, 0);
-            this.lbRawNews.Name = "lbRawNews";
-            this.lbRawNews.Size = new System.Drawing.Size(32, 13);
-            this.lbRawNews.TabIndex = 3;
-            this.lbRawNews.Text = "string";
-            this.lbRawNews.Visible = false;
             // 
             // btnTf
             // 
@@ -102,16 +93,6 @@
             this.btnTf.Text = "TF";
             this.btnTf.UseVisualStyleBackColor = true;
             this.btnTf.Click += new System.EventHandler(this.btnTf_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.AutoScroll = true;
-            this.panel1.Controls.Add(this.lbRawNews);
-            this.panel1.Location = new System.Drawing.Point(180, 558);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(321, 50);
-            this.panel1.TabIndex = 6;
-            this.panel1.Visible = false;
             // 
             // lbWords
             // 
@@ -125,18 +106,18 @@
             // 
             this.panel2.AutoScroll = true;
             this.panel2.Controls.Add(this.lbWords);
-            this.panel2.Location = new System.Drawing.Point(507, 12);
+            this.panel2.Location = new System.Drawing.Point(524, 12);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(130, 596);
+            this.panel2.Size = new System.Drawing.Size(130, 599);
             this.panel2.TabIndex = 7;
             // 
             // panel3
             // 
             this.panel3.AutoScroll = true;
             this.panel3.Controls.Add(this.lbBig);
-            this.panel3.Location = new System.Drawing.Point(643, 12);
+            this.panel3.Location = new System.Drawing.Point(660, 12);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(183, 596);
+            this.panel3.Size = new System.Drawing.Size(183, 599);
             this.panel3.TabIndex = 8;
             // 
             // lbBig
@@ -151,7 +132,7 @@
             // 
             this.btnIdf.Enabled = false;
             this.btnIdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnIdf.Location = new System.Drawing.Point(375, 12);
+            this.btnIdf.Location = new System.Drawing.Point(356, 11);
             this.btnIdf.Name = "btnIdf";
             this.btnIdf.Size = new System.Drawing.Size(50, 50);
             this.btnIdf.TabIndex = 9;
@@ -163,7 +144,7 @@
             // 
             this.btnTfIdf.Enabled = false;
             this.btnTfIdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnTfIdf.Location = new System.Drawing.Point(450, 12);
+            this.btnTfIdf.Location = new System.Drawing.Point(412, 11);
             this.btnTfIdf.Name = "btnTfIdf";
             this.btnTfIdf.Size = new System.Drawing.Size(50, 50);
             this.btnTfIdf.TabIndex = 10;
@@ -173,15 +154,15 @@
             // 
             // tbNewText
             // 
-            this.tbNewText.Location = new System.Drawing.Point(832, 12);
+            this.tbNewText.Location = new System.Drawing.Point(849, 12);
             this.tbNewText.Multiline = true;
             this.tbNewText.Name = "tbNewText";
-            this.tbNewText.Size = new System.Drawing.Size(462, 228);
+            this.tbNewText.Size = new System.Drawing.Size(462, 232);
             this.tbNewText.TabIndex = 11;
             // 
             // btnAnalysis
             // 
-            this.btnAnalysis.Location = new System.Drawing.Point(832, 246);
+            this.btnAnalysis.Location = new System.Drawing.Point(849, 250);
             this.btnAnalysis.Name = "btnAnalysis";
             this.btnAnalysis.Size = new System.Drawing.Size(150, 50);
             this.btnAnalysis.TabIndex = 12;
@@ -191,7 +172,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(988, 246);
+            this.button2.Location = new System.Drawing.Point(1005, 250);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(150, 50);
             this.button2.TabIndex = 13;
@@ -200,7 +181,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(1144, 246);
+            this.button3.Location = new System.Drawing.Point(1161, 250);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(150, 50);
             this.button3.TabIndex = 14;
@@ -214,7 +195,7 @@
             this.Topic,
             this.numberOfMatches,
             this.percentOfMatches});
-            this.myGrid.Location = new System.Drawing.Point(832, 312);
+            this.myGrid.Location = new System.Drawing.Point(849, 316);
             this.myGrid.Name = "myGrid";
             this.myGrid.Size = new System.Drawing.Size(462, 295);
             this.myGrid.TabIndex = 15;
@@ -234,11 +215,41 @@
             this.percentOfMatches.HeaderText = "Відсоток співпадінь";
             this.percentOfMatches.Name = "percentOfMatches";
             // 
+            // btnSave
+            // 
+            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnSave.Location = new System.Drawing.Point(468, 11);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(50, 50);
+            this.btnSave.TabIndex = 5;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lbRawNews);
+            this.panel1.Location = new System.Drawing.Point(15, 618);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(828, 126);
+            this.panel1.TabIndex = 16;
+            // 
+            // lbRawNews
+            // 
+            this.lbRawNews.AutoSize = true;
+            this.lbRawNews.Location = new System.Drawing.Point(4, 4);
+            this.lbRawNews.Name = "lbRawNews";
+            this.lbRawNews.Size = new System.Drawing.Size(64, 13);
+            this.lbRawNews.TabIndex = 0;
+            this.lbRawNews.Text = "lbRawNews";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1440, 623);
+            this.ClientSize = new System.Drawing.Size(1440, 618);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.myGrid);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -252,16 +263,15 @@
             this.Controls.Add(this.tbNews);
             this.Controls.Add(this.lbCategory);
             this.Controls.Add(this.categoryName);
-            this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "Text analyzer";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.myGrid)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -272,9 +282,7 @@
         private System.Windows.Forms.TextBox categoryName;
         private System.Windows.Forms.Label lbCategory;
         private System.Windows.Forms.TextBox tbNews;
-        private System.Windows.Forms.Label lbRawNews;
         private System.Windows.Forms.Button btnTf;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lbWords;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
@@ -289,6 +297,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Topic;
         private System.Windows.Forms.DataGridViewTextBoxColumn numberOfMatches;
         private System.Windows.Forms.DataGridViewTextBoxColumn percentOfMatches;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lbRawNews;
     }
 }
 

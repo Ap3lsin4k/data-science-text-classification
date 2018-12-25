@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Text_analyzer
 {
@@ -47,7 +48,6 @@ namespace Text_analyzer
             string catg = categoryName.Text; // category
             string toOutToLbWords="", toOutToLbBig="";
 
-            lbRawNews.Text = "";
             lbWords.Text = "";
             lbBig.Text = "";
 
@@ -195,7 +195,8 @@ namespace Text_analyzer
             {
                 // here we have Category(text.Key) and array of unrepeated words(text.Value.allWords)
                 // on the other hand, we have array of repeated words(unknownWords)
-                int n = myGrid.Rows.Add(), countOfCommonElem=0, score=0;
+                int n = myGrid.Rows.Add(), countOfCommonElem = 0;
+                double score =0;
                 myGrid.Rows[n].Cells[0].Value = text.Key;  // category
                 foreach (string word in unknownWords)
                 {
@@ -222,6 +223,20 @@ namespace Text_analyzer
             }
             //            
 
+        }
+
+        
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            TextJson textJson = new TextJson(this.texts);
+            /*FileInfo f = new FileInfo("Mytext.txt");
+            StreamWriter w = f.CreateText();
+            w.WriteLine("This is from");
+            w.WriteLine("Chapter 6");
+            w.WriteLine("Of C# Module");
+            w.Write(w.NewLine);
+            w.WriteLine("Thanks for your time");
+            w.Close();*/
         }
     }
 }
