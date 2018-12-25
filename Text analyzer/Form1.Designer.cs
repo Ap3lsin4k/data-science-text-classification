@@ -43,21 +43,21 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.myGrid = new System.Windows.Forms.DataGridView();
-            this.Topic = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numberOfMatches = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.percentOfMatches = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSave = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbDebug = new System.Windows.Forms.Label();
             this.btnLoad = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.Topic = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numberOfMatches = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.percentOfMatches = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.myGrid)).BeginInit();
             this.panel1.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.SuspendLayout();
@@ -159,38 +159,38 @@
             // 
             // tbNewText
             // 
-            this.tbNewText.Location = new System.Drawing.Point(6, 6);
+            this.tbNewText.Location = new System.Drawing.Point(3, 62);
             this.tbNewText.Multiline = true;
             this.tbNewText.Name = "tbNewText";
-            this.tbNewText.Size = new System.Drawing.Size(462, 232);
+            this.tbNewText.Size = new System.Drawing.Size(482, 559);
             this.tbNewText.TabIndex = 11;
             // 
             // btnAnalysis
             // 
-            this.btnAnalysis.Location = new System.Drawing.Point(6, 244);
+            this.btnAnalysis.Location = new System.Drawing.Point(218, 6);
             this.btnAnalysis.Name = "btnAnalysis";
-            this.btnAnalysis.Size = new System.Drawing.Size(150, 50);
+            this.btnAnalysis.Size = new System.Drawing.Size(206, 50);
             this.btnAnalysis.TabIndex = 12;
-            this.btnAnalysis.Text = "Аналіз";
+            this.btnAnalysis.Text = "Analyze";
             this.btnAnalysis.UseVisualStyleBackColor = true;
             this.btnAnalysis.Click += new System.EventHandler(this.btnAnalysis_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(162, 244);
+            this.button2.Location = new System.Drawing.Point(430, 6);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(150, 50);
+            this.button2.Size = new System.Drawing.Size(206, 50);
             this.button2.TabIndex = 13;
-            this.button2.Text = "Ключові слова";
+            this.button2.Text = "Key words";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(318, 244);
+            this.button3.Location = new System.Drawing.Point(642, 6);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(150, 50);
+            this.button3.Size = new System.Drawing.Size(206, 50);
             this.button3.TabIndex = 14;
-            this.button3.Text = "Налаштування";
+            this.button3.Text = "Settings";
             this.button3.UseVisualStyleBackColor = true;
             // 
             // myGrid
@@ -200,25 +200,10 @@
             this.Topic,
             this.numberOfMatches,
             this.percentOfMatches});
-            this.myGrid.Location = new System.Drawing.Point(6, 310);
+            this.myGrid.Location = new System.Drawing.Point(491, 62);
             this.myGrid.Name = "myGrid";
-            this.myGrid.Size = new System.Drawing.Size(462, 295);
+            this.myGrid.Size = new System.Drawing.Size(357, 559);
             this.myGrid.TabIndex = 15;
-            // 
-            // Topic
-            // 
-            this.Topic.HeaderText = "Рубрика";
-            this.Topic.Name = "Topic";
-            // 
-            // numberOfMatches
-            // 
-            this.numberOfMatches.HeaderText = "Кількість співпадінь";
-            this.numberOfMatches.Name = "numberOfMatches";
-            // 
-            // percentOfMatches
-            // 
-            this.percentOfMatches.HeaderText = "Відсоток співпадінь";
-            this.percentOfMatches.Name = "percentOfMatches";
             // 
             // btnSave
             // 
@@ -250,23 +235,23 @@
             // btnLoad
             // 
             this.btnLoad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnLoad.Location = new System.Drawing.Point(474, 6);
+            this.btnLoad.Location = new System.Drawing.Point(6, 6);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(75, 50);
+            this.btnLoad.Size = new System.Drawing.Size(206, 50);
             this.btnLoad.TabIndex = 17;
             this.btnLoad.Text = "Load";
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
-            // tabControl1
+            // tabControl
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(13, 13);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(862, 653);
-            this.tabControl1.TabIndex = 18;
+            this.tabControl.Controls.Add(this.tabPage1);
+            this.tabControl.Controls.Add(this.tabPage2);
+            this.tabControl.Location = new System.Drawing.Point(11, 16);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(862, 653);
+            this.tabControl.TabIndex = 18;
             // 
             // tabPage1
             // 
@@ -284,32 +269,56 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(854, 627);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.Text = "Categories";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.btnLoad);
-            this.tabPage2.Controls.Add(this.tbNewText);
             this.tabPage2.Controls.Add(this.btnAnalysis);
-            this.tabPage2.Controls.Add(this.myGrid);
             this.tabPage2.Controls.Add(this.button2);
             this.tabPage2.Controls.Add(this.button3);
+            this.tabPage2.Controls.Add(this.myGrid);
+            this.tabPage2.Controls.Add(this.tbNewText);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(854, 627);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.Text = "Analyzer";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // Topic
+            // 
+            this.Topic.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Topic.FillWeight = 60F;
+            this.Topic.HeaderText = "Рубрика";
+            this.Topic.MinimumWidth = 40;
+            this.Topic.Name = "Topic";
+            // 
+            // numberOfMatches
+            // 
+            this.numberOfMatches.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.numberOfMatches.FillWeight = 20F;
+            this.numberOfMatches.HeaderText = "Кількість співпадінь";
+            this.numberOfMatches.MinimumWidth = 20;
+            this.numberOfMatches.Name = "numberOfMatches";
+            // 
+            // percentOfMatches
+            // 
+            this.percentOfMatches.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.percentOfMatches.FillWeight = 20F;
+            this.percentOfMatches.HeaderText = "Відсоток співпадінь";
+            this.percentOfMatches.MinimumWidth = 20;
+            this.percentOfMatches.Name = "percentOfMatches";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(885, 848);
+            this.ClientSize = new System.Drawing.Size(885, 673);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tabControl);
             this.Name = "Form1";
             this.Text = "Text analyzer";
             this.panel2.ResumeLayout(false);
@@ -319,7 +328,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.myGrid)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
@@ -345,16 +354,16 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.DataGridView myGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Topic;
-        private System.Windows.Forms.DataGridViewTextBoxColumn numberOfMatches;
-        private System.Windows.Forms.DataGridViewTextBoxColumn percentOfMatches;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lbDebug;
         private System.Windows.Forms.Button btnLoad;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Topic;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numberOfMatches;
+        private System.Windows.Forms.DataGridViewTextBoxColumn percentOfMatches;
     }
 }
 

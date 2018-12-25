@@ -68,11 +68,14 @@ namespace Text_analyzer
 
                 Dictionary<string, WordFreq> deserialize = JsonConvert.DeserializeObject<Dictionary<string, WordFreq>>(this.json);
                 if (deserialize != null)
+                {
                     this.texts = deserialize;
+                    MessageBox.Show("Succesfully loaded");
+                }
                 else
                 {
                     this.texts = new Dictionary<string, WordFreq>();
-                    MessageBox.Show("Could not find analysis file. I will create new");
+                    MessageBox.Show("Deserialize was failed. I will create new clear file");
                 }
             }
             catch (System.IO.FileNotFoundException e)

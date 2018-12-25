@@ -197,18 +197,26 @@ namespace Text_analyzer
             string[] unknownWords = unknownText.Split();
             myGrid.Rows.Clear();
 
+            // all words repeat one time now
+            Dictionary<string, int> n = new Dictionary<string, int>();
+            foreach (string word in unknownWords)
+            {
+                if (n.ContainsKey(word)) ++n[word]; 
+                else n[word] = 1;
+
+            }
 
             foreach (KeyValuePair<string, WordFreq> text in newsJson.texts)
             {
                 // here we have Category(text.Key) and array of unrepeated words(text.Value.allWords)
                 // on the other hand, we have array of repeated words(unknownWords)
-                int n = myGrid.Rows.Add(), countOfCommonElem = 0;
+                int ind = myGrid.Rows.Add(), countOfCommonElem = 0;
                 double score =0;
-                myGrid.Rows[n].Cells[0].Value = text.Key;  // category
-                foreach (string word in unknownWords)
+                myGrid.Rows[ind].Cells[0].Value = text.Key;  // category
+                foreach (string word in n.Keys) // the unrepeated word
                 {
                     int break_counter = 0;
-                    foreach (KeyValuePair<string, int> wordCategory in text.Value.n.OrderByDescending(key => key.Value))
+                    foreach (KeyValuePair<string, double> wordCategory in text.Value.TFIDF.OrderByDescending(key => key.Value))
                     {
                         if (word == wordCategory.Key) // if word from unknown category equals word from category we know
                         {
@@ -221,9 +229,11 @@ namespace Text_analyzer
                     
                 }
 
-                myGrid.Rows[n].Cells[1].Value = score;  // category
-                myGrid.Rows[n].Cells[2].Value = (float)
-                    countOfCommonElem / text.Value.n.Count * 100;
+                myGrid.Rows[ind].Cells[1].Value = score;  // category
+                myGrid.Rows[ind].Cells[2].Value = (float)100 *
+                    countOfCommonElem
+                    /
+                    (n.Count); // + text.Value.n.Count - countOfCommonElem);
                     /*/ 
                     (unknownWords.Length + text.Value.allWords.Length-countOfCommonElem) ;
                     */
@@ -249,7 +259,7 @@ namespace Text_analyzer
         private void btnLoad_Click(object sender, EventArgs e)
         {
             newsJson.load();
-            lbDebug.Text = newsJson.json;
+        //    lbDebug.Text = newsJson.json;
         }
     }
 }
