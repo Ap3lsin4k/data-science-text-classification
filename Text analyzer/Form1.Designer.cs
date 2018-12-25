@@ -48,18 +48,24 @@
             this.percentOfMatches = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSave = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lbRawNews = new System.Windows.Forms.Label();
+            this.lbDebug = new System.Windows.Forms.Label();
             this.btnLoad = new System.Windows.Forms.Button();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.myGrid)).BeginInit();
             this.panel1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // categoryName
             // 
             this.categoryName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.categoryName.Location = new System.Drawing.Point(157, 28);
+            this.categoryName.Location = new System.Drawing.Point(148, 23);
             this.categoryName.Name = "categoryName";
             this.categoryName.Size = new System.Drawing.Size(137, 21);
             this.categoryName.TabIndex = 0;
@@ -68,7 +74,7 @@
             // 
             this.lbCategory.AutoSize = true;
             this.lbCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lbCategory.Location = new System.Drawing.Point(12, 31);
+            this.lbCategory.Location = new System.Drawing.Point(3, 26);
             this.lbCategory.Name = "lbCategory";
             this.lbCategory.Size = new System.Drawing.Size(133, 15);
             this.lbCategory.TabIndex = 1;
@@ -76,7 +82,7 @@
             // 
             // tbNews
             // 
-            this.tbNews.Location = new System.Drawing.Point(15, 68);
+            this.tbNews.Location = new System.Drawing.Point(6, 63);
             this.tbNews.MaxLength = 100000;
             this.tbNews.Multiline = true;
             this.tbNews.Name = "tbNews";
@@ -87,7 +93,7 @@
             // btnTf
             // 
             this.btnTf.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnTf.Location = new System.Drawing.Point(300, 12);
+            this.btnTf.Location = new System.Drawing.Point(291, 7);
             this.btnTf.Name = "btnTf";
             this.btnTf.Size = new System.Drawing.Size(50, 50);
             this.btnTf.TabIndex = 4;
@@ -107,7 +113,7 @@
             // 
             this.panel2.AutoScroll = true;
             this.panel2.Controls.Add(this.lbWords);
-            this.panel2.Location = new System.Drawing.Point(524, 12);
+            this.panel2.Location = new System.Drawing.Point(515, 7);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(130, 599);
             this.panel2.TabIndex = 7;
@@ -116,7 +122,7 @@
             // 
             this.panel3.AutoScroll = true;
             this.panel3.Controls.Add(this.lbBig);
-            this.panel3.Location = new System.Drawing.Point(660, 12);
+            this.panel3.Location = new System.Drawing.Point(651, 7);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(183, 599);
             this.panel3.TabIndex = 8;
@@ -131,9 +137,8 @@
             // 
             // btnIdf
             // 
-            this.btnIdf.Enabled = false;
             this.btnIdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnIdf.Location = new System.Drawing.Point(356, 11);
+            this.btnIdf.Location = new System.Drawing.Point(347, 6);
             this.btnIdf.Name = "btnIdf";
             this.btnIdf.Size = new System.Drawing.Size(50, 50);
             this.btnIdf.TabIndex = 9;
@@ -143,9 +148,8 @@
             // 
             // btnTfIdf
             // 
-            this.btnTfIdf.Enabled = false;
             this.btnTfIdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnTfIdf.Location = new System.Drawing.Point(412, 11);
+            this.btnTfIdf.Location = new System.Drawing.Point(403, 6);
             this.btnTfIdf.Name = "btnTfIdf";
             this.btnTfIdf.Size = new System.Drawing.Size(50, 50);
             this.btnTfIdf.TabIndex = 10;
@@ -155,7 +159,7 @@
             // 
             // tbNewText
             // 
-            this.tbNewText.Location = new System.Drawing.Point(849, 12);
+            this.tbNewText.Location = new System.Drawing.Point(6, 6);
             this.tbNewText.Multiline = true;
             this.tbNewText.Name = "tbNewText";
             this.tbNewText.Size = new System.Drawing.Size(462, 232);
@@ -163,7 +167,7 @@
             // 
             // btnAnalysis
             // 
-            this.btnAnalysis.Location = new System.Drawing.Point(849, 250);
+            this.btnAnalysis.Location = new System.Drawing.Point(6, 244);
             this.btnAnalysis.Name = "btnAnalysis";
             this.btnAnalysis.Size = new System.Drawing.Size(150, 50);
             this.btnAnalysis.TabIndex = 12;
@@ -173,7 +177,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(1005, 250);
+            this.button2.Location = new System.Drawing.Point(162, 244);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(150, 50);
             this.button2.TabIndex = 13;
@@ -182,7 +186,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(1161, 250);
+            this.button3.Location = new System.Drawing.Point(318, 244);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(150, 50);
             this.button3.TabIndex = 14;
@@ -196,7 +200,7 @@
             this.Topic,
             this.numberOfMatches,
             this.percentOfMatches});
-            this.myGrid.Location = new System.Drawing.Point(849, 316);
+            this.myGrid.Location = new System.Drawing.Point(6, 310);
             this.myGrid.Name = "myGrid";
             this.myGrid.Size = new System.Drawing.Size(462, 295);
             this.myGrid.TabIndex = 15;
@@ -219,7 +223,7 @@
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnSave.Location = new System.Drawing.Point(468, 11);
+            this.btnSave.Location = new System.Drawing.Point(459, 6);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(50, 50);
             this.btnSave.TabIndex = 5;
@@ -229,25 +233,24 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.lbRawNews);
-            this.panel1.Location = new System.Drawing.Point(15, 618);
+            this.panel1.Controls.Add(this.lbDebug);
+            this.panel1.Location = new System.Drawing.Point(13, 672);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(828, 126);
+            this.panel1.Size = new System.Drawing.Size(828, 150);
             this.panel1.TabIndex = 16;
             // 
-            // lbRawNews
+            // lbDebug
             // 
-            this.lbRawNews.AutoSize = true;
-            this.lbRawNews.Location = new System.Drawing.Point(4, 4);
-            this.lbRawNews.Name = "lbRawNews";
-            this.lbRawNews.Size = new System.Drawing.Size(64, 13);
-            this.lbRawNews.TabIndex = 0;
-            this.lbRawNews.Text = "lbRawNews";
+            this.lbDebug.AutoSize = true;
+            this.lbDebug.Location = new System.Drawing.Point(7, 0);
+            this.lbDebug.Name = "lbDebug";
+            this.lbDebug.Size = new System.Drawing.Size(0, 13);
+            this.lbDebug.TabIndex = 0;
             // 
             // btnLoad
             // 
             this.btnLoad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnLoad.Location = new System.Drawing.Point(1317, 12);
+            this.btnLoad.Location = new System.Drawing.Point(474, 6);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(75, 50);
             this.btnLoad.TabIndex = 17;
@@ -255,27 +258,58 @@
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(13, 13);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(862, 653);
+            this.tabControl1.TabIndex = 18;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.tbNews);
+            this.tabPage1.Controls.Add(this.categoryName);
+            this.tabPage1.Controls.Add(this.btnSave);
+            this.tabPage1.Controls.Add(this.lbCategory);
+            this.tabPage1.Controls.Add(this.btnTf);
+            this.tabPage1.Controls.Add(this.panel2);
+            this.tabPage1.Controls.Add(this.panel3);
+            this.tabPage1.Controls.Add(this.btnIdf);
+            this.tabPage1.Controls.Add(this.btnTfIdf);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(854, 627);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.btnLoad);
+            this.tabPage2.Controls.Add(this.tbNewText);
+            this.tabPage2.Controls.Add(this.btnAnalysis);
+            this.tabPage2.Controls.Add(this.myGrid);
+            this.tabPage2.Controls.Add(this.button2);
+            this.tabPage2.Controls.Add(this.button3);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(854, 627);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1440, 618);
-            this.Controls.Add(this.btnLoad);
+            this.ClientSize = new System.Drawing.Size(885, 848);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.myGrid);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.btnAnalysis);
-            this.Controls.Add(this.tbNewText);
-            this.Controls.Add(this.btnTfIdf);
-            this.Controls.Add(this.btnIdf);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.btnTf);
-            this.Controls.Add(this.tbNews);
-            this.Controls.Add(this.lbCategory);
-            this.Controls.Add(this.categoryName);
+            this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Text analyzer";
             this.panel2.ResumeLayout(false);
@@ -285,8 +319,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.myGrid)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -312,8 +350,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn percentOfMatches;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label lbRawNews;
+        private System.Windows.Forms.Label lbDebug;
         private System.Windows.Forms.Button btnLoad;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPage1;
     }
 }
 

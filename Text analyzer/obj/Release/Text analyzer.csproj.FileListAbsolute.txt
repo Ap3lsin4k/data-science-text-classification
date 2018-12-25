@@ -12,4 +12,3 @@ D:\projects\C#\Text analyzer\Text analyzer\bin\Release\Newtonsoft.Json.dll
 D:\projects\C#\Text analyzer\Text analyzer\bin\Release\Newtonsoft.Json.pdb
 D:\projects\C#\Text analyzer\Text analyzer\bin\Release\Newtonsoft.Json.xml
 D:\projects\C#\Text analyzer\Text analyzer\obj\Release\Text analyzer.csproj.CopyComplete
-D:\projects\C#\Text analyzer\Text analyzer\obj\Release\Text_analyzer.Text_analyzer.resources

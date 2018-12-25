@@ -38,7 +38,7 @@ namespace Text_analyzer
             lbBig.Text = "";
 
             string peeledText = getRawText(tbNews.Text.ToString());
-            lbRawNews.Text = peeledText;
+            //lbDebug.Text = peeledText;
             newsJson.texts[catg] = new WordFreq(peeledText.Split());
 
             foreach (string word in newsJson.texts[catg].allWords)
@@ -70,8 +70,9 @@ namespace Text_analyzer
             }
             lbWords.Text = toOutToLbWords;
             lbBig.Text = toOutToLbBig;
-
+            /*
             btnIdf.Enabled = true;
+            */
         }
 
 
@@ -107,12 +108,12 @@ namespace Text_analyzer
             }
 
             lbBig.Text = textToOut;
-
+            /*
             if(newsJson.texts[catg].flagTf && newsJson.texts[catg].flagIdf)
             {
                 btnTfIdf.Enabled = true;
             }
-
+            */
         }
 
         private void btnTfIdf_Click(object sender, EventArgs e)
@@ -222,7 +223,7 @@ namespace Text_analyzer
 
                 myGrid.Rows[n].Cells[1].Value = score;  // category
                 myGrid.Rows[n].Cells[2].Value = (float)
-                    countOfCommonElem / unknownWords.Length * 100;
+                    countOfCommonElem / text.Value.n.Count * 100;
                     /*/ 
                     (unknownWords.Length + text.Value.allWords.Length-countOfCommonElem) ;
                     */
@@ -248,6 +249,7 @@ namespace Text_analyzer
         private void btnLoad_Click(object sender, EventArgs e)
         {
             newsJson.load();
+            lbDebug.Text = newsJson.json;
         }
     }
 }
