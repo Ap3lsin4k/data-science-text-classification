@@ -53,6 +53,7 @@
             this.Topic = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numberOfMatches = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.percentOfMatches = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.myGrid)).BeginInit();
@@ -199,7 +200,8 @@
             this.myGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Topic,
             this.numberOfMatches,
-            this.percentOfMatches});
+            this.percentOfMatches,
+            this.dataGridViewTextBoxColumn1});
             this.myGrid.Location = new System.Drawing.Point(491, 62);
             this.myGrid.Name = "myGrid";
             this.myGrid.Size = new System.Drawing.Size(357, 559);
@@ -291,8 +293,8 @@
             // Topic
             // 
             this.Topic.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Topic.FillWeight = 60F;
-            this.Topic.HeaderText = "Рубрика";
+            this.Topic.FillWeight = 40F;
+            this.Topic.HeaderText = "Category";
             this.Topic.MinimumWidth = 40;
             this.Topic.Name = "Topic";
             // 
@@ -300,7 +302,7 @@
             // 
             this.numberOfMatches.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.numberOfMatches.FillWeight = 20F;
-            this.numberOfMatches.HeaderText = "Кількість співпадінь";
+            this.numberOfMatches.HeaderText = "Number of matches";
             this.numberOfMatches.MinimumWidth = 20;
             this.numberOfMatches.Name = "numberOfMatches";
             // 
@@ -308,9 +310,17 @@
             // 
             this.percentOfMatches.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.percentOfMatches.FillWeight = 20F;
-            this.percentOfMatches.HeaderText = "Відсоток співпадінь";
+            this.percentOfMatches.HeaderText = "Percent of matches";
             this.percentOfMatches.MinimumWidth = 20;
             this.percentOfMatches.Name = "percentOfMatches";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.FillWeight = 20F;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Sum of importance coefficient";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 20;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Width = 60;
             // 
             // Form1
             // 
@@ -364,6 +374,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Topic;
         private System.Windows.Forms.DataGridViewTextBoxColumn numberOfMatches;
         private System.Windows.Forms.DataGridViewTextBoxColumn percentOfMatches;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
     }
 }
 

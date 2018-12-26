@@ -206,7 +206,7 @@ namespace Text_analyzer
 
             }
 
-            foreach (KeyValuePair<string, WordFreq> text in newsJson.texts)
+            foreach (KeyValuePair<string, WordFreq> text in newsJson.texts)  // category, a text properties
             {
                 // here we have Category(text.Key) and array of unrepeated words(text.Value.allWords)
                 // on the other hand, we have array of repeated words(unknownWords)
@@ -218,25 +218,35 @@ namespace Text_analyzer
                     int break_counter = 0;
                     foreach (KeyValuePair<string, double> wordCategory in text.Value.TFIDF.OrderByDescending(key => key.Value))
                     {
+
+                        break_counter++;
+                        if (break_counter >= 200)
+                        {
+                            break;
+                        }
                         if (word == wordCategory.Key) // if word from unknown category equals word from category we know
                         {
                             ++countOfCommonElem;
                             score += wordCategory.Value;
+                           // MessageBox.Show(text.Key + " " + word+":"+ wordCategory.Value);
                         }
-                        break_counter++;
-                        if (break_counter >= 30) break;
-                    }
-                    
-                }
+                        //MessageBox.Show(text.Key + " " + wordCategory.Value + ":"+ wordCategory.Key);
 
-                myGrid.Rows[ind].Cells[1].Value = score;  // category
+                    }
+
+                }
+                int wordsCountAvg = 5000;
+                myGrid.Rows[ind].Cells[1].Value = countOfCommonElem;  // category
                 myGrid.Rows[ind].Cells[2].Value = (float)100 *
                     countOfCommonElem
                     /
                     (n.Count); // + text.Value.n.Count - countOfCommonElem);
-                    /*/ 
-                    (unknownWords.Length + text.Value.allWords.Length-countOfCommonElem) ;
-                    */
+                               /*/ 
+                               (unknownWords.Length + text.Value.allWords.Length-countOfCommonElem) ;
+                               */
+                myGrid.Rows[ind].Cells[3].Value = score / text.Value.TFIDF.Count * wordsCountAvg; // improtance coefficient
+
+
             }
             //            
 

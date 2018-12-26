@@ -8,3 +8,7 @@ D:\projects\C#\Text analyzer\Text analyzer\obj\Debug\Text analyzer.csproj.Genera
 D:\projects\C#\Text analyzer\Text analyzer\obj\Debug\Text analyzer.csproj.CoreCompileInputs.cache
 D:\projects\C#\Text analyzer\Text analyzer\obj\Debug\Text analyzer.exe
 D:\projects\C#\Text analyzer\Text analyzer\obj\Debug\Text analyzer.pdb
+D:\projects\C#\Text analyzer\Text analyzer\bin\Debug\Newtonsoft.Json.dll
+D:\projects\C#\Text analyzer\Text analyzer\bin\Debug\Newtonsoft.Json.pdb
+D:\projects\C#\Text analyzer\Text analyzer\bin\Debug\Newtonsoft.Json.xml
+D:\projects\C#\Text analyzer\Text analyzer\obj\Debug\Text analyzer.csproj.CopyComplete
