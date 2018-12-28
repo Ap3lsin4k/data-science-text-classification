@@ -129,8 +129,8 @@ namespace Text_analyzer
 
                 foreach (KeyValuePair<string, double> wordTI in newsJson.texts[catg].TFIDF.OrderByDescending(key => key.Value))
                 {
-                    toOutName += wordTI.Key + "_*_";
-                    toOutValue += (wordTI.Value).ToString("0.#####") + "_*_";
+                    //toOutName += wordTI.Key + "_*_";
+                    //toOutValue += (wordTI.Value).ToString("0.#####") + "_*_";
                     toOutLbBig += wordTI.Key + " : " + (wordTI.Value).ToString("0.####") + "\n"; ;
                 }
                 //textBox1.Text = toOutName;
@@ -181,6 +181,8 @@ namespace Text_analyzer
             {
                 if (isCyrillic(sumbol))
                     peeledText += Char.ToLower(sumbol);
+                else
+                    peeledText += " ";
             }
 
             peeledText = Regex.Replace(peeledText, @"\s+", " "); // To delete redundant space
