@@ -47,7 +47,7 @@ namespace Text_analyzer
             
         }
 
-        public double getTf(string key)
+        public double calcTf(string key)
         {
             flagTf = true;
             TF[key] = Math.Round(100.0 *  // percent
@@ -56,14 +56,14 @@ namespace Text_analyzer
             return TF[key];
         }
 
-        public double getIdf(string key, int D, int t) // inverse document frequency
+        public double calcIdf(string key, int D, int t) // inverse document frequency
         {
             flagIdf = true;
             IDF[key] = Math.Log10((float)D / (float)t);
             return IDF[key];
         }
 
-        public void getTfIdf() // inverse document frequency
+        public void calcTfIdf() // inverse document frequency
         {
             
             foreach (string word in n.Keys)

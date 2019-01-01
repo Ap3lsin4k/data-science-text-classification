@@ -31,10 +31,10 @@ namespace Text_analyzer
         {
 
            // newsJson = new TextJson();
-            string catg = categoryName.Text; // category
-            string toOutToLbWords="", toOutToLbBig="";
+            string catg = tbCategoryName.Text; // category
+            string toOutToLbWords= "Peeled text:\n", toOutToLbBig ="TF\n";
 
-            lbWords.Text = "";
+            lbWords.Text = "";// TODO tf to log
             lbBig.Text = "";
 
             string peeledText = getRawText(tbNews.Text.ToString());
@@ -65,24 +65,22 @@ namespace Text_analyzer
             {
                 // do something with item.Key and item.Value
                 toOutToLbBig += item.Key + " : " + newsJson.texts[catg].n[item.Key] + ",    "
-                    + newsJson.texts[catg].getTf(item.Key)
+                    + newsJson.texts[catg].calcTf(item.Key)
                     + "%" + "\n";
             }
             lbWords.Text = toOutToLbWords;
             lbBig.Text = toOutToLbBig;
             /*
             btnIdf.Enabled = true;
+            // calculate TF to all categories and then press IDF. Then TFIDF.
             */
         }
 
 
 
-        
-        private void btnIdf_Click(object sender, EventArgs e)
+        private void idf(string catg, bool log)
         {
-            lbBig.Text = "";
-            string catg = categoryName.Text, textToOut="Idf\n"; // category
-            // IDF
+            string textToOut = "IDF\n";
             int categories = 0;
             //foreach (WordFreq text in texts.Values)
 
@@ -96,53 +94,74 @@ namespace Text_analyzer
                     {
                         if (word == wordInOtherTexts)
                         {
-                            categories++;
+                            categories++; // if at least a word is in other category we count it and go to another text
                             break;
                         }
                     }
                 }
-                textToOut +=word + ":" +
-                newsJson.texts[catg].getIdf(word, newsJson.texts.Count, categories).ToString("0.####")
+                textToOut += word + ":" +
+                newsJson.texts[catg].calcIdf(word, newsJson.texts.Count, categories).ToString("0.####")  // word, Number of all texts, Number of text which contain this word
                 + "\n";
                 /* IDF*/
             }
 
-            lbBig.Text = textToOut;
+            if (log) lbBig.Text = textToOut;
+        }
+
+        private void btnIdf_Click(object sender, EventArgs e)
+        {
+            lbBig.Text = "IDF please chose category to see more\n";
+            string catg = tbCategoryName.Text; // category
+            
+            // calculate IDF for each category
+            foreach(KeyValuePair<string, WordFreq> text in newsJson.texts)
+            { 
+                idf(text.Key, text.Key==catg);// write log when current category.
+            }
             /*
             if(newsJson.texts[catg].flagTf && newsJson.texts[catg].flagIdf)
             {
                 btnTfIdf.Enabled = true;
             }
-            */
+        */
+
+        }
+
+        private void tfIdf(string catg, bool log)
+        {
+            string toOutLbBig = "TFIDF please chose category to see more\n";
+
+            newsJson.texts[catg].calcTfIdf();
+            //string toOutName = "", toOutValue = "";
+
+            foreach (KeyValuePair<string, double> wordTI in newsJson.texts[catg].TFIDF.OrderByDescending(key => key.Value))
+            {
+                //toOutName += wordTI.Key + "_*_";
+                //toOutValue += (wordTI.Value).ToString("0.#####") + "_*_";
+                toOutLbBig += wordTI.Key + " : " + (wordTI.Value).ToString("0.####") + "\n"; ;
+            }
+            //textBox1.Text = toOutName;
+            //textBox2.Text = toOutValue;
+            lbBig.Text = toOutLbBig;  
         }
 
         private void btnTfIdf_Click(object sender, EventArgs e)
         {
-            lbBig.Text = "TFIDF Error\n";
-            string toOutLbBig = "TFIDF\n";
+            lbBig.Text = "TFIDF\n";
 
-            string catg = categoryName.Text; // category
-            if (newsJson.texts[catg].flagTf && newsJson.texts[catg].flagIdf)
+            string catg = tbCategoryName.Text; // category
+            // TODO simplify KeyValuePair<> to string
+            foreach(KeyValuePair<string, WordFreq> text in newsJson.texts)
             {
-                newsJson.texts[catg].getTfIdf();
-                string toOutName = "", toOutValue = "";
-
-                foreach (KeyValuePair<string, double> wordTI in newsJson.texts[catg].TFIDF.OrderByDescending(key => key.Value))
+                if (newsJson.texts[text.Key].flagTf && newsJson.texts[text.Key].flagIdf)
                 {
-                    //toOutName += wordTI.Key + "_*_";
-                    //toOutValue += (wordTI.Value).ToString("0.#####") + "_*_";
-                    toOutLbBig += wordTI.Key + " : " + (wordTI.Value).ToString("0.####") + "\n"; ;
+                    tfIdf(text.Key, text.Key == catg);
                 }
-                //textBox1.Text = toOutName;
-                //textBox2.Text = toOutValue;
-                lbBig.Text = toOutLbBig;
-           
+                else
+                {
+                    MessageBox.Show("Error. Please press TF, than IDF, and finally TFIDF to get the TFIDF of " + catg + " category");
+                }
             }
-            else
-            {
-                MessageBox.Show("Error. Please press TF, than IDF, and finally TFIDF to get the TFIDF of " + catg + " category");
-            }
-            
         }
 
         private bool isCyrillic(int letterCode)
@@ -197,6 +216,15 @@ namespace Text_analyzer
         {
             string unknownText = getRawText(tbNewText.Text);  // Text with unknown category
             string[] unknownWords = unknownText.Split();
+            
+            double wordsCount = 0;
+
+            foreach (WordFreq text in newsJson.texts.Values)
+            {
+                wordsCount += text.allWords.Count;
+            }
+            double wordsCountAvg = wordsCount / newsJson.texts.Count;
+
             myGrid.Rows.Clear();
 
             // all words repeat one time now
@@ -215,9 +243,12 @@ namespace Text_analyzer
                 int ind = myGrid.Rows.Add(), countOfCommonElem = 0;
                 double score =0;
                 myGrid.Rows[ind].Cells[0].Value = text.Key;  // category
+            
+
                 foreach (string word in n.Keys) // the unrepeated word
                 {
                     int break_counter = 0;
+                    
                     foreach (KeyValuePair<string, double> wordCategory in text.Value.TFIDF.OrderByDescending(key => key.Value))
                     {
 
@@ -237,7 +268,6 @@ namespace Text_analyzer
                     }
 
                 }
-                int wordsCountAvg = 5000;
                 myGrid.Rows[ind].Cells[1].Value = countOfCommonElem;  // category
                 myGrid.Rows[ind].Cells[2].Value = (float)100 *
                     countOfCommonElem
@@ -273,6 +303,18 @@ namespace Text_analyzer
             newsJson.load();
         //    lbDebug.Text = newsJson.json;
         }
+
+        private void btnShowCategories_Click(object sender, EventArgs e)
+        {
+            string allCategories="All categories:\n";
+            foreach (string category in newsJson.texts.Keys)
+            {
+                allCategories += category + "\n";
+            }
+            lbWords.Text = allCategories;
+//            MessageBox.Show(allCategories);
+        }
+        
     }
 }
 

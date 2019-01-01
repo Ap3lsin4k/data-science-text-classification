@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.categoryName = new System.Windows.Forms.TextBox();
+            this.tbCategoryName = new System.Windows.Forms.TextBox();
             this.lbCategory = new System.Windows.Forms.Label();
             this.tbNews = new System.Windows.Forms.TextBox();
             this.btnTf = new System.Windows.Forms.Button();
@@ -43,6 +43,10 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.myGrid = new System.Windows.Forms.DataGridView();
+            this.Topic = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numberOfMatches = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.percentOfMatches = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSave = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbDebug = new System.Windows.Forms.Label();
@@ -50,10 +54,7 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.Topic = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numberOfMatches = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.percentOfMatches = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnShowCategories = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.myGrid)).BeginInit();
@@ -63,23 +64,23 @@
             this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // categoryName
+            // tbCategoryName
             // 
-            this.categoryName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.categoryName.Location = new System.Drawing.Point(148, 23);
-            this.categoryName.Name = "categoryName";
-            this.categoryName.Size = new System.Drawing.Size(137, 21);
-            this.categoryName.TabIndex = 0;
+            this.tbCategoryName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbCategoryName.Location = new System.Drawing.Point(6, 25);
+            this.tbCategoryName.Name = "tbCategoryName";
+            this.tbCategoryName.Size = new System.Drawing.Size(198, 21);
+            this.tbCategoryName.TabIndex = 0;
             // 
             // lbCategory
             // 
             this.lbCategory.AutoSize = true;
             this.lbCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lbCategory.Location = new System.Drawing.Point(3, 26);
+            this.lbCategory.Location = new System.Drawing.Point(3, 7);
             this.lbCategory.Name = "lbCategory";
-            this.lbCategory.Size = new System.Drawing.Size(133, 15);
+            this.lbCategory.Size = new System.Drawing.Size(136, 15);
             this.lbCategory.TabIndex = 1;
-            this.lbCategory.Text = "Enter name of category";
+            this.lbCategory.Text = "Enter name of category:";
             // 
             // tbNews
             // 
@@ -207,6 +208,38 @@
             this.myGrid.Size = new System.Drawing.Size(357, 559);
             this.myGrid.TabIndex = 15;
             // 
+            // Topic
+            // 
+            this.Topic.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Topic.FillWeight = 40F;
+            this.Topic.HeaderText = "Category";
+            this.Topic.MinimumWidth = 40;
+            this.Topic.Name = "Topic";
+            // 
+            // numberOfMatches
+            // 
+            this.numberOfMatches.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.numberOfMatches.FillWeight = 20F;
+            this.numberOfMatches.HeaderText = "Number of matches";
+            this.numberOfMatches.MinimumWidth = 20;
+            this.numberOfMatches.Name = "numberOfMatches";
+            // 
+            // percentOfMatches
+            // 
+            this.percentOfMatches.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.percentOfMatches.FillWeight = 20F;
+            this.percentOfMatches.HeaderText = "Percent of matches";
+            this.percentOfMatches.MinimumWidth = 20;
+            this.percentOfMatches.Name = "percentOfMatches";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.FillWeight = 20F;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Sum of importance coefficient";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 20;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Width = 60;
+            // 
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
@@ -257,8 +290,8 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.tbNews);
-            this.tabPage1.Controls.Add(this.categoryName);
+            this.tabPage1.Controls.Add(this.btnShowCategories);
+            this.tabPage1.Controls.Add(this.tbCategoryName);
             this.tabPage1.Controls.Add(this.btnSave);
             this.tabPage1.Controls.Add(this.lbCategory);
             this.tabPage1.Controls.Add(this.btnTf);
@@ -266,6 +299,7 @@
             this.tabPage1.Controls.Add(this.panel3);
             this.tabPage1.Controls.Add(this.btnIdf);
             this.tabPage1.Controls.Add(this.btnTfIdf);
+            this.tabPage1.Controls.Add(this.tbNews);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -290,37 +324,15 @@
             this.tabPage2.Text = "Analyzer";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // Topic
+            // btnShowCategories
             // 
-            this.Topic.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Topic.FillWeight = 40F;
-            this.Topic.HeaderText = "Category";
-            this.Topic.MinimumWidth = 40;
-            this.Topic.Name = "Topic";
-            // 
-            // numberOfMatches
-            // 
-            this.numberOfMatches.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.numberOfMatches.FillWeight = 20F;
-            this.numberOfMatches.HeaderText = "Number of matches";
-            this.numberOfMatches.MinimumWidth = 20;
-            this.numberOfMatches.Name = "numberOfMatches";
-            // 
-            // percentOfMatches
-            // 
-            this.percentOfMatches.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.percentOfMatches.FillWeight = 20F;
-            this.percentOfMatches.HeaderText = "Percent of matches";
-            this.percentOfMatches.MinimumWidth = 20;
-            this.percentOfMatches.Name = "percentOfMatches";
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.FillWeight = 20F;
-            this.dataGridViewTextBoxColumn1.HeaderText = "Sum of importance coefficient";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 20;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 60;
+            this.btnShowCategories.Location = new System.Drawing.Point(210, 6);
+            this.btnShowCategories.Name = "btnShowCategories";
+            this.btnShowCategories.Size = new System.Drawing.Size(75, 50);
+            this.btnShowCategories.TabIndex = 11;
+            this.btnShowCategories.Text = "Show Categories";
+            this.btnShowCategories.UseVisualStyleBackColor = true;
+            this.btnShowCategories.Click += new System.EventHandler(this.btnShowCategories_Click);
             // 
             // Form1
             // 
@@ -349,7 +361,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox categoryName;
+        private System.Windows.Forms.TextBox tbCategoryName;
         private System.Windows.Forms.Label lbCategory;
         private System.Windows.Forms.TextBox tbNews;
         private System.Windows.Forms.Button btnTf;
@@ -375,6 +387,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn numberOfMatches;
         private System.Windows.Forms.DataGridViewTextBoxColumn percentOfMatches;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.Button btnShowCategories;
     }
 }
 
