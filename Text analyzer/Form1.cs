@@ -39,7 +39,7 @@ namespace Text_analyzer
 
             string peeledText = getRawText(tbNews.Text.ToString());
             //lbDebug.Text = peeledText;
-            newsJson.texts[catg] = new WordFreq(peeledText.Split());
+            newsJson.texts[catg] = new WordFreq(peeledText.Split().ToList<string>());  // TODO test: casting to List can take much time
 
             foreach (string word in newsJson.texts[catg].allWords)
             {

@@ -66,7 +66,8 @@ namespace Text_analyzer
                 this.json = File.ReadAllText("analysis.json");
                 //this.texts = JsonConvert.DeserializeObject<Dictionary<string, WordFreq>>(this.json);
 
-                Dictionary<string, WordFreq> deserialize = JsonConvert.DeserializeObject<Dictionary<string, WordFreq>>(this.json);
+                Dictionary<string, WordFreq> deserialize = 
+                    JsonConvert.DeserializeObject<Dictionary<string, WordFreq>>(this.json);
                 if (deserialize != null)
                 {
                     this.texts = deserialize;

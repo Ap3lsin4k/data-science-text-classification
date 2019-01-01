@@ -1,5 +1,0 @@
-This is from
-Chapter 6
-Of C# Module
-
-Thanks for your time

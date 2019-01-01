@@ -16,22 +16,42 @@ namespace Text_analyzer
 
         public bool flagTf, flagIdf;
 
-        public string[] allWords;
+        public List<string> allWords;
 
-        public WordFreq(string[] words)
+        public WordFreq() // constructor to deserialize json
         {
             n = new Dictionary<string, int>();
             TF = new Dictionary<string, double>();
             IDF = new Dictionary<string, double>();
             TFIDF = new Dictionary<string, double>();  // to each word his TFIDF
-            allWords = words;
+            allWords = new List<string>();
+        }
+
+        public WordFreq(List<string> words)
+        {
+            n = new Dictionary<string, int>();
+            TF = new Dictionary<string, double>();
+            IDF = new Dictionary<string, double>();
+            TFIDF = new Dictionary<string, double>();  // to each word his TFIDF
+            allWords = new List<string>();
+            if (words[words.Count - 1] == "")
+            {
+                for (int i = 0; i < words.Count - 1; ++i)
+                {
+                    allWords.Add(words[i]);
+                }
+            }
+            else
+                allWords = words;
+            
+            
         }
 
         public double getTf(string key)
         {
             flagTf = true;
             TF[key] = Math.Round(100.0 *  // percent
-                        n[key] / allWords.Length, // to find TF
+                        n[key] / allWords.Count, // to find TF
                     2);  // numbers after coma
             return TF[key];
         }
