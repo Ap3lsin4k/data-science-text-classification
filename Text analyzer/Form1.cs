@@ -160,7 +160,7 @@ namespace Text_analyzer
                 }
                 else
                 {
-                    MessageBox.Show("Error. Please press TF, than IDF, and finally TFIDF to get the TFIDF of " + catg + " category");
+                    MessageBox.Show("Error. Please press TF, than IDF, and finally TFIDF to get the TF-IDF of \"" + catg + "\" category");
                 }
             }
         }

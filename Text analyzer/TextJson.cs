@@ -81,6 +81,7 @@ namespace Text_analyzer
             }
             catch (System.IO.FileNotFoundException e)
             {
+                this.texts = new Dictionary<string, WordFreq>();
                 MessageBox.Show("Could not find analysis.json file. I will create new");
             }
         }
