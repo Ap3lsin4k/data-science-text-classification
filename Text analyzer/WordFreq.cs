@@ -34,17 +34,16 @@ namespace Text_analyzer
             IDF = new Dictionary<string, double>();
             TFIDF = new Dictionary<string, double>();  // to each word his TFIDF
             allWords = new List<string>();
-            if (words[words.Count - 1] == "")
+
+
+            for (int i = 0; i < words.Count - 1; ++i)
             {
-                for (int i = 0; i < words.Count - 1; ++i)
-                {
+                if (words[i] != "")
                     allWords.Add(words[i]);
-                }
             }
-            else
-                allWords = words;
-            
-            
+
+
+
         }
 
         public double calcTf(string key)

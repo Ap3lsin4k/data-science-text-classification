@@ -79,7 +79,7 @@ namespace Text_analyzer
                     MessageBox.Show("Deserialize was failed. I will create new clear file");
                 }
             }
-            catch (System.IO.FileNotFoundException e)
+            catch(Exception e)// (System.IO.FileNotFoundException e)
             {
                 this.texts = new Dictionary<string, WordFreq>();
                 MessageBox.Show("Could not find analysis.json file. I will create new");
