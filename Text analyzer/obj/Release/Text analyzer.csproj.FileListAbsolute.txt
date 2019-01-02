@@ -12,3 +12,17 @@ D:\projects\C#\Text analyzer\Text analyzer\bin\Release\Newtonsoft.Json.dll
 D:\projects\C#\Text analyzer\Text analyzer\bin\Release\Newtonsoft.Json.pdb
 D:\projects\C#\Text analyzer\Text analyzer\bin\Release\Newtonsoft.Json.xml
 D:\projects\C#\Text analyzer\Text analyzer\obj\Release\Text analyzer.csproj.CopyComplete
+D:\Fedorko Andriy\News-analyzer\Text analyzer\bin\Release\Text analyzer.exe.config
+D:\Fedorko Andriy\News-analyzer\Text analyzer\bin\Release\Text analyzer.exe
+D:\Fedorko Andriy\News-analyzer\Text analyzer\bin\Release\Text analyzer.pdb
+D:\Fedorko Andriy\News-analyzer\Text analyzer\bin\Release\Newtonsoft.Json.dll
+D:\Fedorko Andriy\News-analyzer\Text analyzer\bin\Release\Newtonsoft.Json.pdb
+D:\Fedorko Andriy\News-analyzer\Text analyzer\bin\Release\Newtonsoft.Json.xml
+D:\Fedorko Andriy\News-analyzer\Text analyzer\obj\Release\Text analyzer.csprojAssemblyReference.cache
+D:\Fedorko Andriy\News-analyzer\Text analyzer\obj\Release\Text_analyzer.Form1.resources
+D:\Fedorko Andriy\News-analyzer\Text analyzer\obj\Release\Text_analyzer.Properties.Resources.resources
+D:\Fedorko Andriy\News-analyzer\Text analyzer\obj\Release\Text analyzer.csproj.GenerateResource.cache
+D:\Fedorko Andriy\News-analyzer\Text analyzer\obj\Release\Text analyzer.csproj.CoreCompileInputs.cache
+D:\Fedorko Andriy\News-analyzer\Text analyzer\obj\Release\Text analyzer.csproj.CopyComplete
+D:\Fedorko Andriy\News-analyzer\Text analyzer\obj\Release\Text analyzer.exe
+D:\Fedorko Andriy\News-analyzer\Text analyzer\obj\Release\Text analyzer.pdb

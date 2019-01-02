@@ -52,13 +52,12 @@
             this.btnLoad = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-
+            this.cbCategories = new System.Windows.Forms.ComboBox();
             this.btnShowCategories = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.cbLanguage = new System.Windows.Forms.ComboBox();
-            this.cbCategories = new System.Windows.Forms.ComboBox();
-
+            this.label1 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.myGrid)).BeginInit();
@@ -75,9 +74,9 @@
             this.lbCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lbCategory.Location = new System.Drawing.Point(3, 7);
             this.lbCategory.Name = "lbCategory";
-            this.lbCategory.Size = new System.Drawing.Size(136, 15);
+            this.lbCategory.Size = new System.Drawing.Size(94, 15);
             this.lbCategory.TabIndex = 1;
-            this.lbCategory.Text = "Enter name of category:";
+            this.lbCategory.Text = "Chose category:";
             // 
             // tbNews
             // 
@@ -314,7 +313,6 @@
             this.cbCategories.Size = new System.Drawing.Size(121, 21);
             this.cbCategories.TabIndex = 14;
             // 
-
             // btnShowCategories
             // 
             this.btnShowCategories.Location = new System.Drawing.Point(210, 6);
@@ -341,9 +339,9 @@
             this.tabPage2.Text = "Analyzer";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.label1);
             this.tabPage3.Controls.Add(this.cbLanguage);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
@@ -360,10 +358,19 @@
             "English",
             "Українська",
             "Русский"});
-            this.cbLanguage.Location = new System.Drawing.Point(4, 7);
+            this.cbLanguage.Location = new System.Drawing.Point(495, 35);
             this.cbLanguage.Name = "cbLanguage";
             this.cbLanguage.Size = new System.Drawing.Size(121, 21);
             this.cbLanguage.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "label1";
             // 
             // Form1
             // 
@@ -387,6 +394,7 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -421,6 +429,7 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.ComboBox cbLanguage;
         private System.Windows.Forms.ComboBox cbCategories;
+        private System.Windows.Forms.Label label1;
     }
 }
 
