@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tbCategoryName = new System.Windows.Forms.TextBox();
             this.lbCategory = new System.Windows.Forms.Label();
             this.tbNews = new System.Windows.Forms.TextBox();
             this.btnTf = new System.Windows.Forms.Button();
@@ -53,9 +52,9 @@
             this.btnLoad = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.cbCategories = new System.Windows.Forms.ComboBox();
             this.btnShowCategories = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.cbCategories = new System.Windows.Forms.ComboBox();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.myGrid)).BeginInit();
@@ -64,14 +63,6 @@
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tbCategoryName
-            // 
-            this.tbCategoryName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbCategoryName.Location = new System.Drawing.Point(139, 25);
-            this.tbCategoryName.Name = "tbCategoryName";
-            this.tbCategoryName.Size = new System.Drawing.Size(65, 21);
-            this.tbCategoryName.TabIndex = 0;
             // 
             // lbCategory
             // 
@@ -293,7 +284,6 @@
             // 
             this.tabPage1.Controls.Add(this.cbCategories);
             this.tabPage1.Controls.Add(this.btnShowCategories);
-            this.tabPage1.Controls.Add(this.tbCategoryName);
             this.tabPage1.Controls.Add(this.btnSave);
             this.tabPage1.Controls.Add(this.lbCategory);
             this.tabPage1.Controls.Add(this.btnTf);
@@ -309,6 +299,14 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Categories";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // cbCategories
+            // 
+            this.cbCategories.FormattingEnabled = true;
+            this.cbCategories.Location = new System.Drawing.Point(6, 27);
+            this.cbCategories.Name = "cbCategories";
+            this.cbCategories.Size = new System.Drawing.Size(121, 21);
+            this.cbCategories.TabIndex = 14;
             // 
             // btnShowCategories
             // 
@@ -336,14 +334,6 @@
             this.tabPage2.Text = "Analyzer";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // cbCategories
-            // 
-            this.cbCategories.FormattingEnabled = true;
-            this.cbCategories.Location = new System.Drawing.Point(6, 27);
-            this.cbCategories.Name = "cbCategories";
-            this.cbCategories.Size = new System.Drawing.Size(121, 21);
-            this.cbCategories.TabIndex = 14;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -370,8 +360,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox tbCategoryName;
         private System.Windows.Forms.Label lbCategory;
         private System.Windows.Forms.TextBox tbNews;
         private System.Windows.Forms.Button btnTf;

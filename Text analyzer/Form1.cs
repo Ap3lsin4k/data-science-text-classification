@@ -21,8 +21,7 @@ namespace Text_analyzer
         public Form1()
         {
             InitializeComponent();
-            newsJson.load();
-            cbCategories.Items.AddRange(newsJson.texts.Keys.ToArray());
+            load();
         }
 
        
@@ -39,7 +38,8 @@ namespace Text_analyzer
             lbBig.Text = "";
 
             string peeledText = getRawText(tbNews.Text.ToString());
-            //lbDebug.Text = peeledText;
+            
+            // create text with new category, if it wasn't created still
             newsJson.texts[catg] = new WordFreq(peeledText.Split().ToList<string>());  // TODO test: casting to List can take much time
 
             foreach (string word in newsJson.texts[catg].allWords)
@@ -75,6 +75,7 @@ namespace Text_analyzer
             btnIdf.Enabled = true;
             // calculate TF to all categories and then press IDF. Then TFIDF.
             */
+            updateCbCategories();
         }
 
 
@@ -124,8 +125,7 @@ namespace Text_analyzer
             {
                 btnTfIdf.Enabled = true;
             }
-        */
-
+        */  
         }
 
         private void tfIdf(string catg, bool log)
@@ -301,8 +301,13 @@ namespace Text_analyzer
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
+            load();
+        }
+
+        private void load()
+        {
             newsJson.load();
-        //    lbDebug.Text = newsJson.json;
+            updateCbCategories();
         }
 
         private void btnShowCategories_Click(object sender, EventArgs e)
@@ -314,6 +319,12 @@ namespace Text_analyzer
             }
             lbWords.Text = allCategories;
 //            MessageBox.Show(allCategories);
+        }
+
+        private void updateCbCategories()
+        {
+            cbCategories.Items.Clear();
+            cbCategories.Items.AddRange(newsJson.texts.Keys.ToArray());
         }
         
     }
