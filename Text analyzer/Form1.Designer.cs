@@ -53,8 +53,9 @@
             this.btnLoad = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnShowCategories = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.cbCategories = new System.Windows.Forms.ComboBox();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.myGrid)).BeginInit();
@@ -67,9 +68,9 @@
             // tbCategoryName
             // 
             this.tbCategoryName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbCategoryName.Location = new System.Drawing.Point(6, 25);
+            this.tbCategoryName.Location = new System.Drawing.Point(139, 25);
             this.tbCategoryName.Name = "tbCategoryName";
-            this.tbCategoryName.Size = new System.Drawing.Size(198, 21);
+            this.tbCategoryName.Size = new System.Drawing.Size(65, 21);
             this.tbCategoryName.TabIndex = 0;
             // 
             // lbCategory
@@ -290,6 +291,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.cbCategories);
             this.tabPage1.Controls.Add(this.btnShowCategories);
             this.tabPage1.Controls.Add(this.tbCategoryName);
             this.tabPage1.Controls.Add(this.btnSave);
@@ -308,6 +310,16 @@
             this.tabPage1.Text = "Categories";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // btnShowCategories
+            // 
+            this.btnShowCategories.Location = new System.Drawing.Point(210, 6);
+            this.btnShowCategories.Name = "btnShowCategories";
+            this.btnShowCategories.Size = new System.Drawing.Size(75, 50);
+            this.btnShowCategories.TabIndex = 11;
+            this.btnShowCategories.Text = "Show Categories";
+            this.btnShowCategories.UseVisualStyleBackColor = true;
+            this.btnShowCategories.Click += new System.EventHandler(this.btnShowCategories_Click);
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.btnLoad);
@@ -324,15 +336,13 @@
             this.tabPage2.Text = "Analyzer";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // btnShowCategories
+            // cbCategories
             // 
-            this.btnShowCategories.Location = new System.Drawing.Point(210, 6);
-            this.btnShowCategories.Name = "btnShowCategories";
-            this.btnShowCategories.Size = new System.Drawing.Size(75, 50);
-            this.btnShowCategories.TabIndex = 11;
-            this.btnShowCategories.Text = "Show Categories";
-            this.btnShowCategories.UseVisualStyleBackColor = true;
-            this.btnShowCategories.Click += new System.EventHandler(this.btnShowCategories_Click);
+            this.cbCategories.FormattingEnabled = true;
+            this.cbCategories.Location = new System.Drawing.Point(6, 27);
+            this.cbCategories.Name = "cbCategories";
+            this.cbCategories.Size = new System.Drawing.Size(121, 21);
+            this.cbCategories.TabIndex = 14;
             // 
             // Form1
             // 
@@ -388,6 +398,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn percentOfMatches;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.Button btnShowCategories;
+        private System.Windows.Forms.ComboBox cbCategories;
     }
 }
 

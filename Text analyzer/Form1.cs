@@ -22,6 +22,7 @@ namespace Text_analyzer
         {
             InitializeComponent();
             newsJson.load();
+            cbCategories.Items.AddRange(newsJson.texts.Keys.ToArray());
         }
 
        
@@ -178,9 +179,9 @@ namespace Text_analyzer
                 case 39:  // '
                           //case 45:  // -
                     return true;
-                default:
+                default:  // TODO add English support
                     return
-                        1040 <= letterCode && letterCode <= 1103 &&
+                        1040 <= letterCode && letterCode <= 1103 &&  // Cyrillic
                         letterCode != 1066 &&  // Ъ
                         letterCode != 1067 &&  // Ы
                         letterCode != 1099 &&  // ы
