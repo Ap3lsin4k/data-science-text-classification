@@ -53,8 +53,10 @@
             this.btnLoad = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnShowCategories = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.cbLanguage = new System.Windows.Forms.ComboBox();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.myGrid)).BeginInit();
@@ -62,6 +64,7 @@
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbCategoryName
@@ -282,6 +285,7 @@
             // 
             this.tabControl.Controls.Add(this.tabPage1);
             this.tabControl.Controls.Add(this.tabPage2);
+            this.tabControl.Controls.Add(this.tabPage3);
             this.tabControl.Location = new System.Drawing.Point(11, 16);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
@@ -308,6 +312,16 @@
             this.tabPage1.Text = "Categories";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // btnShowCategories
+            // 
+            this.btnShowCategories.Location = new System.Drawing.Point(210, 6);
+            this.btnShowCategories.Name = "btnShowCategories";
+            this.btnShowCategories.Size = new System.Drawing.Size(75, 50);
+            this.btnShowCategories.TabIndex = 11;
+            this.btnShowCategories.Text = "Show Categories";
+            this.btnShowCategories.UseVisualStyleBackColor = true;
+            this.btnShowCategories.Click += new System.EventHandler(this.btnShowCategories_Click);
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.btnLoad);
@@ -324,15 +338,28 @@
             this.tabPage2.Text = "Analyzer";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // btnShowCategories
+            // tabPage3
             // 
-            this.btnShowCategories.Location = new System.Drawing.Point(210, 6);
-            this.btnShowCategories.Name = "btnShowCategories";
-            this.btnShowCategories.Size = new System.Drawing.Size(75, 50);
-            this.btnShowCategories.TabIndex = 11;
-            this.btnShowCategories.Text = "Show Categories";
-            this.btnShowCategories.UseVisualStyleBackColor = true;
-            this.btnShowCategories.Click += new System.EventHandler(this.btnShowCategories_Click);
+            this.tabPage3.Controls.Add(this.cbLanguage);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(854, 627);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Instruction";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // cbLanguage
+            // 
+            this.cbLanguage.FormattingEnabled = true;
+            this.cbLanguage.Items.AddRange(new object[] {
+            "English",
+            "Українська",
+            "Русский"});
+            this.cbLanguage.Location = new System.Drawing.Point(4, 7);
+            this.cbLanguage.Name = "cbLanguage";
+            this.cbLanguage.Size = new System.Drawing.Size(121, 21);
+            this.cbLanguage.TabIndex = 0;
             // 
             // Form1
             // 
@@ -355,6 +382,7 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -388,6 +416,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn percentOfMatches;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.Button btnShowCategories;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.ComboBox cbLanguage;
     }
 }
 
