@@ -31,8 +31,8 @@ namespace Text_analyzer
         private void btnTf_Click(object sender, EventArgs e)
         {
 
-           // newsJson = new TextJson();
-            string catg = tbCategoryName.Text; // category
+            // newsJson = new TextJson();
+            string catg = cbCategories.Text;//tbCategoryName.Text; // category
             string toOutToLbWords= "Peeled text:\n", toOutToLbBig ="TF\n";
 
             lbWords.Text = "";// TODO tf to log
@@ -112,7 +112,7 @@ namespace Text_analyzer
         private void btnIdf_Click(object sender, EventArgs e)
         {
             lbBig.Text = "IDF please chose category to see more\n";
-            string catg = tbCategoryName.Text; // category
+            string catg = cbCategories.Text; //tbCategoryName.Text; // category
             
             // calculate IDF for each category
             foreach(KeyValuePair<string, WordFreq> text in newsJson.texts)
@@ -150,7 +150,7 @@ namespace Text_analyzer
         {
             lbBig.Text = "TFIDF\n";
 
-            string catg = tbCategoryName.Text; // category
+            string catg = cbCategories.Text; //tbCategoryName.Text; // category
             // TODO simplify KeyValuePair<> to string
             foreach(KeyValuePair<string, WordFreq> text in newsJson.texts)
             {
