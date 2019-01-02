@@ -14,7 +14,7 @@ namespace Text_analyzer
 {
     class TextJson
     {
-        public Dictionary<string, WordFreq> texts;
+        public Dictionary<string, WordFreq> texts;  //category, and parametrs for it
         public string json;
 
         public TextJson()
