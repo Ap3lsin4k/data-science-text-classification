@@ -114,12 +114,16 @@ namespace Text_analyzer
         {
             lbBig.Text = "IDF chose existed category to see more\n";
             string catg = cbCategories.Text; //tbCategoryName.Text; // category
-            
-            // calculate IDF for each category
-            foreach(KeyValuePair<string, WordFreq> text in newsJson.texts)
-            { 
-                idf(text.Key, text.Key==catg);// write log when current category.
+            if (newsJson.texts.Count != 0)
+            {
+                // calculate IDF for each category
+                foreach (KeyValuePair<string, WordFreq> text in newsJson.texts)
+                {
+                    idf(text.Key, text.Key == catg);// write log when current category.
+                }
             }
+            else
+                MessageBox.Show("Here is no categories to calculate Inverse Document Frequency");
             /*
             if(newsJson.texts[catg].flagTf && newsJson.texts[catg].flagIdf)
             {
@@ -133,36 +137,39 @@ namespace Text_analyzer
             string toOutLbBig = "TFIDF please chose existed category to see more\n";
 
             newsJson.texts[catg].calcTfIdf();
-            //string toOutName = "", toOutValue = "";
 
             foreach (KeyValuePair<string, double> wordTI in newsJson.texts[catg].TFIDF.OrderByDescending(key => key.Value))
             {
-                //toOutName += wordTI.Key + "_*_";
-                //toOutValue += (wordTI.Value).ToString("0.#####") + "_*_";
                 toOutLbBig += wordTI.Key + " : " + (wordTI.Value).ToString("0.####") + "\n"; ;
             }
-            //textBox1.Text = toOutName;
-            //textBox2.Text = toOutValue;
-            lbBig.Text = toOutLbBig;  
+            if (log) lbBig.Text = toOutLbBig;  
         }
 
         private void btnTfIdf_Click(object sender, EventArgs e)
         {
-            lbBig.Text = "TFIDF\n";
+            lbBig.Text = "TFIDF please chose existed category to see more\n";
 
             string catg = cbCategories.Text; //tbCategoryName.Text; // category
-            // TODO simplify KeyValuePair<> to string
-            foreach(KeyValuePair<string, WordFreq> text in newsJson.texts)
+            if (newsJson.texts.Count != 0)
             {
-                if (newsJson.texts[text.Key].flagTf && newsJson.texts[text.Key].flagIdf)
+            
+                // TODO simplify KeyValuePair<> to string
+                foreach (KeyValuePair<string, WordFreq> text in newsJson.texts)
                 {
-                    tfIdf(text.Key, text.Key == catg);
-                }
-                else
-                {
-                    MessageBox.Show("Error. Please press TF, than IDF, and finally TFIDF to get the TF-IDF of \"" + catg + "\" category");
+                    if (newsJson.texts[text.Key].flagTf && newsJson.texts[text.Key].flagIdf)
+                    {
+                        tfIdf(text.Key, text.Key == catg);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error. Please click TF for \"" + catg + "\" category. " +
+                            "Than you should click on IDF. " +
+                            "Finally click TFIDF to get it");
+                    }
                 }
             }
+            else
+                MessageBox.Show("Here is no categories to calculate TF*IDF");
         }
 
         private bool isCyrillic(int letterCode)
