@@ -9,7 +9,6 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
 namespace Text_analyzer
 {
     public partial class Form1 : Form
@@ -134,7 +133,7 @@ namespace Text_analyzer
 
         private void tfIdf(string catg, bool log)
         {
-            string toOutLbBig = "TFIDF please chose existed category to see more\n";
+            string toOutLbBig = "TFIDF\n";
 
             newsJson.texts[catg].calcTfIdf();
 
@@ -288,8 +287,23 @@ namespace Text_analyzer
 
 
             }
-            //            
+            //TODO sort
+           // DataGridViewColumn newColumn =
+            /*
+            myGrid.Columns.GetColumnCount(
+            DataGridViewElementStates.Selected)
+            == 1
+            ? myGrid.SelectedColumns[0]
+             : null;
+            //*/
 
+            //ListSortDirection direction = ListSortDirection.Ascending;
+            /*if (newColumn!= null)
+                    myGrid.Sort(myGr, direction);
+            else
+                MessageBox.Show("Select a single column and try again.",
+                "Error: Invalid Selection", MessageBoxButtons.OK,
+                MessageBoxIcon.Error);*/
         }
 
         
