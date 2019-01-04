@@ -35,48 +35,70 @@ namespace Text_analyzer
 
             lbWords.Text = "";// TODO tf to log
             lbBig.Text = "";
-
-            string peeledText = getRawText(tbNews.Text.ToString());
             
-            // create text with new category, if it wasn't created still
-            newsJson.texts[catg] = new WordFreq(peeledText.Split().ToList<string>());  // TODO test: casting to List can take much time
+            if (!string.IsNullOrWhiteSpace(tbNews.Text.ToString()))
+            {
+                string peeledText = getRawText(tbNews.Text.ToString());
 
-            foreach (string word in newsJson.texts[catg].allWords)
-            {
-                toOutToLbWords += word + "\n";
-            
-            }
-            foreach (string word in newsJson.texts[catg].allWords)
-            {
-                if (newsJson.texts[catg].n.ContainsKey(word))
+                // create text with new category, if it wasn't created still
+                newsJson.texts[catg] = new WordFreq(peeledText.Split().ToList<string>());  // TODO test: casting to List can take much time
+
+                foreach (string word in newsJson.texts[catg].allWords)
                 {
-                    ++newsJson.texts[catg].n[word];
+                    toOutToLbWords += word + "\n";
+
                 }
-                else
+                foreach (string word in newsJson.texts[catg].allWords)
                 {
-                    newsJson.texts[catg].n[word] = 1;
+                    if (newsJson.texts[catg].n.ContainsKey(word))
+                    {
+                        ++newsJson.texts[catg].n[word];
+                    }
+                    else
+                    {
+                        newsJson.texts[catg].n[word] = 1;
+                    }
+
                 }
 
-            }
 
-                
-            // TF
-            foreach (KeyValuePair<string, int> item in newsJson.texts[catg].n.OrderByDescending(key => key.Value))
-            {
-                // do something with item.Key and item.Value
-                toOutToLbBig += item.Key + " : " + newsJson.texts[catg].n[item.Key] + ",    "
-                    + Math.Round(
-                        newsJson.texts[catg].calcTf(item.Key),
-                        2)  // numbers after point
-                    + "%" + "\n";
+                // TF
+                foreach (KeyValuePair<string, int> item in newsJson.texts[catg].n.OrderByDescending(key => key.Value))
+                {
+                    // do something with item.Key and item.Value
+                    toOutToLbBig += item.Key + " : " + newsJson.texts[catg].n[item.Key] + ",    "
+                        + Math.Round(
+                            newsJson.texts[catg].calcTf(item.Key),
+                            2)  // numbers after point
+                        + "%" + "\n";
+                }
+                lbWords.Text = toOutToLbWords;
+                lbBig.Text = toOutToLbBig;
+                /*
+                btnIdf.Enabled = true;
+                // calculate TF to all categories and then press IDF. Then TFIDF.
+                */
+                updateCbCategories();
             }
-            lbWords.Text = toOutToLbWords;
-            lbBig.Text = toOutToLbBig;
-            /*
-            btnIdf.Enabled = true;
-            // calculate TF to all categories and then press IDF. Then TFIDF.
-            */
-            updateCbCategories();
+            else
+            {
+                foreach (string word in newsJson.texts[catg].allWords)
+                {
+                    toOutToLbWords += word + "\n";
+
+                }
+                foreach (KeyValuePair<string, int> item in newsJson.texts[catg].n.OrderByDescending(key => key.Value))
+                {
+                    // do something with item.Key and item.Value
+                    toOutToLbBig += item.Key + " : " + Math.Round(
+                            newsJson.texts[catg].TF[item.Key],
+                            2)  // numbers after point
+                        + "%" + "\n";
+                }
+                lbWords.Text = toOutToLbWords;
+                lbBig.Text = toOutToLbBig;
+
+            }
         }
 
 
@@ -93,63 +115,13 @@ namespace Text_analyzer
                 foreach (KeyValuePair<string, WordFreq> text in newsJson.texts)
                 {
                     if (text.Key == catg) continue;
-                    /*
-                    //if (word in text.Value.allWords)
-                    string sequence = text.Value.allWords.Where(x => x == word).FirstOrDefault();
-                    //foreach (string commonWord in sequence)
-                    if(sequence != null)
-                    {
-                        categories++;
-                        break;
-                        //MessageBox.Show(sequence);
-                    }
-                    //*/
-                    //*
-                    //text.Value.n.ToList();
                     
-                    //List<string> nList = .ToList();
-                    //nList.Sort();
                     if(text.Value.n.Keys.Contains(word))
                     {
                         categories++; // if at least a word is in other category we count it and go to another text
                         break;
                     }
-                    /*
-                    int half = (int)nList.Count / 2;
-                    int start = 0;
-                    int end = nList.Count;
-
-                    while (word == nList[half])
-                    {
-                        half = (int)(start + end) / 2;
-                        string temp1 = word;
-                        string temp2 = nList[half];
-                        if (temp1 < temp2)
-                        {
-                            end = half - 1;
-                        }
-                        else
-                        {
-                            if (word > nList[half])
-                            {
-                                start = half + 1;
-                            }
-                        }
-                        if (word == nList[half])
-                        {
-                            return half + 1;
-                        }
-                        return half;
-                    }
-                    foreach (string wordInOtherTexts in text.Value.n.Keys)
-                    {
-                        if (word == wordInOtherTexts)
-                        {
-                            categories++; // if at least a word is in other category we count it and go to another text
-                            break;
-                        }
-                    }
-                    //*/
+                    
                 }
                 textToOut += word + ":" +
                 newsJson.texts[catg].calcIdf(word, newsJson.texts.Count, categories).ToString("0.####")  // word, Number of all texts, Number of text which contain this word
@@ -164,7 +136,6 @@ namespace Text_analyzer
         {
             lbBig.Text = "IDF chose existed category to see more\n";
             string catg = cbCategories.Text; //tbCategoryName.Text; // category
-            //List <KeyValuePair<string, int>> nList = newsJson.texts.
 
             if (newsJson.texts.Count != 0)
             {
