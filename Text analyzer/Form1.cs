@@ -65,7 +65,9 @@ namespace Text_analyzer
             {
                 // do something with item.Key and item.Value
                 toOutToLbBig += item.Key + " : " + newsJson.texts[catg].n[item.Key] + ",    "
-                    + newsJson.texts[catg].calcTf(item.Key)
+                    + Math.Round(
+                        newsJson.texts[catg].calcTf(item.Key),
+                        2)  // numbers after point
                     + "%" + "\n";
             }
             lbWords.Text = toOutToLbWords;
@@ -91,7 +93,19 @@ namespace Text_analyzer
                 foreach (KeyValuePair<string, WordFreq> text in newsJson.texts)
                 {
                     if (text.Key == catg) continue;
-                    foreach (string wordInOtherTexts in text.Value.allWords)
+                    /*
+                    //if (word in text.Value.allWords)
+                    string sequence = text.Value.allWords.Where(x => x == word).FirstOrDefault();
+                    //foreach (string commonWord in sequence)
+                    if(sequence != null)
+                    {
+                        categories++;
+                        break;
+                        //MessageBox.Show(sequence);
+                    }
+                    //*/
+                    //*
+                    foreach (string wordInOtherTexts in text.Value.n.Keys)
                     {
                         if (word == wordInOtherTexts)
                         {
@@ -99,6 +113,7 @@ namespace Text_analyzer
                             break;
                         }
                     }
+                    //*/
                 }
                 textToOut += word + ":" +
                 newsJson.texts[catg].calcIdf(word, newsJson.texts.Count, categories).ToString("0.####")  // word, Number of all texts, Number of text which contain this word
