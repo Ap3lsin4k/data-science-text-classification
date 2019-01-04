@@ -53,7 +53,6 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.cbCategories = new System.Windows.Forms.ComboBox();
-            this.btnShowCategories = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -283,7 +282,6 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.cbCategories);
-            this.tabPage1.Controls.Add(this.btnShowCategories);
             this.tabPage1.Controls.Add(this.btnSave);
             this.tabPage1.Controls.Add(this.lbCategory);
             this.tabPage1.Controls.Add(this.btnTf);
@@ -307,16 +305,6 @@
             this.cbCategories.Name = "cbCategories";
             this.cbCategories.Size = new System.Drawing.Size(121, 21);
             this.cbCategories.TabIndex = 14;
-            // 
-            // btnShowCategories
-            // 
-            this.btnShowCategories.Location = new System.Drawing.Point(210, 6);
-            this.btnShowCategories.Name = "btnShowCategories";
-            this.btnShowCategories.Size = new System.Drawing.Size(75, 50);
-            this.btnShowCategories.TabIndex = 11;
-            this.btnShowCategories.Text = "Show Categories";
-            this.btnShowCategories.UseVisualStyleBackColor = true;
-            this.btnShowCategories.Click += new System.EventHandler(this.btnShowCategories_Click);
             // 
             // tabPage2
             // 
@@ -385,7 +373,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn numberOfMatches;
         private System.Windows.Forms.DataGridViewTextBoxColumn percentOfMatches;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.Button btnShowCategories;
         private System.Windows.Forms.ComboBox cbCategories;
     }
 }
