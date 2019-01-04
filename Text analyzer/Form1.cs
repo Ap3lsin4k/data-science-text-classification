@@ -31,6 +31,13 @@ namespace Text_analyzer
 
             // newsJson = new TextJson();
             string catg = cbCategories.Text;//tbCategoryName.Text; // category
+
+            if(string.IsNullOrWhiteSpace(catg))
+            {
+                MessageBox.Show("Please enter or chose the category");
+                return;
+            }
+
             string toOutToLbWords= "Peeled text:\n", toOutToLbBig ="TF\n";
 
             lbWords.Text = "";// TODO tf to log
@@ -82,21 +89,28 @@ namespace Text_analyzer
             }
             else
             {
-                foreach (string word in newsJson.texts[catg].allWords)
+                if (newsJson.texts.ContainsKey(catg))
                 {
-                    toOutToLbWords += word + "\n";
+                    foreach (string word in newsJson.texts[catg].allWords)
+                    {
+                        toOutToLbWords += word + "\n";
 
+                    }
+                    foreach (KeyValuePair<string, int> item in newsJson.texts[catg].n.OrderByDescending(key => key.Value))
+                    {
+                        // do something with item.Key and item.Value
+                        toOutToLbBig += item.Key + " : " + Math.Round(
+                                newsJson.texts[catg].TF[item.Key],
+                                2)  // numbers after point
+                            + "%" + "\n";
+                    }
+                    lbWords.Text = toOutToLbWords;
+                    lbBig.Text = toOutToLbBig;
                 }
-                foreach (KeyValuePair<string, int> item in newsJson.texts[catg].n.OrderByDescending(key => key.Value))
+                else
                 {
-                    // do something with item.Key and item.Value
-                    toOutToLbBig += item.Key + " : " + Math.Round(
-                            newsJson.texts[catg].TF[item.Key],
-                            2)  // numbers after point
-                        + "%" + "\n";
+                    MessageBox.Show("The category \"" + catg + "\" was not created. To create this category enter text of news in the TextBox");
                 }
-                lbWords.Text = toOutToLbWords;
-                lbBig.Text = toOutToLbBig;
 
             }
         }
