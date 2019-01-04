@@ -86,9 +86,9 @@
             // btnTf
             // 
             this.btnTf.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnTf.Location = new System.Drawing.Point(291, 7);
+            this.btnTf.Location = new System.Drawing.Point(191, 6);
             this.btnTf.Name = "btnTf";
-            this.btnTf.Size = new System.Drawing.Size(50, 50);
+            this.btnTf.Size = new System.Drawing.Size(75, 50);
             this.btnTf.TabIndex = 4;
             this.btnTf.Text = "TF";
             this.btnTf.UseVisualStyleBackColor = true;
@@ -131,9 +131,9 @@
             // btnIdf
             // 
             this.btnIdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnIdf.Location = new System.Drawing.Point(347, 6);
+            this.btnIdf.Location = new System.Drawing.Point(272, 6);
             this.btnIdf.Name = "btnIdf";
-            this.btnIdf.Size = new System.Drawing.Size(50, 50);
+            this.btnIdf.Size = new System.Drawing.Size(75, 50);
             this.btnIdf.TabIndex = 9;
             this.btnIdf.Text = "IDF";
             this.btnIdf.UseVisualStyleBackColor = true;
@@ -142,9 +142,9 @@
             // btnTfIdf
             // 
             this.btnTfIdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnTfIdf.Location = new System.Drawing.Point(403, 6);
+            this.btnTfIdf.Location = new System.Drawing.Point(353, 6);
             this.btnTfIdf.Name = "btnTfIdf";
-            this.btnTfIdf.Size = new System.Drawing.Size(50, 50);
+            this.btnTfIdf.Size = new System.Drawing.Size(75, 50);
             this.btnTfIdf.TabIndex = 10;
             this.btnTfIdf.Text = "TFIDF";
             this.btnTfIdf.UseVisualStyleBackColor = true;
@@ -160,6 +160,7 @@
             // 
             // btnAnalysis
             // 
+            this.btnAnalysis.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnAnalysis.Location = new System.Drawing.Point(218, 6);
             this.btnAnalysis.Name = "btnAnalysis";
             this.btnAnalysis.Size = new System.Drawing.Size(206, 50);
@@ -170,6 +171,7 @@
             // 
             // button2
             // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button2.Location = new System.Drawing.Point(430, 6);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(206, 50);
@@ -179,6 +181,7 @@
             // 
             // button3
             // 
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button3.Location = new System.Drawing.Point(642, 6);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(206, 50);
@@ -233,10 +236,10 @@
             // 
             // btnSave
             // 
-            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnSave.Location = new System.Drawing.Point(459, 6);
+            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnSave.Location = new System.Drawing.Point(434, 6);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(50, 50);
+            this.btnSave.Size = new System.Drawing.Size(75, 50);
             this.btnSave.TabIndex = 5;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -260,7 +263,7 @@
             // 
             // btnLoad
             // 
-            this.btnLoad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnLoad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnLoad.Location = new System.Drawing.Point(6, 6);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(206, 50);
@@ -300,10 +303,11 @@
             // 
             // cbCategories
             // 
+            this.cbCategories.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.cbCategories.FormattingEnabled = true;
             this.cbCategories.Location = new System.Drawing.Point(6, 27);
             this.cbCategories.Name = "cbCategories";
-            this.cbCategories.Size = new System.Drawing.Size(121, 21);
+            this.cbCategories.Size = new System.Drawing.Size(179, 23);
             this.cbCategories.TabIndex = 14;
             // 
             // tabPage2
@@ -314,6 +318,7 @@
             this.tabPage2.Controls.Add(this.button3);
             this.tabPage2.Controls.Add(this.myGrid);
             this.tabPage2.Controls.Add(this.tbNewText);
+            this.tabPage2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
