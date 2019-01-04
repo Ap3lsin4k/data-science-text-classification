@@ -36,14 +36,11 @@ namespace Text_analyzer
             allWords = new List<string>();
 
 
-            for (int i = 0; i < words.Count - 1; ++i)
+            for (int i = 0; i < words.Count; ++i)
             {
                 if (words[i] != "")
                     allWords.Add(words[i]);
             }
-
-
-
         }
 
         public double calcTf(string key)
