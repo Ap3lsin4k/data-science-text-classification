@@ -8,11 +8,10 @@ namespace Text_analyzer
 {
     class WordFreq // an news, an text
     {
-
-        public Dictionary<string, int> n;  // frequency of apearing
-        public Dictionary<string, double> TF;  // Term frequency
-        public Dictionary<string, double> IDF;  // Inverse document frequency
-        public Dictionary<string, double> TFIDF;  // Term frequency – Inverse document frequency
+        public Dictionary<string, int> n;  // <word, frequency of apearing>
+        public Dictionary<string, double> TF;  // <word, Term frequency in %>
+        public Dictionary<string, double> IDF;  // <word, Inverse document frequency>
+        public Dictionary<string, double> TFIDF;  // <word, Term frequency – Inverse document frequency>
 
         public bool flagTf, flagIdf;  // true when TF, IDF is calculated
 

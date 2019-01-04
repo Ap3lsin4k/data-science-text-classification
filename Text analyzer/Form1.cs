@@ -87,7 +87,7 @@ namespace Text_analyzer
             int categories = 0;
             //foreach (WordFreq text in texts.Values)
 
-            foreach (string word in newsJson.texts[catg].allWords)
+            foreach (string word in newsJson.texts[catg].n.Keys)
             {
                 categories = 1;
                 foreach (KeyValuePair<string, WordFreq> text in newsJson.texts)
@@ -105,6 +105,42 @@ namespace Text_analyzer
                     }
                     //*/
                     //*
+                    //text.Value.n.ToList();
+                    
+                    //List<string> nList = .ToList();
+                    //nList.Sort();
+                    if(text.Value.n.Keys.Contains(word))
+                    {
+                        categories++; // if at least a word is in other category we count it and go to another text
+                        break;
+                    }
+                    /*
+                    int half = (int)nList.Count / 2;
+                    int start = 0;
+                    int end = nList.Count;
+
+                    while (word == nList[half])
+                    {
+                        half = (int)(start + end) / 2;
+                        string temp1 = word;
+                        string temp2 = nList[half];
+                        if (temp1 < temp2)
+                        {
+                            end = half - 1;
+                        }
+                        else
+                        {
+                            if (word > nList[half])
+                            {
+                                start = half + 1;
+                            }
+                        }
+                        if (word == nList[half])
+                        {
+                            return half + 1;
+                        }
+                        return half;
+                    }
                     foreach (string wordInOtherTexts in text.Value.n.Keys)
                     {
                         if (word == wordInOtherTexts)
@@ -128,6 +164,8 @@ namespace Text_analyzer
         {
             lbBig.Text = "IDF chose existed category to see more\n";
             string catg = cbCategories.Text; //tbCategoryName.Text; // category
+            //List <KeyValuePair<string, int>> nList = newsJson.texts.
+
             if (newsJson.texts.Count != 0)
             {
                 // calculate IDF for each category
