@@ -133,7 +133,7 @@ namespace Text_analyzer
                     if(text.Value.n.Keys.Contains(word))
                     {
                         categories++; // if at least a word is in other category we count it and go to another text
-                        break;
+                        //break; // don't write break.
                     }
                     
                 }
