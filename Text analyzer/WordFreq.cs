@@ -50,7 +50,7 @@ namespace Text_analyzer
             return TF[key];
         }
 
-        public double calcIdf(string key, int D, int t) 
+        public double calcIdf(string key, int D, int t) // t is always <= D
         {
             flagIdf = true;
             /*
