@@ -319,11 +319,13 @@ namespace Text_analyzer
                 myGrid.Rows[ind].Cells[1].Value = countOfCommonElem;
                 myGrid.Rows[ind].Cells[2].Value = (float)100 * countOfCommonElem / (n.Count);  // percent
                 myGrid.Rows[ind].Cells[3].Value = score / text.Value.TFIDF.Count * wordsCountAvg; // improtance coefficient
-
-
+                
             }
-            //TODO sort
-           // DataGridViewColumn newColumn =
+
+            myGrid.Sort(myGrid.Columns[3], ListSortDirection.Descending);
+
+            // TODO вставляти вже відсортовані данні
+            // DataGridViewColumn newColumn =
             /*
             myGrid.Columns.GetColumnCount(
             DataGridViewElementStates.Selected)
@@ -341,7 +343,7 @@ namespace Text_analyzer
                 MessageBoxIcon.Error);*/
         }
 
-        
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             newsJson.save();
@@ -382,7 +384,6 @@ namespace Text_analyzer
             cbCategories.Items.Clear();
             cbCategories.Items.AddRange(newsJson.texts.Keys.ToArray());
         }
-        
     }
 }
 
