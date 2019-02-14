@@ -191,6 +191,7 @@
             // 
             // myGrid
             // 
+            this.myGrid.AllowUserToAddRows = false;
             this.myGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.myGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Topic,

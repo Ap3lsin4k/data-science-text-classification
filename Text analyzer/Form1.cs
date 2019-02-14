@@ -23,6 +23,8 @@ namespace Text_analyzer
             load();
         }
 
+        const int keyWordsLimit = 200;
+
        
         
 
@@ -262,13 +264,13 @@ namespace Text_analyzer
             string unknownText = getRawText(tbNewText.Text);  // Text with unknown category
             string[] unknownWords = unknownText.Split();
             
-            double wordsCount = 0;
+            double wordsCount = 0, wordsCountAvg;
 
             foreach (WordFreq text in newsJson.texts.Values)
             {
                 wordsCount += text.allWords.Count;
             }
-            double wordsCountAvg = wordsCount / newsJson.texts.Count;
+            wordsCountAvg = wordsCount / newsJson.texts.Count;
 
             myGrid.Rows.Clear();
 
@@ -298,7 +300,7 @@ namespace Text_analyzer
                     {
 
                         break_counter++;
-                        if (break_counter >= 200)
+                        if (break_counter >= keyWordsLimit)
                         {
                             break;
                         }
@@ -313,14 +315,9 @@ namespace Text_analyzer
                     }
 
                 }
-                myGrid.Rows[ind].Cells[1].Value = countOfCommonElem;  // category
-                myGrid.Rows[ind].Cells[2].Value = (float)100 *
-                    countOfCommonElem
-                    /
-                    (n.Count); // + text.Value.n.Count - countOfCommonElem);
-                               /*/ 
-                               (unknownWords.Length + text.Value.allWords.Length-countOfCommonElem) ;
-                               */
+
+                myGrid.Rows[ind].Cells[1].Value = countOfCommonElem;
+                myGrid.Rows[ind].Cells[2].Value = (float)100 * countOfCommonElem / (n.Count);  // percent
                 myGrid.Rows[ind].Cells[3].Value = score / text.Value.TFIDF.Count * wordsCountAvg; // improtance coefficient
 
 

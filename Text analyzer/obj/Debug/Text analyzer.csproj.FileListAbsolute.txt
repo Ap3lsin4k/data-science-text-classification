@@ -26,3 +26,17 @@ D:\Fedorko Andriy\News-analyzer\Text analyzer\obj\Debug\Text analyzer.csproj.Cor
 D:\Fedorko Andriy\News-analyzer\Text analyzer\obj\Debug\Text analyzer.csproj.CopyComplete
 D:\Fedorko Andriy\News-analyzer\Text analyzer\obj\Debug\Text analyzer.exe
 D:\Fedorko Andriy\News-analyzer\Text analyzer\obj\Debug\Text analyzer.pdb
+D:\projects\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\bin\Debug\Text analyzer.exe.config
+D:\projects\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\bin\Debug\Text analyzer.exe
+D:\projects\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\bin\Debug\Text analyzer.pdb
+D:\projects\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\bin\Debug\Newtonsoft.Json.dll
+D:\projects\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\bin\Debug\Newtonsoft.Json.pdb
+D:\projects\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\bin\Debug\Newtonsoft.Json.xml
+D:\projects\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\obj\Debug\Text analyzer.csprojAssemblyReference.cache
+D:\projects\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\obj\Debug\Text_analyzer.Form1.resources
+D:\projects\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\obj\Debug\Text_analyzer.Properties.Resources.resources
+D:\projects\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\obj\Debug\Text analyzer.csproj.GenerateResource.cache
+D:\projects\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\obj\Debug\Text analyzer.csproj.CoreCompileInputs.cache
+D:\projects\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\obj\Debug\Text analyzer.csproj.CopyComplete
+D:\projects\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\obj\Debug\Text analyzer.exe
+D:\projects\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\obj\Debug\Text analyzer.pdb
