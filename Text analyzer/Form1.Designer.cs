@@ -54,7 +54,6 @@
             this.numberOfMatches = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.percentOfMatches = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.percentOfImportanceCoefficient = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.myGrid)).BeginInit();
@@ -199,8 +198,7 @@
             this.Topic,
             this.numberOfMatches,
             this.percentOfMatches,
-            this.dataGridViewTextBoxColumn1,
-            this.percentOfImportanceCoefficient});
+            this.dataGridViewTextBoxColumn1});
             this.myGrid.Location = new System.Drawing.Point(430, 62);
             this.myGrid.Name = "myGrid";
             this.myGrid.Size = new System.Drawing.Size(418, 559);
@@ -302,7 +300,7 @@
             // Topic
             // 
             this.Topic.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Topic.FillWeight = 40F;
+            this.Topic.FillWeight = 32F;
             this.Topic.HeaderText = "Category";
             this.Topic.MinimumWidth = 80;
             this.Topic.Name = "Topic";
@@ -327,17 +325,9 @@
             // 
             this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn1.FillWeight = 25F;
-            this.dataGridViewTextBoxColumn1.HeaderText = "Importance Coefficient";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Importance Coefficient, %";
             this.dataGridViewTextBoxColumn1.MinimumWidth = 60;
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // percentOfImportanceCoefficient
-            // 
-            this.percentOfImportanceCoefficient.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.percentOfImportanceCoefficient.FillWeight = 25F;
-            this.percentOfImportanceCoefficient.HeaderText = "Percent of Importance Coefficient";
-            this.percentOfImportanceCoefficient.MinimumWidth = 60;
-            this.percentOfImportanceCoefficient.Name = "percentOfImportanceCoefficient";
             // 
             // Form1
             // 
@@ -391,7 +381,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn numberOfMatches;
         private System.Windows.Forms.DataGridViewTextBoxColumn percentOfMatches;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn percentOfImportanceCoefficient;
     }
 }
 

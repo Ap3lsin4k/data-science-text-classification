@@ -23,7 +23,7 @@ namespace Text_analyzer
             load();
         }
 
-        const int keyWordsLimit = 200;
+        const int keyWordsLimit = 155;
 
        
         
@@ -264,6 +264,7 @@ namespace Text_analyzer
             string unknownText = getRawText(tbNewText.Text);  // Text with unknown category
             string[] unknownWords = unknownText.Split();
             
+            /* TODO clean up
             double wordsCount = 0, wordsCountAvg;
 
             foreach (WordFreq text in newsJson.texts.Values)
@@ -271,6 +272,7 @@ namespace Text_analyzer
                 wordsCount += text.allWords.Count;
             }
             wordsCountAvg = wordsCount / newsJson.texts.Count;
+            */
 
             myGrid.Rows.Clear();
 
@@ -317,12 +319,12 @@ namespace Text_analyzer
                 }
 
                 myGrid.Rows[ind].Cells[1].Value = countOfCommonElem;
-                myGrid.Rows[ind].Cells[2].Value = (float)100 * countOfCommonElem / (n.Count);  // percent
-                //                                how much key words in category
-                myGrid.Rows[ind].Cells[3].Value = score /* Math.Min(text.Value.TFIDF.Count, keyWordsLimit) */* wordsCountAvg; // improtance coefficient
-                myGrid.Rows[ind].Cells[4].Value = score / Math.Min(text.Value.TFIDF.Count, keyWordsLimit) * wordsCountAvg; // improtance coefficient
+                myGrid.Rows[ind].Cells[2].Value = Math.Round(100.0 * countOfCommonElem / Math.Min(text.Value.TFIDF.Count, keyWordsLimit), 1);
+                //(float)100 * countOfCommonElem / (n.Count);  // percent
+                myGrid.Rows[ind].Cells[3].Value = Math.Round(score, 4); // improtance coefficient
             }
 
+            // sorting by importance coeffficent
             myGrid.Sort(myGrid.Columns[3], ListSortDirection.Descending);
 
             // TODO вставляти вже відсортовані данні
