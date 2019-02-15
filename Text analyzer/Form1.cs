@@ -8,6 +8,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+// work with files
+using System.IO;
 
 namespace Text_analyzer
 {
@@ -219,6 +221,8 @@ namespace Text_analyzer
                 case 1108: // є
                 case 1030: // І
                 case 1110: // і
+                case 1031: // Ї
+                case 1111: // ї
                 case 1168: // Ґ
                 case 1169: // ґ
                 case 32:  // " "
@@ -292,8 +296,11 @@ namespace Text_analyzer
                 int ind = myGrid.Rows.Add(), countOfCommonElem = 0;
                 double score =0;
                 myGrid.Rows[ind].Cells[0].Value = text.Key;  // category
-            
 
+                FileInfo f = new FileInfo("log/"+text.Key+".txt");
+                StreamWriter w = f.CreateText();
+                
+                
                 foreach (string word in n.Keys) // the unrepeated word
                 {
                     int break_counter = 0;
@@ -308,6 +315,7 @@ namespace Text_analyzer
                         }
                         if (word == wordCategory.Key) // if word from unknown category equals word from category we know
                         {
+                            w.WriteLine(word+" "+wordCategory.Value);
                             ++countOfCommonElem;
                             score += wordCategory.Value;
                            // MessageBox.Show(text.Key + " " + word+":"+ wordCategory.Value);
@@ -322,6 +330,9 @@ namespace Text_analyzer
                 myGrid.Rows[ind].Cells[2].Value = Math.Round(100.0 * countOfCommonElem / Math.Min(text.Value.TFIDF.Count, keyWordsLimit), 1);
                 //(float)100 * countOfCommonElem / (n.Count);  // percent
                 myGrid.Rows[ind].Cells[3].Value = Math.Round(score, 4); // improtance coefficient
+
+                w.Close();
+
             }
 
             // sorting by importance coeffficent
