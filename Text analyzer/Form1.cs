@@ -295,7 +295,7 @@ namespace Text_analyzer
                 foreach (string word in n.Keys) // the unrepeated word
                 {
                     int break_counter = 0;
-                    
+                    // від найбільш ключових слів до найменш 
                     foreach (KeyValuePair<string, double> wordCategory in text.Value.TFIDF.OrderByDescending(key => key.Value))
                     {
 
