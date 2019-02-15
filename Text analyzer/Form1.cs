@@ -318,8 +318,9 @@ namespace Text_analyzer
 
                 myGrid.Rows[ind].Cells[1].Value = countOfCommonElem;
                 myGrid.Rows[ind].Cells[2].Value = (float)100 * countOfCommonElem / (n.Count);  // percent
-                myGrid.Rows[ind].Cells[3].Value = score / text.Value.TFIDF.Count * wordsCountAvg; // improtance coefficient
-                
+                //                                how much key words in category
+                myGrid.Rows[ind].Cells[3].Value = score /* Math.Min(text.Value.TFIDF.Count, keyWordsLimit) */* wordsCountAvg; // improtance coefficient
+                myGrid.Rows[ind].Cells[4].Value = score / Math.Min(text.Value.TFIDF.Count, keyWordsLimit) * wordsCountAvg; // improtance coefficient
             }
 
             myGrid.Sort(myGrid.Columns[3], ListSortDirection.Descending);

@@ -26,3 +26,17 @@ D:\Fedorko Andriy\News-analyzer\Text analyzer\obj\Release\Text analyzer.csproj.C
 D:\Fedorko Andriy\News-analyzer\Text analyzer\obj\Release\Text analyzer.csproj.CopyComplete
 D:\Fedorko Andriy\News-analyzer\Text analyzer\obj\Release\Text analyzer.exe
 D:\Fedorko Andriy\News-analyzer\Text analyzer\obj\Release\Text analyzer.pdb
+D:\projects\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\bin\Release\Text analyzer.exe.config
+D:\projects\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\bin\Release\Text analyzer.exe
+D:\projects\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\bin\Release\Text analyzer.pdb
+D:\projects\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\bin\Release\Newtonsoft.Json.dll
+D:\projects\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\bin\Release\Newtonsoft.Json.pdb
+D:\projects\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\bin\Release\Newtonsoft.Json.xml
+D:\projects\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\obj\Release\Text analyzer.csprojAssemblyReference.cache
+D:\projects\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\obj\Release\Text_analyzer.Form1.resources
+D:\projects\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\obj\Release\Text_analyzer.Properties.Resources.resources
+D:\projects\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\obj\Release\Text analyzer.csproj.GenerateResource.cache
+D:\projects\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\obj\Release\Text analyzer.csproj.CoreCompileInputs.cache
+D:\projects\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\obj\Release\Text analyzer.csproj.CopyComplete
+D:\projects\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\obj\Release\Text analyzer.exe
+D:\projects\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\obj\Release\Text analyzer.pdb
