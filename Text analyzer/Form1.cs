@@ -297,6 +297,7 @@ namespace Text_analyzer
                 double score =0;
                 myGrid.Rows[ind].Cells[0].Value = text.Key;  // category
 
+                Directory.CreateDirectory("log");
                 FileInfo f = new FileInfo("log/"+text.Key+".txt");
                 StreamWriter w = f.CreateText();
                 

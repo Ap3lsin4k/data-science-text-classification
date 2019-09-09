@@ -42,6 +42,10 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.myGrid = new System.Windows.Forms.DataGridView();
+            this.Topic = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numberOfMatches = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.percentOfMatches = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSave = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbDebug = new System.Windows.Forms.Label();
@@ -50,10 +54,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.cbCategories = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.Topic = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numberOfMatches = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.percentOfMatches = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnDE = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.myGrid)).BeginInit();
@@ -172,9 +173,9 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(430, 6);
+            this.button2.Location = new System.Drawing.Point(636, 6);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(206, 50);
+            this.button2.Size = new System.Drawing.Size(103, 50);
             this.button2.TabIndex = 13;
             this.button2.Text = "Key words";
             this.button2.UseVisualStyleBackColor = true;
@@ -182,9 +183,9 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button3.Location = new System.Drawing.Point(642, 6);
+            this.button3.Location = new System.Drawing.Point(745, 6);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(206, 50);
+            this.button3.Size = new System.Drawing.Size(103, 50);
             this.button3.TabIndex = 14;
             this.button3.Text = "Settings";
             this.button3.UseVisualStyleBackColor = true;
@@ -203,6 +204,38 @@
             this.myGrid.Name = "myGrid";
             this.myGrid.Size = new System.Drawing.Size(418, 559);
             this.myGrid.TabIndex = 15;
+            // 
+            // Topic
+            // 
+            this.Topic.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Topic.FillWeight = 32F;
+            this.Topic.HeaderText = "Category";
+            this.Topic.MinimumWidth = 80;
+            this.Topic.Name = "Topic";
+            // 
+            // numberOfMatches
+            // 
+            this.numberOfMatches.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.numberOfMatches.FillWeight = 25F;
+            this.numberOfMatches.HeaderText = "Coincidence";
+            this.numberOfMatches.MinimumWidth = 40;
+            this.numberOfMatches.Name = "numberOfMatches";
+            // 
+            // percentOfMatches
+            // 
+            this.percentOfMatches.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.percentOfMatches.FillWeight = 25F;
+            this.percentOfMatches.HeaderText = "Percent of Coincidence";
+            this.percentOfMatches.MinimumWidth = 60;
+            this.percentOfMatches.Name = "percentOfMatches";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn1.FillWeight = 25F;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Importance Coefficient";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 60;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             // 
             // btnSave
             // 
@@ -282,6 +315,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btnDE);
             this.tabPage2.Controls.Add(this.btnLoad);
             this.tabPage2.Controls.Add(this.btnAnalysis);
             this.tabPage2.Controls.Add(this.button2);
@@ -297,37 +331,14 @@
             this.tabPage2.Text = "Analyzer";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // Topic
+            // btnDE
             // 
-            this.Topic.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Topic.FillWeight = 32F;
-            this.Topic.HeaderText = "Category";
-            this.Topic.MinimumWidth = 80;
-            this.Topic.Name = "Topic";
-            // 
-            // numberOfMatches
-            // 
-            this.numberOfMatches.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.numberOfMatches.FillWeight = 25F;
-            this.numberOfMatches.HeaderText = "Coincidence";
-            this.numberOfMatches.MinimumWidth = 40;
-            this.numberOfMatches.Name = "numberOfMatches";
-            // 
-            // percentOfMatches
-            // 
-            this.percentOfMatches.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.percentOfMatches.FillWeight = 25F;
-            this.percentOfMatches.HeaderText = "Percent of Coincidence";
-            this.percentOfMatches.MinimumWidth = 60;
-            this.percentOfMatches.Name = "percentOfMatches";
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn1.FillWeight = 25F;
-            this.dataGridViewTextBoxColumn1.HeaderText = "Importance Coefficient, %";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 60;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.btnDE.Location = new System.Drawing.Point(430, 6);
+            this.btnDE.Name = "btnDE";
+            this.btnDE.Size = new System.Drawing.Size(200, 50);
+            this.btnDE.TabIndex = 18;
+            this.btnDE.Text = "Analyze by DE";
+            this.btnDE.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -381,6 +392,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn numberOfMatches;
         private System.Windows.Forms.DataGridViewTextBoxColumn percentOfMatches;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.Button btnDE;
     }
 }
 
