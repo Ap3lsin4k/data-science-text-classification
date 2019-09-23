@@ -12,93 +12,118 @@ namespace Text_analyzer
         private class NKavgA
         {
             public List<int> NKs = new List<int>();
-            public double averageAs;
-            public double sqAvgAs;
-
-
+            public double averageAs; // AVG(NKs[1]-NKs[0], NKs[2]-NKs[1],..., NKs[K]-NKs[K-1]) 
+            public double sqAvgAs;  // AVG((NKs[1]-NKs[0])^2, (NKs[2]-NKs[1])^2, ..., (NKs[K]-NKs[K-1])^2)
+            public double dispersionEstimation;
         }
 
         Dictionary<string, NKavgA> words;
 
-        
+
 
         public DE()
         {
             this.words = new Dictionary<string, NKavgA>();
         }
+        public void preinit()
+        {
+            // Clear dictionary to add new words
+            this.words.Clear();
+        }
 
         public void init(List<string> wordsToAnalyse)
         {
-            int n = 1, k = 0;
+            int n = 1;
             foreach (string aWord in wordsToAnalyse)
             {
                 if (!words.ContainsKey(aWord))
-                {
+                {            // create new word
                     words[aWord] = new NKavgA();
                 }
+                // add the position of the next occurence of the word
                 words[aWord].NKs.Add(n);
-                ++n;
+                ++n;// move text pivot to the next word
             }
         }
 
-        void addAwordNK()
-        {
-
-        }
 
         int deltaA(List<int> A, int k)
         {
             return A[k + 1] - A[k];  // m-n; where m, n are neighbor position of the "A" word
         }
 
-        private int avgA()
+        private double avgA(string A)  // <ΔA> = AVG(ΔA, ΔA, ΔA...)
         {
-            /*1Dictionary<string, NKavgA>.ValueCollection*/ var ns = words;
-           // int sum = 0, k=0;
-            foreach (var word in words.Keys)// = 0; k < ns.NKs.Count - 1; ++k)
+            int sum = 0;
+
+            for (int k = 0; k < words[A].NKs.Count - 1; ++k)
             {
-                // if (k == words[word].NKs.Count - 1) break; // don't count the last element
-                //  sum += deltaA(words[word].NKs, k);  // m-n
-                //  ++k;
-                int sum = 0;
-
-                for (int k = 0; k < words[word].NKs.Count - 1; ++k)
-                {
-                    sum += deltaA(words[word].NKs, k);  // m-n
-                }
-
-                NKavgA average = new NKavgA();
-                average.averageAs = sum / (words[word].NKs.Count - 1);
-                words[word] = average; // 
+                sum += deltaA(words[A].NKs, k);  // m-n
             }
 
+            //save average A for each term
+            if (words[A].NKs.Count - 1 != 0)
+                words[A].averageAs = (double)sum / (words[A].NKs.Count - 1); // AVG = sum divided by number of variables(n)
+            else
+                words[A].averageAs = words.Count;
 
+           
+            return words[A].averageAs;
+        }
 
-            //              
-            /*foreach (NKavgA ns in words.Values)
+        private double squareAvgA(string A) //<ΔA^2> = AVG(ΔA^2, ΔA^2, ΔA^2...)
+        {
+            int sum = 0;
+
+            for (int k = 0; k < words[A].NKs.Count - 1; ++k)
             {
-                //                var listNK = de.Value;
-                int sum = 0;
-                for (int k = 0; k < ns.NKs.Count - 1; ++k)
-                {
-                    sum += deltaA(ns.NKs, k);  // m-n
-                }
-//                ns.avarageAs = sum / (ns.NKs.Count - 1);  // error because foreach
-                
+                int deltaMN = deltaA(words[A].NKs, k);
+                sum += deltaMN * deltaMN;  // (m-n) squared
+            }
 
-            }*/
-            return 0;
+            //save average A for each term
+            if (words[A].NKs.Count - 1 != 0)
+                words[A].sqAvgAs = (double)sum / (words[A].NKs.Count - 1); // AVG = sum divided by number of variables(n)
+            else
+                words[A].sqAvgAs = words.Count; // TODO fix for single words in text
+
+
+            return words[A].sqAvgAs;
         }
 
-        public void mainFormula()
+        public double mainFormula()  //Math.Sqrt(<ΔA^2> - <ΔA>^2) / <ΔA>
         {
-            avgA();
-            //Math.Sqrt(avgA() * avgA()) / avgA();
+            string myTempKey="";
+            foreach (var word in words.Keys)// = 0; k < ns.NKs.Count - 1; ++k)
+            {
+
+                double A = avgA(word);  // <ΔA>
+                double A2 = squareAvgA(word);  //<ΔA^2>
+                words[word].dispersionEstimation = Math.Sqrt(A2 - A * A) / A; // calculate DE for each term in text
+                myTempKey = word; //debug
+            }
+            return words[myTempKey].dispersionEstimation;
         }
 
-        public void analyzeDE(List<string> unknownCategoryWords)
+            /*
+             *         public double mainFormula()  //Math.Sqrt(<ΔA^2> - <ΔA>^2) / <ΔA>
+            {
+            foreach (var word in words.Keys)// = 0; k < ns.NKs.Count - 1; ++k)
+            {
+
+                double A = avgA();  // <ΔA>
+                double A2 = squareAvgA();  //<ΔA^2>
+                return Math.Sqrt(A2 - A * A) / A;
+            }
+
+            */
+
+        public double analyzeDE(List<string> unknownCategoryWords)
         {
-            init(unknownCategoryWords);   
+            preinit();
+            init(unknownCategoryWords);
+            return mainFormula(); //DE of a random word
         }
+        
     }
 }

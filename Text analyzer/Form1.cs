@@ -414,23 +414,8 @@ namespace Text_analyzer
         {
             
             string peeledText = getRawText(tbNewText.Text.ToString());
-
-            // create text with new category, if it wasn't created still
-            //int n = 1;
-            myDe.analyzeDE(getRawTextSplit(tbNewText));
-            /*foreach (string aWord in )
-            {
-
-                /*
-                if (!myDEwords.ContainsKey(aWord))
-                {
-                    myDEwords[aWord] = new List<int>();
-                }
-                myDEwords[aWord].Add(n);
-                
-                n++;// to one string
-            }*/
-            
+            double resultOfDispersionEstimation = myDe.analyzeDE(getRawTextSplit(tbNewText));
+            lbDEresult.Text = resultOfDispersionEstimation.ToString();
         }
     }
 }
