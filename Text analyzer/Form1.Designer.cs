@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.lbCategory = new System.Windows.Forms.Label();
             this.tbNews = new System.Windows.Forms.TextBox();
             this.btnTf = new System.Windows.Forms.Button();
@@ -158,6 +159,7 @@
             this.tbNewText.Name = "tbNewText";
             this.tbNewText.Size = new System.Drawing.Size(416, 559);
             this.tbNewText.TabIndex = 11;
+            this.tbNewText.Text = resources.GetString("tbNewText.Text");
             // 
             // btnAnalysis
             // 
@@ -339,6 +341,7 @@
             this.btnDE.TabIndex = 18;
             this.btnDE.Text = "Analyze by DE";
             this.btnDE.UseVisualStyleBackColor = true;
+            this.btnDE.Click += new System.EventHandler(this.btnDE_Click);
             // 
             // Form1
             // 

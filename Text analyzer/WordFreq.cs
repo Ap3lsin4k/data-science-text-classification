@@ -12,29 +12,30 @@ namespace Text_analyzer
         public Dictionary<string, double> TF;  // <word, Term frequency in %>
         public Dictionary<string, double> IDF;  // <word, Inverse document frequency>
         public Dictionary<string, double> TFIDF;  // <word, Term frequency – Inverse document frequency>
+        DE DE;
 
         public bool flagTf, flagIdf;  // true when TF, IDF is calculated
 
         public List<string> allWords;
 
-        public WordFreq() // constructor to deserialize json
+        private void initialize()
         {
             n = new Dictionary<string, int>();
             TF = new Dictionary<string, double>();
             IDF = new Dictionary<string, double>();
             TFIDF = new Dictionary<string, double>();
+            DE = new DE();
             allWords = new List<string>();
+        }
+        public WordFreq() // constructor to deserialize json
+        {
+            initialize();
         }
 
         public WordFreq(List<string> words)  // constructor which program uses
         {
-            n = new Dictionary<string, int>();
-            TF = new Dictionary<string, double>();
-            IDF = new Dictionary<string, double>();
-            TFIDF = new Dictionary<string, double>();
-            allWords = new List<string>();
-
-
+            initialize();
+            
             for (int i = 0; i < words.Count; ++i)
             {
                 if (words[i] != "")  // to delete empty elements
@@ -68,6 +69,12 @@ namespace Text_analyzer
         {
             foreach (string word in n.Keys)
                 TFIDF[word] = TF[word] * IDF[word];  // TF-IDF = TF*IDF
+        }
+
+        
+        public void calcDe()  //Disperse Evaluation
+        {
+            DE.mainFormula();
         }
     }
 }

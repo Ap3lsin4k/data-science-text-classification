@@ -40,3 +40,17 @@ D:\projects\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer
 D:\projects\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\obj\Debug\Text analyzer.csproj.CopyComplete
 D:\projects\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\obj\Debug\Text analyzer.exe
 D:\projects\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\obj\Debug\Text analyzer.pdb
+D:\projects\C#\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\bin\Debug\Text analyzer.exe.config
+D:\projects\C#\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\bin\Debug\Text analyzer.exe
+D:\projects\C#\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\bin\Debug\Text analyzer.pdb
+D:\projects\C#\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\bin\Debug\Newtonsoft.Json.dll
+D:\projects\C#\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\bin\Debug\Newtonsoft.Json.pdb
+D:\projects\C#\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\bin\Debug\Newtonsoft.Json.xml
+D:\projects\C#\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\obj\Debug\Text analyzer.csprojAssemblyReference.cache
+D:\projects\C#\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\obj\Debug\Text_analyzer.Form1.resources
+D:\projects\C#\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\obj\Debug\Text_analyzer.Properties.Resources.resources
+D:\projects\C#\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\obj\Debug\Text analyzer.csproj.GenerateResource.cache
+D:\projects\C#\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\obj\Debug\Text analyzer.csproj.CoreCompileInputs.cache
+D:\projects\C#\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\obj\Debug\Text analyzer.csproj.CopyComplete
+D:\projects\C#\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\obj\Debug\Text analyzer.exe
+D:\projects\C#\scientific work Andrii Fedorko 2018-2019\News-analyzer\Text analyzer\obj\Debug\Text analyzer.pdb

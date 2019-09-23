@@ -8,6 +8,7 @@ namespace Text_analyzer
 {
     class Aword
     {
+        //legacy
 //        public string word;
         public int k, n;
         List<int> A = new List<int>();
@@ -27,7 +28,7 @@ namespace Text_analyzer
         void addAword(int n)
         {
 
-            A.Add(n)
+//            A.Add(n)
            /* 
             if (A.ContainsKey(word))
                 this.A[word].Add(n);

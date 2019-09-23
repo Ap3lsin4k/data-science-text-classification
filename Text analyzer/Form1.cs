@@ -18,7 +18,7 @@ namespace Text_analyzer
         // category, and words in each text
 //        Dictionary<string, WordFreq> texts = new Dictionary<string, WordFreq>();
         TextJson newsJson = new TextJson();
-
+        DE myDe = new DE();
         public Form1()
         {
             InitializeComponent();
@@ -262,6 +262,16 @@ namespace Text_analyzer
             return peeledText;
         }
 
+
+        private List<string> getRawTextSplit(string notClearedText)
+        {
+            return getRawText(notClearedText).Split().ToList<string>();
+        }
+        private List<string> getRawTextSplit(TextBox tbWithText)
+        {
+            return getRawText(tbWithText.Text.ToString()).Split().ToList<string>();
+        }
+
         //      ========PROGRAM_#2========
         private void btnAnalysis_Click(object sender, EventArgs e)
         {
@@ -398,6 +408,29 @@ namespace Text_analyzer
         {
             cbCategories.Items.Clear();
             cbCategories.Items.AddRange(newsJson.texts.Keys.ToArray());
+        }
+
+        private void btnDE_Click(object sender, EventArgs e)
+        {
+            
+            string peeledText = getRawText(tbNewText.Text.ToString());
+
+            // create text with new category, if it wasn't created still
+            //int n = 1;
+            myDe.analyzeDE(getRawTextSplit(tbNewText));
+            /*foreach (string aWord in )
+            {
+
+                /*
+                if (!myDEwords.ContainsKey(aWord))
+                {
+                    myDEwords[aWord] = new List<int>();
+                }
+                myDEwords[aWord].Add(n);
+                
+                n++;// to one string
+            }*/
+            
         }
     }
 }

@@ -51,7 +51,7 @@ namespace Text_analyzer
                 if (deserialize != null)
                 {
                     this.texts = deserialize;
-                    MessageBox.Show("Succesfully loaded");
+                    //MessageBox.Show("Succesfully loaded"); TODO decoment
                 }
                 else  // if json file is invalid
                 {
