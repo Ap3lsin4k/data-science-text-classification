@@ -56,7 +56,6 @@
             this.cbCategories = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnDE = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.lbDEresult = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -283,10 +282,10 @@
             // 
             this.tabControl.Controls.Add(this.tabPage1);
             this.tabControl.Controls.Add(this.tabPage2);
-            this.tabControl.Location = new System.Drawing.Point(11, 16);
+            this.tabControl.Location = new System.Drawing.Point(11, 4);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(862, 653);
+            this.tabControl.Size = new System.Drawing.Size(862, 665);
             this.tabControl.TabIndex = 18;
             // 
             // tabPage1
@@ -330,7 +329,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(854, 627);
+            this.tabPage2.Size = new System.Drawing.Size(854, 639);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Analyzer";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -345,19 +344,10 @@
             this.btnDE.UseVisualStyleBackColor = true;
             this.btnDE.Click += new System.EventHandler(this.btnDE_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 19;
-            this.label1.Text = "label1";
-            // 
             // lbDEresult
             // 
             this.lbDEresult.AutoSize = true;
-            this.lbDEresult.Location = new System.Drawing.Point(894, 149);
+            this.lbDEresult.Location = new System.Drawing.Point(904, 38);
             this.lbDEresult.Name = "lbDEresult";
             this.lbDEresult.Size = new System.Drawing.Size(35, 13);
             this.lbDEresult.TabIndex = 20;
@@ -369,7 +359,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1043, 673);
             this.Controls.Add(this.lbDEresult);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabControl);
             this.Name = "Form1";
@@ -419,7 +408,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn percentOfMatches;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.Button btnDE;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbDEresult;
     }
 }

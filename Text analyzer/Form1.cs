@@ -414,7 +414,7 @@ namespace Text_analyzer
         {
             
             string peeledText = getRawText(tbNewText.Text.ToString());
-            double resultOfDispersionEstimation = myDe.analyzeDE(getRawTextSplit(tbNewText));
+            string resultOfDispersionEstimation = myDe.analyzeDE(getRawTextSplit(tbNewText));
             lbDEresult.Text = resultOfDispersionEstimation.ToString();
         }
     }

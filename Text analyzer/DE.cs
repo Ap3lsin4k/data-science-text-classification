@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Text_analyzer
 {
@@ -91,8 +92,9 @@ namespace Text_analyzer
             return words[A].sqAvgAs;
         }
 
-        public double mainFormula()  //Math.Sqrt(<ΔA^2> - <ΔA>^2) / <ΔA>
+        public string mainFormula()  //Math.Sqrt(<ΔA^2> - <ΔA>^2) / <ΔA>
         {
+            string outDebug ="";
             string myTempKey="";
             foreach (var word in words.Keys)// = 0; k < ns.NKs.Count - 1; ++k)
             {
@@ -100,9 +102,18 @@ namespace Text_analyzer
                 double A = avgA(word);  // <ΔA>
                 double A2 = squareAvgA(word);  //<ΔA^2>
                 words[word].dispersionEstimation = Math.Sqrt(A2 - A * A) / A; // calculate DE for each term in text
+                outDebug += word + words[word].dispersionEstimation.ToString() +"\n";
                 myTempKey = word; //debug
             }
-            return words[myTempKey].dispersionEstimation;
+            //TODO the last key is ""
+            
+            
+            
+            
+            
+            
+            
+            return outDebug;
         }
 
             /*
@@ -118,7 +129,7 @@ namespace Text_analyzer
 
             */
 
-        public double analyzeDE(List<string> unknownCategoryWords)
+        public string analyzeDE(List<string> unknownCategoryWords)
         {
             preinit();
             init(unknownCategoryWords);
