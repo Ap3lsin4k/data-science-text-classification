@@ -50,24 +50,45 @@ namespace Text_analyzer
 
         int deltaA(List<int> A, int k)
         {
+            /*
+             k: 0  1   2    3
+             n: 1  3  113  127
+              */
+            // distance between ocurrance of term
             return A[k + 1] - A[k];  // m-n; where m, n are neighbor position of the "A" word
         }
 
         private double avgA(string A)  // <ΔA> = AVG(ΔA, ΔA, ΔA...)
         {
-            int sum = 0;
+            int sum = 0, k, length= words[A].NKs.Count;
 
-            for (int k = 0; k < words[A].NKs.Count - 1; ++k)
+            for (k = 0; k < length - 1; ++k)
             {
                 sum += deltaA(words[A].NKs, k);  // m-n
             }
+            //k == words[A].NKs.Count - 1 // last index = length-1 due to indexation that begins with 0
+
+            /*
+            0123456
+            ..A..A.
+            first delta equal distance between  = 5-2 = 3
+
+            in case text is round
+            4560123
+            .A...A.
+            second delta is length - last occurance, + first occurence +1 = (7-6) + (2+1) = 1 + 2 + 1 = 4
+            Note "+1" because of zero-indexing
+            */
+            sum += (length - words[A].NKs[k]) + (words[A].NKs[0]+1);
+            //...A....A1...A2.....A3...
+            /*
+            //last delta equal (length()-A3)+A
+             */
 
             //save average A for each term
-            if (words[A].NKs.Count - 1 != 0)
-                words[A].averageAs = (double)sum / (words[A].NKs.Count - 1); // AVG = sum divided by number of variables(n)
-            else
-                words[A].averageAs = words.Count;
-
+            //todo check if length is not zero
+            words[A].averageAs = (double)sum / (words[A].NKs.Count - 1); // AVG = sum divided by number of variables(n)
+           
            
             return words[A].averageAs;
         }
