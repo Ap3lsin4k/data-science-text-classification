@@ -391,6 +391,7 @@ namespace Text_analyzer
         {
             newsJson.load();
             updateCbCategories();
+           // MessageBox.Show();
         }
 
         private void btnShowCategories_Click(object sender, EventArgs e)
@@ -431,6 +432,8 @@ namespace Text_analyzer
             }
 
         }
+
+
     }
 }
 
