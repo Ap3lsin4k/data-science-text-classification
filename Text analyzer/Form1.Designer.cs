@@ -41,7 +41,6 @@
             this.tbNewText = new System.Windows.Forms.TextBox();
             this.btnAnalysis = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.myGrid = new System.Windows.Forms.DataGridView();
             this.Topic = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numberOfMatches = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,6 +56,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnDE = new System.Windows.Forms.Button();
             this.lbDEresult = new System.Windows.Forms.Label();
+            this.btnLoadTextFromFile = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.myGrid)).BeginInit();
@@ -161,7 +161,7 @@
             this.tbNewText.Location = new System.Drawing.Point(8, 62);
             this.tbNewText.Multiline = true;
             this.tbNewText.Name = "tbNewText";
-            this.tbNewText.Size = new System.Drawing.Size(416, 559);
+            this.tbNewText.Size = new System.Drawing.Size(416, 411);
             this.tbNewText.TabIndex = 11;
             this.tbNewText.Text = resources.GetString("tbNewText.Text");
             // 
@@ -185,16 +185,7 @@
             this.button2.TabIndex = 13;
             this.button2.Text = "Key";
             this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button3.Location = new System.Drawing.Point(745, 6);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(103, 50);
-            this.button3.TabIndex = 14;
-            this.button3.Text = "Settings";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // myGrid
             // 
@@ -208,7 +199,7 @@
             this.dataGridViewTextBoxColumn1});
             this.myGrid.Location = new System.Drawing.Point(430, 62);
             this.myGrid.Name = "myGrid";
-            this.myGrid.Size = new System.Drawing.Size(418, 559);
+            this.myGrid.Size = new System.Drawing.Size(316, 444);
             this.myGrid.TabIndex = 15;
             // 
             // Topic
@@ -289,7 +280,7 @@
             this.tabControl.Location = new System.Drawing.Point(12, 4);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(861, 665);
+            this.tabControl.Size = new System.Drawing.Size(760, 545);
             this.tabControl.TabIndex = 18;
             // 
             // tabPage1
@@ -306,7 +297,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(853, 632);
+            this.tabPage1.Size = new System.Drawing.Size(752, 512);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Categories";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -322,18 +313,18 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btnLoadTextFromFile);
             this.tabPage2.Controls.Add(this.btnDE);
             this.tabPage2.Controls.Add(this.btnLoad);
             this.tabPage2.Controls.Add(this.btnAnalysis);
             this.tabPage2.Controls.Add(this.button2);
-            this.tabPage2.Controls.Add(this.button3);
             this.tabPage2.Controls.Add(this.myGrid);
             this.tabPage2.Controls.Add(this.tbNewText);
             this.tabPage2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(853, 632);
+            this.tabPage2.Size = new System.Drawing.Size(752, 512);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Analyzer";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -358,11 +349,21 @@
             this.lbDEresult.TabIndex = 20;
             this.lbDEresult.Text = "label2";
             // 
+            // btnLoadTextFromFile
+            // 
+            this.btnLoadTextFromFile.Location = new System.Drawing.Point(6, 479);
+            this.btnLoadTextFromFile.Name = "btnLoadTextFromFile";
+            this.btnLoadTextFromFile.Size = new System.Drawing.Size(416, 30);
+            this.btnLoadTextFromFile.TabIndex = 19;
+            this.btnLoadTextFromFile.Text = "Load Text from File";
+            this.btnLoadTextFromFile.UseVisualStyleBackColor = true;
+            this.btnLoadTextFromFile.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(882, 673);
+            this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.lbDEresult);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabControl);
@@ -398,7 +399,6 @@
         private System.Windows.Forms.TextBox tbNewText;
         private System.Windows.Forms.Button btnAnalysis;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.DataGridView myGrid;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Panel panel1;
@@ -414,6 +414,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.Button btnDE;
         private System.Windows.Forms.Label lbDEresult;
+        private System.Windows.Forms.Button btnLoadTextFromFile;
     }
 }
 
