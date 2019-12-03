@@ -13,8 +13,8 @@ namespace Text_analyzer
         private class NKavgA
         {
             public List<int> NKs = new List<int>();
-            public double averageAs; // AVG(NKs[1]-NKs[0], NKs[2]-NKs[1],..., NKs[K]-NKs[K-1]) 
-            public double sqAvgAs;  // AVG((NKs[1]-NKs[0])^2, (NKs[2]-NKs[1])^2, ..., (NKs[K]-NKs[K-1])^2)
+            public double averageAs; // AVG(NKs[1]-NKs[0], NKs[2]-NKs[1],..., NKs[K]-NKs[K-1])  // average terms
+            public double sqAvgAs;  // AVG((NKs[1]-NKs[0])^2, (NKs[2]-NKs[1])^2, ..., (NKs[K]-NKs[K-1])^2)  // square average distance between occurance of terms
             public double dispersionEstimation;
         }
 
@@ -58,6 +58,7 @@ namespace Text_analyzer
             return A[k + 1] - A[k];  // m-n; where m, n are neighbor position of the "A" word
         }
 
+        //A is term like "word"
         private double avgA(string A)  // <ΔA> = AVG(ΔA, ΔA, ΔA...)
         {
             int sum = 0, k, length= words[A].NKs.Count;
@@ -73,6 +74,7 @@ namespace Text_analyzer
             ..A..A.
             first delta equal distance between  = 5-2 = 3
 
+
             in case text is round
             4560123
             .A...A.
@@ -87,35 +89,40 @@ namespace Text_analyzer
 
             //save average A for each term
             //todo check if length is not zero
-            words[A].averageAs = (double)sum / (words[A].NKs.Count - 1); // AVG = sum divided by number of variables(n)
+            words[A].averageAs = (double)sum / length; // AVG = sum divided by number of variables(n)
            
            
             return words[A].averageAs;
         }
-
+        //todo optimise we count delta two times
         private double squareAvgA(string A) //<ΔA^2> = AVG(ΔA^2, ΔA^2, ΔA^2...)
         {
-            int sum = 0;
+            int sum = 0, k;
+            int length = words[A].NKs.Count, deltaMN;
 
-            for (int k = 0; k < words[A].NKs.Count - 1; ++k)
+            for (k = 0; k < length - 1; ++k)
             {
-                int deltaMN = deltaA(words[A].NKs, k);
+                deltaMN = deltaA(words[A].NKs, k);
                 sum += deltaMN * deltaMN;  // (m-n) squared
             }
+            deltaMN = (length - words[A].NKs[k]) + (words[A].NKs[0] + 1);
+            sum += deltaMN * deltaMN;
 
+            /*
+             obsolete
             //save average A for each term
             if (words[A].NKs.Count - 1 != 0)
                 words[A].sqAvgAs = (double)sum / (words[A].NKs.Count - 1); // AVG = sum divided by number of variables(n)
             else
                 words[A].sqAvgAs = words.Count; // TODO fix for single words in text
-
-
+                */
+            words[A].sqAvgAs = (double)sum / length;
             return words[A].sqAvgAs;
         }
 
         public string mainFormula()  //Math.Sqrt(<ΔA^2> - <ΔA>^2) / <ΔA>
         {
-            string outDebug ="";
+       
             string myTempKey="";
             foreach (var word in words.Keys)// = 0; k < ns.NKs.Count - 1; ++k)
             {
@@ -123,17 +130,31 @@ namespace Text_analyzer
                 double A = avgA(word);  // <ΔA>
                 double A2 = squareAvgA(word);  //<ΔA^2>
                 words[word].dispersionEstimation = Math.Sqrt(A2 - A * A) / A; // calculate DE for each term in text
-                outDebug += word + words[word].dispersionEstimation.ToString() +"\n";
                 myTempKey = word; //debug
             }
             //TODO the last key is ""
+
+            string outDebug = "";
+
+            /*
             
-            
-            
-            
-            
-            
-            
+            {
+            "думи": {
+                "DE" : 158,
+                "A" : 1.11,
+                "A2" : 32814.13
+                },
+            "мої" : {  "DE" : 137, ...}
+            }
+
+             * */
+            foreach (var dict in words.OrderByDescending(key => key.Value.dispersionEstimation))
+            {
+                outDebug += dict.Key +":"+ dict.Value.dispersionEstimation.ToString() + "\n";
+            }
+
+
+
             return outDebug;
         }
 

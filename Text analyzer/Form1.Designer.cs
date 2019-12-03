@@ -277,7 +277,7 @@
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(206, 50);
             this.btnLoad.TabIndex = 17;
-            this.btnLoad.Text = "Load";
+            this.btnLoad.Text = "Update Categories";
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
