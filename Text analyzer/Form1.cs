@@ -418,18 +418,17 @@ namespace Text_analyzer
             lbDEresult.Text = resultOfDispersionEstimation.ToString();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void btnLoadTextFromFile_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+//            openFileDialog1.InitialDirectory = @"\";
+            openFileDialog1.Filter = "txt files (*.txt)|*.txt|Allfiles (*.*)|*.*";
+            openFileDialog1.FilterIndex = 1;
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+             //   tbNewText.Text = (openFileDialog1.FileName,
+                   //                    RichTextBoxStreamType.PlainText);
+            }
 
         }
     }

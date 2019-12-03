@@ -54,9 +54,12 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.cbCategories = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.btnLoadTextFromFile = new System.Windows.Forms.Button();
             this.btnDE = new System.Windows.Forms.Button();
             this.lbDEresult = new System.Windows.Forms.Label();
-            this.btnLoadTextFromFile = new System.Windows.Forms.Button();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.myGrid)).BeginInit();
@@ -64,6 +67,8 @@
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbCategory
@@ -167,8 +172,9 @@
             // 
             // btnAnalysis
             // 
+            this.btnAnalysis.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnAnalysis.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.btnAnalysis.Location = new System.Drawing.Point(218, 6);
+            this.btnAnalysis.Location = new System.Drawing.Point(215, 3);
             this.btnAnalysis.Name = "btnAnalysis";
             this.btnAnalysis.Size = new System.Drawing.Size(206, 50);
             this.btnAnalysis.TabIndex = 12;
@@ -179,13 +185,12 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button2.Location = new System.Drawing.Point(636, 6);
+            this.button2.Location = new System.Drawing.Point(633, 3);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(103, 50);
             this.button2.TabIndex = 13;
             this.button2.Text = "Key";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // myGrid
             // 
@@ -263,10 +268,12 @@
             // 
             // btnLoad
             // 
+            this.btnLoad.AutoSize = true;
+            this.btnLoad.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnLoad.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.btnLoad.Location = new System.Drawing.Point(6, 6);
+            this.btnLoad.Location = new System.Drawing.Point(3, 3);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(206, 50);
+            this.btnLoad.Size = new System.Drawing.Size(206, 34);
             this.btnLoad.TabIndex = 17;
             this.btnLoad.Text = "Update Categories";
             this.btnLoad.UseVisualStyleBackColor = true;
@@ -276,11 +283,12 @@
             // 
             this.tabControl.Controls.Add(this.tabPage1);
             this.tabControl.Controls.Add(this.tabPage2);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.tabControl.Location = new System.Drawing.Point(12, 4);
+            this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(760, 545);
+            this.tabControl.Size = new System.Drawing.Size(784, 561);
             this.tabControl.TabIndex = 18;
             // 
             // tabPage1
@@ -297,7 +305,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(752, 512);
+            this.tabPage1.Size = new System.Drawing.Size(776, 528);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Categories";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -313,26 +321,43 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.panel4);
+            this.tabPage2.Controls.Add(this.richTextBox1);
             this.tabPage2.Controls.Add(this.btnLoadTextFromFile);
-            this.tabPage2.Controls.Add(this.btnDE);
-            this.tabPage2.Controls.Add(this.btnLoad);
-            this.tabPage2.Controls.Add(this.btnAnalysis);
-            this.tabPage2.Controls.Add(this.button2);
             this.tabPage2.Controls.Add(this.myGrid);
             this.tabPage2.Controls.Add(this.tbNewText);
             this.tabPage2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(752, 512);
+            this.tabPage2.Size = new System.Drawing.Size(776, 528);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Analyzer";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(447, 172);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(213, 187);
+            this.richTextBox1.TabIndex = 20;
+            this.richTextBox1.Text = "";
+            // 
+            // btnLoadTextFromFile
+            // 
+            this.btnLoadTextFromFile.Location = new System.Drawing.Point(6, 479);
+            this.btnLoadTextFromFile.Name = "btnLoadTextFromFile";
+            this.btnLoadTextFromFile.Size = new System.Drawing.Size(416, 30);
+            this.btnLoadTextFromFile.TabIndex = 19;
+            this.btnLoadTextFromFile.Text = "Load Text from File";
+            this.btnLoadTextFromFile.UseVisualStyleBackColor = true;
+            this.btnLoadTextFromFile.Click += new System.EventHandler(this.btnLoadTextFromFile_Click);
+            // 
             // btnDE
             // 
+            this.btnDE.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnDE.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.btnDE.Location = new System.Drawing.Point(430, 6);
+            this.btnDE.Location = new System.Drawing.Point(427, 3);
             this.btnDE.Name = "btnDE";
             this.btnDE.Size = new System.Drawing.Size(200, 50);
             this.btnDE.TabIndex = 18;
@@ -349,15 +374,25 @@
             this.lbDEresult.TabIndex = 20;
             this.lbDEresult.Text = "label2";
             // 
-            // btnLoadTextFromFile
+            // panel4
             // 
-            this.btnLoadTextFromFile.Location = new System.Drawing.Point(6, 479);
-            this.btnLoadTextFromFile.Name = "btnLoadTextFromFile";
-            this.btnLoadTextFromFile.Size = new System.Drawing.Size(416, 30);
-            this.btnLoadTextFromFile.TabIndex = 19;
-            this.btnLoadTextFromFile.Text = "Load Text from File";
-            this.btnLoadTextFromFile.UseVisualStyleBackColor = true;
-            this.btnLoadTextFromFile.Click += new System.EventHandler(this.button1_Click);
+            this.panel4.Controls.Add(this.flowLayoutPanel1);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(3, 3);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(770, 55);
+            this.panel4.TabIndex = 21;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.btnLoad);
+            this.flowLayoutPanel1.Controls.Add(this.btnAnalysis);
+            this.flowLayoutPanel1.Controls.Add(this.btnDE);
+            this.flowLayoutPanel1.Controls.Add(this.button2);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, -3);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(767, 58);
+            this.flowLayoutPanel1.TabIndex = 22;
             // 
             // Form1
             // 
@@ -381,6 +416,9 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -415,6 +453,9 @@
         private System.Windows.Forms.Button btnDE;
         private System.Windows.Forms.Label lbDEresult;
         private System.Windows.Forms.Button btnLoadTextFromFile;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }
 
