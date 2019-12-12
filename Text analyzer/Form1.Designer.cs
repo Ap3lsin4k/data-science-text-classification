@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.lbCategory = new System.Windows.Forms.Label();
             this.tbNews = new System.Windows.Forms.TextBox();
             this.lbWords = new System.Windows.Forms.Label();
@@ -48,22 +47,22 @@
             this.cbCategories = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.button2 = new System.Windows.Forms.Button();
+            this.tlpHorisontalButtons = new System.Windows.Forms.TableLayoutPanel();
             this.btnDE = new System.Windows.Forms.Button();
             this.btnAnalysis = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbDEresult = new System.Windows.Forms.Label();
             this.myGrid = new System.Windows.Forms.DataGridView();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnLoadTextFromFile = new System.Windows.Forms.Button();
+            this.richTBtoAnalyze = new System.Windows.Forms.RichTextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lbDEresult = new System.Windows.Forms.Label();
             this.Topic = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numberOfMatches = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.percentOfMatches = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.tbNewText = new System.Windows.Forms.TextBox();
-            this.btnLoadTextFromFile = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -74,11 +73,12 @@
             this.tableLayoutPanel6.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.tlpHorisontalButtons.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.myGrid)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbCategory
@@ -99,7 +99,7 @@
             this.tbNews.Multiline = true;
             this.tbNews.Name = "tbNews";
             this.tbNews.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbNews.Size = new System.Drawing.Size(772, 582);
+            this.tbNews.Size = new System.Drawing.Size(1108, 445);
             this.tbNews.TabIndex = 2;
             // 
             // lbWords
@@ -114,20 +114,22 @@
             // 
             this.panel2.AutoScroll = true;
             this.panel2.Controls.Add(this.lbWords);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.panel2.Location = new System.Drawing.Point(787, 3);
+            this.panel2.Location = new System.Drawing.Point(1123, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(124, 650);
+            this.panel2.Size = new System.Drawing.Size(144, 516);
             this.panel2.TabIndex = 7;
             // 
             // panel3
             // 
             this.panel3.AutoScroll = true;
             this.panel3.Controls.Add(this.lbBig);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.panel3.Location = new System.Drawing.Point(917, 3);
+            this.panel3.Location = new System.Drawing.Point(1273, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(122, 650);
+            this.panel3.Size = new System.Drawing.Size(194, 516);
             this.panel3.TabIndex = 8;
             // 
             // lbBig
@@ -147,7 +149,7 @@
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1058, 698);
+            this.tabControl.Size = new System.Drawing.Size(1484, 861);
             this.tabControl.TabIndex = 18;
             // 
             // tabPage1
@@ -156,7 +158,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1050, 665);
+            this.tabPage1.Size = new System.Drawing.Size(1476, 528);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Categories";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -165,8 +167,8 @@
             // 
             this.tableLayoutPanel10.ColumnCount = 3;
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tableLayoutPanel10.Controls.Add(this.tableLayoutPanel7, 0, 0);
             this.tableLayoutPanel10.Controls.Add(this.panel3, 2, 0);
             this.tableLayoutPanel10.Controls.Add(this.panel2, 1, 0);
@@ -175,7 +177,7 @@
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 1;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(1044, 659);
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(1470, 522);
             this.tableLayoutPanel10.TabIndex = 20;
             // 
             // tableLayoutPanel7
@@ -190,7 +192,7 @@
             this.tableLayoutPanel7.RowCount = 2;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 65F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(778, 653);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(1114, 516);
             this.tableLayoutPanel7.TabIndex = 18;
             // 
             // tableLayoutPanel9
@@ -211,16 +213,16 @@
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 1;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(772, 59);
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(1108, 59);
             this.tableLayoutPanel9.TabIndex = 17;
             // 
             // btnSave
             // 
             this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnSave.Location = new System.Drawing.Point(622, 3);
+            this.btnSave.Location = new System.Drawing.Point(874, 3);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(147, 53);
+            this.btnSave.Size = new System.Drawing.Size(231, 53);
             this.btnSave.TabIndex = 19;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -230,9 +232,9 @@
             // 
             this.btnTfIdf.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnTfIdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnTfIdf.Location = new System.Drawing.Point(469, 3);
+            this.btnTfIdf.Location = new System.Drawing.Point(637, 3);
             this.btnTfIdf.Name = "btnTfIdf";
-            this.btnTfIdf.Size = new System.Drawing.Size(147, 53);
+            this.btnTfIdf.Size = new System.Drawing.Size(231, 53);
             this.btnTfIdf.TabIndex = 18;
             this.btnTfIdf.Text = "TFIDF";
             this.btnTfIdf.UseVisualStyleBackColor = true;
@@ -242,9 +244,9 @@
             // 
             this.btnIdf.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnIdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnIdf.Location = new System.Drawing.Point(316, 3);
+            this.btnIdf.Location = new System.Drawing.Point(400, 3);
             this.btnIdf.Name = "btnIdf";
-            this.btnIdf.Size = new System.Drawing.Size(147, 53);
+            this.btnIdf.Size = new System.Drawing.Size(231, 53);
             this.btnIdf.TabIndex = 17;
             this.btnIdf.Text = "IDF";
             this.btnIdf.UseVisualStyleBackColor = true;
@@ -256,7 +258,7 @@
             this.btnTf.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnTf.Location = new System.Drawing.Point(163, 3);
             this.btnTf.Name = "btnTf";
-            this.btnTf.Size = new System.Drawing.Size(147, 53);
+            this.btnTf.Size = new System.Drawing.Size(231, 53);
             this.btnTf.TabIndex = 16;
             this.btnTf.Text = "TF";
             this.btnTf.UseVisualStyleBackColor = true;
@@ -293,7 +295,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1050, 665);
+            this.tabPage2.Size = new System.Drawing.Size(1476, 828);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Analyzer";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -302,57 +304,43 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel1, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.tlpHorisontalButtons, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1044, 659);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1470, 822);
             this.tableLayoutPanel2.TabIndex = 35;
             // 
-            // tableLayoutPanel1
+            // tlpHorisontalButtons
             // 
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Controls.Add(this.button2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnDE, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnAnalysis, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnLoad, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 54F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1038, 54);
-            this.tableLayoutPanel1.TabIndex = 33;
-            // 
-            // button2
-            // 
-            this.button2.AutoSize = true;
-            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button2.Location = new System.Drawing.Point(521, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(253, 48);
-            this.button2.TabIndex = 35;
-            this.button2.Text = "Key";
-            this.button2.UseVisualStyleBackColor = true;
+            this.tlpHorisontalButtons.ColumnCount = 3;
+            this.tlpHorisontalButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpHorisontalButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpHorisontalButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpHorisontalButtons.Controls.Add(this.btnDE, 0, 0);
+            this.tlpHorisontalButtons.Controls.Add(this.btnAnalysis, 0, 0);
+            this.tlpHorisontalButtons.Controls.Add(this.btnLoad, 0, 0);
+            this.tlpHorisontalButtons.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpHorisontalButtons.Location = new System.Drawing.Point(3, 3);
+            this.tlpHorisontalButtons.Name = "tlpHorisontalButtons";
+            this.tlpHorisontalButtons.RowCount = 1;
+            this.tlpHorisontalButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpHorisontalButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 54F));
+            this.tlpHorisontalButtons.Size = new System.Drawing.Size(1464, 54);
+            this.tlpHorisontalButtons.TabIndex = 33;
             // 
             // btnDE
             // 
             this.btnDE.AutoSize = true;
             this.btnDE.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnDE.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.btnDE.Location = new System.Drawing.Point(780, 3);
+            this.btnDE.Location = new System.Drawing.Point(979, 3);
             this.btnDE.Name = "btnDE";
-            this.btnDE.Size = new System.Drawing.Size(255, 48);
+            this.btnDE.Size = new System.Drawing.Size(482, 48);
             this.btnDE.TabIndex = 34;
             this.btnDE.Text = "Analyze by DE";
             this.btnDE.UseVisualStyleBackColor = true;
@@ -363,9 +351,9 @@
             this.btnAnalysis.AutoSize = true;
             this.btnAnalysis.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAnalysis.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.btnAnalysis.Location = new System.Drawing.Point(3, 3);
+            this.btnAnalysis.Location = new System.Drawing.Point(491, 3);
             this.btnAnalysis.Name = "btnAnalysis";
-            this.btnAnalysis.Size = new System.Drawing.Size(253, 48);
+            this.btnAnalysis.Size = new System.Drawing.Size(482, 48);
             this.btnAnalysis.TabIndex = 33;
             this.btnAnalysis.Text = "Analyze";
             this.btnAnalysis.UseVisualStyleBackColor = true;
@@ -376,12 +364,13 @@
             this.btnLoad.AutoSize = true;
             this.btnLoad.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnLoad.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.btnLoad.Location = new System.Drawing.Point(262, 3);
+            this.btnLoad.Location = new System.Drawing.Point(3, 3);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(253, 48);
+            this.btnLoad.Size = new System.Drawing.Size(482, 48);
             this.btnLoad.TabIndex = 32;
-            this.btnLoad.Text = "Update Categories";
+            this.btnLoad.Text = "Load JSON";
             this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
             // tableLayoutPanel3
             // 
@@ -395,7 +384,7 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1038, 593);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1464, 756);
             this.tableLayoutPanel3.TabIndex = 34;
             // 
             // tableLayoutPanel5
@@ -403,24 +392,15 @@
             this.tableLayoutPanel5.ColumnCount = 2;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.42857F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.57143F));
-            this.tableLayoutPanel5.Controls.Add(this.lbDEresult, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.myGrid, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.panel1, 1, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(522, 3);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(735, 3);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(513, 587);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(726, 750);
             this.tableLayoutPanel5.TabIndex = 36;
-            // 
-            // lbDEresult
-            // 
-            this.lbDEresult.AutoSize = true;
-            this.lbDEresult.Location = new System.Drawing.Point(369, 0);
-            this.lbDEresult.Name = "lbDEresult";
-            this.lbDEresult.Size = new System.Drawing.Size(60, 24);
-            this.lbDEresult.TabIndex = 20;
-            this.lbDEresult.Text = "label2";
             // 
             // myGrid
             // 
@@ -435,8 +415,61 @@
             this.myGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.myGrid.Location = new System.Drawing.Point(3, 3);
             this.myGrid.Name = "myGrid";
-            this.myGrid.Size = new System.Drawing.Size(360, 581);
+            this.myGrid.Size = new System.Drawing.Size(512, 744);
             this.myGrid.TabIndex = 16;
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 1;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Controls.Add(this.btnLoadTextFromFile, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.richTBtoAnalyze, 0, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(726, 750);
+            this.tableLayoutPanel4.TabIndex = 36;
+            // 
+            // btnLoadTextFromFile
+            // 
+            this.btnLoadTextFromFile.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnLoadTextFromFile.Location = new System.Drawing.Point(3, 703);
+            this.btnLoadTextFromFile.Name = "btnLoadTextFromFile";
+            this.btnLoadTextFromFile.Size = new System.Drawing.Size(720, 44);
+            this.btnLoadTextFromFile.TabIndex = 20;
+            this.btnLoadTextFromFile.Text = "Load Text from File";
+            this.btnLoadTextFromFile.UseVisualStyleBackColor = true;
+            this.btnLoadTextFromFile.Click += new System.EventHandler(this.btnLoadTextFromFile_Click);
+            // 
+            // richTBtoAnalyze
+            // 
+            this.richTBtoAnalyze.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTBtoAnalyze.Location = new System.Drawing.Point(3, 3);
+            this.richTBtoAnalyze.Name = "richTBtoAnalyze";
+            this.richTBtoAnalyze.Size = new System.Drawing.Size(720, 694);
+            this.richTBtoAnalyze.TabIndex = 21;
+            this.richTBtoAnalyze.Text = "";
+            // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.lbDEresult);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(521, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(202, 744);
+            this.panel1.TabIndex = 17;
+            // 
+            // lbDEresult
+            // 
+            this.lbDEresult.AutoSize = true;
+            this.lbDEresult.Location = new System.Drawing.Point(3, 3);
+            this.lbDEresult.Name = "lbDEresult";
+            this.lbDEresult.Size = new System.Drawing.Size(0, 24);
+            this.lbDEresult.TabIndex = 21;
             // 
             // Topic
             // 
@@ -458,7 +491,7 @@
             // 
             this.percentOfMatches.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.percentOfMatches.FillWeight = 25F;
-            this.percentOfMatches.HeaderText = "Percent of Coincidence";
+            this.percentOfMatches.HeaderText = "Importance Coefficient";
             this.percentOfMatches.MinimumWidth = 60;
             this.percentOfMatches.Name = "percentOfMatches";
             // 
@@ -466,52 +499,17 @@
             // 
             this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn1.FillWeight = 25F;
-            this.dataGridViewTextBoxColumn1.HeaderText = "Importance Coefficient";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Disperce Estimation";
             this.dataGridViewTextBoxColumn1.MinimumWidth = 60;
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.ColumnCount = 1;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Controls.Add(this.tbNewText, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.btnLoadTextFromFile, 0, 1);
-            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 2;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(513, 587);
-            this.tableLayoutPanel4.TabIndex = 36;
-            // 
-            // tbNewText
-            // 
-            this.tbNewText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbNewText.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.tbNewText.Location = new System.Drawing.Point(3, 3);
-            this.tbNewText.Multiline = true;
-            this.tbNewText.Name = "tbNewText";
-            this.tbNewText.Size = new System.Drawing.Size(507, 531);
-            this.tbNewText.TabIndex = 12;
-            this.tbNewText.Text = resources.GetString("tbNewText.Text");
-            // 
-            // btnLoadTextFromFile
-            // 
-            this.btnLoadTextFromFile.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnLoadTextFromFile.Location = new System.Drawing.Point(3, 540);
-            this.btnLoadTextFromFile.Name = "btnLoadTextFromFile";
-            this.btnLoadTextFromFile.Size = new System.Drawing.Size(507, 44);
-            this.btnLoadTextFromFile.TabIndex = 20;
-            this.btnLoadTextFromFile.Text = "Load Text from File";
-            this.btnLoadTextFromFile.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1058, 698);
+            this.ClientSize = new System.Drawing.Size(1484, 861);
             this.Controls.Add(this.tabControl);
+            this.MinimumSize = new System.Drawing.Size(860, 400);
             this.Name = "Form1";
             this.Text = "Text analyzer";
             this.panel2.ResumeLayout(false);
@@ -528,14 +526,14 @@
             this.tableLayoutPanel6.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.tlpHorisontalButtons.ResumeLayout(false);
+            this.tlpHorisontalButtons.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
-            this.tableLayoutPanel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.myGrid)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel4.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -551,16 +549,9 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.ComboBox cbCategories;
-        private System.Windows.Forms.Label lbDEresult;
         private System.Windows.Forms.Button btnLoadTextFromFile;
         private System.Windows.Forms.DataGridView myGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Topic;
-        private System.Windows.Forms.DataGridViewTextBoxColumn numberOfMatches;
-        private System.Windows.Forms.DataGridViewTextBoxColumn percentOfMatches;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.TextBox tbNewText;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TableLayoutPanel tlpHorisontalButtons;
         private System.Windows.Forms.Button btnDE;
         private System.Windows.Forms.Button btnAnalysis;
         private System.Windows.Forms.Button btnLoad;
@@ -576,6 +567,13 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.Button btnTf;
+        private System.Windows.Forms.RichTextBox richTBtoAnalyze;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lbDEresult;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Topic;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numberOfMatches;
+        private System.Windows.Forms.DataGridViewTextBoxColumn percentOfMatches;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
     }
 }
 

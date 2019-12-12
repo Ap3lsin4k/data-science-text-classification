@@ -39,7 +39,7 @@ namespace Text_analyzer
             MessageBox.Show(json);
         }
 
-        public void load()
+        public bool load()
         {
             try
             {
@@ -58,11 +58,13 @@ namespace Text_analyzer
                     this.texts = new Dictionary<string, WordFreq>();
                     MessageBox.Show("Deserialize was failed. I will create new object. Don't forget to press Save!");
                 }
+                return true;
             }
             catch(Exception e)
             {
                 this.texts = new Dictionary<string, WordFreq>();
                 MessageBox.Show("Could not find analysis.json file. I will create object. Don't forget to press Save!");
+                return false;
             }
         }
     }

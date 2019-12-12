@@ -26,6 +26,7 @@ namespace Text_analyzer
         }
 
         const int keyWordsLimit = 155;
+        //we compare from the most key index
 
        
         
@@ -275,7 +276,7 @@ namespace Text_analyzer
         //      ========PROGRAM_#2========
         private void btnAnalysis_Click(object sender, EventArgs e)
         {
-            string unknownText = getRawText(tbNewText.Text);  // Text with unknown category
+            string unknownText = getRawText(richTBtoAnalyze.Text);  // Text with unknown category
             string[] unknownWords = unknownText.Split();
             
             /* TODO clean up
@@ -298,25 +299,26 @@ namespace Text_analyzer
                 else n[word] = 1;
 
             }
+            de();
 
-            foreach (KeyValuePair<string, WordFreq> text in newsJson.texts)  // category, a text properties
+            foreach (KeyValuePair<string, WordFreq> category in newsJson.texts)  // category, a category properties
             {
-                // here we have Category(text.Key) and array of unrepeated words(text.Value.allWords)
+                // here we have Category(category.Key) and array of unrepeated words(category.Value.allWords)
                 // on the other hand, we have array of repeated words(unknownWords)
                 int ind = myGrid.Rows.Add(), countOfCommonElem = 0;
-                double score =0;
-                myGrid.Rows[ind].Cells[0].Value = text.Key;  // category
+                double score = 0, deScore = 0;
+                myGrid.Rows[ind].Cells[0].Value = category.Key;  // category
 
                 Directory.CreateDirectory("log");
-                FileInfo f = new FileInfo("log/"+text.Key+".txt");
-                StreamWriter w = f.CreateText();
-                
-                
+                FileInfo f = new FileInfo("log/" + category.Key + ".txt");
+                StreamWriter logCommonWords = f.CreateText();
+                bool isDeNotFound = false;
+                string lastErrorKey = "";
                 foreach (string word in n.Keys) // the unrepeated word
                 {
                     int break_counter = 0;
                     // від найбільш ключових слів до найменш 
-                    foreach (KeyValuePair<string, double> wordCategory in text.Value.TFIDF.OrderByDescending(key => key.Value))
+                    foreach (KeyValuePair<string, double> wordCategory in category.Value.TFIDF.OrderByDescending(key => key.Value))
                     {
 
                         break_counter++;
@@ -326,24 +328,43 @@ namespace Text_analyzer
                         }
                         if (word == wordCategory.Key) // if word from unknown category equals word from category we know
                         {
-                            w.WriteLine(word+" "+wordCategory.Value);
+                            logCommonWords.WriteLine(word + " " + wordCategory.Value);
                             ++countOfCommonElem;
                             score += wordCategory.Value;
-                           // MessageBox.Show(text.Key + " " + word+":"+ wordCategory.Value);
+
+                            //must always be true
+                            if (myDe.words.ContainsKey(word))
+                                deScore += myDe.words[word].dispersionEstimation;
+                            else
+                            {
+                                isDeNotFound = true;
+                                lastErrorKey += '"' + word + "\", ";
+                            }
                         }
-                        //MessageBox.Show(text.Key + " " + wordCategory.Value + ":"+ wordCategory.Key);
+                        //MessageBox.Show(category.Key + " " + wordCategory.Value + ":"+ wordCategory.Key);
 
                     }
 
                 }
 
-                myGrid.Rows[ind].Cells[1].Value = countOfCommonElem;
-                myGrid.Rows[ind].Cells[2].Value = Math.Round(100.0 * countOfCommonElem / Math.Min(text.Value.TFIDF.Count, keyWordsLimit), 1);
+                //                myGrid.Rows[ind].Cells[1].Value = countOfCommonElem;
+
+                myGrid.Rows[ind].Cells[1].Value = Math.Round(100.0 * countOfCommonElem / Math.Min(category.Value.TFIDF.Count, keyWordsLimit), 1);
                 //(float)100 * countOfCommonElem / (n.Count);  // percent
-                myGrid.Rows[ind].Cells[3].Value = Math.Round(score, 4); // improtance coefficient
+                myGrid.Rows[ind].Cells[2].Value = Math.Round(score, 4); // imporotance coefficient
 
-                w.Close();
+                if (isDeNotFound)
+                {
 
+                    MessageBox.Show("The key(s) " + lastErrorKey + "was not found in the Dictinary of DispersionEstimation");
+
+                }
+                else
+                {
+                    myGrid.Rows[ind].Cells[3].Value = Math.Round(deScore, 4); // imporotance coefficient
+                }
+                // end writing log
+                logCommonWords.Close();
             }
 
             // sorting by importance coeffficent
@@ -369,29 +390,54 @@ namespace Text_analyzer
         }
 
 
+        private void de()
+        {
+            string peeledText = getRawText(richTBtoAnalyze.Text.ToString());
+            string resultOfDispersionEstimation = myDe.analyzeDE(getRawTextSplit(richTBtoAnalyze.Text));
+            lbDEresult.Text = resultOfDispersionEstimation.ToString();
+        }
+
+        private void btnDE_Click(object sender, EventArgs e)
+        {
+            de();
+        }
+
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             newsJson.save();
             /*FileInfo f = new FileInfo("Mytext.txt");
-            StreamWriter w = f.CreateText();
-            w.WriteLine("This is from");
-            w.WriteLine("Chapter 6");
-            w.WriteLine("Of C# Module");
-            w.Write(w.NewLine);
-            w.WriteLine("Thanks for your time");
-            w.Close();*/
+            StreamWriter logCommonWords = f.CreateText();
+            logCommonWords.WriteLine("This is from");
+            logCommonWords.WriteLine("Chapter 6");
+            logCommonWords.WriteLine("Of C# Module");
+            logCommonWords.Write(logCommonWords.NewLine);
+            logCommonWords.WriteLine("Thanks for your time");
+            logCommonWords.Close();*/
+            // TODO cosmetic print that saved
+            MessageBox.Show("Success");
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            load();
+            if(load())
+                MessageBox.Show("Successfully loaded from \"analysis.json\"");
+            // error message prints in the newsJson.load().catch
         }
 
-        private void load()
+
+        private void updateCbCategories()
         {
-            newsJson.load();
+            cbCategories.Items.Clear();
+            cbCategories.Items.AddRange(newsJson.texts.Keys.ToArray());
+        }
+
+        private bool load()
+        {
+            bool success;
+            success = newsJson.load();
             updateCbCategories();
-           // MessageBox.Show();
+            return success;
         }
 
         private void btnShowCategories_Click(object sender, EventArgs e)
@@ -405,18 +451,34 @@ namespace Text_analyzer
 //            MessageBox.Show(allCategories);
         }
 
-        private void updateCbCategories()
-        {
-            cbCategories.Items.Clear();
-            cbCategories.Items.AddRange(newsJson.texts.Keys.ToArray());
-        }
+       
 
-        private void btnDE_Click(object sender, EventArgs e)
+
+
+
+
+        /// <summary>
+        /// Determines a text file's encoding by analyzing its byte order mark (BOM).
+        /// Defaults to ASCII when detection of the text file's endianness fails.
+        /// </summary>
+        /// <param name="filename">The text file to analyze.</param>
+        /// <returns>The detected encoding.</returns>
+        public static Encoding GetEncoding(string filename)
         {
-            
-            string peeledText = getRawText(tbNewText.Text.ToString());
-            string resultOfDispersionEstimation = myDe.analyzeDE(getRawTextSplit(tbNewText));
-            lbDEresult.Text = resultOfDispersionEstimation.ToString();
+            // Read the BOM
+            var bom = new byte[4];
+            using (var file = new FileStream(filename, FileMode.Open, FileAccess.Read))
+            {
+                file.Read(bom, 0, 4);
+            }
+
+            // Analyze the BOM
+            if (bom[0] == 0x2b && bom[1] == 0x2f && bom[2] == 0x76) return Encoding.UTF7;
+            if (bom[0] == 0xef && bom[1] == 0xbb && bom[2] == 0xbf) return Encoding.UTF8;
+            if (bom[0] == 0xff && bom[1] == 0xfe) return Encoding.Unicode; //UTF-16LE
+            if (bom[0] == 0xfe && bom[1] == 0xff) return Encoding.BigEndianUnicode; //UTF-16BE
+            if (bom[0] == 0 && bom[1] == 0 && bom[2] == 0xfe && bom[3] == 0xff) return Encoding.UTF32;
+            return Encoding.Default;  // ANSI
         }
 
         private void btnLoadTextFromFile_Click(object sender, EventArgs e)
@@ -427,8 +489,11 @@ namespace Text_analyzer
             openFileDialog1.FilterIndex = 1;
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-             //   tbNewText.Text = (openFileDialog1.FileName,
-                   //                    RichTextBoxStreamType.PlainText);
+                string text = File.ReadAllText(openFileDialog1.FileName, GetEncoding(openFileDialog1.FileName));//Encoding.UTF8);//Windows-1251
+                richTBtoAnalyze.Text = text;
+                //openFileDialog1.FileName,
+                //                 RichTextBoxStreamType.PlainText);
+                //todo call analyse
             }
 
         }

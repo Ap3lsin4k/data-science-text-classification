@@ -10,7 +10,7 @@ namespace Text_analyzer
     class DE
     {
         //TODO static
-        private class NKavgA
+        public class NKavgA
         {
             public List<int> NKs = new List<int>();
             public double averageAs; // AVG(NKs[1]-NKs[0], NKs[2]-NKs[1],..., NKs[K]-NKs[K-1])  // average terms
@@ -18,8 +18,9 @@ namespace Text_analyzer
             public double dispersionEstimation;
         }
 
-        Dictionary<string, NKavgA> words;
+        public Dictionary<string, NKavgA> words;
 
+        //todo unreapeated words
 
 
         public DE()
@@ -150,7 +151,12 @@ namespace Text_analyzer
              * */
             foreach (var dict in words.OrderByDescending(key => key.Value.dispersionEstimation))
             {
-                outDebug += dict.Key +":"+ dict.Value.dispersionEstimation.ToString() + "\n";
+                outDebug += 
+                    dict.Key 
+                    +":"
+                    + Math.Round(dict.Value.dispersionEstimation, 1)
+                                .ToString() 
+                    + "\n";
             }
 
 
