@@ -54,15 +54,15 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.myGrid = new System.Windows.Forms.DataGridView();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnLoadTextFromFile = new System.Windows.Forms.Button();
-            this.richTBtoAnalyze = new System.Windows.Forms.RichTextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.lbDEresult = new System.Windows.Forms.Label();
             this.Topic = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numberOfMatches = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.percentOfMatches = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lbDEresult = new System.Windows.Forms.Label();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnLoadTextFromFile = new System.Windows.Forms.Button();
+            this.richTBtoAnalyze = new System.Windows.Forms.RichTextBox();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -77,8 +77,8 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.myGrid)).BeginInit();
-            this.tableLayoutPanel4.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbCategory
@@ -99,7 +99,7 @@
             this.tbNews.Multiline = true;
             this.tbNews.Name = "tbNews";
             this.tbNews.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbNews.Size = new System.Drawing.Size(1108, 445);
+            this.tbNews.Size = new System.Drawing.Size(1108, 745);
             this.tbNews.TabIndex = 2;
             // 
             // lbWords
@@ -118,7 +118,7 @@
             this.panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.panel2.Location = new System.Drawing.Point(1123, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(144, 516);
+            this.panel2.Size = new System.Drawing.Size(144, 816);
             this.panel2.TabIndex = 7;
             // 
             // panel3
@@ -129,7 +129,7 @@
             this.panel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.panel3.Location = new System.Drawing.Point(1273, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(194, 516);
+            this.panel3.Size = new System.Drawing.Size(194, 816);
             this.panel3.TabIndex = 8;
             // 
             // lbBig
@@ -158,7 +158,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1476, 528);
+            this.tabPage1.Size = new System.Drawing.Size(1476, 828);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Categories";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -177,7 +177,7 @@
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 1;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(1470, 522);
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(1470, 822);
             this.tableLayoutPanel10.TabIndex = 20;
             // 
             // tableLayoutPanel7
@@ -192,7 +192,7 @@
             this.tableLayoutPanel7.RowCount = 2;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 65F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(1114, 516);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(1114, 816);
             this.tableLayoutPanel7.TabIndex = 18;
             // 
             // tableLayoutPanel9
@@ -418,6 +418,56 @@
             this.myGrid.Size = new System.Drawing.Size(512, 744);
             this.myGrid.TabIndex = 16;
             // 
+            // Topic
+            // 
+            this.Topic.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Topic.FillWeight = 32F;
+            this.Topic.HeaderText = "Category";
+            this.Topic.MinimumWidth = 80;
+            this.Topic.Name = "Topic";
+            // 
+            // numberOfMatches
+            // 
+            this.numberOfMatches.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.numberOfMatches.FillWeight = 25F;
+            this.numberOfMatches.HeaderText = "Coincidence";
+            this.numberOfMatches.MinimumWidth = 40;
+            this.numberOfMatches.Name = "numberOfMatches";
+            // 
+            // percentOfMatches
+            // 
+            this.percentOfMatches.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.percentOfMatches.FillWeight = 25F;
+            this.percentOfMatches.HeaderText = "Importance Coefficient";
+            this.percentOfMatches.MinimumWidth = 60;
+            this.percentOfMatches.Name = "percentOfMatches";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn1.FillWeight = 25F;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Disperce Estimation";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 60;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.lbDEresult);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(521, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(202, 744);
+            this.panel1.TabIndex = 17;
+            // 
+            // lbDEresult
+            // 
+            this.lbDEresult.AutoSize = true;
+            this.lbDEresult.Location = new System.Drawing.Point(3, 3);
+            this.lbDEresult.Name = "lbDEresult";
+            this.lbDEresult.Size = new System.Drawing.Size(0, 24);
+            this.lbDEresult.TabIndex = 21;
+            // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 1;
@@ -453,56 +503,6 @@
             this.richTBtoAnalyze.TabIndex = 21;
             this.richTBtoAnalyze.Text = "";
             // 
-            // panel1
-            // 
-            this.panel1.AutoScroll = true;
-            this.panel1.Controls.Add(this.lbDEresult);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(521, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(202, 744);
-            this.panel1.TabIndex = 17;
-            // 
-            // lbDEresult
-            // 
-            this.lbDEresult.AutoSize = true;
-            this.lbDEresult.Location = new System.Drawing.Point(3, 3);
-            this.lbDEresult.Name = "lbDEresult";
-            this.lbDEresult.Size = new System.Drawing.Size(0, 24);
-            this.lbDEresult.TabIndex = 21;
-            // 
-            // Topic
-            // 
-            this.Topic.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Topic.FillWeight = 32F;
-            this.Topic.HeaderText = "Category";
-            this.Topic.MinimumWidth = 80;
-            this.Topic.Name = "Topic";
-            // 
-            // numberOfMatches
-            // 
-            this.numberOfMatches.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.numberOfMatches.FillWeight = 25F;
-            this.numberOfMatches.HeaderText = "Coincidence";
-            this.numberOfMatches.MinimumWidth = 40;
-            this.numberOfMatches.Name = "numberOfMatches";
-            // 
-            // percentOfMatches
-            // 
-            this.percentOfMatches.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.percentOfMatches.FillWeight = 25F;
-            this.percentOfMatches.HeaderText = "Importance Coefficient";
-            this.percentOfMatches.MinimumWidth = 60;
-            this.percentOfMatches.Name = "percentOfMatches";
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn1.FillWeight = 25F;
-            this.dataGridViewTextBoxColumn1.HeaderText = "Disperce Estimation";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 60;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -531,9 +531,9 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.myGrid)).EndInit();
-            this.tableLayoutPanel4.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.tableLayoutPanel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
