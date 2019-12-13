@@ -99,7 +99,7 @@
             this.tbNews.Multiline = true;
             this.tbNews.Name = "tbNews";
             this.tbNews.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbNews.Size = new System.Drawing.Size(1108, 745);
+            this.tbNews.Size = new System.Drawing.Size(408, 445);
             this.tbNews.TabIndex = 2;
             // 
             // lbWords
@@ -116,9 +116,9 @@
             this.panel2.Controls.Add(this.lbWords);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.panel2.Location = new System.Drawing.Point(1123, 3);
+            this.panel2.Location = new System.Drawing.Point(423, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(144, 816);
+            this.panel2.Size = new System.Drawing.Size(144, 516);
             this.panel2.TabIndex = 7;
             // 
             // panel3
@@ -127,9 +127,9 @@
             this.panel3.Controls.Add(this.lbBig);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.panel3.Location = new System.Drawing.Point(1273, 3);
+            this.panel3.Location = new System.Drawing.Point(573, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(194, 816);
+            this.panel3.Size = new System.Drawing.Size(194, 516);
             this.panel3.TabIndex = 8;
             // 
             // lbBig
@@ -149,7 +149,7 @@
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1484, 861);
+            this.tabControl.Size = new System.Drawing.Size(784, 561);
             this.tabControl.TabIndex = 18;
             // 
             // tabPage1
@@ -158,7 +158,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1476, 828);
+            this.tabPage1.Size = new System.Drawing.Size(776, 528);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Categories";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -177,7 +177,7 @@
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 1;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(1470, 822);
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(770, 522);
             this.tableLayoutPanel10.TabIndex = 20;
             // 
             // tableLayoutPanel7
@@ -192,7 +192,7 @@
             this.tableLayoutPanel7.RowCount = 2;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 65F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(1114, 816);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(414, 516);
             this.tableLayoutPanel7.TabIndex = 18;
             // 
             // tableLayoutPanel9
@@ -213,16 +213,16 @@
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 1;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(1108, 59);
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(408, 59);
             this.tableLayoutPanel9.TabIndex = 17;
             // 
             // btnSave
             // 
             this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnSave.Location = new System.Drawing.Point(874, 3);
+            this.btnSave.Location = new System.Drawing.Point(349, 3);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(231, 53);
+            this.btnSave.Size = new System.Drawing.Size(56, 53);
             this.btnSave.TabIndex = 19;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -232,9 +232,9 @@
             // 
             this.btnTfIdf.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnTfIdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnTfIdf.Location = new System.Drawing.Point(637, 3);
+            this.btnTfIdf.Location = new System.Drawing.Point(287, 3);
             this.btnTfIdf.Name = "btnTfIdf";
-            this.btnTfIdf.Size = new System.Drawing.Size(231, 53);
+            this.btnTfIdf.Size = new System.Drawing.Size(56, 53);
             this.btnTfIdf.TabIndex = 18;
             this.btnTfIdf.Text = "TFIDF";
             this.btnTfIdf.UseVisualStyleBackColor = true;
@@ -244,9 +244,9 @@
             // 
             this.btnIdf.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnIdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnIdf.Location = new System.Drawing.Point(400, 3);
+            this.btnIdf.Location = new System.Drawing.Point(225, 3);
             this.btnIdf.Name = "btnIdf";
-            this.btnIdf.Size = new System.Drawing.Size(231, 53);
+            this.btnIdf.Size = new System.Drawing.Size(56, 53);
             this.btnIdf.TabIndex = 17;
             this.btnIdf.Text = "IDF";
             this.btnIdf.UseVisualStyleBackColor = true;
@@ -258,7 +258,7 @@
             this.btnTf.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnTf.Location = new System.Drawing.Point(163, 3);
             this.btnTf.Name = "btnTf";
-            this.btnTf.Size = new System.Drawing.Size(231, 53);
+            this.btnTf.Size = new System.Drawing.Size(56, 53);
             this.btnTf.TabIndex = 16;
             this.btnTf.Text = "TF";
             this.btnTf.UseVisualStyleBackColor = true;
@@ -295,7 +295,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1476, 828);
+            this.tabPage2.Size = new System.Drawing.Size(776, 528);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Analyzer";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -312,7 +312,7 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1470, 822);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(770, 522);
             this.tableLayoutPanel2.TabIndex = 35;
             // 
             // tlpHorisontalButtons
@@ -330,7 +330,7 @@
             this.tlpHorisontalButtons.RowCount = 1;
             this.tlpHorisontalButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpHorisontalButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 54F));
-            this.tlpHorisontalButtons.Size = new System.Drawing.Size(1464, 54);
+            this.tlpHorisontalButtons.Size = new System.Drawing.Size(764, 54);
             this.tlpHorisontalButtons.TabIndex = 33;
             // 
             // btnDE
@@ -338,9 +338,9 @@
             this.btnDE.AutoSize = true;
             this.btnDE.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnDE.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.btnDE.Location = new System.Drawing.Point(979, 3);
+            this.btnDE.Location = new System.Drawing.Point(511, 3);
             this.btnDE.Name = "btnDE";
-            this.btnDE.Size = new System.Drawing.Size(482, 48);
+            this.btnDE.Size = new System.Drawing.Size(250, 48);
             this.btnDE.TabIndex = 34;
             this.btnDE.Text = "Analyze by DE";
             this.btnDE.UseVisualStyleBackColor = true;
@@ -351,9 +351,9 @@
             this.btnAnalysis.AutoSize = true;
             this.btnAnalysis.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAnalysis.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.btnAnalysis.Location = new System.Drawing.Point(491, 3);
+            this.btnAnalysis.Location = new System.Drawing.Point(257, 3);
             this.btnAnalysis.Name = "btnAnalysis";
-            this.btnAnalysis.Size = new System.Drawing.Size(482, 48);
+            this.btnAnalysis.Size = new System.Drawing.Size(248, 48);
             this.btnAnalysis.TabIndex = 33;
             this.btnAnalysis.Text = "Analyze";
             this.btnAnalysis.UseVisualStyleBackColor = true;
@@ -366,7 +366,7 @@
             this.btnLoad.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.btnLoad.Location = new System.Drawing.Point(3, 3);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(482, 48);
+            this.btnLoad.Size = new System.Drawing.Size(248, 48);
             this.btnLoad.TabIndex = 32;
             this.btnLoad.Text = "Load JSON";
             this.btnLoad.UseVisualStyleBackColor = true;
@@ -384,7 +384,7 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1464, 756);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(764, 456);
             this.tableLayoutPanel3.TabIndex = 34;
             // 
             // tableLayoutPanel5
@@ -395,11 +395,11 @@
             this.tableLayoutPanel5.Controls.Add(this.myGrid, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.panel1, 1, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(735, 3);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(385, 3);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(726, 750);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(376, 450);
             this.tableLayoutPanel5.TabIndex = 36;
             // 
             // myGrid
@@ -415,7 +415,7 @@
             this.myGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.myGrid.Location = new System.Drawing.Point(3, 3);
             this.myGrid.Name = "myGrid";
-            this.myGrid.Size = new System.Drawing.Size(512, 744);
+            this.myGrid.Size = new System.Drawing.Size(262, 444);
             this.myGrid.TabIndex = 16;
             // 
             // Topic
@@ -455,9 +455,9 @@
             this.panel1.AutoScroll = true;
             this.panel1.Controls.Add(this.lbDEresult);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(521, 3);
+            this.panel1.Location = new System.Drawing.Point(271, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(202, 744);
+            this.panel1.Size = new System.Drawing.Size(102, 444);
             this.panel1.TabIndex = 17;
             // 
             // lbDEresult
@@ -480,15 +480,15 @@
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(726, 750);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(376, 450);
             this.tableLayoutPanel4.TabIndex = 36;
             // 
             // btnLoadTextFromFile
             // 
             this.btnLoadTextFromFile.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnLoadTextFromFile.Location = new System.Drawing.Point(3, 703);
+            this.btnLoadTextFromFile.Location = new System.Drawing.Point(3, 403);
             this.btnLoadTextFromFile.Name = "btnLoadTextFromFile";
-            this.btnLoadTextFromFile.Size = new System.Drawing.Size(720, 44);
+            this.btnLoadTextFromFile.Size = new System.Drawing.Size(370, 44);
             this.btnLoadTextFromFile.TabIndex = 20;
             this.btnLoadTextFromFile.Text = "Load Text from File";
             this.btnLoadTextFromFile.UseVisualStyleBackColor = true;
@@ -499,7 +499,7 @@
             this.richTBtoAnalyze.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTBtoAnalyze.Location = new System.Drawing.Point(3, 3);
             this.richTBtoAnalyze.Name = "richTBtoAnalyze";
-            this.richTBtoAnalyze.Size = new System.Drawing.Size(720, 694);
+            this.richTBtoAnalyze.Size = new System.Drawing.Size(370, 394);
             this.richTBtoAnalyze.TabIndex = 21;
             this.richTBtoAnalyze.Text = "";
             // 
@@ -507,9 +507,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1484, 861);
+            this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.tabControl);
-            this.MinimumSize = new System.Drawing.Size(860, 400);
+            this.MinimumSize = new System.Drawing.Size(800, 300);
             this.Name = "Form1";
             this.Text = "Text analyzer";
             this.panel2.ResumeLayout(false);

@@ -314,10 +314,10 @@ namespace Text_analyzer
                 StreamWriter logCommonWords = f.CreateText();
                 bool isDeNotFound = false;
                 string lastErrorKey = "";
-                foreach (string word in n.Keys) // the unrepeated word
+                foreach (string word in n.Keys) // the unrepeated word in unknown category
                 {
                     int break_counter = 0;
-                    // від найбільш ключових слів до найменш 
+                    // від найбільш ключових слів до найменш  у категоріях
                     foreach (KeyValuePair<string, double> wordCategory in category.Value.TFIDF.OrderByDescending(key => key.Value))
                     {
 
@@ -326,26 +326,31 @@ namespace Text_analyzer
                         {
                             break;
                         }
+                        //TFIDF unknown category word is wordCateg
                         if (word == wordCategory.Key) // if word from unknown category equals word from category we know
                         {
-                            logCommonWords.WriteLine(word + " " + wordCategory.Value);
+                           // logCommonWords.WriteLine(word + " " + wordCategory.Value);
                             ++countOfCommonElem;
                             score += wordCategory.Value;
 
-                            //must always be true
-                            if (myDe.words.ContainsKey(word))
+                            // may be not true DE
+                            if (myDe.words.ContainsKey(wordCategory.Key)) {
                                 deScore += myDe.words[word].dispersionEstimation;
+                            }
                             else
                             {
                                 isDeNotFound = true;
-                                lastErrorKey += '"' + word + "\", ";
+                                lastErrorKey += '"' + word + "\", ";//for debug purposes
                             }
+
                         }
                         //MessageBox.Show(category.Key + " " + wordCategory.Value + ":"+ wordCategory.Key);
 
                     }
 
                 }
+
+
 
                 //                myGrid.Rows[ind].Cells[1].Value = countOfCommonElem;
 
@@ -359,8 +364,8 @@ namespace Text_analyzer
                     MessageBox.Show("The key(s) " + lastErrorKey + "was not found in the Dictinary of DispersionEstimation");
 
                 }
-                else
-                {
+                else { 
+               
                     myGrid.Rows[ind].Cells[3].Value = Math.Round(deScore, 4); // imporotance coefficient
                 }
                 // end writing log
@@ -368,7 +373,7 @@ namespace Text_analyzer
             }
 
             // sorting by importance coeffficent
-            myGrid.Sort(myGrid.Columns[3], ListSortDirection.Descending);
+            myGrid.Sort(myGrid.Columns[2], ListSortDirection.Descending);
 
             // TODO вставляти вже відсортовані данні
             // DataGridViewColumn newColumn =
