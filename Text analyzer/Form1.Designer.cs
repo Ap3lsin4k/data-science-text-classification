@@ -54,15 +54,15 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.myGrid = new System.Windows.Forms.DataGridView();
-            this.Topic = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numberOfMatches = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.percentOfMatches = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbDEresult = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnLoadTextFromFile = new System.Windows.Forms.Button();
             this.richTBtoAnalyze = new System.Windows.Forms.RichTextBox();
+            this.Topic = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numberOfMatches = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.percentOfMatches = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -418,38 +418,6 @@
             this.myGrid.Size = new System.Drawing.Size(262, 444);
             this.myGrid.TabIndex = 16;
             // 
-            // Topic
-            // 
-            this.Topic.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Topic.FillWeight = 32F;
-            this.Topic.HeaderText = "Category";
-            this.Topic.MinimumWidth = 80;
-            this.Topic.Name = "Topic";
-            // 
-            // numberOfMatches
-            // 
-            this.numberOfMatches.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.numberOfMatches.FillWeight = 25F;
-            this.numberOfMatches.HeaderText = "Coincidence";
-            this.numberOfMatches.MinimumWidth = 40;
-            this.numberOfMatches.Name = "numberOfMatches";
-            // 
-            // percentOfMatches
-            // 
-            this.percentOfMatches.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.percentOfMatches.FillWeight = 25F;
-            this.percentOfMatches.HeaderText = "Importance Coefficient";
-            this.percentOfMatches.MinimumWidth = 60;
-            this.percentOfMatches.Name = "percentOfMatches";
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn1.FillWeight = 25F;
-            this.dataGridViewTextBoxColumn1.HeaderText = "Disperce Estimation";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 60;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
             // panel1
             // 
             this.panel1.AutoScroll = true;
@@ -502,6 +470,38 @@
             this.richTBtoAnalyze.Size = new System.Drawing.Size(370, 394);
             this.richTBtoAnalyze.TabIndex = 21;
             this.richTBtoAnalyze.Text = "";
+            // 
+            // Topic
+            // 
+            this.Topic.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Topic.FillWeight = 32F;
+            this.Topic.HeaderText = "Category";
+            this.Topic.MinimumWidth = 80;
+            this.Topic.Name = "Topic";
+            // 
+            // numberOfMatches
+            // 
+            this.numberOfMatches.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.numberOfMatches.FillWeight = 25F;
+            this.numberOfMatches.HeaderText = "TF IDF";
+            this.numberOfMatches.MinimumWidth = 40;
+            this.numberOfMatches.Name = "numberOfMatches";
+            // 
+            // percentOfMatches
+            // 
+            this.percentOfMatches.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.percentOfMatches.FillWeight = 25F;
+            this.percentOfMatches.HeaderText = "Disperce Etimation";
+            this.percentOfMatches.MinimumWidth = 60;
+            this.percentOfMatches.Name = "percentOfMatches";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn1.FillWeight = 25F;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Result (TFIDF*DE)";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 60;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             // 
             // Form1
             // 

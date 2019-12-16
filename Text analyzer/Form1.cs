@@ -248,10 +248,10 @@ namespace Text_analyzer
             string peeledText = "";
 
 
-            foreach (char sumbol in news)
+            foreach (char symbol in news)
             {
-                if (isCyrillic(sumbol))
-                    peeledText += Char.ToLower(sumbol);
+                if (isCyrillic(symbol))
+                    peeledText += Char.ToLower(symbol);
                 else
                     peeledText += " ";
             }
@@ -328,14 +328,15 @@ namespace Text_analyzer
                         }
                         //TFIDF unknown category word is wordCateg
                         if (word == wordCategory.Key) // if word from unknown category equals word from category we know
-                        {
-                           // logCommonWords.WriteLine(word + " " + wordCategory.Value);
+                        {;
                             ++countOfCommonElem;
                             score += wordCategory.Value;
 
-                            // may be not true DE
+                            // must be true DE
                             if (myDe.words.ContainsKey(wordCategory.Key)) {
                                 deScore += myDe.words[word].dispersionEstimation;
+
+                                logCommonWords.WriteLine(word + ", TFIDF: " + wordCategory.Value + ", DE: " + myDe.words[word].dispersionEstimation);
                             }
                             else
                             {
@@ -354,9 +355,9 @@ namespace Text_analyzer
 
                 //                myGrid.Rows[ind].Cells[1].Value = countOfCommonElem;
 
-                myGrid.Rows[ind].Cells[1].Value = Math.Round(100.0 * countOfCommonElem / Math.Min(category.Value.TFIDF.Count, keyWordsLimit), 1);
+               // myGrid.Rows[ind].Cells[1].Value = Math.Round(score, 4);//Math.Round(100.0 * countOfCommonElem / Math.Min(category.Value.TFIDF.Count, keyWordsLimit), 1);
                 //(float)100 * countOfCommonElem / (n.Count);  // percent
-                myGrid.Rows[ind].Cells[2].Value = Math.Round(score, 4); // imporotance coefficient
+                myGrid.Rows[ind].Cells[1].Value = Math.Round(score, 4); // imporotance coefficient
 
                 if (isDeNotFound)
                 {
@@ -366,14 +367,16 @@ namespace Text_analyzer
                 }
                 else { 
                
-                    myGrid.Rows[ind].Cells[3].Value = Math.Round(deScore, 4); // imporotance coefficient
+                    myGrid.Rows[ind].Cells[2].Value = Math.Round(deScore, 4); // imporotance coefficient
+                    myGrid.Rows[ind].Cells[3].Value = Math.Round(score*deScore, 4); // imporotance coefficient
+
                 }
                 // end writing log
                 logCommonWords.Close();
             }
 
             // sorting by importance coeffficent
-            myGrid.Sort(myGrid.Columns[2], ListSortDirection.Descending);
+            myGrid.Sort(myGrid.Columns[1], ListSortDirection.Descending);
 
             // TODO вставляти вже відсортовані данні
             // DataGridViewColumn newColumn =
@@ -397,7 +400,7 @@ namespace Text_analyzer
 
         private void de()
         {
-            string peeledText = getRawText(richTBtoAnalyze.Text.ToString());
+           // string peeledText = getRawText(richTBtoAnalyze.Text.ToString());//todo optimise speed
             string resultOfDispersionEstimation = myDe.analyzeDE(getRawTextSplit(richTBtoAnalyze.Text));
             lbDEresult.Text = resultOfDispersionEstimation.ToString();
         }

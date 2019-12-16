@@ -12,13 +12,14 @@ namespace Text_analyzer
         //TODO static
         public class NKavgA
         {
-            public List<int> NKs = new List<int>();
+            public List<int> NKs = new List<int>();  //an array with function pushback(add) list of indexes where the term A is 
             public double averageAs; // AVG(NKs[1]-NKs[0], NKs[2]-NKs[1],..., NKs[K]-NKs[K-1])  // average terms
             public double sqAvgAs;  // AVG((NKs[1]-NKs[0])^2, (NKs[2]-NKs[1])^2, ..., (NKs[K]-NKs[K-1])^2)  // square average distance between occurance of terms
             public double dispersionEstimation;
         }
 
         public Dictionary<string, NKavgA> words;
+        public int numberOfAllWords = -1;
 
         //todo unreapeated words
 
@@ -46,6 +47,7 @@ namespace Text_analyzer
                 words[aWord].NKs.Add(n);
                 ++n;// move text pivot to the next word
             }
+            numberOfAllWords= wordsToAnalyse.Count; // now number of all = n-1;
         }
 
 
@@ -57,7 +59,7 @@ namespace Text_analyzer
               */
             // distance between ocurrance of term
             return A[k + 1] - A[k];  // m-n; where m, n are neighbor position of the "A" word
-        }
+       }
 
         //A is term like "word"
         private double avgA(string A)  // <ΔA> = AVG(ΔA, ΔA, ΔA...)
@@ -77,12 +79,12 @@ namespace Text_analyzer
 
 
             in case text is round
-            4560123
+            5671234
             .A...A.
-            second delta is length - last occurance, + first occurence +1 = (7-6) + (2+1) = 1 + 2 + 1 = 4
+            second delta is length - last occurance, + first occurence = (7-6) + (3) = 1 + 3 = 4
             Note "+1" because of zero-indexing
             */
-            sum += (length - words[A].NKs[k]) + (words[A].NKs[0]+1);
+            sum += (numberOfAllWords - words[A].NKs[k]) + words[A].NKs[0];
             //...A....A1...A2.....A3...
             /*
             //last delta equal (length()-A3)+A
@@ -106,7 +108,7 @@ namespace Text_analyzer
                 deltaMN = deltaA(words[A].NKs, k);
                 sum += deltaMN * deltaMN;  // (m-n) squared
             }
-            deltaMN = (length - words[A].NKs[k]) + (words[A].NKs[0] + 1);
+            deltaMN = (numberOfAllWords - words[A].NKs[k]) + (words[A].NKs[0]);
             sum += deltaMN * deltaMN;
 
             /*
@@ -127,7 +129,6 @@ namespace Text_analyzer
             string myTempKey="";
             foreach (var word in words.Keys)// = 0; k < ns.NKs.Count - 1; ++k)
             {
-
                 double A = avgA(word);  // <ΔA>
                 double A2 = squareAvgA(word);  //<ΔA^2>
                 words[word].dispersionEstimation = Math.Sqrt(A2 - A * A) / A; // calculate DE for each term in text
