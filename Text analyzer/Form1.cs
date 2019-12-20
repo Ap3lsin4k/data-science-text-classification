@@ -45,7 +45,6 @@ namespace Text_analyzer
 
             string toOutToLbWords= "Peeled text:\n", toOutToLbBig ="TF\n";
 
-            lbWords.Text = "";// TODO tf to log
             lbBig.Text = "";
             
             if (!string.IsNullOrWhiteSpace(tbNews.Text.ToString()))
@@ -84,7 +83,6 @@ namespace Text_analyzer
                             2)  // numbers after point
                         + "%" + "\n";
                 }
-                lbWords.Text = toOutToLbWords;
                 lbBig.Text = toOutToLbBig;
                 /*
                 btnIdf.Enabled = true;
@@ -109,7 +107,6 @@ namespace Text_analyzer
                                 2)  // numbers after point
                             + "%" + "\n";
                     }
-                    lbWords.Text = toOutToLbWords;
                     lbBig.Text = toOutToLbBig;
                 }
                 else
@@ -455,7 +452,7 @@ namespace Text_analyzer
             {
                 allCategories += category + "\n";
             }
-            lbWords.Text = allCategories;
+          //  lbWords.Text = allCategories;
 //            MessageBox.Show(allCategories);
         }
 

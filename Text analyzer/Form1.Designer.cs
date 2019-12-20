@@ -46,7 +46,6 @@
             this.tlpV_KnownTextAndLoadBtn = new System.Windows.Forms.TableLayoutPanel();
             this.tbNews = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.lbWords = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tlpHorisontalButtons = new System.Windows.Forms.TableLayoutPanel();
@@ -263,7 +262,6 @@
             // 
             this.panel2.AutoScroll = true;
             this.panel2.Controls.Add(this.tlpV_KnownTextAndLoadBtn);
-            this.panel2.Controls.Add(this.lbWords);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.panel2.Location = new System.Drawing.Point(3, 3);
@@ -307,14 +305,6 @@
             this.button1.TabIndex = 5;
             this.button1.Text = "Load Text from File";
             this.button1.UseVisualStyleBackColor = true;
-            // 
-            // lbWords
-            // 
-            this.lbWords.AutoSize = true;
-            this.lbWords.Location = new System.Drawing.Point(3, 0);
-            this.lbWords.Name = "lbWords";
-            this.lbWords.Size = new System.Drawing.Size(0, 20);
-            this.lbWords.TabIndex = 4;
             // 
             // tabPage2
             // 
@@ -550,7 +540,6 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.tlpV_KnownTextAndLoadBtn.ResumeLayout(false);
             this.tlpV_KnownTextAndLoadBtn.PerformLayout();
             this.tabPage2.ResumeLayout(false);
@@ -605,7 +594,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label lbBig;
-        private System.Windows.Forms.Label lbWords;
     }
 }
 
