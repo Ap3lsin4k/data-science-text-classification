@@ -505,8 +505,6 @@ namespace Text_analyzer
             }
 
         }
-
-
     }
 }
 

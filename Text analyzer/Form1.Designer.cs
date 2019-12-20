@@ -30,8 +30,8 @@
         {
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tlpVertical = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpVertical_Main = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpH_Buttons = new System.Windows.Forms.TableLayoutPanel();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnTfIdf = new System.Windows.Forms.Button();
             this.btnIdf = new System.Windows.Forms.Button();
@@ -43,8 +43,10 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.lbBig = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.lbWords = new System.Windows.Forms.Label();
+            this.tlpV_KnownTextAndLoadBtn = new System.Windows.Forms.TableLayoutPanel();
             this.tbNews = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.lbWords = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tlpHorisontalButtons = new System.Windows.Forms.TableLayoutPanel();
@@ -65,12 +67,13 @@
             this.btnAnalysis = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tlpVertical.SuspendLayout();
-            this.tableLayoutPanel9.SuspendLayout();
+            this.tlpVertical_Main.SuspendLayout();
+            this.tlpH_Buttons.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.tlpKnownTextPeeledTFIDF.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.tlpV_KnownTextAndLoadBtn.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tlpHorisontalButtons.SuspendLayout();
@@ -95,7 +98,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.tlpVertical);
+            this.tabPage1.Controls.Add(this.tlpVertical_Main);
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -104,43 +107,41 @@
             this.tabPage1.Text = "Categories";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tlpVertical
+            // tlpVertical_Main
             // 
-            this.tlpVertical.ColumnCount = 1;
-            this.tlpVertical.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpVertical.Controls.Add(this.tableLayoutPanel9, 0, 0);
-            this.tlpVertical.Controls.Add(this.tlpKnownTextPeeledTFIDF, 0, 1);
-            this.tlpVertical.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpVertical.Location = new System.Drawing.Point(3, 3);
-            this.tlpVertical.Name = "tlpVertical";
-            this.tlpVertical.RowCount = 4;
-            this.tlpVertical.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 65F));
-            this.tlpVertical.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpVertical.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tlpVertical.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpVertical.Size = new System.Drawing.Size(770, 522);
-            this.tlpVertical.TabIndex = 19;
+            this.tlpVertical_Main.ColumnCount = 1;
+            this.tlpVertical_Main.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpVertical_Main.Controls.Add(this.tlpH_Buttons, 0, 0);
+            this.tlpVertical_Main.Controls.Add(this.tlpKnownTextPeeledTFIDF, 0, 1);
+            this.tlpVertical_Main.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpVertical_Main.Location = new System.Drawing.Point(3, 3);
+            this.tlpVertical_Main.Name = "tlpVertical_Main";
+            this.tlpVertical_Main.RowCount = 2;
+            this.tlpVertical_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 65F));
+            this.tlpVertical_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpVertical_Main.Size = new System.Drawing.Size(770, 522);
+            this.tlpVertical_Main.TabIndex = 19;
             // 
-            // tableLayoutPanel9
+            // tlpH_Buttons
             // 
-            this.tableLayoutPanel9.ColumnCount = 5;
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel9.Controls.Add(this.btnSave, 4, 0);
-            this.tableLayoutPanel9.Controls.Add(this.btnTfIdf, 3, 0);
-            this.tableLayoutPanel9.Controls.Add(this.btnIdf, 2, 0);
-            this.tableLayoutPanel9.Controls.Add(this.btnTf, 1, 0);
-            this.tableLayoutPanel9.Controls.Add(this.tableLayoutPanel6, 0, 0);
-            this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
-            this.tableLayoutPanel9.RowCount = 1;
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(764, 59);
-            this.tableLayoutPanel9.TabIndex = 17;
+            this.tlpH_Buttons.ColumnCount = 5;
+            this.tlpH_Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
+            this.tlpH_Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpH_Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpH_Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpH_Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpH_Buttons.Controls.Add(this.btnSave, 4, 0);
+            this.tlpH_Buttons.Controls.Add(this.btnTfIdf, 3, 0);
+            this.tlpH_Buttons.Controls.Add(this.btnIdf, 2, 0);
+            this.tlpH_Buttons.Controls.Add(this.btnTf, 1, 0);
+            this.tlpH_Buttons.Controls.Add(this.tableLayoutPanel6, 0, 0);
+            this.tlpH_Buttons.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpH_Buttons.Location = new System.Drawing.Point(3, 3);
+            this.tlpH_Buttons.Name = "tlpH_Buttons";
+            this.tlpH_Buttons.RowCount = 1;
+            this.tlpH_Buttons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpH_Buttons.Size = new System.Drawing.Size(764, 59);
+            this.tlpH_Buttons.TabIndex = 17;
             // 
             // btnSave
             // 
@@ -152,6 +153,7 @@
             this.btnSave.TabIndex = 19;
             this.btnSave.Text = "Save JSON";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnTfIdf
             // 
@@ -163,6 +165,7 @@
             this.btnTfIdf.TabIndex = 18;
             this.btnTfIdf.Text = "TFIDF";
             this.btnTfIdf.UseVisualStyleBackColor = true;
+            this.btnTfIdf.Click += new System.EventHandler(this.btnTfIdf_Click);
             // 
             // btnIdf
             // 
@@ -174,6 +177,7 @@
             this.btnIdf.TabIndex = 17;
             this.btnIdf.Text = "IDF";
             this.btnIdf.UseVisualStyleBackColor = true;
+            this.btnIdf.Click += new System.EventHandler(this.btnIdf_Click);
             // 
             // btnTf
             // 
@@ -185,6 +189,7 @@
             this.btnTf.TabIndex = 16;
             this.btnTf.Text = "TF";
             this.btnTf.UseVisualStyleBackColor = true;
+            this.btnTf.Click += new System.EventHandler(this.btnTf_Click);
             // 
             // tableLayoutPanel6
             // 
@@ -222,19 +227,17 @@
             // 
             // tlpKnownTextPeeledTFIDF
             // 
-            this.tlpKnownTextPeeledTFIDF.ColumnCount = 3;
+            this.tlpKnownTextPeeledTFIDF.ColumnCount = 2;
             this.tlpKnownTextPeeledTFIDF.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpKnownTextPeeledTFIDF.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.tlpKnownTextPeeledTFIDF.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.tlpKnownTextPeeledTFIDF.Controls.Add(this.panel3, 0, 0);
             this.tlpKnownTextPeeledTFIDF.Controls.Add(this.panel2, 0, 0);
-            this.tlpKnownTextPeeledTFIDF.Controls.Add(this.tbNews, 0, 0);
             this.tlpKnownTextPeeledTFIDF.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpKnownTextPeeledTFIDF.Location = new System.Drawing.Point(3, 68);
             this.tlpKnownTextPeeledTFIDF.Name = "tlpKnownTextPeeledTFIDF";
             this.tlpKnownTextPeeledTFIDF.RowCount = 1;
             this.tlpKnownTextPeeledTFIDF.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpKnownTextPeeledTFIDF.Size = new System.Drawing.Size(764, 381);
+            this.tlpKnownTextPeeledTFIDF.Size = new System.Drawing.Size(764, 451);
             this.tlpKnownTextPeeledTFIDF.TabIndex = 18;
             // 
             // panel3
@@ -245,7 +248,7 @@
             this.panel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.panel3.Location = new System.Drawing.Point(617, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(144, 375);
+            this.panel3.Size = new System.Drawing.Size(144, 445);
             this.panel3.TabIndex = 9;
             // 
             // lbBig
@@ -259,21 +262,29 @@
             // panel2
             // 
             this.panel2.AutoScroll = true;
+            this.panel2.Controls.Add(this.tlpV_KnownTextAndLoadBtn);
             this.panel2.Controls.Add(this.lbWords);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.panel2.Location = new System.Drawing.Point(467, 3);
+            this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(144, 375);
+            this.panel2.Size = new System.Drawing.Size(608, 445);
             this.panel2.TabIndex = 8;
             // 
-            // lbWords
+            // tlpV_KnownTextAndLoadBtn
             // 
-            this.lbWords.AutoSize = true;
-            this.lbWords.Location = new System.Drawing.Point(3, 0);
-            this.lbWords.Name = "lbWords";
-            this.lbWords.Size = new System.Drawing.Size(0, 20);
-            this.lbWords.TabIndex = 4;
+            this.tlpV_KnownTextAndLoadBtn.ColumnCount = 1;
+            this.tlpV_KnownTextAndLoadBtn.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpV_KnownTextAndLoadBtn.Controls.Add(this.tbNews, 0, 0);
+            this.tlpV_KnownTextAndLoadBtn.Controls.Add(this.button1, 0, 1);
+            this.tlpV_KnownTextAndLoadBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpV_KnownTextAndLoadBtn.Location = new System.Drawing.Point(0, 0);
+            this.tlpV_KnownTextAndLoadBtn.Name = "tlpV_KnownTextAndLoadBtn";
+            this.tlpV_KnownTextAndLoadBtn.RowCount = 2;
+            this.tlpV_KnownTextAndLoadBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpV_KnownTextAndLoadBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tlpV_KnownTextAndLoadBtn.Size = new System.Drawing.Size(608, 445);
+            this.tlpV_KnownTextAndLoadBtn.TabIndex = 5;
             // 
             // tbNews
             // 
@@ -283,8 +294,27 @@
             this.tbNews.Multiline = true;
             this.tbNews.Name = "tbNews";
             this.tbNews.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbNews.Size = new System.Drawing.Size(458, 375);
-            this.tbNews.TabIndex = 3;
+            this.tbNews.Size = new System.Drawing.Size(602, 379);
+            this.tbNews.TabIndex = 4;
+            // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.button1.Location = new System.Drawing.Point(3, 388);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(602, 54);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Load Text from File";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // lbWords
+            // 
+            this.lbWords.AutoSize = true;
+            this.lbWords.Location = new System.Drawing.Point(3, 0);
+            this.lbWords.Name = "lbWords";
+            this.lbWords.Size = new System.Drawing.Size(0, 20);
+            this.lbWords.TabIndex = 4;
             // 
             // tabPage2
             // 
@@ -342,6 +372,7 @@
             this.btnLoad.TabIndex = 36;
             this.btnLoad.Text = "Load JSON";
             this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
             // btnLoadTextFromFile
             // 
@@ -352,6 +383,7 @@
             this.btnLoadTextFromFile.TabIndex = 35;
             this.btnLoadTextFromFile.Text = "Load Text from File";
             this.btnLoadTextFromFile.UseVisualStyleBackColor = true;
+            this.btnLoadTextFromFile.Click += new System.EventHandler(this.btnLoadTextFromFile_Click);
             // 
             // tlpUnknownTextGridDE
             // 
@@ -484,6 +516,7 @@
             this.btnDE.TabIndex = 43;
             this.btnDE.Text = "Analyze Disperse Estimation";
             this.btnDE.UseVisualStyleBackColor = true;
+            this.btnDE.Click += new System.EventHandler(this.btnDE_Click);
             // 
             // btnAnalysis
             // 
@@ -496,6 +529,7 @@
             this.btnAnalysis.TabIndex = 42;
             this.btnAnalysis.Text = "Analyze Category";
             this.btnAnalysis.UseVisualStyleBackColor = true;
+            this.btnAnalysis.Click += new System.EventHandler(this.btnAnalysis_Click);
             // 
             // Form1
             // 
@@ -508,16 +542,17 @@
             this.Text = "Text analyzer";
             this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tlpVertical.ResumeLayout(false);
-            this.tableLayoutPanel9.ResumeLayout(false);
+            this.tlpVertical_Main.ResumeLayout(false);
+            this.tlpH_Buttons.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
             this.tlpKnownTextPeeledTFIDF.ResumeLayout(false);
-            this.tlpKnownTextPeeledTFIDF.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.tlpV_KnownTextAndLoadBtn.ResumeLayout(false);
+            this.tlpV_KnownTextAndLoadBtn.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tlpHorisontalButtons.ResumeLayout(false);
@@ -554,8 +589,8 @@
         private System.Windows.Forms.Button btnDE;
         private System.Windows.Forms.Button btnAnalysis;
         private System.Windows.Forms.RichTextBox richTBtoAnalyze;
-        private System.Windows.Forms.TableLayoutPanel tlpVertical;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
+        private System.Windows.Forms.TableLayoutPanel tlpVertical_Main;
+        private System.Windows.Forms.TableLayoutPanel tlpH_Buttons;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnTfIdf;
         private System.Windows.Forms.Button btnIdf;
@@ -564,11 +599,13 @@
         private System.Windows.Forms.Label lbCategory;
         private System.Windows.Forms.ComboBox cbCategories;
         private System.Windows.Forms.TableLayoutPanel tlpKnownTextPeeledTFIDF;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TableLayoutPanel tlpV_KnownTextAndLoadBtn;
+        private System.Windows.Forms.TextBox tbNews;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label lbBig;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lbWords;
-        private System.Windows.Forms.TextBox tbNews;
     }
 }
 
