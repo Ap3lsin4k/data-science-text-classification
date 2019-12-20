@@ -211,6 +211,23 @@ namespace Text_analyzer
                 MessageBox.Show("Here is no categories to calculate TF*IDF");
         }
 
+
+        private void btnCategories_LoadTextFromFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            //            openFileDialog1.InitialDirectory = @"\";
+            openFileDialog1.Filter = "txt files (*.txt)|*.txt|Allfiles (*.*)|*.*";
+            openFileDialog1.FilterIndex = 1;
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string text = File.ReadAllText(openFileDialog1.FileName, GetEncoding(openFileDialog1.FileName));//Encoding.UTF8);//Windows-1251
+                tbNews.Text = text;
+                //openFileDialog1.FileName,
+                //                 RichTextBoxStreamType.PlainText);
+                //todo call analyse
+            }
+        }
+
         private bool isCyrillic(int letterCode)
         {
             switch (letterCode)
@@ -502,6 +519,8 @@ namespace Text_analyzer
             }
 
         }
+
+
     }
 }
 
