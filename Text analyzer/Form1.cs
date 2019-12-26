@@ -47,9 +47,9 @@ namespace Text_analyzer
 
             lbBig.Text = "";
             
-            if (!string.IsNullOrWhiteSpace(tbNews.Text.ToString()))
+            if (!string.IsNullOrWhiteSpace(rtbKnownText.Text.ToString()))
             {
-                string peeledText = getRawText(tbNews.Text.ToString());
+                string peeledText = getRawText(rtbKnownText.Text.ToString());
 
                 // create text with new category, if it wasn't created still
                 newsJson.texts[catg] = new WordFreq(peeledText.Split().ToList<string>());  // TODO test: casting to List can take much time
@@ -221,7 +221,7 @@ namespace Text_analyzer
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 string text = File.ReadAllText(openFileDialog1.FileName, GetEncoding(openFileDialog1.FileName));//Encoding.UTF8);//Windows-1251
-                tbNews.Text = text;
+                rtbKnownText.Text = text;
                 //openFileDialog1.FileName,
                 //                 RichTextBoxStreamType.PlainText);
                 //todo call analyse
@@ -558,7 +558,7 @@ namespace Text_analyzer
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            string news = tbNews.Text.ToString();
+            string news = rtbKnownText.Text.ToString();
 
             lbRawNews.Text = "";
             peeledText = "";

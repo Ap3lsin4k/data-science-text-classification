@@ -44,7 +44,6 @@
             this.lbBig = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tlpV_KnownTextAndLoadBtn = new System.Windows.Forms.TableLayoutPanel();
-            this.tbNews = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -52,18 +51,19 @@
             this.btnLoad = new System.Windows.Forms.Button();
             this.btnLoadTextFromFile = new System.Windows.Forms.Button();
             this.tlpUnknownTextGridDE = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.myGrid = new System.Windows.Forms.DataGridView();
+            this.Topic = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numberOfMatches = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.percentOfMatches = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lbDEresult = new System.Windows.Forms.Label();
             this.richTBtoAnalyze = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnDE = new System.Windows.Forms.Button();
             this.btnAnalysis = new System.Windows.Forms.Button();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbDEresult = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.percentOfMatches = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numberOfMatches = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Topic = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.myGrid = new System.Windows.Forms.DataGridView();
+            this.rtbKnownText = new System.Windows.Forms.RichTextBox();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tlpVertical_Main.SuspendLayout();
@@ -77,10 +77,10 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.tlpHorisontalButtons.SuspendLayout();
             this.tlpUnknownTextGridDE.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.myGrid)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -273,8 +273,8 @@
             // 
             this.tlpV_KnownTextAndLoadBtn.ColumnCount = 1;
             this.tlpV_KnownTextAndLoadBtn.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpV_KnownTextAndLoadBtn.Controls.Add(this.tbNews, 0, 0);
             this.tlpV_KnownTextAndLoadBtn.Controls.Add(this.button1, 0, 1);
+            this.tlpV_KnownTextAndLoadBtn.Controls.Add(this.rtbKnownText, 0, 0);
             this.tlpV_KnownTextAndLoadBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpV_KnownTextAndLoadBtn.Location = new System.Drawing.Point(0, 0);
             this.tlpV_KnownTextAndLoadBtn.Name = "tlpV_KnownTextAndLoadBtn";
@@ -283,17 +283,6 @@
             this.tlpV_KnownTextAndLoadBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tlpV_KnownTextAndLoadBtn.Size = new System.Drawing.Size(558, 445);
             this.tlpV_KnownTextAndLoadBtn.TabIndex = 5;
-            // 
-            // tbNews
-            // 
-            this.tbNews.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbNews.Location = new System.Drawing.Point(3, 3);
-            this.tbNews.MaxLength = 100000;
-            this.tbNews.Multiline = true;
-            this.tbNews.Name = "tbNews";
-            this.tbNews.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbNews.Size = new System.Drawing.Size(552, 379);
-            this.tbNews.TabIndex = 4;
             // 
             // button1
             // 
@@ -391,6 +380,87 @@
             this.tlpUnknownTextGridDE.Size = new System.Drawing.Size(764, 396);
             this.tlpUnknownTextGridDE.TabIndex = 34;
             // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 2;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.42857F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.57143F));
+            this.tableLayoutPanel5.Controls.Add(this.myGrid, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.panel1, 1, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(308, 3);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 1;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(453, 390);
+            this.tableLayoutPanel5.TabIndex = 36;
+            // 
+            // myGrid
+            // 
+            this.myGrid.AllowUserToAddRows = false;
+            this.myGrid.AllowUserToDeleteRows = false;
+            this.myGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.myGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Topic,
+            this.numberOfMatches,
+            this.percentOfMatches,
+            this.dataGridViewTextBoxColumn1});
+            this.myGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.myGrid.Location = new System.Drawing.Point(3, 3);
+            this.myGrid.Name = "myGrid";
+            this.myGrid.Size = new System.Drawing.Size(317, 384);
+            this.myGrid.TabIndex = 16;
+            // 
+            // Topic
+            // 
+            this.Topic.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Topic.FillWeight = 32F;
+            this.Topic.HeaderText = "Category";
+            this.Topic.MinimumWidth = 80;
+            this.Topic.Name = "Topic";
+            // 
+            // numberOfMatches
+            // 
+            this.numberOfMatches.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.numberOfMatches.FillWeight = 25F;
+            this.numberOfMatches.HeaderText = "TF IDF";
+            this.numberOfMatches.MinimumWidth = 40;
+            this.numberOfMatches.Name = "numberOfMatches";
+            // 
+            // percentOfMatches
+            // 
+            this.percentOfMatches.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.percentOfMatches.FillWeight = 25F;
+            this.percentOfMatches.HeaderText = "Disperce Etimation";
+            this.percentOfMatches.MinimumWidth = 60;
+            this.percentOfMatches.Name = "percentOfMatches";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn1.FillWeight = 25F;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Result (TFIDF*DE)";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 60;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.lbDEresult);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(326, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(124, 384);
+            this.panel1.TabIndex = 17;
+            // 
+            // lbDEresult
+            // 
+            this.lbDEresult.AutoSize = true;
+            this.lbDEresult.Location = new System.Drawing.Point(3, 3);
+            this.lbDEresult.Name = "lbDEresult";
+            this.lbDEresult.Size = new System.Drawing.Size(0, 24);
+            this.lbDEresult.TabIndex = 21;
+            // 
             // richTBtoAnalyze
             // 
             this.richTBtoAnalyze.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -441,86 +511,14 @@
             this.btnAnalysis.UseVisualStyleBackColor = true;
             this.btnAnalysis.Click += new System.EventHandler(this.btnAnalysis_Click);
             // 
-            // tableLayoutPanel5
+            // rtbKnownText
             // 
-            this.tableLayoutPanel5.ColumnCount = 2;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.42857F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.57143F));
-            this.tableLayoutPanel5.Controls.Add(this.myGrid, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.panel1, 1, 0);
-            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(308, 3);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 1;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(453, 390);
-            this.tableLayoutPanel5.TabIndex = 36;
-            // 
-            // lbDEresult
-            // 
-            this.lbDEresult.AutoSize = true;
-            this.lbDEresult.Location = new System.Drawing.Point(3, 3);
-            this.lbDEresult.Name = "lbDEresult";
-            this.lbDEresult.Size = new System.Drawing.Size(0, 24);
-            this.lbDEresult.TabIndex = 21;
-            // 
-            // panel1
-            // 
-            this.panel1.AutoScroll = true;
-            this.panel1.Controls.Add(this.lbDEresult);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(326, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(124, 384);
-            this.panel1.TabIndex = 17;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn1.FillWeight = 25F;
-            this.dataGridViewTextBoxColumn1.HeaderText = "Result (TFIDF*DE)";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 60;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // percentOfMatches
-            // 
-            this.percentOfMatches.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.percentOfMatches.FillWeight = 25F;
-            this.percentOfMatches.HeaderText = "Disperce Etimation";
-            this.percentOfMatches.MinimumWidth = 60;
-            this.percentOfMatches.Name = "percentOfMatches";
-            // 
-            // numberOfMatches
-            // 
-            this.numberOfMatches.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.numberOfMatches.FillWeight = 25F;
-            this.numberOfMatches.HeaderText = "TF IDF";
-            this.numberOfMatches.MinimumWidth = 40;
-            this.numberOfMatches.Name = "numberOfMatches";
-            // 
-            // Topic
-            // 
-            this.Topic.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Topic.FillWeight = 32F;
-            this.Topic.HeaderText = "Category";
-            this.Topic.MinimumWidth = 80;
-            this.Topic.Name = "Topic";
-            // 
-            // myGrid
-            // 
-            this.myGrid.AllowUserToAddRows = false;
-            this.myGrid.AllowUserToDeleteRows = false;
-            this.myGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.myGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Topic,
-            this.numberOfMatches,
-            this.percentOfMatches,
-            this.dataGridViewTextBoxColumn1});
-            this.myGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.myGrid.Location = new System.Drawing.Point(3, 3);
-            this.myGrid.Name = "myGrid";
-            this.myGrid.Size = new System.Drawing.Size(317, 384);
-            this.myGrid.TabIndex = 16;
+            this.rtbKnownText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbKnownText.Location = new System.Drawing.Point(3, 3);
+            this.rtbKnownText.Name = "rtbKnownText";
+            this.rtbKnownText.Size = new System.Drawing.Size(552, 379);
+            this.rtbKnownText.TabIndex = 6;
+            this.rtbKnownText.Text = "";
             // 
             // Form1
             // 
@@ -542,18 +540,17 @@
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.tlpV_KnownTextAndLoadBtn.ResumeLayout(false);
-            this.tlpV_KnownTextAndLoadBtn.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tlpHorisontalButtons.ResumeLayout(false);
             this.tlpHorisontalButtons.PerformLayout();
             this.tlpUnknownTextGridDE.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.myGrid)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.myGrid)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -583,7 +580,6 @@
         private System.Windows.Forms.TableLayoutPanel tlpKnownTextProperties;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TableLayoutPanel tlpV_KnownTextAndLoadBtn;
-        private System.Windows.Forms.TextBox tbNews;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label lbBig;
@@ -595,6 +591,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lbDEresult;
+        private System.Windows.Forms.RichTextBox rtbKnownText;
     }
 }
 
