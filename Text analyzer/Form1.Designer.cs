@@ -148,7 +148,7 @@
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnSave.Location = new System.Drawing.Point(616, 3);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(145, 68);
+            this.btnSave.Size = new System.Drawing.Size(145, 60);
             this.btnSave.TabIndex = 19;
             this.btnSave.Text = "Save JSON";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -160,7 +160,7 @@
             this.btnTfIdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnTfIdf.Location = new System.Drawing.Point(465, 3);
             this.btnTfIdf.Name = "btnTfIdf";
-            this.btnTfIdf.Size = new System.Drawing.Size(145, 68);
+            this.btnTfIdf.Size = new System.Drawing.Size(145, 60);
             this.btnTfIdf.TabIndex = 18;
             this.btnTfIdf.Text = "TFIDF";
             this.btnTfIdf.UseVisualStyleBackColor = true;
@@ -172,7 +172,7 @@
             this.btnIdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnIdf.Location = new System.Drawing.Point(314, 3);
             this.btnIdf.Name = "btnIdf";
-            this.btnIdf.Size = new System.Drawing.Size(145, 68);
+            this.btnIdf.Size = new System.Drawing.Size(145, 60);
             this.btnIdf.TabIndex = 17;
             this.btnIdf.Text = "IDF";
             this.btnIdf.UseVisualStyleBackColor = true;
@@ -184,7 +184,7 @@
             this.btnTf.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnTf.Location = new System.Drawing.Point(163, 3);
             this.btnTf.Name = "btnTf";
-            this.btnTf.Size = new System.Drawing.Size(145, 68);
+            this.btnTf.Size = new System.Drawing.Size(145, 60);
             this.btnTf.TabIndex = 16;
             this.btnTf.Text = "TF";
             this.btnTf.UseVisualStyleBackColor = true;
@@ -202,7 +202,7 @@
             this.tlpChoseCategory_ComboBox.RowCount = 2;
             this.tlpChoseCategory_ComboBox.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tlpChoseCategory_ComboBox.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.tlpChoseCategory_ComboBox.Size = new System.Drawing.Size(154, 68);
+            this.tlpChoseCategory_ComboBox.Size = new System.Drawing.Size(154, 60);
             this.tlpChoseCategory_ComboBox.TabIndex = 15;
             // 
             // lbCategory
@@ -220,7 +220,7 @@
             // 
             this.cbCategories.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.cbCategories.FormattingEnabled = true;
-            this.cbCategories.Location = new System.Drawing.Point(3, 30);
+            this.cbCategories.Location = new System.Drawing.Point(3, 27);
             this.cbCategories.Name = "cbCategories";
             this.cbCategories.Size = new System.Drawing.Size(148, 32);
             this.cbCategories.TabIndex = 14;
@@ -416,6 +416,7 @@
             this.percentOfMatches,
             this.dataGridViewTextBoxColumn1});
             this.myGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.myGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.myGrid.Location = new System.Drawing.Point(3, 3);
             this.myGrid.Name = "myGrid";
             this.myGrid.Size = new System.Drawing.Size(317, 384);
