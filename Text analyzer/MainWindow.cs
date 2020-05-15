@@ -10,19 +10,32 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 // work with files
 using System.IO;
+using Text_analyzer.presentation;
 
 namespace Text_analyzer
 {
-    public partial class Form1 : Form
+    public partial class MainWindow : Form, CategoriesView
     {
+
+        //==========CATEGORIES VIEW==========
         // category, and words in each text
 //        Dictionary<string, WordFreq> texts = new Dictionary<string, WordFreq>();
-        TextJson newsJson = new TextJson();
+
         DE myDe = new DE();
-        public Form1()
+        CategoriesPresenter categPresenter; // for the first view
+        GuessPresenter guessPresenter; // for the second view
+
+        public MainWindow()
         {
             InitializeComponent();
             load();
+
+            categPresenter = new CategoriesPresenter(this, 
+                    new model.interactor.CategoriesInteractor(), 
+                    new TextJson()
+                );
+
+            guessPresenter = new GuessPresenter();
         }
 
         const int keyWordsLimit = 155;
@@ -33,88 +46,8 @@ namespace Text_analyzer
 
         private void btnTf_Click(object sender, EventArgs e)
         {
-
-            // newsJson = new TextJson();
-            string catg = cbCategories.Text;//tbCategoryName.Text; // category
-
-            if(string.IsNullOrWhiteSpace(catg))
-            {
-                MessageBox.Show("Please enter or chose the category");
-                return;
-            }
-
-            string toOutToLbWords= "Peeled text:\n", toOutToLbBig ="TF\n";
-
-            lbBig.Text = "";
-            
-            if (!string.IsNullOrWhiteSpace(rtbKnownText.Text.ToString()))
-            {
-                string peeledText = getRawText(rtbKnownText.Text.ToString());
-
-                // create text with new category, if it wasn't created still
-                newsJson.texts[catg] = new WordFreq(peeledText.Split().ToList<string>());  // TODO test: casting to List can take much time
-
-                foreach (string word in newsJson.texts[catg].allWords)
-                {
-                    toOutToLbWords += word + "\n";
-
-                }
-                foreach (string word in newsJson.texts[catg].allWords)
-                {
-                    if (newsJson.texts[catg].n.ContainsKey(word))
-                    {
-                        ++newsJson.texts[catg].n[word];
-                    }
-                    else
-                    {
-                        newsJson.texts[catg].n[word] = 1;
-                    }
-
-                }
-
-
-                // TF
-                foreach (KeyValuePair<string, int> item in newsJson.texts[catg].n.OrderByDescending(key => key.Value))
-                {
-                    // do something with item.Key and item.Value
-                    toOutToLbBig += item.Key + " : " + newsJson.texts[catg].n[item.Key] + ",    "
-                        + Math.Round(
-                            newsJson.texts[catg].calcTf(item.Key),
-                            2)  // numbers after point
-                        + "%" + "\n";
-                }
-                lbBig.Text = toOutToLbBig;
-                /*
-                btnIdf.Enabled = true;
-                // calculate TF to all categories and then press IDF. Then TFIDF.
-                */
-                updateCbCategories();
-            }
-            else
-            {
-                if (newsJson.texts.ContainsKey(catg))
-                {
-                    foreach (string word in newsJson.texts[catg].allWords)
-                    {
-                        toOutToLbWords += word + "\n";
-
-                    }
-                    foreach (KeyValuePair<string, int> item in newsJson.texts[catg].n.OrderByDescending(key => key.Value))
-                    {
-                        // do something with item.Key and item.Value
-                        toOutToLbBig += item.Key + " : " + Math.Round(
-                                newsJson.texts[catg].TF[item.Key],
-                                2)  // numbers after point
-                            + "%" + "\n";
-                    }
-                    lbBig.Text = toOutToLbBig;
-                }
-                else
-                {
-                    MessageBox.Show("The category \"" + catg + "\" was not created. To create this category enter text of news in the TextBox");
-                }
-
-            }
+            categPresenter.onBtnTfClicked(cbCategories.Text, rtbKnownText.Text.ToString());
+          
         }
 
 
@@ -256,26 +189,7 @@ namespace Text_analyzer
 
         }
 
-        private string getRawText(string notClearedText)
-        {
-            string news = Regex.Replace(notClearedText, @"\s+", " ");
-            string peeledText = "";
-
-
-            foreach (char symbol in news)
-            {
-                if (isCyrillic(symbol))
-                    peeledText += Char.ToLower(symbol);
-                else
-                    peeledText += " ";
-            }
-
-            peeledText = Regex.Replace(peeledText, @"\s+", " "); // To delete redundant space
-                                                                 //            peeledText = peeledText;
-
-
-            return peeledText;
-        }
+       
 
 
         private List<string> getRawTextSplit(string notClearedText)
@@ -287,7 +201,7 @@ namespace Text_analyzer
             return getRawText(tbWithText.Text.ToString()).Split().ToList<string>();
         }
 
-        //      ========PROGRAM_#2========
+        //      ==========GUESS VIEW==========
         private void btnAnalysis_Click(object sender, EventArgs e)
         {
             string unknownText = getRawText(richTBtoAnalyze.Text);  // Text with unknown category
