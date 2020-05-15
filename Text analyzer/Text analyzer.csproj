@@ -56,6 +56,8 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="model\interactor\CategoriesInteractor.cs" />
+    <Compile Include="model\repository\TextRepository.cs" />
     <Compile Include="presentation\CategoriesView.cs" />
     <Compile Include="presentation\GuessPresenter.cs" />
     <Compile Include="presentation\CategoriesPresenter.cs" />
@@ -91,8 +93,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="model\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

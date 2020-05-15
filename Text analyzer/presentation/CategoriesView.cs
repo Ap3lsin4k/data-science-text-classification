@@ -8,10 +8,10 @@ namespace Text_analyzer.presentation
 {
     interface CategoriesView
     {
-        void print(string tip);
+        void show(string tip);
 
         void clearLongDebugMessage();//todo delete
-        void setLongDebug(string message);
+        void showLongDebugLog(string message);
 
         void setCategories(object[] categories);
         

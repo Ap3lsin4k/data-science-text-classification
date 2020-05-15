@@ -30,7 +30,7 @@ namespace Text_analyzer.presentation
 
             if (string.IsNullOrWhiteSpace(catg))
             {
-                view.print("Please enter or chose the category");
+                view.show("Please enter or chose the category");
                 return;
             }
 
@@ -76,7 +76,8 @@ namespace Text_analyzer.presentation
                             2)  // numbers after point
                         + "%" + "\n";
                 }
-                view.setLongDebug(toOutToLbBig);
+
+                view.showLongDebugLog(toOutToLbBig);
 
                 view.setCategories(newsJson.texts.Keys.ToArray());
             }
@@ -97,24 +98,107 @@ namespace Text_analyzer.presentation
                                 2)  // numbers after point
                             + "%" + "\n";
                     }
-                    view.setLongDebug(toOutToLbBig);
+                    view.showLongDebugLog(toOutToLbBig);
                 }
                 else
                 {
-                    view.print("The category \"" + catg + "\" was not created. To create this category enter text of news in the TextBox");
+                    view.show("The category \"" + catg + "\" was not created. To create this category enter text of news in the TextBox");
                 }
 
             }
         }
 
-        public void onBtnIdfClicked()
-        {
 
+
+
+        private void idf(string catg, bool log)
+        {
+            string textToOut = "IDF\n";
+            int categories = 0;
+            //foreach (WordFreq text in texts.Values)
+
+            foreach (string word in newsJson.texts[catg].n.Keys)
+            {
+                categories = 1;
+                foreach (KeyValuePair<string, WordFreq> text in newsJson.texts)
+                {
+                    if (text.Key == catg) continue;
+
+                    if (text.Value.n.Keys.Contains(word))
+                    {
+                        categories++; // if at least a word is in other category we count it and go to another text
+                        //break; // don't write break.
+                    }
+
+                }
+                textToOut += word + ":" +
+                newsJson.texts[catg].calcIdf(word, newsJson.texts.Count, categories).ToString("0.####")  // word, Number of all texts, Number of text which contain this word
+                + "\n";
+                /* IDF*/
+            }
+
+            if (log) view.showLongDebugLog(textToOut);
         }
 
-        public void onBtnTfidfClicked()
+
+        public void onBtnIdfClicked(string currectCategory)
         {
 
+            view.showLongDebugLog("IDF chose existed category to see more\n");
+            
+            string catg = currectCategory; //tbCategoryName.Text; // category
+
+            if (newsJson.texts.Count != 0)
+            {
+                // calculate IDF for each category
+                foreach (KeyValuePair<string, WordFreq> text in newsJson.texts)
+                {
+                    // write log if category is current.
+                    idf(text.Key, text.Key == catg);
+                }
+            }
+            else
+                view.show("Here is no categories to calculate the Inverse Document Frequency");
+        }
+
+        private void tfIdf(string catg, bool log)
+        {
+            string toOutLbBig = "TFIDF\n";
+
+            newsJson.texts[catg].calcTfIdf();
+
+            foreach (KeyValuePair<string, double> wordTI in newsJson.texts[catg].TFIDF.OrderByDescending(key => key.Value))
+            {
+                toOutLbBig += wordTI.Key + " : " + (wordTI.Value).ToString("0.####") + "\n"; ;
+            }
+            if (log) view.showLongDebugLog(toOutLbBig);
+        }
+
+
+        public void onBtnTfidfClicked(string catg)
+        {
+            view.showLongDebugLog("TFIDF please chose existed category to see more\n");
+
+            if (newsJson.texts.Count != 0)
+            {
+
+                // TODO simplify KeyValuePair<> to string
+                foreach (KeyValuePair<string, WordFreq> text in newsJson.texts)
+                {
+                    if (newsJson.texts[text.Key].flagTf && newsJson.texts[text.Key].flagIdf)
+                    {
+                        tfIdf(text.Key, text.Key == catg);
+                    }
+                    else
+                    {
+                        view.show("Error. Please click TF for \"" + catg + "\" category. " +
+                            "Than you should click on IDF. " +
+                            "Finally click TFIDF to get it");
+                    }
+                }
+            }
+            else
+                view.show("Here is no categories to calculate TF*IDF");
         }
 
         public void onBtnSaveClicked()

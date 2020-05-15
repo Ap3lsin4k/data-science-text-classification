@@ -50,98 +50,15 @@ namespace Text_analyzer
           
         }
 
-
-
-        private void idf(string catg, bool log)
-        {
-            string textToOut = "IDF\n";
-            int categories = 0;
-            //foreach (WordFreq text in texts.Values)
-
-            foreach (string word in newsJson.texts[catg].n.Keys)
-            {
-                categories = 1;
-                foreach (KeyValuePair<string, WordFreq> text in newsJson.texts)
-                {
-                    if (text.Key == catg) continue;
-                    
-                    if(text.Value.n.Keys.Contains(word))
-                    {
-                        categories++; // if at least a word is in other category we count it and go to another text
-                        //break; // don't write break.
-                    }
-                    
-                }
-                textToOut += word + ":" +
-                newsJson.texts[catg].calcIdf(word, newsJson.texts.Count, categories).ToString("0.####")  // word, Number of all texts, Number of text which contain this word
-                + "\n";
-                /* IDF*/
-            }
-
-            if (log) lbBig.Text = textToOut;
-        }
-
         private void btnIdf_Click(object sender, EventArgs e)
         {
-            lbBig.Text = "IDF chose existed category to see more\n";
-            string catg = cbCategories.Text; //tbCategoryName.Text; // category
-
-            if (newsJson.texts.Count != 0)
-            {
-                // calculate IDF for each category
-                foreach (KeyValuePair<string, WordFreq> text in newsJson.texts)
-                {
-                    idf(text.Key, text.Key == catg);// write log when current category.
-                }
-            }
-            else
-                MessageBox.Show("Here is no categories to calculate Inverse Document Frequency");
-            /*
-            if(newsJson.texts[catg].flagTf && newsJson.texts[catg].flagIdf)
-            {
-                btnTfIdf.Enabled = true;
-            }
-        */  
+            categPresenter.onBtnIdfClicked(cbCategories.Text);
         }
 
-        private void tfIdf(string catg, bool log)
-        {
-            string toOutLbBig = "TFIDF\n";
-
-            newsJson.texts[catg].calcTfIdf();
-
-            foreach (KeyValuePair<string, double> wordTI in newsJson.texts[catg].TFIDF.OrderByDescending(key => key.Value))
-            {
-                toOutLbBig += wordTI.Key + " : " + (wordTI.Value).ToString("0.####") + "\n"; ;
-            }
-            if (log) lbBig.Text = toOutLbBig;  
-        }
 
         private void btnTfIdf_Click(object sender, EventArgs e)
         {
-            lbBig.Text = "TFIDF please chose existed category to see more\n";
-
-            string catg = cbCategories.Text; //tbCategoryName.Text; // category
-            if (newsJson.texts.Count != 0)
-            {
-            
-                // TODO simplify KeyValuePair<> to string
-                foreach (KeyValuePair<string, WordFreq> text in newsJson.texts)
-                {
-                    if (newsJson.texts[text.Key].flagTf && newsJson.texts[text.Key].flagIdf)
-                    {
-                        tfIdf(text.Key, text.Key == catg);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error. Please click TF for \"" + catg + "\" category. " +
-                            "Than you should click on IDF. " +
-                            "Finally click TFIDF to get it");
-                    }
-                }
-            }
-            else
-                MessageBox.Show("Here is no categories to calculate TF*IDF");
+            categPresenter.onBtnTfidfClicked(cbCategories.Text);
         }
 
 
@@ -362,11 +279,6 @@ namespace Text_analyzer
         }
 
 
-        private void updateCbCategories()
-        {
-            cbCategories.Items.Clear();
-            cbCategories.Items.AddRange(newsJson.texts.Keys.ToArray());
-        }
 
         private bool load()
         {
@@ -435,6 +347,27 @@ namespace Text_analyzer
         }
 
 
+        //==========CATEGORIES VIEW INTERFACE==========
+        public void show(string tip)
+        {
+            MessageBox.Show(tip);
+        }
+
+        public void clearLongDebugMessage()
+        {
+            lbBig.Text = "";
+        }
+
+        public void showLongDebugLog(string message)
+        {
+            lbBig.Text = message;
+        }
+
+        public void setCategories(object[] categories)
+        {
+            cbCategories.Items.Clear();
+            cbCategories.Items.AddRange(categories);
+        }
     }
 }
 
