@@ -12,7 +12,7 @@ namespace Text_analyzer.presentation
 
         TextJson newsJson;
         CategoriesView view;
-        model.interactor.CategoriesInteractor interactor;
+        CategoriesInteractor interactor;
 
 
         public CategoriesPresenter(CategoriesView view, CategoriesInteractor interactor, TextJson newsJson) {
@@ -203,12 +203,30 @@ namespace Text_analyzer.presentation
 
         public void onBtnSaveClicked()
         {
+            newsJson.save();
+            /*FileInfo f = new FileInfo("Mytext.txt");
+            StreamWriter logCommonWords = f.CreateText();
+            logCommonWords.WriteLine("This is from");
+            logCommonWords.WriteLine("Chapter 6");
+            logCommonWords.WriteLine("Of C# Module");
+            logCommonWords.Write(logCommonWords.NewLine);
+            logCommonWords.WriteLine("Thanks for your time");
+            logCommonWords.Close();*/
+            view.show("Successfully saved");
 
         }
 
         public void onBtnLoadTextFromFileClicked()
         {
-
+            /*
+             * open explorer to choose a file. It freezes all the process until the OK button will be pressed.
+             * "false" means that user pressed "Cancel"
+             */
+            if (interactor.openFileDialog())
+            {
+                string text = interactor.readTextFromFile();
+                view.loadEditableText(text);
+            }
         }
 
     }

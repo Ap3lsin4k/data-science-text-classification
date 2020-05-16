@@ -14,7 +14,7 @@ using Text_analyzer.presentation;
 
 namespace Text_analyzer
 {
-    public partial class MainWindow : Form, CategoriesView
+    public partial class MainWindow : Form, CategoriesView, GuessView
     {
 
         //==========CATEGORIES VIEW==========
@@ -24,330 +24,24 @@ namespace Text_analyzer
         DE myDe = new DE();
         CategoriesPresenter categPresenter; // for the first view
         GuessPresenter guessPresenter; // for the second view
+        const int keyWordsLimit = 155;
+        //we compare from the most key index
+
 
         public MainWindow()
         {
             InitializeComponent();
-            load();
-
+           
             categPresenter = new CategoriesPresenter(this, 
                     new model.interactor.CategoriesInteractor(), 
                     new TextJson()
                 );
 
-            guessPresenter = new GuessPresenter();
+            guessPresenter = new GuessPresenter(this,
+                new model.interactor.GuessInteractor()
+                );
         }
-
-        const int keyWordsLimit = 155;
-        //we compare from the most key index
-
-       
-        
-
-        private void btnTf_Click(object sender, EventArgs e)
-        {
-            categPresenter.onBtnTfClicked(cbCategories.Text, rtbKnownText.Text.ToString());
-          
-        }
-
-        private void btnIdf_Click(object sender, EventArgs e)
-        {
-            categPresenter.onBtnIdfClicked(cbCategories.Text);
-        }
-
-
-        private void btnTfIdf_Click(object sender, EventArgs e)
-        {
-            categPresenter.onBtnTfidfClicked(cbCategories.Text);
-        }
-
-
-        private void btnCategories_LoadTextFromFile_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            //            openFileDialog1.InitialDirectory = @"\";
-            openFileDialog1.Filter = "txt files (*.txt)|*.txt|Allfiles (*.*)|*.*";
-            openFileDialog1.FilterIndex = 1;
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                string text = File.ReadAllText(openFileDialog1.FileName, GetEncoding(openFileDialog1.FileName));//Encoding.UTF8);//Windows-1251
-                rtbKnownText.Text = text;
-                //openFileDialog1.FileName,
-                //                 RichTextBoxStreamType.PlainText);
-                //todo call analyse
-            }
-        }
-
-        private bool isCyrillic(int letterCode)
-        {
-            switch (letterCode)
-            {
-                case 1028: // Є
-                case 1108: // є
-                case 1030: // І
-                case 1110: // і
-                case 1031: // Ї
-                case 1111: // ї
-                case 1168: // Ґ
-                case 1169: // ґ
-                case 32:  // " "
-                case 39:  // '
-                          //case 45:  // -
-                    return true;
-                default:  // TODO add English support
-                    return
-                        1040 <= letterCode && letterCode <= 1103 &&  // Cyrillic
-                        letterCode != 1066 &&  // Ъ
-                        letterCode != 1067 &&  // Ы
-                        letterCode != 1099 &&  // ы
-                        letterCode != 1098  // ъ
-                        ;
-            }
-
-        }
-
-       
-
-
-        private List<string> getRawTextSplit(string notClearedText)
-        {
-            return getRawText(notClearedText).Split().ToList<string>();
-        }
-        private List<string> getRawTextSplit(TextBox tbWithText)
-        {
-            return getRawText(tbWithText.Text.ToString()).Split().ToList<string>();
-        }
-
-        //      ==========GUESS VIEW==========
-        private void btnAnalysis_Click(object sender, EventArgs e)
-        {
-            string unknownText = getRawText(richTBtoAnalyze.Text);  // Text with unknown category
-            string[] unknownWords = unknownText.Split();
-            
-            /* TODO clean up
-            double wordsCount = 0, wordsCountAvg;
-
-            foreach (WordFreq text in newsJson.texts.Values)
-            {
-                wordsCount += text.allWords.Count;
-            }
-            wordsCountAvg = wordsCount / newsJson.texts.Count;
-            */
-
-            myGrid.Rows.Clear();
-
-            // all words repeat one time now
-            Dictionary<string, int> n = new Dictionary<string, int>();
-            foreach (string word in unknownWords)
-            {
-                if (n.ContainsKey(word)) ++n[word]; 
-                else n[word] = 1;
-
-            }
-            de();
-
-            foreach (KeyValuePair<string, WordFreq> category in newsJson.texts)  // category, a category properties
-            {
-                // here we have Category(category.Key) and array of unrepeated words(category.Value.allWords)
-                // on the other hand, we have array of repeated words(unknownWords)
-                int ind = myGrid.Rows.Add(), countOfCommonElem = 0;
-                double score = 0, deScore = 0;
-                myGrid.Rows[ind].Cells[0].Value = category.Key;  // category
-
-                Directory.CreateDirectory("log");
-                FileInfo f = new FileInfo("log/" + category.Key + ".txt");
-                StreamWriter logCommonWords = f.CreateText();
-                bool isDeNotFound = false;
-                string lastErrorKey = "";
-                foreach (string word in n.Keys) // the unrepeated word in unknown category
-                {
-                    int break_counter = 0;
-                    // від найбільш ключових слів до найменш  у категоріях
-                    foreach (KeyValuePair<string, double> wordCategory in category.Value.TFIDF.OrderByDescending(key => key.Value))
-                    {
-
-                        break_counter++;
-                        if (break_counter >= keyWordsLimit)
-                        {
-                            break;
-                        }
-                        //TFIDF unknown category word is wordCateg
-                        if (word == wordCategory.Key) // if word from unknown category equals word from category we know
-                        {;
-                            ++countOfCommonElem;
-                            score += wordCategory.Value;
-
-                            // must be true DE
-                            if (myDe.words.ContainsKey(wordCategory.Key)) {
-                                deScore += myDe.words[word].dispersionEstimation;
-
-                                logCommonWords.WriteLine(word + ", TFIDF: " + wordCategory.Value + ", DE: " + myDe.words[word].dispersionEstimation);
-                            }
-                            else
-                            {
-                                isDeNotFound = true;
-                                lastErrorKey += '"' + word + "\", ";//for debug purposes
-                            }
-
-                        }
-                        //MessageBox.Show(category.Key + " " + wordCategory.Value + ":"+ wordCategory.Key);
-
-                    }
-
-                }
-
-
-
-                //                myGrid.Rows[ind].Cells[1].Value = countOfCommonElem;
-
-               // myGrid.Rows[ind].Cells[1].Value = Math.Round(score, 4);//Math.Round(100.0 * countOfCommonElem / Math.Min(category.Value.TFIDF.Count, keyWordsLimit), 1);
-                //(float)100 * countOfCommonElem / (n.Count);  // percent
-                myGrid.Rows[ind].Cells[1].Value = Math.Round(score, 4); // imporotance coefficient
-
-                if (isDeNotFound)
-                {
-
-                    MessageBox.Show("The key(s) " + lastErrorKey + "was not found in the Dictinary of DispersionEstimation");
-
-                }
-                else { 
-               
-                    myGrid.Rows[ind].Cells[2].Value = Math.Round(deScore, 4); // imporotance coefficient
-                    myGrid.Rows[ind].Cells[3].Value = Math.Round(score*deScore, 4); // imporotance coefficient
-
-                }
-                // end writing log
-                logCommonWords.Close();
-            }
-
-            // sorting by importance coeffficent
-            myGrid.Sort(myGrid.Columns[1], ListSortDirection.Descending);
-
-            // TODO вставляти вже відсортовані данні
-            // DataGridViewColumn newColumn =
-            /*
-            myGrid.Columns.GetColumnCount(
-            DataGridViewElementStates.Selected)
-            == 1
-            ? myGrid.SelectedColumns[0]
-             : null;
-            //*/
-
-            //ListSortDirection direction = ListSortDirection.Ascending;
-            /*if (newColumn!= null)
-                    myGrid.Sort(myGr, direction);
-            else
-                MessageBox.Show("Select a single column and try again.",
-                "Error: Invalid Selection", MessageBoxButtons.OK,
-                MessageBoxIcon.Error);*/
-        }
-
-
-        private void de()
-        {
-           // string peeledText = getRawText(richTBtoAnalyze.Text.ToString());//todo optimise speed
-            string resultOfDispersionEstimation = myDe.analyzeDE(getRawTextSplit(richTBtoAnalyze.Text));
-            lbDEresult.Text = resultOfDispersionEstimation.ToString();
-        }
-
-        private void btnDE_Click(object sender, EventArgs e)
-        {
-            de();
-        }
-
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            newsJson.save();
-            /*FileInfo f = new FileInfo("Mytext.txt");
-            StreamWriter logCommonWords = f.CreateText();
-            logCommonWords.WriteLine("This is from");
-            logCommonWords.WriteLine("Chapter 6");
-            logCommonWords.WriteLine("Of C# Module");
-            logCommonWords.Write(logCommonWords.NewLine);
-            logCommonWords.WriteLine("Thanks for your time");
-            logCommonWords.Close();*/
-            // TODO cosmetic print that saved
-            MessageBox.Show("Success");
-        }
-
-        private void btnLoad_Click(object sender, EventArgs e)
-        {
-            if(load())
-                MessageBox.Show("Successfully loaded from \"analysis.json\"");
-            // error message prints in the newsJson.load().catch
-        }
-
-
-
-        private bool load()
-        {
-            bool success;
-            success = newsJson.load();
-            updateCbCategories();
-            return success;
-        }
-
-        private void btnShowCategories_Click(object sender, EventArgs e)
-        {
-            string allCategories="All categories:\n";
-            foreach (string category in newsJson.texts.Keys)
-            {
-                allCategories += category + "\n";
-            }
-          //  lbWords.Text = allCategories;
-//            MessageBox.Show(allCategories);
-        }
-
-       
-
-
-
-
-
-        /// <summary>
-        /// Determines a text file's encoding by analyzing its byte order mark (BOM).
-        /// Defaults to ASCII when detection of the text file's endianness fails.
-        /// </summary>
-        /// <param name="filename">The text file to analyze.</param>
-        /// <returns>The detected encoding.</returns>
-        public static Encoding GetEncoding(string filename)
-        {
-            // Read the BOM
-            var bom = new byte[4];
-            using (var file = new FileStream(filename, FileMode.Open, FileAccess.Read))
-            {
-                file.Read(bom, 0, 4);
-            }
-
-            // Analyze the BOM
-            if (bom[0] == 0x2b && bom[1] == 0x2f && bom[2] == 0x76) return Encoding.UTF7;
-            if (bom[0] == 0xef && bom[1] == 0xbb && bom[2] == 0xbf) return Encoding.UTF8;
-            if (bom[0] == 0xff && bom[1] == 0xfe) return Encoding.Unicode; //UTF-16LE
-            if (bom[0] == 0xfe && bom[1] == 0xff) return Encoding.BigEndianUnicode; //UTF-16BE
-            if (bom[0] == 0 && bom[1] == 0 && bom[2] == 0xfe && bom[3] == 0xff) return Encoding.UTF32;
-            return Encoding.Default;  // ANSI
-        }
-
-        private void btnLoadTextFromFile_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-//            openFileDialog1.InitialDirectory = @"\";
-            openFileDialog1.Filter = "txt files (*.txt)|*.txt|Allfiles (*.*)|*.*";
-            openFileDialog1.FilterIndex = 1;
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                string text = File.ReadAllText(openFileDialog1.FileName, GetEncoding(openFileDialog1.FileName));//Encoding.UTF8);//Windows-1251
-                richTBtoAnalyze.Text = text;
-                //openFileDialog1.FileName,
-                //                 RichTextBoxStreamType.PlainText);
-                //todo call analyse
-            }
-
-        }
-
-
-        //==========CATEGORIES VIEW INTERFACE==========
+        //==========CATEGORIES VIEW IMPLEMENTATION==========
         public void show(string tip)
         {
             MessageBox.Show(tip);
@@ -368,6 +62,76 @@ namespace Text_analyzer
             cbCategories.Items.Clear();
             cbCategories.Items.AddRange(categories);
         }
+
+        void loadEditableText(string richText)
+        {
+            rtbKnownText.Text = richText;
+        }
+
+
+        // ==========USER ACTIONS==========
+        private void btnTf_Click(object sender, EventArgs e)
+        {
+            categPresenter.onBtnTfClicked(cbCategories.Text, rtbKnownText.Text.ToString());
+          
+        }
+
+        private void btnIdf_Click(object sender, EventArgs e)
+        {
+            categPresenter.onBtnIdfClicked(cbCategories.Text);
+        }
+
+
+        private void btnTfIdf_Click(object sender, EventArgs e)
+        {
+            categPresenter.onBtnTfidfClicked(cbCategories.Text);
+        }
+
+
+        private void btnCategories_LoadTextFromFile_Click(object sender, EventArgs e)
+        {
+            categPresenter.onBtnLoadTextFromFileClicked();
+        }
+
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            categPresenter.onBtnSaveClicked();
+        }
+
+
+
+
+
+        //      ==========GUESS VIEW==========
+        private void btnAnalysis_Click(object sender, EventArgs e)
+        {
+            guessPresenter.onBtnGuessCategoryClicked();
+        }
+
+
+
+        private void btnDE_Click(object sender, EventArgs e)
+        {
+            guessPresenter.onBtnComputeDisperseEstimationClicked();
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            guessPresenter.onBtnLoadJsonClicked();
+        }
+        
+
+
+       
+        private void btnLoadTextFromFile_Click(object sender, EventArgs e)
+        {
+            guessPresenter.onBtnLoadTextFromFileClicked();
+
+        }
+
+
+
     }
 }
 

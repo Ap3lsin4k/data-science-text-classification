@@ -14,6 +14,8 @@ namespace Text_analyzer.presentation
         void showLongDebugLog(string message);
 
         void setCategories(object[] categories);
+
+        void loadEditableText(string richText);
         
     }
 }
