@@ -20,11 +20,9 @@ namespace Text_analyzer
         //==========CATEGORIES VIEW==========
         // category, and words in each text
 //        Dictionary<string, WordFreq> texts = new Dictionary<string, WordFreq>();
-
-        DE myDe = new DE();
         CategoriesPresenter categPresenter; // for the first view
         GuessPresenter guessPresenter; // for the second view
-        const int keyWordsLimit = 155;
+
         //we compare from the most key index
 
 
@@ -33,12 +31,17 @@ namespace Text_analyzer
             InitializeComponent();
            
             categPresenter = new CategoriesPresenter(this, 
-                    new model.interactor.CategoriesInteractor(), 
+                    new model.interactor.CategoriesInteractor(
+                            new model.repository.TextRepository(),
+                            new model.repository.FileRepository()
+                        ), 
                     new TextJson()
                 );
 
             guessPresenter = new GuessPresenter(this,
-                new model.interactor.GuessInteractor()
+                    new model.interactor.GuessInteractor(
+                            new model.repository.FileRepository()
+                        )
                 );
         }
         //==========CATEGORIES VIEW IMPLEMENTATION==========
@@ -62,12 +65,11 @@ namespace Text_analyzer
             cbCategories.Items.Clear();
             cbCategories.Items.AddRange(categories);
         }
-
-        void loadEditableText(string richText)
+        
+        void CategoriesView.loadEditableText(string richText)
         {
             rtbKnownText.Text = richText;
         }
-
 
         // ==========USER ACTIONS==========
         private void btnTf_Click(object sender, EventArgs e)
@@ -106,9 +108,26 @@ namespace Text_analyzer
         //      ==========GUESS VIEW==========
         private void btnAnalysis_Click(object sender, EventArgs e)
         {
-            guessPresenter.onBtnGuessCategoryClicked();
+            guessPresenter.onBtnGuessCategoryClicked(richTBtoAnalyze.Text);
         }
 
+
+        public void loadEditableText(string richText)
+        {
+            richTBtoAnalyze.Text = richText;
+        }
+
+        public void clearPreviousResults()
+        {
+            myGrid.Rows.Clear();
+        }
+
+        public void sortThroughResultsByTfidf()
+        {
+            // 0 - Name, 1 - TFIDF, 2 - DE, 3 - DE*TFIDF
+            myGrid.Sort(myGrid.Columns[1], ListSortDirection.Descending);
+
+        }
 
 
         private void btnDE_Click(object sender, EventArgs e)
@@ -122,14 +141,12 @@ namespace Text_analyzer
         }
         
 
-
        
         private void btnLoadTextFromFile_Click(object sender, EventArgs e)
         {
             guessPresenter.onBtnLoadTextFromFileClicked();
 
         }
-
 
 
     }

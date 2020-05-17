@@ -8,5 +8,15 @@ namespace Text_analyzer.presentation
 {
     interface GuessView
     {
+        void show(string message);
+
+
+        void loadEditableText(string richText);
+
+
+        void clearPreviousResults();
+        void sortThroughResultsByTfidf();
+
+
     }
 }

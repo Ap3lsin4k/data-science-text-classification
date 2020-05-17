@@ -13,9 +13,9 @@ namespace Text_analyzer.model.interactor
         private TextRepository textRepo;
         private FileRepository fileRepo;
 
-        public CategoriesInteractor() {
-            textRepo = new TextRepository();
-            fileRepo = new FileRepository();
+        public CategoriesInteractor(TextRepository textRepository, FileRepository fileRepository) {
+            textRepo = textRepository;
+            fileRepo = fileRepository;
         }
 
         public string getRawText(string notClearedText)

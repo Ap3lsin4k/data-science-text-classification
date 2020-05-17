@@ -57,6 +57,8 @@
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="model\interactor\CategoriesInteractor.cs" />
+    <Compile Include="model\interactor\GuessInteractor.cs" />
+    <Compile Include="model\repository\FileRepository.cs" />
     <Compile Include="model\repository\TextRepository.cs" />
     <Compile Include="presentation\CategoriesView.cs" />
     <Compile Include="presentation\GuessPresenter.cs" />

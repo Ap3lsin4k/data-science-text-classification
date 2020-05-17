@@ -11,6 +11,9 @@ namespace Text_analyzer.presentation
     {
         GuessView view;
         GuessInteractor interactor;
+        const int keyWordsLimit = 155;
+        DE myDe = new DE();
+
         public GuessPresenter(GuessView view, GuessInteractor interactor)
         {
             this.view = view;
@@ -21,20 +24,23 @@ namespace Text_analyzer.presentation
 
         public void onBtnLoadTextFromFileClicked()
         {
-
+            if (interactor.openFileDialog())
+            {
+                view.loadEditableText(interactor.readTextFromFile());
+            }
         }
 
 
         public void onBtnLoadJsonClicked()
         {
             if (load())
-                MessageBox.Show("Successfully loaded from \"analysis.json\"");
+                view.show("Successfully loaded from \"analysis.json\"");
             // error message prints in the newsJson.load().catch
         }
 
-        public void onBtnGuessCategoryClicked()
+        public void onBtnGuessCategoryClicked(string textToBeAnalyzed)
         {
-            string unknownText = getRawText(richTBtoAnalyze.Text);  // Text with unknown category
+            string unknownText = interactor.getRawText(textToBeAnalyzed);  // Text with unknown category
             string[] unknownWords = unknownText.Split();
 
             /* TODO clean up
@@ -46,9 +52,7 @@ namespace Text_analyzer.presentation
             }
             wordsCountAvg = wordsCount / newsJson.texts.Count;
             */
-
-            myGrid.Rows.Clear();
-
+            view.clearPreviousResults();
             // all words repeat one time now
             Dictionary<string, int> n = new Dictionary<string, int>();
             foreach (string word in unknownWords)
@@ -57,7 +61,7 @@ namespace Text_analyzer.presentation
                 else n[word] = 1;
 
             }
-            de();
+            onBtnComputeDisperseEstimationClicked();
 
             foreach (KeyValuePair<string, WordFreq> category in newsJson.texts)  // category, a category properties
             {
@@ -75,7 +79,7 @@ namespace Text_analyzer.presentation
                 foreach (string word in n.Keys) // the unrepeated word in unknown category
                 {
                     int break_counter = 0;
-                    // від найбільш ключових слів до найменш  у категоріях
+                    // more semantic comes first. від найбільш ключових слів до найменш  у категоріях
                     foreach (KeyValuePair<string, double> wordCategory in category.Value.TFIDF.OrderByDescending(key => key.Value))
                     {
 
@@ -137,7 +141,7 @@ namespace Text_analyzer.presentation
             }
 
             // sorting by importance coeffficent
-            myGrid.Sort(myGrid.Columns[1], ListSortDirection.Descending);
+            view.sortThroughResultsByTfidf();
 
             // TODO вставляти вже відсортовані данні
             // DataGridViewColumn newColumn =
