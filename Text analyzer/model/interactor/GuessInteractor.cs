@@ -9,18 +9,33 @@ namespace Text_analyzer.model.interactor
 {
     class GuessInteractor
     {
+        private TextRepository textRepo;
         private FileRepository fileRepo;
+        private LogRepository log;
 
-        public GuessInteractor(FileRepository fileRepository)
+        public GuessInteractor(TextRepository textRepository, FileRepository fileRepository, LogRepository logRepository)
         {
+            textRepo = textRepository;
             fileRepo = fileRepository;
-            
+            log = logRepository;
         }
 
-        public string getRawText(string notClearedText)
+        public List<string> getRawTextSplit(string notClearedText)
         {
-            return textRepo.getRawText(notClearedText);
+            return textRepo.getRawTextSplit(notClearedText);
         }
+
+
+        public string[] splitToWords(string rawText)
+        {
+            return textRepo.getSplitStrings(rawText);
+        }
+
+        public Dictionary<string, int> associateOccurrencesWithTerms(ref string[] words)
+        {
+            return textRepo.associateOccurrencesWithTerms(ref words);
+        }
+
 
         public bool openFileDialog()
         {
@@ -31,6 +46,21 @@ namespace Text_analyzer.model.interactor
         public string readTextFromFile()
         {
             return fileRepo.readAllText();
+        }
+
+        public void openNewLogFile(string name)
+        {
+            log.createNewFile(name);
+        }
+
+        public void writeLog(string logMessage)
+        {
+            log.write(logMessage);
+        }
+
+        public void closeLogFile()
+        {
+            log.closeFile();
         }
     }
 }

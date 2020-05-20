@@ -9,7 +9,9 @@ namespace Text_analyzer.presentation
     interface GuessView
     {
         void show(string message);
+        void showLongDebugLog(string message);
 
+        void setCategories(object[] categories);
 
         void loadEditableText(string richText);
 
@@ -18,5 +20,13 @@ namespace Text_analyzer.presentation
         void sortThroughResultsByTfidf();
 
 
+        // Disperse Estimation values and words
+        void showLongDebugLogDe(string deResults);
+
+        void initializeNewRow(); // myGrid.Rows.Add()
+        void showCategoryNameInCurRow(string categoryName); //  myGrid.Rows[ind].Cells[0].Value = category.Key;  // category
+        void showTfidfInCurRow(double tfidfScore);
+        void showDeInCurRow(double deScore);
+        void showTotalScoreInCurRow(double probabilityOfAffiliation);
     }
 }

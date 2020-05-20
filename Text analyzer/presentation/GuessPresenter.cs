@@ -13,11 +13,13 @@ namespace Text_analyzer.presentation
         GuessInteractor interactor;
         const int keyWordsLimit = 155;
         DE myDe = new DE();
+        TextJson newsJson;
 
-        public GuessPresenter(GuessView view, GuessInteractor interactor)
+        public GuessPresenter(GuessView view, GuessInteractor interactor, ref TextJson json)
         {
             this.view = view;
             this.interactor = interactor;
+            this.newsJson = json;
             load();
         }
 
@@ -40,107 +42,47 @@ namespace Text_analyzer.presentation
 
         public void onBtnGuessCategoryClicked(string textToBeAnalyzed)
         {
-            string unknownText = interactor.getRawText(textToBeAnalyzed);  // Text with unknown category
-            string[] unknownWords = unknownText.Split();
-
-            /* TODO clean up
-            double wordsCount = 0, wordsCountAvg;
-
-            foreach (WordFreq text in newsJson.texts.Values)
-            {
-                wordsCount += text.allWords.Count;
-            }
-            wordsCountAvg = wordsCount / newsJson.texts.Count;
-            */
+            string[] unknownWords = interactor.splitToWords(textToBeAnalyzed);
             view.clearPreviousResults();
-            // all words repeat one time now
-            Dictionary<string, int> n = new Dictionary<string, int>();
-            foreach (string word in unknownWords)
-            {
-                if (n.ContainsKey(word)) ++n[word];
-                else n[word] = 1;
 
-            }
-            onBtnComputeDisperseEstimationClicked();
+            // Do not repeat words
+            
+            onBtnComputeDisperseEstimationClicked(textToBeAnalyzed);
 
             foreach (KeyValuePair<string, WordFreq> category in newsJson.texts)  // category, a category properties
             {
                 // here we have Category(category.Key) and array of unrepeated words(category.Value.allWords)
-                // on the other hand, we have array of repeated words(unknownWords)
-                int ind = myGrid.Rows.Add(), countOfCommonElem = 0;
-                double score = 0, deScore = 0;
-                myGrid.Rows[ind].Cells[0].Value = category.Key;  // category
+                // also, there is array of repeated words(unknownWords)
+              
+                view.initializeNewRow();
+                view.showCategoryNameInCurRow(category.Key);
+                interactor.openNewLogFile(category.Key);
 
-                Directory.CreateDirectory("log");
-                FileInfo f = new FileInfo("log/" + category.Key + ".txt");
-                StreamWriter logCommonWords = f.CreateText();
-                bool isDeNotFound = false;
-                string lastErrorKey = "";
-                foreach (string word in n.Keys) // the unrepeated word in unknown category
-                {
-                    int break_counter = 0;
-                    // more semantic comes first. від найбільш ключових слів до найменш  у категоріях
-                    foreach (KeyValuePair<string, double> wordCategory in category.Value.TFIDF.OrderByDescending(key => key.Value))
-                    {
-
-                        break_counter++;
-                        if (break_counter >= keyWordsLimit)
-                        {
-                            break;
-                        }
-                        //TFIDF unknown category word is wordCateg
-                        if (word == wordCategory.Key) // if word from unknown category equals word from category we know
-                        {
-                            ;
-                            ++countOfCommonElem;
-                            score += wordCategory.Value;
-
-                            // must be true DE
-                            if (myDe.words.ContainsKey(wordCategory.Key))
-                            {
-                                deScore += myDe.words[word].dispersionEstimation;
-
-                                logCommonWords.WriteLine(word + ", TFIDF: " + wordCategory.Value + ", DE: " + myDe.words[word].dispersionEstimation);
-                            }
-                            else
-                            {
-                                isDeNotFound = true;
-                                lastErrorKey += '"' + word + "\", ";//for debug purposes
-                            }
-
-                        }
-                        //MessageBox.Show(category.Key + " " + wordCategory.Value + ":"+ wordCategory.Key);
-
-                    }
-
-                }
-
-
+                //computeAffiliationOfTextToCategory
 
                 //                myGrid.Rows[ind].Cells[1].Value = countOfCommonElem;
 
-                // myGrid.Rows[ind].Cells[1].Value = Math.Round(score, 4);//Math.Round(100.0 * countOfCommonElem / Math.Min(category.Value.TFIDF.Count, keyWordsLimit), 1);
+                // myGrid.Rows[ind].Cells[1].Value = Math.Round(tfidfTotalScore, 4);//Math.Round(100.0 * countOfCommonElem / Math.Min(category.Value.TFIDF.Count, keyWordsLimit), 1);
                 //(float)100 * countOfCommonElem / (n.Count);  // percent
-                myGrid.Rows[ind].Cells[1].Value = Math.Round(score, 4); // imporotance coefficient
 
+                view.showTfidfInCurRow(Math.Round(tfidfTotalScore, 4));
+
+                
                 if (isDeNotFound)
                 {
-
-                    MessageBox.Show("The key(s) " + lastErrorKey + "was not found in the Dictinary of DispersionEstimation");
-
+                    view.show("The key(s) " + lastErrorKey + " was not found in the Dictionary of DispersionEstimation");
                 }
                 else
                 {
-
-                    myGrid.Rows[ind].Cells[2].Value = Math.Round(deScore, 4); // imporotance coefficient
-                    myGrid.Rows[ind].Cells[3].Value = Math.Round(score * deScore, 4); // imporotance coefficient
+                    view.showDeInCurRow(Math.Round(deScore, 4));
+                    view.showTotalScoreInCurRow(Math.Round(tfidfTotalScore * deScore, 4));
 
                 }
                 // end writing log
-                logCommonWords.Close();
+                interactor.closeLogFile();
             }
 
-            // sorting by importance coeffficent
+            // sorting by importance coefficent
             view.sortThroughResultsByTfidf();
 
             // TODO вставляти вже відсортовані данні
@@ -162,11 +104,11 @@ namespace Text_analyzer.presentation
                 MessageBoxIcon.Error);*/
         }
 
-        public void onBtnComputeDisperseEstimationClicked()
+        public void onBtnComputeDisperseEstimationClicked(string textToBeAnalyzed)
         {
             // string peeledText = getRawText(richTBtoAnalyze.Text.ToString());//todo optimise speed
-            string resultOfDispersionEstimation = myDe.analyzeDE(getRawTextSplit(richTBtoAnalyze.Text));
-            lbDEresult.Text = resultOfDispersionEstimation.ToString();
+            string resultOfDispersionEstimation = myDe.analyzeDE(interactor.getRawTextSplit(textToBeAnalyzed));
+            view.showLongDebugLog(resultOfDispersionEstimation.ToString());
         }
 
 
@@ -175,7 +117,7 @@ namespace Text_analyzer.presentation
         {
             bool success;
             success = newsJson.load();
-            updateCbCategories();
+            view.setCategories(newsJson.texts.Keys.ToArray());
             return success;
         }
 

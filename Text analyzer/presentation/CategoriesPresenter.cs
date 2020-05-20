@@ -15,7 +15,7 @@ namespace Text_analyzer.presentation
         CategoriesInteractor interactor;
 
 
-        public CategoriesPresenter(CategoriesView view, CategoriesInteractor interactor, TextJson newsJson) {
+        public CategoriesPresenter(CategoriesView view, CategoriesInteractor interactor, ref TextJson newsJson) {
             this.view = view;
             this.interactor = interactor;
             this.newsJson = newsJson;

@@ -11,6 +11,8 @@ using System.Windows.Forms;
 // work with files
 using System.IO;
 using Text_analyzer.presentation;
+using Text_analyzer.model;
+
 
 namespace Text_analyzer
 {
@@ -22,26 +24,30 @@ namespace Text_analyzer
 //        Dictionary<string, WordFreq> texts = new Dictionary<string, WordFreq>();
         CategoriesPresenter categPresenter; // for the first view
         GuessPresenter guessPresenter; // for the second view
-
+        int currentRowInMyGridIndex;
         //we compare from the most key index
 
 
         public MainWindow()
         {
             InitializeComponent();
-           
+
+            TextJson textJson = new TextJson();
             categPresenter = new CategoriesPresenter(this, 
                     new model.interactor.CategoriesInteractor(
                             new model.repository.TextRepository(),
                             new model.repository.FileRepository()
                         ), 
-                    new TextJson()
+                    ref textJson
                 );
 
             guessPresenter = new GuessPresenter(this,
                     new model.interactor.GuessInteractor(
-                            new model.repository.FileRepository()
-                        )
+                            new model.repository.TextRepository(),
+                            new model.repository.FileRepository(),
+                            new model.repository.LogRepository()
+                        ),
+                    ref textJson
                 );
         }
         //==========CATEGORIES VIEW IMPLEMENTATION==========
@@ -108,6 +114,7 @@ namespace Text_analyzer
         //      ==========GUESS VIEW==========
         private void btnAnalysis_Click(object sender, EventArgs e)
         {
+            myGrid.Rows.Add();
             guessPresenter.onBtnGuessCategoryClicked(richTBtoAnalyze.Text);
         }
 
@@ -132,7 +139,7 @@ namespace Text_analyzer
 
         private void btnDE_Click(object sender, EventArgs e)
         {
-            guessPresenter.onBtnComputeDisperseEstimationClicked();
+            guessPresenter.onBtnComputeDisperseEstimationClicked(richTBtoAnalyze.Text);
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
@@ -148,7 +155,35 @@ namespace Text_analyzer
 
         }
 
+        public void showLongDebugLogDe(string deResults)
+        {
+            lbDEresult.Text = deResults;
+        }
 
+        public void initializeNewRow()
+        {
+            currentRowInMyGridIndex = myGrid.Rows.Add();
+        }
+
+        public void showCategoryNameInCurRow(string categoryName)
+        {
+            myGrid.Rows[currentRowInMyGridIndex].Cells[0].Value = categoryName;  // category
+        }
+
+        public void showTfidfInCurRow(double tfidfScore)
+        {
+            myGrid.Rows[currentRowInMyGridIndex].Cells[1].Value = tfidfScore;
+        }
+
+        public void showDeInCurRow(double deScore)
+        {
+            myGrid.Rows[currentRowInMyGridIndex].Cells[2].Value = deScore;
+        }
+
+        public void showTotalScoreInCurRow(double probabilityOfAffiliation)
+        {
+            myGrid.Rows[currentRowInMyGridIndex].Cells[3].Value = probabilityOfAffiliation;
+        }
     }
 }
 
