@@ -10,15 +10,15 @@ namespace Text_analyzer.presentation
     class CategoriesPresenter
     {
 
-        TextJson newsJson;
+       // TextJsonRepository newsJson;
         CategoriesView view;
         CategoriesInteractor interactor;
 
 
-        public CategoriesPresenter(CategoriesView view, CategoriesInteractor interactor, ref TextJson newsJson) {
+        public CategoriesPresenter(CategoriesView view, CategoriesInteractor interactor) {
             this.view = view;
             this.interactor = interactor;
-            this.newsJson = newsJson;
+            //this.newsJson = newsJson;
         }
 
         public void onBtnTfClicked(string category, string textToBeAnalyzed)
@@ -115,7 +115,7 @@ namespace Text_analyzer.presentation
         {
             string textToOut = "IDF\n";
             int categories = 0;
-            //foreach (WordFreq text in texts.Values)
+            //foreach (WordFreq text in library.Values)
 
             foreach (string word in newsJson.texts[catg].n.Keys)
             {
@@ -132,7 +132,7 @@ namespace Text_analyzer.presentation
 
                 }
                 textToOut += word + ":" +
-                newsJson.texts[catg].calcIdf(word, newsJson.texts.Count, categories).ToString("0.####")  // word, Number of all texts, Number of text which contain this word
+                newsJson.texts[catg].calcIdf(word, newsJson.texts.Count, categories).ToString("0.####")  // word, Number of all library, Number of text which contain this word
                 + "\n";
                 /* IDF*/
             }

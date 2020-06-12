@@ -21,7 +21,7 @@ namespace Text_analyzer
 
         //==========CATEGORIES VIEW==========
         // category, and words in each text
-//        Dictionary<string, WordFreq> texts = new Dictionary<string, WordFreq>();
+//        Dictionary<string, WordFreq> library = new Dictionary<string, WordFreq>();
         CategoriesPresenter categPresenter; // for the first view
         GuessPresenter guessPresenter; // for the second view
         int currentRowInMyGridIndex;
@@ -32,7 +32,7 @@ namespace Text_analyzer
         {
             InitializeComponent();
 
-            TextJson textJson = new TextJson();
+            model.repository.TextJsonRepository textJson = new model.repository.TextJsonRepository();
             categPresenter = new CategoriesPresenter(this, 
                     new model.interactor.CategoriesInteractor(
                             new model.repository.TextRepository(),
@@ -45,7 +45,8 @@ namespace Text_analyzer
                     new model.interactor.GuessInteractor(
                             new model.repository.TextRepository(),
                             new model.repository.FileRepository(),
-                            new model.repository.LogRepository()
+                            new model.repository.LogRepository(),
+                            new model.repository.TextJsonRepository()
                         ),
                     ref textJson
                 );

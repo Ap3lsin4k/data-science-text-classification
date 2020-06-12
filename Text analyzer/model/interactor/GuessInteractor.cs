@@ -12,12 +12,14 @@ namespace Text_analyzer.model.interactor
         private TextRepository textRepo;
         private FileRepository fileRepo;
         private LogRepository log;
+        private TextJsonRepository json;
 
-        public GuessInteractor(TextRepository textRepository, FileRepository fileRepository, LogRepository logRepository)
+        public GuessInteractor(TextRepository textRepository, FileRepository fileRepository, LogRepository logRepository, TextJsonRepository textJsonRepository)
         {
             textRepo = textRepository;
             fileRepo = fileRepository;
             log = logRepository;
+            json = textJsonRepository;
         }
 
         public List<string> getRawTextSplit(string notClearedText)
@@ -74,6 +76,19 @@ namespace Text_analyzer.model.interactor
         }
 
         
+        public Dictionary<string, WordFreq> getLibrary()
+        {
+            return json.library;
+        }
 
+        public bool deserializeFromFile()
+        {
+            return json.deserializeFromFile();
+        }
+
+        public string[] getCategories()
+        {
+            return json.getCategories();
+        }
     }
 }

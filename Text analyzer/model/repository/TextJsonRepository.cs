@@ -10,22 +10,24 @@ using System.IO;
 using Newtonsoft.Json;
 
 
-namespace Text_analyzer
+namespace Text_analyzer.model.repository
 {
-    class TextJson
+    class TextJsonRepository
     {
-        public Dictionary<string, WordFreq> texts;  //<category, and parametrs for it>
+        public Dictionary<string, WordFreq> library;  //<category, and parametrs for it>
+
+        //todo: make local
         public string json;
 
-        public TextJson()
+        public TextJsonRepository()
         {
-            texts = new Dictionary<string, WordFreq>();
+            library = new Dictionary<string, WordFreq>();
         }
 
         public void save()
         {
             //save json to file
-            this.json = JsonConvert.SerializeObject(this.texts);
+            this.json = JsonConvert.SerializeObject(this.library);
 
             FileInfo f = new FileInfo("analysis.json");
             StreamWriter w = f.CreateText();
@@ -35,11 +37,11 @@ namespace Text_analyzer
 
         public void show()
         {
-            this.json = JsonConvert.SerializeObject(this.texts);
+            this.json = JsonConvert.SerializeObject(this.library);
             MessageBox.Show(json);
         }
 
-        public bool load()
+        public bool deserializeFromFile()
         {
             try
             {
@@ -50,22 +52,27 @@ namespace Text_analyzer
                     JsonConvert.DeserializeObject<Dictionary<string, WordFreq>>(this.json);
                 if (deserialize != null)
                 {
-                    this.texts = deserialize;
+                    this.library = deserialize;
                     //MessageBox.Show("Succesfully loaded"); TODO decoment
                 }
                 else  // if json file is invalid
                 {
-                    this.texts = new Dictionary<string, WordFreq>();
+                    this.library = new Dictionary<string, WordFreq>();
                     MessageBox.Show("Deserialize was failed. I will create new object. Don't forget to press Save!");
                 }
                 return true;
             }
             catch(Exception e)
             {
-                this.texts = new Dictionary<string, WordFreq>();
+                this.library = new Dictionary<string, WordFreq>();
                 MessageBox.Show("Could not find analysis.json file. I will create object. Don't forget to press Save!");
                 return false;
             }
+        }
+
+        public string[] getCategories()
+        {
+            return library.Keys.ToArray();
         }
     }
 }

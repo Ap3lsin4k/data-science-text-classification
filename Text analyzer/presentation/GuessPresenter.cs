@@ -14,13 +14,12 @@ namespace Text_analyzer.presentation
         GuessInteractor interactor;
         
         //TODO RED 
-        TextJson newsJson;
+ //       TextJsonRepository newsJson;
 
-        public GuessPresenter(GuessView view, GuessInteractor interactor, ref TextJson json)
+        public GuessPresenter(GuessView view, GuessInteractor interactor)
         {
             this.view = view;
             this.interactor = interactor;
-            this.newsJson = json;
             load();
         }
 
@@ -54,7 +53,8 @@ namespace Text_analyzer.presentation
             Dictionary<string, int> n = interactor.associateOccurrencesWithTerms(ref unknownWords);
             IndicatorsOfAffilationForText scores;
 
-            foreach (KeyValuePair<string, WordFreq> category in newsJson.texts)  // category, a category properties
+
+            foreach (KeyValuePair<string, WordFreq> category in interactor.getLibrary())  // category, a category properties
             {
                 // here we have Category(category.Key) and array of unrepeated words(category.Value.allWords)
                 // also, there is array of repeated words(unknownWords)
@@ -127,8 +127,8 @@ namespace Text_analyzer.presentation
         private bool load()
         {
             bool success;
-            success = newsJson.load();
-            view.setCategories(newsJson.texts.Keys.ToArray());
+            success = interactor.deserializeFromFile();
+            view.setCategories(interactor.getCategories());
             return success;
         }
 
