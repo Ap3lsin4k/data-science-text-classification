@@ -9,6 +9,15 @@ namespace Text_analyzer.model.repository
 {
     class TextRepository
     {
+        const int keyWordsLimit = 155;
+        
+        DE myDe = new DE();
+        string lastErrorKey;
+
+        public struct indicatorOfAffilationForText {
+            public ushort commonTerms;
+            public double normalizedTfidf, de;
+        }
 
         //==========TEXT PARSER==========
         public string getRawText(string notClearedText)
@@ -26,7 +35,7 @@ namespace Text_analyzer.model.repository
             }
 
             peeledText = Regex.Replace(peeledText, @"\s+", " "); // To delete redundant space
-                                                                 //            peeledText = peeledText;
+                                                                    //            peeledText = peeledText;
 
 
             return peeledText;
@@ -93,15 +102,24 @@ namespace Text_analyzer.model.repository
             return n;
         }
 
-        public void computeAffiliationOfTextToCategory(Dictionary<string, double> tfIdf)
+        public string computeDe(List<string> splitText)
         {
-            int countOfCommonElem = 0;
-            double tfidfTotalScore = 0, deScore = 0;
+            return myDe.analyzeDE(splitText);
+        }
 
-//            bool isDeNotFound;
+        public utils.IndicatorsOfAffilationForText computeAffiliationOfTextToCategory(Dictionary<string, int>.KeyCollection unrepeatedWords, Dictionary<string, double> tfIdf)
+        {
+            
+            double countOfCommonElem = 0;
+            double tfidfTotalScore = 0;
+            double deScore = 0;
+            utils.IndicatorsOfAffilationForText scores = new utils.IndicatorsOfAffilationForText();
 
-            string lastErrorKey = "";
-            foreach (string word in n.Keys) // the unrepeated word in unknown category
+            //logging purposes
+            scores.doesDeExist = true;
+            lastErrorKey = "";
+
+            foreach (string word in unrepeatedWords) // the unrepeated word in unknown category
             {
                 int break_counter = 0;
                 // more semantic comes first
@@ -118,27 +136,27 @@ namespace Text_analyzer.model.repository
                     {
                         ++countOfCommonElem;
                         tfidfTotalScore += wordCategory.Value;
+                        
+                        //TODO RED
 
-                        // must be true DE
                         if (myDe.words.ContainsKey(wordCategory.Key))
                         {
                             deScore += myDe.words[word].dispersionEstimation;
-                            interactor.writeLog(word + ", TFIDF: " + wordCategory.Value + ", DE: " + myDe.words[word].dispersionEstimation);
+                         //   interactor.writeLog(word + ", TFIDF: " + wordCategory.Value + ", DE: " + myDe.words[word].dispersionEstimation);
                         }
                         else
                         {
-                            isDeNotFound = true;
-                            lastErrorKey += '"' + word + "\", ";//for debug purposes
+                            scores.doesDeExist = false;
+                            scores.addTermWithBrokenDe(word);
                         }
 
                     }
-                    //MessageBox.Show(category.Key + " " + wordCategory.Value + ":"+ wordCategory.Key);
 
                 }
 
             }
-
-
+            
+            return scores;
         }
     }
 }

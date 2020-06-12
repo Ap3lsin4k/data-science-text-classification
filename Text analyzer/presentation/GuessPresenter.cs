@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Text_analyzer.model.interactor;
+using Text_analyzer.utils;
 
 namespace Text_analyzer.presentation
 {
@@ -11,8 +12,8 @@ namespace Text_analyzer.presentation
     {
         GuessView view;
         GuessInteractor interactor;
-        const int keyWordsLimit = 155;
-        DE myDe = new DE();
+        
+        //TODO RED 
         TextJson newsJson;
 
         public GuessPresenter(GuessView view, GuessInteractor interactor, ref TextJson json)
@@ -49,6 +50,10 @@ namespace Text_analyzer.presentation
             
             onBtnComputeDisperseEstimationClicked(textToBeAnalyzed);
 
+
+            Dictionary<string, int> n = interactor.associateOccurrencesWithTerms(ref unknownWords);
+            IndicatorsOfAffilationForText scores;
+
             foreach (KeyValuePair<string, WordFreq> category in newsJson.texts)  // category, a category properties
             {
                 // here we have Category(category.Key) and array of unrepeated words(category.Value.allWords)
@@ -58,25 +63,29 @@ namespace Text_analyzer.presentation
                 view.showCategoryNameInCurRow(category.Key);
                 interactor.openNewLogFile(category.Key);
 
-                //computeAffiliationOfTextToCategory
-
+                scores = interactor.computeAffiliationOfTextToCategory(n.Keys, category.Value.TFIDF);
                 //                myGrid.Rows[ind].Cells[1].Value = countOfCommonElem;
 
                 // myGrid.Rows[ind].Cells[1].Value = Math.Round(tfidfTotalScore, 4);//Math.Round(100.0 * countOfCommonElem / Math.Min(category.Value.TFIDF.Count, keyWordsLimit), 1);
                 //(float)100 * countOfCommonElem / (n.Count);  // percent
 
-                view.showTfidfInCurRow(Math.Round(tfidfTotalScore, 4));
-
+                view.showTfidfInCurRow(Math.Round(scores.normalizedTfidf, 4));
                 
-                if (isDeNotFound)
+
+                if (scores.doesDeExist)
                 {
-                    view.show("The key(s) " + lastErrorKey + " was not found in the Dictionary of DispersionEstimation");
+                    view.showDeInCurRow(Math.Round(scores.de, 4));
+                    view.showTotalScoreInCurRow(Math.Round(scores.normalizedTfidf * scores.de, 4));
                 }
                 else
                 {
-                    view.showDeInCurRow(Math.Round(deScore, 4));
-                    view.showTotalScoreInCurRow(Math.Round(tfidfTotalScore * deScore, 4));
+                    string brokenWords="";
 
+                    foreach(string word in scores.getTermsWithBrokenDe())
+                    {
+                        brokenWords += '"' + word + "\", ";
+                    }
+                    view.show("The key(s) " + brokenWords + " was not found in the Dictionary of DispersionEstimation");
                 }
                 // end writing log
                 interactor.closeLogFile();
@@ -107,8 +116,10 @@ namespace Text_analyzer.presentation
         public void onBtnComputeDisperseEstimationClicked(string textToBeAnalyzed)
         {
             // string peeledText = getRawText(richTBtoAnalyze.Text.ToString());//todo optimise speed
-            string resultOfDispersionEstimation = myDe.analyzeDE(interactor.getRawTextSplit(textToBeAnalyzed));
-            view.showLongDebugLog(resultOfDispersionEstimation.ToString());
+            string resultOfDispersionEstimation = interactor.computeDe(interactor.getRawTextSplit(textToBeAnalyzed));
+           
+
+            view.showLongDebugLog(resultOfDispersionEstimation);
         }
 
 

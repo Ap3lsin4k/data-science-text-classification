@@ -36,6 +36,16 @@ namespace Text_analyzer.model.interactor
             return textRepo.associateOccurrencesWithTerms(ref words);
         }
 
+        public string computeDe(List<string> splitText)
+        {
+            return textRepo.computeDe(splitText);
+        }
+
+        public utils.IndicatorsOfAffilationForText computeAffiliationOfTextToCategory(Dictionary<string, int>.KeyCollection unrepeatedWords, Dictionary<string, double> tfIdf)
+        {
+            return textRepo.computeAffiliationOfTextToCategory(unrepeatedWords, tfIdf);
+        }
+
 
         public bool openFileDialog()
         {
@@ -62,5 +72,8 @@ namespace Text_analyzer.model.interactor
         {
             log.closeFile();
         }
+
+        
+
     }
 }
