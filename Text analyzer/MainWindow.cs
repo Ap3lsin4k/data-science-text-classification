@@ -36,9 +36,9 @@ namespace Text_analyzer
             categPresenter = new CategoriesPresenter(this, 
                     new model.interactor.CategoriesInteractor(
                             new model.repository.TextRepository(),
-                            new model.repository.FileRepository()
-                        ), 
-                    ref textJson
+                            new model.repository.FileRepository(),
+                            ref textJson
+                        )
                 );
 
             guessPresenter = new GuessPresenter(this,
@@ -46,9 +46,8 @@ namespace Text_analyzer
                             new model.repository.TextRepository(),
                             new model.repository.FileRepository(),
                             new model.repository.LogRepository(),
-                            new model.repository.TextJsonRepository()
-                        ),
-                    ref textJson
+                            ref textJson
+                        )
                 );
         }
         //==========CATEGORIES VIEW IMPLEMENTATION==========

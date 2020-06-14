@@ -18,16 +18,12 @@ namespace Text_analyzer.presentation
         public CategoriesPresenter(CategoriesView view, CategoriesInteractor interactor) {
             this.view = view;
             this.interactor = interactor;
-            //this.newsJson = newsJson;
         }
 
-        public void onBtnTfClicked(string category, string textToBeAnalyzed)
+        public void onBtnTfClicked(string catg, string textToBeAnalyzed)
         {
             // calculate TF to all categories and then press IDF. Then TFIDF.
-
-            // newsJson = new TextJson();
-            string catg = category;//tbCategoryName.Text; // category
-
+            
             if (string.IsNullOrWhiteSpace(catg))
             {
                 view.show("Please enter or chose the category");
@@ -44,57 +40,49 @@ namespace Text_analyzer.presentation
             {
                 string peeledText = interactor.getRawText(textToBeAnalyzed);
 
-                // create text with new category, if it wasn't created still
-                newsJson.texts[catg] = new WordFreq(peeledText.Split().ToList<string>());  // TODO test: casting to List can take much time
+                // create new category, if it wasn't
+                interactor.addCategory(catg, peeledText.Split().ToList<string>()); // TODO test: test time for List-casting
 
-                foreach (string word in newsJson.texts[catg].allWords)
+                foreach (string word in interactor.getAllWordsFromShelf(catg))
                 {
                     toOutToLbWords += word + "\n";
 
                 }
-                foreach (string word in newsJson.texts[catg].allWords)
-                {
-                    if (newsJson.texts[catg].n.ContainsKey(word))
-                    {
-                        ++newsJson.texts[catg].n[word];
-                    }
-                    else
-                    {
-                        newsJson.texts[catg].n[word] = 1;
-                    }
 
-                }
+                // save only unique words
+                interactor.uniquifyWordsIn(catg); 
 
 
                 // TF
-                foreach (KeyValuePair<string, int> item in newsJson.texts[catg].n.OrderByDescending(key => key.Value))
+                foreach (KeyValuePair<string, int> item in interactor.getUniqueWordsOrderByDescending(catg))
                 {
                     // do something with item.Key and item.Value
-                    toOutToLbBig += item.Key + " : " + newsJson.texts[catg].n[item.Key] + ",    "
+                    // TODO let the view do the concatenation
+                    toOutToLbBig += item.Key + " : " + interactor.howManyTimesWordApear(catg, item.Key) + ",    "
                         + Math.Round(
-                            newsJson.texts[catg].calcTf(item.Key),
+                            interactor.calculateTf(catg, item.Key),
                             2)  // numbers after point
                         + "%" + "\n";
                 }
 
                 view.showLongDebugLog(toOutToLbBig);
 
-                view.setCategories(newsJson.texts.Keys.ToArray());
+                view.setCategories(interactor.getCategories());
             }
             else
             {
-                if (newsJson.texts.ContainsKey(catg))
+                if (interactor.whetherCategoryExist(catg))
                 {
-                    foreach (string word in newsJson.texts[catg].allWords)
+                    foreach (string word in interactor.getAllWordsFromShelf(catg))
                     {
                         toOutToLbWords += word + "\n";
 
                     }
-                    foreach (KeyValuePair<string, int> item in newsJson.texts[catg].n.OrderByDescending(key => key.Value))
+                    foreach (KeyValuePair<string, int> item in interactor.getUniqueWordsOrderByDescending(catg))
                     {
                         // do something with item.Key and item.Value
                         toOutToLbBig += item.Key + " : " + Math.Round(
-                                newsJson.texts[catg].TF[item.Key],
+                                interactor.getTf(catg, item.Key),
                                 2)  // numbers after point
                             + "%" + "\n";
                     }
@@ -117,10 +105,10 @@ namespace Text_analyzer.presentation
             int categories = 0;
             //foreach (WordFreq text in library.Values)
 
-            foreach (string word in newsJson.texts[catg].n.Keys)
+            foreach (string word in interactor.getUniqueWords(catg))
             {
                 categories = 1;
-                foreach (KeyValuePair<string, WordFreq> text in newsJson.texts)
+                foreach (KeyValuePair<string, WordFreq> text in interactor.getLibrary())
                 {
                     if (text.Key == catg) continue;
 
@@ -132,7 +120,7 @@ namespace Text_analyzer.presentation
 
                 }
                 textToOut += word + ":" +
-                newsJson.texts[catg].calcIdf(word, newsJson.texts.Count, categories).ToString("0.####")  // word, Number of all library, Number of text which contain this word
+                interactor.calculateIdf(catg, word, categories).ToString("0.####")  // word, Number of all library, Number of text which contain this word
                 + "\n";
                 /* IDF*/
             }
@@ -148,10 +136,10 @@ namespace Text_analyzer.presentation
             
             string catg = currectCategory; //tbCategoryName.Text; // category
 
-            if (newsJson.texts.Count != 0)
+            if (interactor.getNumberOfShelfsInLibrary() != 0)
             {
                 // calculate IDF for each category
-                foreach (KeyValuePair<string, WordFreq> text in newsJson.texts)
+                foreach (KeyValuePair<string, WordFreq> text in interactor.getLibrary())
                 {
                     // write log if category is current.
                     idf(text.Key, text.Key == catg);
@@ -165,9 +153,9 @@ namespace Text_analyzer.presentation
         {
             string toOutLbBig = "TFIDF\n";
 
-            newsJson.texts[catg].calcTfIdf();
+            interactor.calculateTfIdf(catg);
 
-            foreach (KeyValuePair<string, double> wordTI in newsJson.texts[catg].TFIDF.OrderByDescending(key => key.Value))
+            foreach (KeyValuePair<string, double> wordTI in interactor.getTfIdfOrderByDescending(catg))
             {
                 toOutLbBig += wordTI.Key + " : " + (wordTI.Value).ToString("0.####") + "\n"; ;
             }
@@ -179,13 +167,13 @@ namespace Text_analyzer.presentation
         {
             view.showLongDebugLog("TFIDF please chose existed category to see more\n");
 
-            if (newsJson.texts.Count != 0)
+            if (interactor.getNumberOfShelfsInLibrary() != 0)
             {
 
                 // TODO simplify KeyValuePair<> to string
-                foreach (KeyValuePair<string, WordFreq> text in newsJson.texts)
+                foreach (KeyValuePair<string, WordFreq> text in interactor.getLibrary())
                 {
-                    if (newsJson.texts[text.Key].flagTf && newsJson.texts[text.Key].flagIdf)
+                    if (interactor.tfExist(text.Key) && interactor.idfExist(text.Key))
                     {
                         tfIdf(text.Key, text.Key == catg);
                     }
@@ -203,15 +191,7 @@ namespace Text_analyzer.presentation
 
         public void onBtnSaveClicked()
         {
-            newsJson.save();
-            /*FileInfo f = new FileInfo("Mytext.txt");
-            StreamWriter logCommonWords = f.CreateText();
-            logCommonWords.WriteLine("This is from");
-            logCommonWords.WriteLine("Chapter 6");
-            logCommonWords.WriteLine("Of C# Module");
-            logCommonWords.Write(logCommonWords.NewLine);
-            logCommonWords.WriteLine("Thanks for your time");
-            logCommonWords.Close();*/
+            interactor.saveToJsonFile();
             view.show("Successfully saved");
 
         }

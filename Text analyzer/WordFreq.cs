@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Text_analyzer
 {
+    // Todo move to repository layer
     class WordFreq // an news, an text
     {
-        public Dictionary<string, int> n;  // <word, frequency of apearing>
+        public Dictionary<string, int> n;  // <word, frequency of apearing>, todo change int to unsigned int or something
         public Dictionary<string, double> TF;  // <word, Term frequency in %>
         public Dictionary<string, double> IDF;  // <word, Inverse document frequency>
         public Dictionary<string, double> TFIDF;  // <word, Term frequency – Inverse document frequency>

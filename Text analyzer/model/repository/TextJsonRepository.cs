@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 
 namespace Text_analyzer.model.repository
 {
+    //wrapper to WordFreq
     class TextJsonRepository
     {
         public Dictionary<string, WordFreq> library;  //<category, and parametrs for it>
@@ -74,5 +75,97 @@ namespace Text_analyzer.model.repository
         {
             return library.Keys.ToArray();
         }
+
+
+        public void addCategory(string shelf, List<string> texts)
+        {
+            library[shelf] = new WordFreq(texts);  // TODO test: casting to List can take much time
+        }
+
+        // words may be repeated
+        public List<string> getAllWordsFromShelf(string shelf)
+        {
+            return library[shelf].allWords;
+        }
+
+        public void uniquifyWordsIn(string shelf)
+        {
+            foreach (string word in getAllWordsFromShelf(shelf))
+            {
+                if (library[shelf].n.ContainsKey(word))
+                    ++library[shelf].n[word];
+                else
+                    library[shelf].n[word] = 1;
+                
+            }
+        }
+
+        public int howManyTimesWordApear(string shelf, string word)
+        {
+            return library[shelf].n[word];
+        }
+
+        public Dictionary<string, int>.KeyCollection getUniqueWords(string shelf)
+        {
+            return library[shelf].n.Keys;
+        }
+
+        public IOrderedEnumerable<KeyValuePair<string, int>> getUniqueWordsOrderByDescending(string shelf)
+        {
+            return library[shelf].n.OrderByDescending(key => key.Value);
+        }
+
+        public double calculateTf(string shelf, string word)
+        {
+            return library[shelf].calcTf(word);
+        }
+
+        public bool whetherCategoryExist(string shelf)
+        {
+            return library.ContainsKey(shelf);
+        }
+
+        public double getTf(string shelf, string word)
+        {
+            return library[shelf].TF[word];// todo check whether tf exists
+        }
+        
+        public Dictionary<string, WordFreq> getLibrary()
+        {
+            return library; // all shelfs in library.
+        }
+
+        // number words in all texts for each category
+        public int getNumberOfShelfsInLibrary() 
+        {
+            return library.Count;
+        }
+
+        public double calculateIdf(string shelf, string word, int numOfDocsWhereWordAppears)
+        {
+            return library[shelf].calcIdf(word, getNumberOfShelfsInLibrary(), numOfDocsWhereWordAppears);
+        }
+
+        public void calculateTfIdf(string shelf)
+        {
+            library[shelf].calcTfIdf();
+        }
+
+        public IOrderedEnumerable<KeyValuePair<string, double>> getTfIdfOrderByDescending(string shelf)
+        {
+            return library[shelf].TFIDF.OrderByDescending(key => key.Value);
+        }
+
+        public bool tfExist(string shelf)
+        {
+            return library[shelf].flagTf;
+        }
+
+        public bool idfExist(string shelf)
+        {
+            return library[shelf].flagIdf;
+        }
+
+
     }
 }

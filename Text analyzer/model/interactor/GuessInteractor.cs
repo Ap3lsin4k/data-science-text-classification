@@ -14,7 +14,7 @@ namespace Text_analyzer.model.interactor
         private LogRepository log;
         private TextJsonRepository json;
 
-        public GuessInteractor(TextRepository textRepository, FileRepository fileRepository, LogRepository logRepository, TextJsonRepository textJsonRepository)
+        public GuessInteractor(TextRepository textRepository, FileRepository fileRepository, LogRepository logRepository, ref TextJsonRepository textJsonRepository)
         {
             textRepo = textRepository;
             fileRepo = fileRepository;

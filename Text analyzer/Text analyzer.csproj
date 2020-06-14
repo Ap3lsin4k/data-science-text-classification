@@ -67,7 +67,7 @@
     <Compile Include="presentation\GuessView.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TextJson.cs" />
+    <Compile Include="model\repository\TextJsonRepository.cs" />
     <Compile Include="utils\IndicatorsOfAffilationForText.cs" />
     <Compile Include="WordFreq.cs" />
     <Compile Include="Words.cs" />
