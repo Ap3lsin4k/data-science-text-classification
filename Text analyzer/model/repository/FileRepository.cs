@@ -15,7 +15,7 @@ namespace Text_analyzer.model.repository
         public FileRepository()
         {
 
-            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog = new OpenFileDialog();
         }
 
         public bool openFileDialog()
