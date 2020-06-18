@@ -51,7 +51,7 @@ namespace Text_analyzer.presentation
 
 
             Dictionary<string, int> n = interactor.associateOccurrencesWithTerms(ref unknownWords);
-            IndicatorsOfAffilationForText scores;
+            IndicatorsOfAffiliationForText scores;
 
 
             foreach (KeyValuePair<string, WordFreq> category in interactor.getLibrary())  // category, a category properties
@@ -68,7 +68,6 @@ namespace Text_analyzer.presentation
 
                 // myGrid.Rows[ind].Cells[1].Value = Math.Round(tfidfTotalScore, 4);//Math.Round(100.0 * countOfCommonElem / Math.Min(category.Value.TFIDF.Count, keyWordsLimit), 1);
                 //(float)100 * countOfCommonElem / (n.Count);  // percent
-
                 view.showTfidfInCurRow(Math.Round(scores.normalizedTfidf, 4));
                 
 
@@ -91,7 +90,7 @@ namespace Text_analyzer.presentation
                 interactor.closeLogFile();
             }
 
-            // sorting by importance coefficent
+            // sorting by importance coefficient
             view.sortThroughResultsByTfidf();
 
             // TODO вставляти вже відсортовані данні

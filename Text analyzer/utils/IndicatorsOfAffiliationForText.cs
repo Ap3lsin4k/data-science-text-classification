@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Text_analyzer.utils
 {
-    class IndicatorsOfAffilationForText
+    class IndicatorsOfAffiliationForText
     {
         public ushort commonTerms;
         public double normalizedTfidf, de;
@@ -15,7 +15,7 @@ namespace Text_analyzer.utils
         public bool doesDeExist;
         List<string> termsHasNoDe;
 
-        public IndicatorsOfAffilationForText()
+        public IndicatorsOfAffiliationForText()
         {
             termsHasNoDe = new List<string>();
         }

@@ -43,7 +43,7 @@ namespace Text_analyzer.model.interactor
             return textRepo.computeDe(splitText);
         }
 
-        public utils.IndicatorsOfAffilationForText computeAffiliationOfTextToCategory(Dictionary<string, int>.KeyCollection unrepeatedWords, Dictionary<string, double> tfIdf)
+        public utils.IndicatorsOfAffiliationForText computeAffiliationOfTextToCategory(Dictionary<string, int>.KeyCollection unrepeatedWords, Dictionary<string, double> tfIdf)
         {
             return textRepo.computeAffiliationOfTextToCategory(unrepeatedWords, tfIdf);
         }

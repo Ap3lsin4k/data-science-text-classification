@@ -12,12 +12,7 @@ namespace Text_analyzer.model.repository
         const int keyWordsLimit = 155;
         
         DE myDe = new DE();
-        string lastErrorKey;
 
-        public struct indicatorOfAffilationForText {
-            public ushort commonTerms;
-            public double normalizedTfidf, de;
-        }
 
         //==========TEXT PARSER==========
         public string getRawText(string notClearedText)
@@ -107,18 +102,14 @@ namespace Text_analyzer.model.repository
             return myDe.analyzeDE(splitText);
         }
 
-        public utils.IndicatorsOfAffilationForText computeAffiliationOfTextToCategory(Dictionary<string, int>.KeyCollection unrepeatedWords, Dictionary<string, double> tfIdf)
+        public utils.IndicatorsOfAffiliationForText computeAffiliationOfTextToCategory(Dictionary<string, int>.KeyCollection unrepeatedWords, Dictionary<string, double> tfIdf)
         {
-            
-            double countOfCommonElem = 0;
-            double tfidfTotalScore = 0;
-            double deScore = 0;
-            utils.IndicatorsOfAffilationForText scores = new utils.IndicatorsOfAffilationForText();
+            utils.IndicatorsOfAffiliationForText scores = new utils.IndicatorsOfAffiliationForText();
 
             //logging purposes
             scores.doesDeExist = true;
-            lastErrorKey = "";
-
+ 
+        
             foreach (string word in unrepeatedWords) // the unrepeated word in unknown category
             {
                 int break_counter = 0;
@@ -134,14 +125,12 @@ namespace Text_analyzer.model.repository
                     //TFIDF unknown category word is wordCateg
                     if (word == wordCategory.Key) // if word from unknown category equals word from category we know
                     {
-                        ++countOfCommonElem;
-                        tfidfTotalScore += wordCategory.Value;
+                        ++scores.commonTerms;
+                        scores.normalizedTfidf += wordCategory.Value;
                         
-                        //TODO RED
-
                         if (myDe.words.ContainsKey(wordCategory.Key))
                         {
-                            deScore += myDe.words[word].dispersionEstimation;
+                            scores.de += myDe.words[word].dispersionEstimation;
                          //   interactor.writeLog(word + ", TFIDF: " + wordCategory.Value + ", DE: " + myDe.words[word].dispersionEstimation);
                         }
                         else
