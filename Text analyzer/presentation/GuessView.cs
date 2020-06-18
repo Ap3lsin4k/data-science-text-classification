@@ -9,7 +9,6 @@ namespace Text_analyzer.presentation
     interface GuessView
     {
         void show(string message);
-        void showLongDebugLog(string message);
 
         void setCategories(object[] categories);
 

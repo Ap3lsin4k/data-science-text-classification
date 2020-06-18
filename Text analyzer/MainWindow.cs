@@ -157,7 +157,7 @@ namespace Text_analyzer
 
         public void showLongDebugLogDe(string deResults)
         {
-            lbDEresult.Text = deResults;
+            lbDEresult.Text = "DE\n"+deResults;
         }
 
         public void initializeNewRow()

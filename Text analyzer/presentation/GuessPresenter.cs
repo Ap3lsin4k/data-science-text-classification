@@ -118,7 +118,7 @@ namespace Text_analyzer.presentation
             string resultOfDispersionEstimation = interactor.computeDe(interactor.getRawTextSplit(textToBeAnalyzed));
            
 
-            view.showLongDebugLog(resultOfDispersionEstimation);
+            view.showLongDebugLogDe(resultOfDispersionEstimation);
         }
 
 
