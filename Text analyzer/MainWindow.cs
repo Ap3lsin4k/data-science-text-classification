@@ -63,7 +63,7 @@ namespace Text_analyzer
 
         public void showLongDebugLog(string message)
         {
-            lbBig.Text = message;
+            lbBig.Text = message.Length < 10000 ? message : message.Substring(0, 10000) +"...";
         }
 
         public void setCategories(object[] categories)

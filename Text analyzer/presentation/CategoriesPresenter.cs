@@ -30,7 +30,7 @@ namespace Text_analyzer.presentation
                 return;
             }
 
-            string toOutToLbWords = "Peeled text:\n", toOutToLbBig = "TF\n";
+            string toOutToLbWords = "Peeled text:\n", toPrintInLbLong = "TF\n";
 
 
             view.clearLongDebugMessage();
@@ -58,14 +58,15 @@ namespace Text_analyzer.presentation
                 {
                     // do something with item.Key and item.Value
                     // TODO let the view do the concatenation
-                    toOutToLbBig += item.Key + " : " + interactor.howManyTimesWordApear(catg, item.Key) + ",    "
+                    toPrintInLbLong += item.Key + " : " + interactor.howManyTimesWordApear(catg, item.Key) + ",    "
                         + Math.Round(
                             interactor.calculateTf(catg, item.Key),
                             2)  // numbers after point
                         + "%" + "\n";
                 }
 
-                view.showLongDebugLog(toOutToLbBig);
+                
+                view.showLongDebugLog(toPrintInLbLong);
 
                 view.setCategories(interactor.getCategories());
             }
@@ -81,12 +82,12 @@ namespace Text_analyzer.presentation
                     foreach (KeyValuePair<string, int> item in interactor.getUniqueWordsOrderByDescending(catg))
                     {
                         // do something with item.Key and item.Value
-                        toOutToLbBig += item.Key + " : " + Math.Round(
+                        toPrintInLbLong += item.Key + " : " + Math.Round(
                                 interactor.getTf(catg, item.Key),
                                 2)  // numbers after point
                             + "%" + "\n";
                     }
-                    view.showLongDebugLog(toOutToLbBig);
+                    view.showLongDebugLog(toPrintInLbLong);
                 }
                 else
                 {
