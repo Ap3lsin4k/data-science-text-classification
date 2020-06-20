@@ -535,7 +535,7 @@
             this.Controls.Add(this.tabControl);
             this.MinimumSize = new System.Drawing.Size(800, 298);
             this.Name = "MainWindow";
-            this.Text = "But The Good News Is";
+            this.Text = "But the Good News is that Pupil is Not Student";
             this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tlpVertical_Main.ResumeLayout(false);
