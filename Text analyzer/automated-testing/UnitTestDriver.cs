@@ -47,16 +47,14 @@ namespace Text_analyzer.automated_testing
             return Msg;
         }
 
-        public void CheckEquals(String Expected, String Actual, ref String Msg)
+        private void CheckEquals(String Expected, String Actual, ref String Msg)
         {
             if (Expected!=Actual)
             {
                 NotEqualsErrorMessage(Expected, Actual, ref Msg);
                 Exception exception = new Exception(Msg);
-                unitTestFormGuess.show(Msg);
                 throw exception;
             }
-            unitTestFormGuess.show("Fine");
         }
 
         private void CheckNotEquals(String Expected, String Actual, ref String Msg)
@@ -74,9 +72,10 @@ namespace Text_analyzer.automated_testing
         //Busuness Rule 1
         public void Test1()
         {
+            String Msg = "Wrong category";
             guessPresenter.onBtnGuessCategoryClicked(RawTextExamples.longTextSport);
-           // unitTestFormGuess.myGrid.Rows[0].Cells[0].Value.ToString());
-            //unitTestDriver.checkEquals;
+            CheckEquals("Спорт", unitTestFormGuess.getCellFromMyGrid(0, 0), ref Msg);
+            
         }
     
         //Busuness Rule 2

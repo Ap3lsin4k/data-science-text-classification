@@ -33,6 +33,13 @@ namespace Text_analyzer
             unitTestDriver.Test1();
         }
 
+        //      ==========UNIT TESTING==========
+        public string getCellFromMyGrid(int row, int cell)
+        {
+            return myGrid.Rows[row].Cells[cell].Value.ToString();
+        }
+
+
 
         //      ==========GUESS VIEW==========
         public void loadEditableText(string richText)
@@ -49,13 +56,7 @@ namespace Text_analyzer
         {
             // 0 - Name, 1 - TFIDF, 2 - DE, 3 - DE*TFIDF
             myGrid.Sort(myGrid.Columns[1], ListSortDirection.Descending);
-            
-            // UNIT TEST
-            MessageBox.Show(myGrid.Rows[0].Cells[0].Value.ToString());
-            String Msg;
-            Msg = "Message";
-            unitTestDriver.CheckEquals("Спрт", myGrid.Rows[0].Cells[0].Value.ToString(), ref Msg);
-            
+           
         }
 
         
@@ -97,7 +98,6 @@ namespace Text_analyzer
 
         public void setCategories(object[] categories)
         {
-            MessageBox.Show("onCall_setCategories");
         }
     }
 }

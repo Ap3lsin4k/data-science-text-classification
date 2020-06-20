@@ -8,6 +8,7 @@ namespace Text_analyzer
 {
     static class Program
     {
+        static bool runAutomatedTesting = true;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -16,8 +17,11 @@ namespace Text_analyzer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new UnitTestFormGuess());
-            //Application.Run(new MainWindow());
+
+            if (runAutomatedTesting) 
+                Application.Run(new UnitTestFormGuess());
+
+            Application.Run(new MainWindow());
         }
     }
 }
