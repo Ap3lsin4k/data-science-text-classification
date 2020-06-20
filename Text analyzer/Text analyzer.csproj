@@ -49,6 +49,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="automated-testing\UnitTestFormGuess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="automated-testing\UnitTestFormGuess.Designer.cs">
+      <DependentUpon>UnitTestFormGuess.cs</DependentUpon>
+    </Compile>
+    <Compile Include="automated-testing\RawTextExamples.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RawTextExamples.resx</DependentUpon>
+    </Compile>
+    <Compile Include="automated-testing\UnitTestDriver.cs" />
     <Compile Include="model\core\DE.cs" />
     <Compile Include="ui\MainWindow.cs">
       <SubType>Form</SubType>
@@ -70,6 +82,13 @@
     <Compile Include="model\repository\TextJsonRepository.cs" />
     <Compile Include="utils\IndicatorsOfAffiliationForText.cs" />
     <Compile Include="model\core\WordFreq.cs" />
+    <EmbeddedResource Include="automated-testing\UnitTestFormGuess.resx">
+      <DependentUpon>UnitTestFormGuess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="automated-testing\RawTextExamples.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RawTextExamples.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="ui\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>

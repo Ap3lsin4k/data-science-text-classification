@@ -10,7 +10,7 @@ namespace Text_analyzer.presentation
     {
         void show(string tip);
 
-        void clearLongDebugMessage();//todo delete
+        void clearLongDebugMessage();
         void showLongDebugLog(string message);
 
         void setCategories(object[] categories);

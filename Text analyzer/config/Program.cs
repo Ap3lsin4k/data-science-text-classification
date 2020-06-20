@@ -16,7 +16,8 @@ namespace Text_analyzer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainWindow());
+            Application.Run(new UnitTestFormGuess());
+            //Application.Run(new MainWindow());
         }
     }
 }
