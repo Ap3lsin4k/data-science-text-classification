@@ -14,7 +14,7 @@ namespace Text_analyzer.model.interactor
         private FileRepository fileRepo;
         private TextJsonRepository json;
 
-        public CategoriesInteractor(TextRepository textRepository, FileRepository fileRepository, ref TextJsonRepository textJsonRepository)
+        public CategoriesInteractor(TextRepository textRepository, FileRepository fileRepository, in TextJsonRepository textJsonRepository)
         {
             textRepo = textRepository;
             fileRepo = fileRepository;

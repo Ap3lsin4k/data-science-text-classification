@@ -24,16 +24,16 @@ namespace Text_analyzer
 //        Dictionary<string, WordFreq> library = new Dictionary<string, WordFreq>();
         CategoriesPresenter categPresenter; // for the first view
         GuessPresenter guessPresenter; // for the second view
-        int currentRowInMyGridIndex;
-        //we compare from the most key index
 
+        private int _currentRowInMyGridIndex;
+        //we compare from the most key index
 
         public MainWindow()
         {
             InitializeComponent();
 
             model.repository.TextJsonRepository textJson = new model.repository.TextJsonRepository();
-            categPresenter = new CategoriesPresenter(this, 
+            categPresenter = new CategoriesPresenter(this,
                     new model.interactor.CategoriesInteractor(
                             new model.repository.TextRepository(),
                             new model.repository.FileRepository(),
@@ -80,7 +80,7 @@ namespace Text_analyzer
         // ==========USER ACTIONS==========
         private void btnTf_Click(object sender, EventArgs e)
         {
-            categPresenter.onBtnTfClicked(cbCategories.Text, rtbKnownText.Text.ToString());
+            categPresenter.onBtnTfClicked(cbCategories.Text, rtbKnownText.Text);
           
         }
 
@@ -162,27 +162,27 @@ namespace Text_analyzer
 
         public void initializeNewRow()
         {
-            currentRowInMyGridIndex = myGrid.Rows.Add();
+            _currentRowInMyGridIndex = myGrid.Rows.Add();
         }
 
         public void showCategoryNameInCurRow(string categoryName)
         {
-            myGrid.Rows[currentRowInMyGridIndex].Cells[0].Value = categoryName;  // category
+            myGrid.Rows[_currentRowInMyGridIndex].Cells[0].Value = categoryName;  // category
         }
 
         public void showTfidfInCurRow(double tfidfScore)
         {
-            myGrid.Rows[currentRowInMyGridIndex].Cells[1].Value = tfidfScore;
+            myGrid.Rows[_currentRowInMyGridIndex].Cells[1].Value = tfidfScore;
         }
 
         public void showDeInCurRow(double deScore)
         {
-            myGrid.Rows[currentRowInMyGridIndex].Cells[2].Value = deScore;
+            myGrid.Rows[_currentRowInMyGridIndex].Cells[2].Value = deScore;
         }
 
         public void showTotalScoreInCurRow(double probabilityOfAffiliation)
         {
-            myGrid.Rows[currentRowInMyGridIndex].Cells[3].Value = probabilityOfAffiliation;
+            myGrid.Rows[_currentRowInMyGridIndex].Cells[3].Value = probabilityOfAffiliation;
         }
     }
 }
