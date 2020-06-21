@@ -18,10 +18,13 @@ namespace Text_analyzer
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            if (runAutomatedTesting) 
-                Application.Run(new UnitTestFormGuess());
-
+            #if DEBUG
+                if (runAutomatedTesting) 
+                    Application.Run(new UnitTestFormGuess());
+            #endif
+            
             Application.Run(new MainWindow());
+
         }
     }
 }
