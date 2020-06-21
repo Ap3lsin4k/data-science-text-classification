@@ -23,7 +23,7 @@ namespace Text_analyzer.automated_testing
                             new model.repository.TextRepository(),
                             new model.repository.FileRepository(),
                             new model.repository.LogRepository(),
-                            ref textJson
+                            in textJson
                         ));
         }
 

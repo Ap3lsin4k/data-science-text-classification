@@ -22,8 +22,8 @@ namespace Text_analyzer
         //==========CATEGORIES VIEW==========
         // category, and words in each text
 //        Dictionary<string, WordFreq> library = new Dictionary<string, WordFreq>();
-        CategoriesPresenter categPresenter; // for the first view
-        GuessPresenter guessPresenter; // for the second view
+private readonly CategoriesPresenter _categPresenter; // for the first view
+private readonly GuessPresenter _guessPresenter; // for the second view
 
         private int _currentRowInMyGridIndex;
         //we compare from the most key index
@@ -33,20 +33,20 @@ namespace Text_analyzer
             InitializeComponent();
 
             model.repository.TextJsonRepository textJson = new model.repository.TextJsonRepository();
-            categPresenter = new CategoriesPresenter(this,
+            _categPresenter = new CategoriesPresenter(this,
                     new model.interactor.CategoriesInteractor(
                             new model.repository.TextRepository(),
                             new model.repository.FileRepository(),
-                            ref textJson
+                            in textJson
                         )
                 );
 
-            guessPresenter = new GuessPresenter(this,
+            _guessPresenter = new GuessPresenter(this,
                     new model.interactor.GuessInteractor(
                             new model.repository.TextRepository(),
                             new model.repository.FileRepository(),
                             new model.repository.LogRepository(),
-                            ref textJson
+                            in textJson
                         )
                 );
         }
@@ -80,31 +80,31 @@ namespace Text_analyzer
         // ==========USER ACTIONS==========
         private void btnTf_Click(object sender, EventArgs e)
         {
-            categPresenter.onBtnTfClicked(cbCategories.Text, rtbKnownText.Text);
+            _categPresenter.onBtnTfClicked(cbCategories.Text, rtbKnownText.Text);
           
         }
 
         private void btnIdf_Click(object sender, EventArgs e)
         {
-            categPresenter.onBtnIdfClicked(cbCategories.Text);
+            _categPresenter.onBtnIdfClicked(cbCategories.Text);
         }
 
 
         private void btnTfIdf_Click(object sender, EventArgs e)
         {
-            categPresenter.onBtnTfidfClicked(cbCategories.Text);
+            _categPresenter.onBtnTfidfClicked(cbCategories.Text);
         }
 
 
         private void btnCategories_LoadTextFromFile_Click(object sender, EventArgs e)
         {
-            categPresenter.onBtnLoadTextFromFileClicked();
+            _categPresenter.onBtnLoadTextFromFileClicked();
         }
 
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            categPresenter.onBtnSaveClicked();
+            _categPresenter.onBtnSaveClicked();
         }
 
 
@@ -115,7 +115,7 @@ namespace Text_analyzer
         private void btnAnalysis_Click(object sender, EventArgs e)
         {
             myGrid.Rows.Add();
-            guessPresenter.onBtnGuessCategoryClicked(richTBtoAnalyze.Text);
+            _guessPresenter.onBtnGuessCategoryClicked(richTBtoAnalyze.Text);
         }
 
 
@@ -139,19 +139,19 @@ namespace Text_analyzer
 
         private void btnDE_Click(object sender, EventArgs e)
         {
-            guessPresenter.onBtnComputeDisperseEstimationClicked(richTBtoAnalyze.Text);
+            _guessPresenter.onBtnComputeDisperseEstimationClicked(richTBtoAnalyze.Text);
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            guessPresenter.onBtnLoadJsonClicked();
+            _guessPresenter.onBtnLoadJsonClicked();
         }
         
 
        
         private void btnLoadTextFromFile_Click(object sender, EventArgs e)
         {
-            guessPresenter.onBtnLoadTextFromFileClicked();
+            _guessPresenter.onBtnLoadTextFromFileClicked();
 
         }
 
