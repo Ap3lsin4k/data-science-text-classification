@@ -22,7 +22,7 @@ namespace Text_analyzer.presentation
             this.interactor = interactor;
             load();
         }
-
+        //DESTRUCT
 
         public void onBtnLoadTextFromFileClicked()
         {

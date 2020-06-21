@@ -30,13 +30,14 @@ namespace Text_analyzer
         {
             unitTestDriver = new UnitTestDriver(this);
             InitializeComponent();
-            unitTestDriver.Test1();
+
+            unitTestDriver.run();
         }
 
         //      ==========UNIT TESTING==========
-        public string getCellFromMyGrid(int row, int cell)
+        public string getFirstCategoryNameFromMyGrid()
         {
-            return myGrid.Rows[row].Cells[cell].Value.ToString();
+            return myGrid.Rows[0].Cells[0].Value.ToString();
         }
 
 

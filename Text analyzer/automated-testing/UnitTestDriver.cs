@@ -68,35 +68,64 @@ namespace Text_analyzer.automated_testing
         }
         #endregion
 
+
+        public void run()
+        {
+            Test1();
+            Test2();
+            Test3();
+            Test4();
+            Test5();
+            Test6();
+
+        }
+
         //tests
         //Busuness Rule 1
         public void Test1()
         {
             String Msg = "Wrong category";
             guessPresenter.onBtnGuessCategoryClicked(RawTextExamples.longTextSport);
-            CheckEquals("Спорт", unitTestFormGuess.getCellFromMyGrid(0, 0), ref Msg);
+            CheckEquals("Спорт", unitTestFormGuess.getFirstCategoryNameFromMyGrid(), ref Msg);
             
         }
     
         //Busuness Rule 2
         public void Test2()
         {
+            String Msg = "Wrong category";
+            guessPresenter.onBtnGuessCategoryClicked(RawTextExamples.longTextScience);
+            CheckEquals("Наука", unitTestFormGuess.getFirstCategoryNameFromMyGrid(), ref Msg);
         }
         //Busuness Rule 3
         public void Test3()
         {
+            String Msg = "Wrong category";
+            guessPresenter.onBtnGuessCategoryClicked(RawTextExamples.longTextEconomy);
+            CheckEquals("Економіка", unitTestFormGuess.getFirstCategoryNameFromMyGrid(), ref Msg);
+
         }
         //Busuness Rule 4
         public void Test4()
         {
+            String Msg = "Wrong category";
+            guessPresenter.onBtnGuessCategoryClicked(RawTextExamples.longTextHealth);
+            CheckEquals("Здоров'я", unitTestFormGuess.getFirstCategoryNameFromMyGrid(), ref Msg);
+
         }
         //Busuness Rule 5
         public void Test5()
         {
+            String Msg = "Wrong category";
+            guessPresenter.onBtnGuessCategoryClicked(RawTextExamples.longTextPolitics);
+            CheckEquals("Політика", unitTestFormGuess.getFirstCategoryNameFromMyGrid(), ref Msg);
         }
         //Busuness Rule 6
         public void Test6()
         {
+            String Msg = "Wrong category";
+            guessPresenter.onBtnGuessCategoryClicked(RawTextExamples.longTextTourism);
+            CheckEquals("Туризм", unitTestFormGuess.getFirstCategoryNameFromMyGrid(), ref Msg);
         }
         //Busuness Rule 7
         public void Test7()
