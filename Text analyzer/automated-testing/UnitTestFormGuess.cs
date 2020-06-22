@@ -97,7 +97,7 @@ namespace Text_analyzer
             MessageBox.Show(message);
         }
 
-        public void setCategories(object[] categories)
+        public void setCategories(string[] categories)
         {
         }
     }

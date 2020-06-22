@@ -15,7 +15,7 @@ namespace Text_analyzer
         public Dictionary<string, double> TFIDF;  // <word, Term frequency – Inverse document frequency>
         DE DE;
 
-        public bool flagTf, flagIdf;  // true when TF, IDF is calculated
+        private bool flagTf, flagIdf;  // true when TF, IDF is calculated
 
         public List<string> allWords;
 
@@ -36,11 +36,12 @@ namespace Text_analyzer
         public WordFreq(List<string> words)  // constructor which program uses
         {
             initialize();
-            
-            for (int i = 0; i < words.Count; ++i)
+
+            // do not save empty strings
+            foreach (var word in words)
             {
-                if (words[i] != "")  // to delete empty elements
-                    allWords.Add(words[i]);
+                if (word != "")  
+                    allWords.Add(word);
             }
         }
 

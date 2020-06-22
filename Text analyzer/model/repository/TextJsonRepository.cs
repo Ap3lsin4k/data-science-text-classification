@@ -158,12 +158,12 @@ namespace Text_analyzer.model.repository
 
         public bool tfExist(string shelf)
         {
-            return library[shelf].flagTf;
+            return library[shelf].TF.Count != 0;
         }
 
         public bool idfExist(string shelf)
         {
-            return library[shelf].flagIdf;
+            return library[shelf].IDF.Count != 0;
         }
 
 
