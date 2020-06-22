@@ -13,7 +13,7 @@ namespace Text_analyzer.presentation
         void clearLongDebugMessage();
         void showLongDebugLog(string message);
 
-        void setCategories(object[] categories);
+        void setCategories(string[] categories);
 
         void loadEditableText(string richText);
         

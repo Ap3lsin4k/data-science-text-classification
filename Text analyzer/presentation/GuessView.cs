@@ -10,7 +10,7 @@ namespace Text_analyzer.presentation
     {
         void show(string message);
 
-        void setCategories(object[] categories);
+        void setCategories(string[] categories);
 
         void loadEditableText(string richText);
 

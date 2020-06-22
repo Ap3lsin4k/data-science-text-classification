@@ -66,7 +66,7 @@ private readonly GuessPresenter _guessPresenter; // for the second view
             lbBig.Text = message.Length < 10000 ? message : message.Substring(0, 10000) +"...";
         }
 
-        public void setCategories(object[] categories)
+        public void setCategories(string[] categories)
         {
             cbCategories.Items.Clear();
             cbCategories.Items.AddRange(categories);

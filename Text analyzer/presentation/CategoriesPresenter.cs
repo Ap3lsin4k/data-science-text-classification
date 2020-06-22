@@ -42,7 +42,7 @@ namespace Text_analyzer.presentation
 
                 // create new category, if it wasn't
                 interactor.addCategory(catg, peeledText.Split().ToList<string>()); // TODO test: test time for List-casting
-
+                
                 foreach (string word in interactor.getAllWordsFromShelf(catg))
                 {
                     toOutToLbWords += word + "\n";
