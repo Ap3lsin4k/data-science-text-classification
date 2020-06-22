@@ -77,7 +77,7 @@ namespace Text_analyzer.model.repository
                     return
                         1040 <= letterCode && letterCode <= 1103 &&  // Cyrillic
                         letterCode != 1066 &&  // Ъ
-                        letterCode != 1067 &&  // Ыr
+                        letterCode != 1067 &&  // Ы
                         letterCode != 1098  // ъ
                         ;
             }
