@@ -8,7 +8,7 @@ namespace Text_analyzer
 {
     static class Program
     {
-        static bool runAutomatedTesting = true;
+        static bool runAutomatedTesting = false;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

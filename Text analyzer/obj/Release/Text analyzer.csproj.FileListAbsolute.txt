@@ -69,4 +69,4 @@ D:\projects\C# Scientific Work (aka But The Good News Is)\Text analyzer\obj\Rele
 D:\projects\C# Scientific Work (aka But The Good News Is)\Text analyzer\obj\Release\Text analyzer.pdb
 D:\projects\C# Scientific Work (aka But The Good News Is)\Text analyzer\obj\Release\Text_analyzer.UnitTestFormGuess.resources
 D:\projects\C# Scientific Work (aka But The Good News Is)\Text analyzer\obj\Release\Text_analyzer.automated_testing.RawTextExamples.resources
-D:\projects\C# Scientific Work (aka But The Good News Is)\Text analyzer\obj\Release\Text_analyzer.automated_testing.ResourceApostrophe.resources
+D:\projects\C# Scientific Work (aka But The Good News Is)\Text analyzer\obj\Release\Text_analyzer.automated_testing.ResourceSplit.resources

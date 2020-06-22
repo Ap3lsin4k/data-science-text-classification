@@ -19,7 +19,7 @@ namespace Text_analyzer
     public partial class MainWindow : Form, CategoriesView, GuessView
     {
 
-        //==========CATEGORIES VIEW==========
+      
         // category, and words in each text
 //        Dictionary<string, WordFreq> library = new Dictionary<string, WordFreq>();
 private readonly CategoriesPresenter _categPresenter; // for the first view
@@ -32,7 +32,7 @@ private readonly GuessPresenter _guessPresenter; // for the second view
         {
             InitializeComponent();
 
-            model.repository.TextJsonRepository textJson = new model.repository.TextJsonRepository();
+            var textJson = new model.repository.TextJsonRepository();
             _categPresenter = new CategoriesPresenter(this,
                     new model.interactor.CategoriesInteractor(
                             new model.repository.TextRepository(),
@@ -50,7 +50,11 @@ private readonly GuessPresenter _guessPresenter; // for the second view
                         )
                 );
         }
+
+        //==========CATEGORIES VIEW==========
+
         //==========CATEGORIES VIEW IMPLEMENTATION==========
+
         public void show(string tip)
         {
             MessageBox.Show(tip);
@@ -112,12 +116,8 @@ private readonly GuessPresenter _guessPresenter; // for the second view
 
 
         //      ==========GUESS VIEW==========
-        private void btnAnalysis_Click(object sender, EventArgs e)
-        {
-            myGrid.Rows.Add();
-            _guessPresenter.onBtnGuessCategoryClicked(richTBtoAnalyze.Text);
-        }
-
+        
+        //==========GUESS VIEW IMPLEMENTATION==========
 
         public void loadEditableText(string richText)
         {
@@ -133,31 +133,11 @@ private readonly GuessPresenter _guessPresenter; // for the second view
         {
             // 0 - Name, 1 - TFIDF, 2 - DE, 3 - DE*TFIDF
             myGrid.Sort(myGrid.Columns[1], ListSortDirection.Descending);
-
-        }
-
-
-        private void btnDE_Click(object sender, EventArgs e)
-        {
-            _guessPresenter.onBtnComputeDisperseEstimationClicked(richTBtoAnalyze.Text);
-        }
-
-        private void btnLoad_Click(object sender, EventArgs e)
-        {
-            _guessPresenter.onBtnLoadJsonClicked();
-        }
-        
-
-       
-        private void btnLoadTextFromFile_Click(object sender, EventArgs e)
-        {
-            _guessPresenter.onBtnLoadTextFromFileClicked();
-
         }
 
         public void showLongDebugLogDe(string deResults)
         {
-            lbDEresult.Text = "DE\n"+deResults;
+            lbDEresult.Text = "DE\n" + deResults;
         }
 
         public void initializeNewRow()
@@ -184,6 +164,38 @@ private readonly GuessPresenter _guessPresenter; // for the second view
         {
             myGrid.Rows[_currentRowInMyGridIndex].Cells[3].Value = probabilityOfAffiliation;
         }
+
+
+
+
+        // ==========USER ACTIONS==========
+
+        private void btnAnalysis_Click(object sender, EventArgs e)
+        {
+            myGrid.Rows.Add();
+            _guessPresenter.onBtnGuessCategoryClicked(richTBtoAnalyze.Text);
+        }
+
+
+        private void btnDE_Click(object sender, EventArgs e)
+        {
+            _guessPresenter.onBtnComputeDisperseEstimationClicked(richTBtoAnalyze.Text);
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            _guessPresenter.onBtnLoadJsonClicked();
+        }
+        
+
+       
+        private void btnLoadTextFromFile_Click(object sender, EventArgs e)
+        {
+            _guessPresenter.onBtnLoadTextFromFileClicked();
+
+        }
+
+       
     }
 }
 
