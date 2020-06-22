@@ -15,8 +15,6 @@ namespace Text_analyzer
         public Dictionary<string, double> TFIDF;  // <word, Term frequency – Inverse document frequency>
         DE DE;
 
-        private bool flagTf, flagIdf;  // true when TF, IDF is calculated
-
         public List<string> allWords;
 
         private void initialize()
@@ -47,7 +45,6 @@ namespace Text_analyzer
 
         public double calcTf(string key)
         {
-            flagTf = true;
             TF[key] = 100.0 * n[key] / allWords.Count; // to find TF in percentes
             // implicit cast (int) to (double), for make normal division
             return TF[key];
@@ -55,7 +52,6 @@ namespace Text_analyzer
 
         public double calcIdf(string key, int D, int t) // t is always <= D
         {
-            flagIdf = true;
             /*
             base 10 logarithm of (
                 total number of documents in the colection (D)
