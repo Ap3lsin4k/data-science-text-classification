@@ -58,7 +58,7 @@ namespace Text_analyzer.presentation
                 {
                     // do something with item.Key and item.Value
                     // TODO let the view do the concatenation
-                    toPrintInLbLong += item.Key + " : " + interactor.howManyTimesWordApear(catg, item.Key) + ",    "
+                    toPrintInLbLong += item.Key + " : " + interactor.howManyTimesWordAppear(catg, item.Key) + ",    "
                         + Math.Round(
                             interactor.calculateTf(catg, item.Key),
                             2)  // numbers after point

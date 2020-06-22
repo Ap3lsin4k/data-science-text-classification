@@ -117,8 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="String1_Demyan" xml:space="preserve">
+  <data name="ApostropheDemyan" xml:space="preserve">
     <value>Дем'ян</value>
     <comment>it must be split to "дем'ян", not "дем", "ян". I.e. the "\'"(apostrophe) is not a splitter</comment>
+  </data>
+  <data name="EmptyStringBug1" xml:space="preserve">
+    <value>човен\n</value>
+    <comment>to test against the bug of empty string</comment>
   </data>
 </root>

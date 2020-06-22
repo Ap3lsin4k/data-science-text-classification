@@ -29,9 +29,11 @@ namespace Text_analyzer.model.repository
                     peeledText += " ";
             }
 
-            peeledText = Regex.Replace(peeledText, @"\s+", " "); // To delete redundant space
-                                                                    //            peeledText = peeledText;
+            // To get rid of empty string{..., "...", "", "..", ...} at the end of the array.
 
+   //         peeledText = Regex.Replace(peeledText, @"\s+", " "); // To delete redundant space
+     //       if (peeledText[peeledText.Length - 1] == ' ')
+       //         peeledText = peeledText.Substring(0, peeledText.Length - 1);
 
             return peeledText;
         }
@@ -40,7 +42,8 @@ namespace Text_analyzer.model.repository
 
         public string[] getSplitStrings(string notClearedText)
         {
-            return getRawText(notClearedText).Split();
+            //return "човен  ".Split(new []{' '}, StringSplitOptions.RemoveEmptyEntries);
+            return getRawText(notClearedText).Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
         }
 
 

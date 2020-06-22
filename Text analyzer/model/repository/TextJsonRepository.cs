@@ -100,7 +100,7 @@ namespace Text_analyzer.model.repository
             }
         }
 
-        public int howManyTimesWordApear(string shelf, string word)
+        public int howManyTimesWordAppear(string shelf, string word)
         {
             return library[shelf].n[word];
         }

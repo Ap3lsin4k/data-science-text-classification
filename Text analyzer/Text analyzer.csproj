@@ -51,10 +51,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="automated-testing\ResourceApostrophe.Designer.cs">
+    <Compile Include="automated-testing\ResourceSplit.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ResourceApostrophe.resx</DependentUpon>
+      <DependentUpon>ResourceSplit.resx</DependentUpon>
     </Compile>
     <Compile Include="automated-testing\UnitTestFormGuess.cs">
       <SubType>Form</SubType>
@@ -89,9 +89,9 @@
     <Compile Include="model\repository\TextJsonRepository.cs" />
     <Compile Include="utils\IndicatorsOfAffiliationForText.cs" />
     <Compile Include="model\core\WordFreq.cs" />
-    <EmbeddedResource Include="automated-testing\ResourceApostrophe.resx">
+    <EmbeddedResource Include="automated-testing\ResourceSplit.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ResourceApostrophe.Designer.cs</LastGenOutput>
+      <LastGenOutput>ResourceSplit.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="automated-testing\UnitTestFormGuess.resx">
       <DependentUpon>UnitTestFormGuess.cs</DependentUpon>

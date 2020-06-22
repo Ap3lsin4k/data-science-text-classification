@@ -22,14 +22,14 @@ namespace Text_analyzer.automated_testing {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ResourceApostrophe {
+    internal class ResourceSplit {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ResourceApostrophe() {
+        internal ResourceSplit() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Text_analyzer.automated_testing {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Text_analyzer.automated_testing.ResourceApostrophe", typeof(ResourceApostrophe).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Text_analyzer.automated_testing.ResourceSplit", typeof(ResourceSplit).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,9 +63,18 @@ namespace Text_analyzer.automated_testing {
         /// <summary>
         ///   Looks up a localized string similar to Дем&apos;ян.
         /// </summary>
-        internal static string String1_Demyan {
+        internal static string ApostropheDemyan {
             get {
-                return ResourceManager.GetString("String1_Demyan", resourceCulture);
+                return ResourceManager.GetString("ApostropheDemyan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to човен\n.
+        /// </summary>
+        internal static string EmptyStringBug1 {
+            get {
+                return ResourceManager.GetString("EmptyStringBug1", resourceCulture);
             }
         }
     }

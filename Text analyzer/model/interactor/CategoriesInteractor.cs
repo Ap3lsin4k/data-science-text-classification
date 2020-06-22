@@ -53,9 +53,9 @@ namespace Text_analyzer.model.interactor
             json.uniquifyWordsIn(shelf);
         }
 
-        public int howManyTimesWordApear(string shelf, string word)
+        public int howManyTimesWordAppear(string shelf, string word)
         {
-            return json.howManyTimesWordApear(shelf, word);
+            return json.howManyTimesWordAppear(shelf, word);
         }
 
         public Dictionary<string, int>.KeyCollection getUniqueWords(string shelf)
