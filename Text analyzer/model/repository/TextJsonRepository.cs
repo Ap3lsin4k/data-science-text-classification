@@ -136,14 +136,14 @@ namespace Text_analyzer.model.repository
         }
 
         // number words in all texts for each category
-        public int getNumberOfShelfsInLibrary() 
+        public int getNumberOfShelvesInLibrary() 
         {
             return library.Count;
         }
 
         public double calculateIdf(string shelf, string word, int numOfDocsWhereWordAppears)
         {
-            return library[shelf].calcIdf(word, getNumberOfShelfsInLibrary(), numOfDocsWhereWordAppears);
+            return library[shelf].calcIdf(word, getNumberOfShelvesInLibrary(), numOfDocsWhereWordAppears);
         }
 
         public void calculateTfIdf(string shelf)

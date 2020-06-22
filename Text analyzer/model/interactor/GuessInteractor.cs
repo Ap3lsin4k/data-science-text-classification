@@ -9,86 +9,96 @@ namespace Text_analyzer.model.interactor
 {
     class GuessInteractor
     {
-        private TextRepository textRepo;
-        private FileRepository fileRepo;
-        private LogRepository log;
-        private TextJsonRepository json;
+        private readonly TextRepository _text;
+        private readonly FileRepository _file;
+        private readonly LogRepository _log;
+        private readonly TextJsonRepository _json;
 
         public GuessInteractor(in TextRepository textRepository, in FileRepository fileRepository, in LogRepository logRepository, in TextJsonRepository textJsonRepository)
         {
-            textRepo = textRepository;
-            fileRepo = fileRepository;
-            log = logRepository;
-            json = textJsonRepository;
+            _text = textRepository;
+            _file = fileRepository;
+            _log = logRepository;
+            _json = textJsonRepository;
         }
+
+
+        //==========TEXT REPOSITORY==========
 
         public List<string> getRawTextSplit(string notClearedText)
         {
-            return textRepo.getRawTextSplit(notClearedText);
+            return _text.getRawTextSplit(notClearedText);
         }
 
 
         public string[] splitToWords(string rawText)
         {
-            return textRepo.getSplitStrings(rawText);
+            return _text.getSplitStrings(rawText);
         }
 
         public Dictionary<string, int> associateOccurrencesWithTerms(ref string[] words)
         {
-            return textRepo.associateOccurrencesWithTerms(ref words);
+            return _text.associateOccurrencesWithTerms(ref words);
         }
 
         public string computeDe(List<string> splitText)
         {
-            return textRepo.computeDe(splitText);
+            return _text.computeDe(splitText);
         }
 
         public utils.IndicatorsOfAffiliationForText computeAffiliationOfTextToCategory(Dictionary<string, int>.KeyCollection unrepeatedWords, Dictionary<string, double> tfIdf)
         {
-            return textRepo.computeAffiliationOfTextToCategory(unrepeatedWords, tfIdf);
+            return _text.computeAffiliationOfTextToCategory(unrepeatedWords, tfIdf);
         }
 
+
+        //==========FILE REPOSITORY==========
 
         public bool openFileDialog()
         {
             //return true if Dialog Result is "OK"
-            return fileRepo.openFileDialog();
+            return _file.openFileDialog();
         }
 
         public string readTextFromFile()
         {
-            return fileRepo.readAllText();
+            return _file.readAllText();
         }
+
+
+        //==========LOG REPOSITORY==========
 
         public void openNewLogFile(string name)
         {
-            log.createNewFile(name);
+            _log.createNewFile(name);
         }
 
         public void writeLog(string logMessage)
         {
-            log.write(logMessage);
+            _log.write(logMessage);
         }
 
         public void closeLogFile()
         {
-            log.closeFile();
+            _log.closeFile();
         }
 
-        
+
+        //==========JSON REPOSITORY==========
+
         public Dictionary<string, WordEntity> getLibrary()
         {
-            return json.library;
+            return _json.library;
         }
 
         public bool deserializeFromFile()
         {
-            return json.deserializeFromFile();
+            return _json.deserializeFromFile();
         }
 
         public string[] getCategories()
         {
-            return json.getCategories();
+            return _json.getCategories();
         }
     }
 }

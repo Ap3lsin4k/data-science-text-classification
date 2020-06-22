@@ -135,7 +135,7 @@ namespace Text_analyzer.presentation
             
             string catg = currectCategory; //tbCategoryName.Text; // category
 
-            if (interactor.getNumberOfShelfsInLibrary() != 0)
+            if (interactor.getNumberOfShelvesInLibrary() != 0)
             {
                 // calculate IDF for each category
                 foreach (KeyValuePair<string, WordEntity> text in interactor.getLibrary())
@@ -166,7 +166,7 @@ namespace Text_analyzer.presentation
         {
             view.showLongDebugLog("TFIDF please chose existed category to see more\n");
 
-            if (interactor.getNumberOfShelfsInLibrary() != 0)
+            if (interactor.getNumberOfShelvesInLibrary() != 0)
             {
 
                 // TODO simplify KeyValuePair<> to string
