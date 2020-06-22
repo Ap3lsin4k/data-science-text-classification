@@ -15,14 +15,14 @@ namespace Text_analyzer.model.repository
     //wrapper to WordFreq
     class TextJsonRepository
     {
-        public Dictionary<string, WordFreq> library;  //<category, and parametrs for it>
+        public Dictionary<string, WordEntity> library;  //<category, and parametrs for it>
 
         //todo: make local
         public string json;
 
         public TextJsonRepository()
         {
-            library = new Dictionary<string, WordFreq>();
+            library = new Dictionary<string, WordEntity>();
         }
 
         public void save()
@@ -49,8 +49,8 @@ namespace Text_analyzer.model.repository
                 //load from file
                 this.json = File.ReadAllText("analysis.json");
 
-                Dictionary<string, WordFreq> deserialize = 
-                    JsonConvert.DeserializeObject<Dictionary<string, WordFreq>>(this.json);
+                Dictionary<string, WordEntity> deserialize = 
+                    JsonConvert.DeserializeObject<Dictionary<string, WordEntity>>(this.json);
                 if (deserialize != null)
                 {
                     this.library = deserialize;
@@ -58,14 +58,14 @@ namespace Text_analyzer.model.repository
                 }
                 else  // if json file is invalid
                 {
-                    this.library = new Dictionary<string, WordFreq>();
+                    this.library = new Dictionary<string, WordEntity>();
                     MessageBox.Show("Deserialize was failed. I will create new object. Don't forget to press Save!");
                 }
                 return true;
             }
             catch(Exception e)
             {
-                this.library = new Dictionary<string, WordFreq>();
+                this.library = new Dictionary<string, WordEntity>();
                 MessageBox.Show("Could not find analysis.json file. I will create object. Don't forget to press Save!");
                 return false;
             }
@@ -79,7 +79,7 @@ namespace Text_analyzer.model.repository
 
         public void addCategory(string shelf, List<string> texts)
         {
-            library[shelf] = new WordFreq(texts);  // TODO test: casting to List can take much time
+            library[shelf] = new WordEntity(texts);  // TODO test: casting to List can take much time
         }
 
         // words may be repeated
@@ -130,7 +130,7 @@ namespace Text_analyzer.model.repository
             return library[shelf].TF[word];// todo check whether tf exists
         }
         
-        public Dictionary<string, WordFreq> getLibrary()
+        public Dictionary<string, WordEntity> getLibrary()
         {
             return library; // all shelfs in library.
         }

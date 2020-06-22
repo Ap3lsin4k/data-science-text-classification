@@ -54,7 +54,7 @@ namespace Text_analyzer.presentation
             IndicatorsOfAffiliationForText scores;
 
 
-            foreach (KeyValuePair<string, WordFreq> category in interactor.getLibrary())  // category, a category properties
+            foreach (KeyValuePair<string, WordEntity> category in interactor.getLibrary())  // category, a category properties
             {
                 // here we have Category(category.Key) and array of unrepeated words(category.Value.allWords)
                 // also, there is array of repeated words(unknownWords)

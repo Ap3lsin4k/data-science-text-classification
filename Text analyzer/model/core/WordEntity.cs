@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Text_analyzer
 {
     // Todo move to repository layer
-    class WordFreq // an news, an text
+    class WordEntity // an news, an text
     {
         public Dictionary<string, int> n;  // <word, frequency of apearing>, todo change int to unsigned int or something
         public Dictionary<string, double> TF;  // <word, Term frequency in %>
@@ -26,27 +26,22 @@ namespace Text_analyzer
             DE = new DE();
             allWords = new List<string>();
         }
-        public WordFreq() // constructor to deserialize json
+        public WordEntity() // constructor to deserialize json
         {
             initialize();
         }
 
-        public WordFreq(List<string> words)  // constructor which program uses
+        public WordEntity(List<string> words)  // constructor for common use
         {
             initialize();
 
-            // do not save empty strings
-            foreach (var word in words)
-            {
-                if (word != "")  
-                    allWords.Add(word);
-            }
+            allWords = words;
         }
 
         public double calcTf(string key)
         {
             TF[key] = 100.0 * n[key] / allWords.Count; // to find TF in percentes
-            // implicit cast (int) to (double), for make normal division
+            // implicit cast (int) to (double), to make normal division
             return TF[key];
         }
 

@@ -88,7 +88,7 @@ namespace Text_analyzer.model.interactor
         {
             return json.getTf(shelf, word);
         }
-        public Dictionary<string, WordFreq> getLibrary()
+        public Dictionary<string, WordEntity> getLibrary()
         {
             return json.getLibrary();
         }

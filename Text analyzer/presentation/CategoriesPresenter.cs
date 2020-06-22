@@ -107,7 +107,7 @@ namespace Text_analyzer.presentation
             foreach (string word in interactor.getUniqueWords(catg))
             {
                 categories = 1;
-                foreach (KeyValuePair<string, WordFreq> text in interactor.getLibrary())
+                foreach (KeyValuePair<string, WordEntity> text in interactor.getLibrary())
                 {
                     if (text.Key == catg) continue;
 
@@ -138,7 +138,7 @@ namespace Text_analyzer.presentation
             if (interactor.getNumberOfShelfsInLibrary() != 0)
             {
                 // calculate IDF for each category
-                foreach (KeyValuePair<string, WordFreq> text in interactor.getLibrary())
+                foreach (KeyValuePair<string, WordEntity> text in interactor.getLibrary())
                 {
                     // write log if category is current.
                     idf(text.Key, text.Key == catg);
@@ -170,7 +170,7 @@ namespace Text_analyzer.presentation
             {
 
                 // TODO simplify KeyValuePair<> to string
-                foreach (KeyValuePair<string, WordFreq> text in interactor.getLibrary())
+                foreach (KeyValuePair<string, WordEntity> text in interactor.getLibrary())
                 {
                     if (interactor.tfExist(text.Key) && interactor.idfExist(text.Key))
                     {

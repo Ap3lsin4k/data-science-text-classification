@@ -76,7 +76,7 @@ namespace Text_analyzer.model.interactor
         }
 
         
-        public Dictionary<string, WordFreq> getLibrary()
+        public Dictionary<string, WordEntity> getLibrary()
         {
             return json.library;
         }
