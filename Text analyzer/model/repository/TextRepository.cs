@@ -15,6 +15,7 @@ namespace Text_analyzer.model.repository
 
 
         //==========TEXT PARSER==========
+        // only cyrillic letters. Change separators to only one " "
         public string getRawText(string notClearedText)
         {
             string news = Regex.Replace(notClearedText, @"\s+", " ");
@@ -39,10 +40,9 @@ namespace Text_analyzer.model.repository
         }
 
 
-
+        // Takes not cleared(aka raw) text
         public string[] getSplitStrings(string notClearedText)
         {
-            //return "човен  ".Split(new []{' '}, StringSplitOptions.RemoveEmptyEntries);
             return getRawText(notClearedText).Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
         }
 

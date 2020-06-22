@@ -21,10 +21,12 @@ namespace Text_analyzer.model.interactor
             json = textJsonRepository;
         }
 
-        public string getRawText(string notClearedText)
+       
+        public string[] getSplitStrings(string rawText)
         {
-            return textRepo.getRawText(notClearedText);
+            return textRepo.getSplitStrings(rawText);
         }
+
 
         public bool openFileDialog()
         {

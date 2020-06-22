@@ -38,10 +38,8 @@ namespace Text_analyzer.presentation
 
             if (!string.IsNullOrWhiteSpace(textToBeAnalyzed))
             {
-                string peeledText = interactor.getRawText(textToBeAnalyzed);
-
                 // create new category, if it wasn't
-                interactor.addCategory(catg, peeledText.Split().ToList<string>()); // TODO test: test time for List-casting
+                interactor.addCategory(catg, interactor.getSplitStrings(textToBeAnalyzed).ToList<string>()); // TODO test: test time for List-casting
                 
                 foreach (string word in interactor.getAllWordsFromShelf(catg))
                 {
