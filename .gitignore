@@ -131,10 +131,10 @@ _NCrunch*
 *.user
 _ReSharper.*/
 *.sdf
-bin/
+
 obj/
-Debug/
 Release/
+Debug/
 *.opensdf
 *.tlog
 *.log
@@ -144,6 +144,5 @@ Version.cs
 Version.h
 Version.cpp
 
-/*/bin/
-
+*/bin/ 
 /*/obj/
