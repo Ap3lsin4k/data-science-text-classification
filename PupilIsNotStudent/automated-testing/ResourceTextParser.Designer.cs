@@ -22,14 +22,14 @@ namespace PupilIsNotStudent.automated_testing {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ResourceSplit {
+    internal class ResourceTextParser {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ResourceSplit() {
+        internal ResourceTextParser() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace PupilIsNotStudent.automated_testing {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PupilIsNotStudent.automated_testing.ResourceSplit", typeof(ResourceSplit).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PupilIsNotStudent.automated_testing.ResourceTextParser", typeof(ResourceTextParser).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -75,6 +75,24 @@ namespace PupilIsNotStudent.automated_testing {
         internal static string EmptyStringBug1 {
             get {
                 return ResourceManager.GetString("EmptyStringBug1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Space X відкладено..
+        /// </summary>
+        internal static string EnglishInUkrainianNews1 {
+            get {
+                return ResourceManager.GetString("EnglishInUkrainianNews1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Садовий запропонував фінансувати усі лікарні як такі, що лікують COVID-19.
+        /// </summary>
+        internal static string EnglishInUkrainianNews2 {
+            get {
+                return ResourceManager.GetString("EnglishInUkrainianNews2", resourceCulture);
             }
         }
     }

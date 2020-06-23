@@ -125,4 +125,10 @@
     <value>човен\n</value>
     <comment>to test against the bug of empty string</comment>
   </data>
+  <data name="EnglishInUkrainianNews1" xml:space="preserve">
+    <value>Space X відкладено.</value>
+  </data>
+  <data name="EnglishInUkrainianNews2" xml:space="preserve">
+    <value>Садовий запропонував фінансувати усі лікарні як такі, що лікують COVID-19</value>
+  </data>
 </root>

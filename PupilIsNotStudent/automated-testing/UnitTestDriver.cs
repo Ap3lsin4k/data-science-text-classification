@@ -104,10 +104,12 @@ namespace PupilIsNotStudent.automated_testing
             Test2();
             Test3();
             Test4();
-            Test5();*/
+            Test5();///
             Test6();
             Test7();
-            Test8();
+            Test8();*/
+            Test9();
+            Test10();
         }
 
         //tests
@@ -160,7 +162,7 @@ namespace PupilIsNotStudent.automated_testing
         //Business Rule 7
         public void Test7()
         {
-            List<string> splitText = textRepository.getRawTextSplit(ResourceSplit.ApostropheDemyan);
+            List<string> splitText = textRepository.getRawTextSplit(ResourceTextParser.ApostropheDemyan);
             var expected = new List<string> {"дем'ян"};
             var msg = "Text is not split correctly";
             CheckEquals(in expected, in splitText, ref msg);
@@ -170,11 +172,28 @@ namespace PupilIsNotStudent.automated_testing
         //Business Rule 8
         public void Test8()
         {
-            string[] actual = textRepository.getSplitStrings(ResourceSplit.EmptyStringBug1);
+            string[] actual = textRepository.getSplitStrings(ResourceTextParser.EmptyStringBug1);
             string[] expected = new []{"човен"};
             var msg = "Text was not split correctly, redundant empty string at the end";
             CheckEquals(in expected, in actual, ref msg);
         }
-        
+
+        //Business Rule 9
+        public void Test9()
+        {
+            string[] actual = textRepository.getSplitStrings(ResourceTextParser.EnglishInUkrainianNews1);
+            string[] expected = new[] { "space", "x", "відкладено" };
+            var msg = "Should support English words was not parsed correctly";
+            CheckEquals(in expected, in actual, ref msg);
+        }
+
+        //Business Rule 10
+        public void Test10()
+        {
+            string[] actual = textRepository.getSplitStrings(ResourceTextParser.EnglishInUkrainianNews2);
+            string[] expected = new[] { "садовий", "запропонував", "фінансувати", "усі", "лікарні", "як", "такі", "що", "лікують", "covid" };
+            var msg = "Error with punctuation or English letters";
+            CheckEquals(in expected, in actual, ref msg);
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace PupilIsNotStudent
 {
     static class Program
     {
-        static bool runAutomatedTesting = false;
+        static bool runAutomatedTesting = true;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

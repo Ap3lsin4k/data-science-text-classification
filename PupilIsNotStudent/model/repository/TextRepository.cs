@@ -51,13 +51,7 @@ namespace PupilIsNotStudent.model.repository
         {
             return getRawText(notClearedText).Split().ToList<string>();
         }
-
-        // It  is never called
-        public List<string> getRawTextSplit(System.Windows.Forms.TextBox tbWithText)
-        {
-            return getRawText(tbWithText.Text.ToString()).Split().ToList<string>();
-        }
-
+        
 
 
         private bool isCyrillic(int letterCode)
@@ -76,12 +70,16 @@ namespace PupilIsNotStudent.model.repository
                 case 39:  // '
                           //case 45:  // -
                     return true;
-                default:  // TODO add English support
+                default:
                     return
                         1040 <= letterCode && letterCode <= 1103 &&  // Cyrillic
                         letterCode != 1066 &&  // Ъ
                         letterCode != 1067 &&  // Ы
                         letterCode != 1098  // ъ
+                        ||
+                        65 <= letterCode && letterCode <= 90
+                        ||
+                        97 <= letterCode && letterCode <= 122
                         ;
             }
 
