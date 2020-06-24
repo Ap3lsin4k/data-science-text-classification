@@ -172,7 +172,6 @@ private readonly GuessPresenter _guessPresenter; // for the second view
 
         private void btnAnalysis_Click(object sender, EventArgs e)
         {
-            myGrid.Rows.Add();
             _guessPresenter.onBtnGuessCategoryClicked(richTBtoAnalyze.Text);
         }
 

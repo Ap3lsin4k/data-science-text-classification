@@ -77,7 +77,7 @@ namespace PupilIsNotStudent.automated_testing
             if (expected.SequenceEqual(actual)) return;
             string expectedString = "", actualString = "";
 
-            // list to string
+            // array to string
             expectedString = expected.Aggregate(expectedString, (current, word) => current + '\"' + word + "\", ");
             actualString = actual.Aggregate(actualString, (current, word) => current + '\"' + word + "\", ");
 
