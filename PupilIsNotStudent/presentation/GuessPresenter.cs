@@ -125,8 +125,7 @@ namespace PupilIsNotStudent.presentation
 
         private bool load()
         {
-            bool success;
-            success = interactor.deserializeFromFile();
+            bool success = interactor.deserializeFromFile();
             view.setCategories(interactor.getCategories());
             return success;
         }

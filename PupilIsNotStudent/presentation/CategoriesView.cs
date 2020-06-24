@@ -15,6 +15,7 @@ namespace PupilIsNotStudent.presentation
 
         void setCategories(string[] categories);
 
+        //from file
         void loadEditableText(string richText);
         
     }

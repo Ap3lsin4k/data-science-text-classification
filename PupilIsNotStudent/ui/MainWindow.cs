@@ -9,7 +9,6 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 // work with files
-using System.IO;
 using PupilIsNotStudent.presentation;
 using PupilIsNotStudent.model;
 
@@ -51,14 +50,19 @@ private readonly GuessPresenter _guessPresenter; // for the second view
                 );
         }
 
-        //==========CATEGORIES VIEW==========
-
-        //==========CATEGORIES VIEW IMPLEMENTATION==========
+        //==========COMMON==========
 
         public void show(string tip)
         {
             MessageBox.Show(tip);
         }
+
+
+
+        //==========CATEGORIES VIEW==========
+
+        //==========CATEGORIES VIEW IMPLEMENTATION==========
+
 
         public void clearLongDebugMessage()
         {
@@ -119,7 +123,7 @@ private readonly GuessPresenter _guessPresenter; // for the second view
         
         //==========GUESS VIEW IMPLEMENTATION==========
 
-        public void loadEditableText(string richText)
+        void GuessView.loadEditableText(string richText)
         {
             richTBtoAnalyze.Text = richText;
         }

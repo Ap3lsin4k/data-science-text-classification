@@ -7,12 +7,12 @@ using PupilIsNotStudent.model.interactor;
 
 namespace PupilIsNotStudent.presentation
 {
-    class CategoriesPresenter
+    internal class CategoriesPresenter
     {
 
        // TextJsonRepository newsJson;
-        CategoriesView view;
-        CategoriesInteractor interactor;
+       private readonly CategoriesView view;
+       private readonly CategoriesInteractor interactor;
 
 
         public CategoriesPresenter(CategoriesView view, CategoriesInteractor interactor) {
@@ -96,8 +96,7 @@ namespace PupilIsNotStudent.presentation
         }
 
 
-
-
+        
         private void idf(string catg, bool log)
         {
             string textToOut = "IDF\n";
@@ -128,20 +127,18 @@ namespace PupilIsNotStudent.presentation
         }
 
 
-        public void onBtnIdfClicked(string currectCategory)
+        public void onBtnIdfClicked(string currentCategory)
         {
 
             view.showLongDebugLog("IDF chose existed category to see more\n");
             
-            string catg = currectCategory; //tbCategoryName.Text; // category
-
             if (interactor.getNumberOfShelvesInLibrary() != 0)
             {
                 // calculate IDF for each category
                 foreach (KeyValuePair<string, WordEntity> text in interactor.getLibrary())
                 {
                     // write log if category is current.
-                    idf(text.Key, text.Key == catg);
+                    idf(text.Key, text.Key == currentCategory);
                 }
             }
             else
