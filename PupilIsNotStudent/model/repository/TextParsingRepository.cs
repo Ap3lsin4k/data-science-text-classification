@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace PupilIsNotStudent.model.repository
 {
-    class TextRepository
+
+    class TextParsingRepository
     {
         const int keyWordsLimit = 155;
         
@@ -15,7 +16,7 @@ namespace PupilIsNotStudent.model.repository
 
 
         //==========TEXT PARSER==========
-        // only cyrillic letters. Change separators to only one " "
+        // only Cyrillic letters. Change separators to only one " "
         public string getRawText(string notClearedText)
         {
             string news = Regex.Replace(notClearedText, @"\s+", " ");

@@ -31,10 +31,10 @@ private readonly GuessPresenter _guessPresenter; // for the second view
         {
             InitializeComponent();
 
-            var textJson = new model.repository.TextJsonRepository();
+            var textJson = new model.repository.ExtractKeyWordRepository();
             _categPresenter = new CategoriesPresenter(this,
                     new model.interactor.CategoriesInteractor(
-                            new model.repository.TextRepository(),
+                            new model.repository.TextParsingRepository(),
                             new model.repository.FileRepository(),
                             in textJson
                         )
@@ -42,7 +42,7 @@ private readonly GuessPresenter _guessPresenter; // for the second view
 
             _guessPresenter = new GuessPresenter(this,
                     new model.interactor.GuessInteractor(
-                            new model.repository.TextRepository(),
+                            new model.repository.TextParsingRepository(),
                             new model.repository.FileRepository(),
                             new model.repository.LogRepository(),
                             in textJson

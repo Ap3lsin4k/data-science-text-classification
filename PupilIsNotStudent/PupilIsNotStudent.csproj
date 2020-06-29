@@ -69,6 +69,7 @@
     </Compile>
     <Compile Include="automated-testing\UnitTestDriver.cs" />
     <Compile Include="model\core\DE.cs" />
+    <Compile Include="model\repository\AkinatorRepository.cs" />
     <Compile Include="ui\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,16 +80,16 @@
     <Compile Include="model\interactor\GuessInteractor.cs" />
     <Compile Include="model\repository\FileRepository.cs" />
     <Compile Include="model\repository\LogRepository.cs" />
-    <Compile Include="model\repository\TextRepository.cs" />
+    <Compile Include="model\repository\TextParsingRepository.cs" />
     <Compile Include="presentation\CategoriesView.cs" />
     <Compile Include="presentation\GuessPresenter.cs" />
     <Compile Include="presentation\CategoriesPresenter.cs" />
     <Compile Include="presentation\GuessView.cs" />
     <Compile Include="config\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="model\repository\TextJsonRepository.cs" />
+    <Compile Include="model\repository\ExtractKeyWordRepository.cs" />
     <Compile Include="utils\IndicatorsOfAffiliationForText.cs" />
-    <Compile Include="model\core\WordEntity.cs" />
+    <Compile Include="model\core\Book.cs" />
     <EmbeddedResource Include="automated-testing\ResourceTextParser.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceTextParser.Designer.cs</LastGenOutput>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PupilIsNotStudent.model.core;
 using PupilIsNotStudent.model.interactor;
 using PupilIsNotStudent.utils;
 
@@ -10,8 +11,8 @@ namespace PupilIsNotStudent.presentation
 {
     class GuessPresenter
     {
-        GuessView view;
-        GuessInteractor interactor;
+        private readonly GuessView view;
+        private readonly GuessInteractor interactor;
         
         //TODO RED 
  //       TextJsonRepository newsJson;
@@ -54,7 +55,7 @@ namespace PupilIsNotStudent.presentation
             IndicatorsOfAffiliationForText scores;
 
 
-            foreach (KeyValuePair<string, WordEntity> category in interactor.getLibrary())  // category, a category properties
+            foreach (KeyValuePair<string, Book> category in interactor.getLibrary())  // category, a category properties
             {
                 // here we have Category(category.Key) and array of unrepeated words(category.Value.allWords)
                 // also, there is array of repeated words(unknownWords)

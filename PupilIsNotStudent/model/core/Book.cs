@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace PupilIsNotStudent
+namespace PupilIsNotStudent.model.core
 {
-    // Todo move to repository layer
-    class WordEntity // an news, an text
+    // Entity
+    internal class Book // an news, an text
     {
 
-        public Dictionary<string, uint> n;  // <word, frequency of appearing>
+        public Dictionary<string, uint> n;  // <unique word, frequency of appearing>
         public Dictionary<string, double> TF;  // <word, Term frequency in %>
         public Dictionary<string, double> IDF;  // <word, Inverse document frequency>
         public Dictionary<string, double> TFIDF;  // <word, Term frequency – Inverse document frequency>
@@ -27,12 +24,12 @@ namespace PupilIsNotStudent
             DE = new DE();
             allWords = new List<string>();
         }
-        public WordEntity() // constructor to deserialize json
+        public Book() // constructor to deserialize json
         {
             initialize();
         }
 
-        public WordEntity(List<string> words)  // constructor for common use
+        public Book(List<string> words)  // constructor for common use
         {
             initialize();
 
@@ -41,7 +38,7 @@ namespace PupilIsNotStudent
 
         public double calcTf(string key)
         {
-            TF[key] = 100.0 * n[key] / allWords.Count; // to find TF in percentes
+            TF[key] = 100.0 * n[key] / allWords.Count; // to find TF in percentages
             // implicit cast (int) to (double), to make normal division
             return TF[key];
         }
@@ -50,7 +47,7 @@ namespace PupilIsNotStudent
         {
             /*
             base 10 logarithm of (
-                total number of documents in the colection (D)
+                total number of documents in the collection (D)
                 divided by
                 number of documents where the word appears (t)
             )

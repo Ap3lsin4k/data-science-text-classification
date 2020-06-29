@@ -8,21 +8,22 @@ using System.Windows.Forms;
 using System.IO;
 // json
 using Newtonsoft.Json;
+using PupilIsNotStudent.model.core;
 
 
 namespace PupilIsNotStudent.model.repository
 {
     //wrapper to WordFreq
-    class TextJsonRepository
+    class ExtractKeyWordRepository
     {
-        public Dictionary<string, WordEntity> library;  //<category, and parametrs for it>
+        public Dictionary<string, Book> library;  //<category, and parametrs for it>
 
         //todo: make local
         public string json;
 
-        public TextJsonRepository()
+        public ExtractKeyWordRepository()
         {
-            library = new Dictionary<string, WordEntity>();
+            library = new Dictionary<string, Book>();
         }
 
         public void save()
@@ -49,8 +50,8 @@ namespace PupilIsNotStudent.model.repository
                 //load from file
                 this.json = File.ReadAllText("analysis.json");
 
-                Dictionary<string, WordEntity> deserialize = 
-                    JsonConvert.DeserializeObject<Dictionary<string, WordEntity>>(this.json);
+                Dictionary<string, Book> deserialize = 
+                    JsonConvert.DeserializeObject<Dictionary<string, Book>>(this.json);
                 if (deserialize != null)
                 {
                     this.library = deserialize;
@@ -58,14 +59,14 @@ namespace PupilIsNotStudent.model.repository
                 }
                 else  // if json file is invalid
                 {
-                    this.library = new Dictionary<string, WordEntity>();
+                    this.library = new Dictionary<string, Book>();
                     MessageBox.Show("Deserialize was failed. I will create new object. Don't forget to press Save!");
                 }
                 return true;
             }
             catch(Exception e)
             {
-                this.library = new Dictionary<string, WordEntity>();
+                this.library = new Dictionary<string, Book>();
                 MessageBox.Show("Could not find analysis.json file. I will create object. Don't forget to press Save!");
                 return false;
             }
@@ -79,7 +80,7 @@ namespace PupilIsNotStudent.model.repository
 
         public void addCategory(string shelf, List<string> texts)
         {
-            library[shelf] = new WordEntity(texts);  // TODO test: casting to List can take much time
+            library[shelf] = new Book(texts);  // TODO test: casting to List can take much time
         }
 
         // words may be repeated
@@ -130,7 +131,7 @@ namespace PupilIsNotStudent.model.repository
             return library[shelf].TF[word];// todo check whether tf exists
         }
         
-        public Dictionary<string, WordEntity> getLibrary()
+        public Dictionary<string, Book> getLibrary()
         {
             return library; // all shelfs in library.
         }

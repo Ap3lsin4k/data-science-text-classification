@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PupilIsNotStudent.model.core;
 using PupilIsNotStudent.model.interactor;
 
 namespace PupilIsNotStudent.presentation
@@ -106,7 +107,7 @@ namespace PupilIsNotStudent.presentation
             foreach (string word in interactor.getUniqueWords(catg))
             {
                 categories = 1;
-                foreach (KeyValuePair<string, WordEntity> text in interactor.getLibrary())
+                foreach (KeyValuePair<string, Book> text in interactor.getLibrary())
                 {
                     if (text.Key == catg) continue;
 
@@ -135,7 +136,7 @@ namespace PupilIsNotStudent.presentation
             if (interactor.getNumberOfShelvesInLibrary() != 0)
             {
                 // calculate IDF for each category
-                foreach (KeyValuePair<string, WordEntity> text in interactor.getLibrary())
+                foreach (KeyValuePair<string, Book> text in interactor.getLibrary())
                 {
                     // write log if category is current.
                     idf(text.Key, text.Key == currentCategory);
@@ -167,7 +168,7 @@ namespace PupilIsNotStudent.presentation
             {
 
                 // TODO simplify KeyValuePair<> to string
-                foreach (KeyValuePair<string, WordEntity> text in interactor.getLibrary())
+                foreach (KeyValuePair<string, Book> text in interactor.getLibrary())
                 {
                     if (interactor.tfExist(text.Key) && interactor.idfExist(text.Key))
                     {

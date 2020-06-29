@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PupilIsNotStudent.model.core;
 using PupilIsNotStudent.model.repository;
 
 namespace PupilIsNotStudent.model.interactor
@@ -10,11 +11,11 @@ namespace PupilIsNotStudent.model.interactor
     // the purpose of an Interactor is to encapsulate Repositories for a Presenter
     class CategoriesInteractor
     {
-        private readonly TextRepository _text;
+        private readonly TextParsingRepository _text;
         private readonly FileRepository _file;
-        private readonly TextJsonRepository _json;
+        private readonly ExtractKeyWordRepository _json;
 
-        public CategoriesInteractor(in TextRepository textRepository, in FileRepository fileRepository, in TextJsonRepository textJsonRepository)
+        public CategoriesInteractor(in TextParsingRepository textRepository, in FileRepository fileRepository, in ExtractKeyWordRepository textJsonRepository)
         {
             _text = textRepository;
             _file = fileRepository;
@@ -94,7 +95,7 @@ namespace PupilIsNotStudent.model.interactor
         {
             return _json.getTf(shelf, word);
         }
-        public Dictionary<string, WordEntity> getLibrary()
+        public Dictionary<string, Book> getLibrary()
         {
             return _json.getLibrary();
         }

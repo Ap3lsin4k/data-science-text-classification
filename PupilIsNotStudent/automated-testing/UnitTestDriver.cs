@@ -13,22 +13,22 @@ namespace PupilIsNotStudent.automated_testing
     class UnitTestDriver
     {
         private readonly GuessPresenter _guessPresenter;
-        private readonly TextRepository textRepository;
+        private readonly TextParsingRepository textRepository;
         UnitTestFormGuess unitTestFormGuess;
 
         public UnitTestDriver(UnitTestFormGuess unitTestFormGuess)
         {
             this.unitTestFormGuess = unitTestFormGuess;
-            model.repository.TextJsonRepository textJson = new model.repository.TextJsonRepository();
+            model.repository.ExtractKeyWordRepository textJson = new model.repository.ExtractKeyWordRepository();
 
             _guessPresenter = new GuessPresenter(this.unitTestFormGuess,
                 new model.interactor.GuessInteractor(
-                            new model.repository.TextRepository(),
+                            new model.repository.TextParsingRepository(),
                             new model.repository.FileRepository(),
                             new model.repository.LogRepository(),
                             in textJson
                         ));
-            textRepository = new TextRepository();
+            textRepository = new TextParsingRepository();
         }
 
         #region

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace PupilIsNotStudent.model.repository
 {
+    // Wrapper for StreamWriter
     class LogRepository
     {
         private StreamWriter log;
