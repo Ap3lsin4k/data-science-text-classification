@@ -1,7 +1,7 @@
 "shelf" ~ category.
-Each shelf contain texts.
+Each shelf contain a book.
 Category is type of string.
-Shelf is type of Dictionary. Where key is "name of a category", and value is "different properties" such as "semantic value for each word", the "texts themselves", "TF", "IDF", "uniqueWords" and so on.
+Shelf is type of Dictionary. Where key is "name of a book(its category)", and value is "different properties" such as "semantic value for each word", the "texts themselves", "TF", "IDF", "uniqueWords" and so on.
 
 library is an array of shelfs.
 

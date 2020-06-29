@@ -8,10 +8,10 @@ namespace PupilIsNotStudent.presentation
 {
     interface GuessView
     {
+        // common
         void show(string message);
-
         void setCategories(string[] categories);
-
+        
         void loadEditableText(string richText);
 
 

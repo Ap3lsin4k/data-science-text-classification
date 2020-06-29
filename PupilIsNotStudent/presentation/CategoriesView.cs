@@ -8,12 +8,14 @@ namespace PupilIsNotStudent.presentation
 {
     interface CategoriesView
     {
+        // common
         void show(string tip);
+        void setCategories(string[] categories);
+
 
         void clearLongDebugMessage();
         void showLongDebugLog(string message);
 
-        void setCategories(string[] categories);
 
         //from file
         void loadEditableText(string richText);
