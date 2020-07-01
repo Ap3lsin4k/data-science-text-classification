@@ -25,9 +25,9 @@ namespace PupilIsNotStudent.model.interactor
 
         //==========TEXT REPOSITORY==========
 
-        public string[] getSplitStrings(string rawText)
+        public string[] getSplitWords(string rawText)
         {
-            return _text.getSplitStrings(rawText);
+            return _text.getSplitWords(rawText);
         }
 
 
@@ -90,10 +90,12 @@ namespace PupilIsNotStudent.model.interactor
         {
             return _json.getLibrary();
         }
-        public double calculateIdf(string shelf, string word, int numOfDocsWhereWordAppears)
+
+        public double IDFForOtherCategories(string shelf, string word)
         {
-            return _json.calculateIdf(shelf, word, numOfDocsWhereWordAppears);
+            return _json.IDFForOtherCategories(shelf, word);
         }
+
 
         public int getNumberOfShelvesInLibrary()
         {

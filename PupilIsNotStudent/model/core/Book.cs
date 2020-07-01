@@ -13,28 +13,31 @@ namespace PupilIsNotStudent.model.core
         public Dictionary<string, double> TFIDF;  // <word, Term frequency – Inverse document frequency>
         DE DE;
 
-        private UInt64 numOfAllWords; // including repeated
+        // including disordered(aka shuffled, aka repeated) words
+        private UInt64 numOfAllWords;
 
-        private void initialize()
+        // constructor to deserialize json
+        public Book()
         {
             n = new Dictionary<string, uint>();
             TF = new Dictionary<string, double>();
             IDF = new Dictionary<string, double>();
             TFIDF = new Dictionary<string, double>();
             DE = new DE();
-        }
-        public Book() // constructor to deserialize json
-        {
-            initialize();
+            numOfAllWords = 0;
         }
 
-        public Book(in string[] words)  // constructor for common use
+        // constructor for common use
+        public Book(in string[] words) : this() 
         {
-            initialize();
+            memorizeWords(words);
+        }
 
-            numOfAllWords = Convert.ToUInt64(words.Length);
-
-            foreach (string word in words)
+        // save unique words. Don't forget to update numOfAllWords (e.g. numOfAllWords += disorderedWords.Length)
+        public void memorizeWords(in string[] disorderedWords)
+        {
+            numOfAllWords += Convert.ToUInt64(disorderedWords.Length);
+            foreach (string word in disorderedWords)
             {
                 if (n.ContainsKey(word))
                     ++n[word];
@@ -43,8 +46,17 @@ namespace PupilIsNotStudent.model.core
 
             }
         }
-        
 
+        // only once for each unique word
+        public void updateTf(in HashSet<string> words)
+        {
+            foreach (string word in words)
+            {
+                TF[word] = 100.0 * n[word] / numOfAllWords; // to find TF in percentages
+                // implicit cast (int) to (double), to make normal division
+            }
+            
+        }
 
         public double calcTf(string key)
         {
@@ -53,17 +65,26 @@ namespace PupilIsNotStudent.model.core
             return TF[key];
         }
 
-        public double calcIdf(string key, int D, int t) // t is always <= D
+        
+        public double calcIdf(string key, int B, int t) // t is always <= D
         {
             /*
             base 10 logarithm of (
-                total number of documents in the collection (D)
+                total number of documents(aka shelves aka books) in the collection (D)
                 divided by
-                number of documents where the word appears (t)
+                number of books where term appears (t)
             )
             */
-            IDF[key] = Math.Log10((float)D / (float)t); 
+            IDF[key] = Math.Log10((float)B / (float)t); 
             return IDF[key];
+        }
+
+        void updateIDF(in HashSet<string> words)
+        {
+            foreach (string word in words)
+            {
+    //            IDF[word] = Math.Log10((float)D / (float)t);
+            }
         }
 
         public void calcTfIdf() // inverse document frequency
@@ -77,5 +98,35 @@ namespace PupilIsNotStudent.model.core
         {
             DE.mainFormula();
         }
+
+
+        // Relearning
+        public void relearnTf(in string[] disorderedWords)
+        {
+//            memorizeWords(in disorderedWords);
+            numOfAllWords += Convert.ToUInt64(disorderedWords.Length);
+            foreach (string word in disorderedWords)
+            {
+                if (n.ContainsKey(word)){
+                    ++n[word];
+                }
+                else {
+                    n[word] = 1;
+                }
+
+            }
+            
+            HashSet<string> uniqueWords = new HashSet<string>(disorderedWords);
+            updateTf(uniqueWords);
+
+        }
     }
 }
+
+
+/*
+ * Max number of categories = 255
+ * Max number of occurrences of a single word 4 billion (4 * 10**9)
+ * Max number of occurrences: 1.8 * 10**19
+ * 
+ * */

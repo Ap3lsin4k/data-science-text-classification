@@ -34,8 +34,9 @@ namespace PupilIsNotStudent.model.interactor
 
         public string[] splitToWords(string rawText)
         {
-            return _text.getSplitStrings(rawText);
+            return _text.getSplitWords(rawText);
         }
+
 
         public Dictionary<string, int> associateOccurrencesWithTerms(ref string[] words)
         {

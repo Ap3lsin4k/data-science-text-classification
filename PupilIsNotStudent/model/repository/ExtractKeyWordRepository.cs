@@ -124,10 +124,33 @@ namespace PupilIsNotStudent.model.repository
             return library.Count;
         }
 
-        public double calculateIdf(string shelf, string word, int numOfDocsWhereWordAppears)
+
+
+        // ======IDF======
+        public double IDFForOtherCategories(string shelf, string word)
         {
-            return library[shelf].calcIdf(word, getNumberOfShelvesInLibrary(), numOfDocsWhereWordAppears);
+            byte numOfBooksWhereWordAppears = 1;
+            foreach (KeyValuePair<string, Book> book in library)
+            {
+                if (book.Key == shelf) continue;
+
+                if (book.Value.n.ContainsKey(word))
+                {
+                    ++numOfBooksWhereWordAppears; // if at least a word is in other category we count it and go to another text
+                    //break; // don't write break.
+                }
+
+            }
+
+            return library[shelf].calcIdf(shelf, getNumberOfShelvesInLibrary(), numOfBooksWhereWordAppears);
         }
+
+
+
+
+
+
+
 
         public void calculateTfIdf(string shelf)
         {
@@ -149,7 +172,11 @@ namespace PupilIsNotStudent.model.repository
             return library[shelf].IDF.Count != 0;
         }
 
-        // Re learner
- //       void memorize(string shelf, string text)
+        // Relearner
+        void relearn(string shelf, string[] shuffledWords)
+        {
+            library[shelf].memorizeWords(shuffledWords);
+         //   library[shelf].calcTf();
+        }
     }
 }

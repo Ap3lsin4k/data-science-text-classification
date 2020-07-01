@@ -172,7 +172,7 @@ namespace PupilIsNotStudent.automated_testing
         //Business Rule 8
         public void Test8()
         {
-            string[] actual = textRepository.getSplitStrings(ResourceTextParser.EmptyStringBug1);
+            string[] actual = textRepository.getSplitWords(ResourceTextParser.EmptyStringBug1);
             string[] expected = new []{"човен"};
             var msg = "Text was not split correctly, redundant empty string at the end";
             CheckEquals(in expected, in actual, ref msg);
@@ -181,7 +181,7 @@ namespace PupilIsNotStudent.automated_testing
         //Business Rule 9
         public void Test9()
         {
-            string[] actual = textRepository.getSplitStrings(ResourceTextParser.EnglishInUkrainianNews1);
+            string[] actual = textRepository.getSplitWords(ResourceTextParser.EnglishInUkrainianNews1);
             string[] expected = new[] { "space", "x", "відкладено" };
             var msg = "Should support English words was not parsed correctly";
             CheckEquals(in expected, in actual, ref msg);
@@ -190,7 +190,7 @@ namespace PupilIsNotStudent.automated_testing
         //Business Rule 10
         public void Test10()
         {
-            string[] actual = textRepository.getSplitStrings(ResourceTextParser.EnglishInUkrainianNews2);
+            string[] actual = textRepository.getSplitWords(ResourceTextParser.EnglishInUkrainianNews2);
             string[] expected = new[] { "садовий", "запропонував", "фінансувати", "усі", "лікарні", "як", "такі", "що", "лікують", "covid" };
             var msg = "Error with punctuation or English letters";
             CheckEquals(in expected, in actual, ref msg);
@@ -208,7 +208,7 @@ namespace PupilIsNotStudent.automated_testing
         public void Test12()
         {
 
-            string[] actual = textRepository.getSplitStrings(ResourceTextParser.EnglishInUkrainianNews2);
+            string[] actual = textRepository.getSplitWords(ResourceTextParser.EnglishInUkrainianNews2);
             string[] expected = new[] { "садовий", "запропонував", "фінансувати", "усі", "лікарні", "як", "такі", "що", "лікують", "covid" };
             var msg = "Error with punctuation or English letters";
             CheckEquals(in expected, in actual, ref msg);

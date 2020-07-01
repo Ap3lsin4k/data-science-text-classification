@@ -42,7 +42,7 @@ namespace PupilIsNotStudent.model.repository
 
 
         // Takes not cleared(aka raw) text
-        public string[] getSplitStrings(string notClearedText)
+        public string[] getSplitWords(string notClearedText)
         {
             return getRawText(notClearedText).Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
         }

@@ -37,10 +37,14 @@ namespace PupilIsNotStudent.presentation
             view.clearLongDebugMessage();
 
 
+            //feature if the field is not empty then learn
             if (!string.IsNullOrWhiteSpace(textToBeAnalyzed))
             {
-                // create new category, if it wasn't & save only unique words
-                interactor.addCategory(catg, interactor.getSplitStrings(textToBeAnalyzed)); // TODO test: test time for List-casting
+                /*
+                 * create new category &save only unique words
+                 * rewrite if category already exists
+                */
+                interactor.addCategory(catg, interactor.getSplitWords(textToBeAnalyzed)); // TODO test: test time for List-casting
                 
 
 
@@ -63,6 +67,8 @@ namespace PupilIsNotStudent.presentation
             }
             else
             {
+                //feature if the textBox is empty then show saved data
+
                 if (interactor.whetherCategoryExist(catg))
                 {
                     foreach (KeyValuePair<string, uint> item in interactor.getUniqueWordsOrderByDescending(catg))
@@ -88,28 +94,15 @@ namespace PupilIsNotStudent.presentation
         private void idf(string catg, bool log)
         {
             string textToOut = "IDF\n";
-            int categories = 0;
             //foreach (WordFreq text in library.Values)
 
             foreach (string word in interactor.getUniqueWords(catg))
             {
-                categories = 1;
-                foreach (KeyValuePair<string, Book> book in interactor.getLibrary())
-                {
-                    if (book.Key == catg) continue;
-                    
-                    if (book.Value.n.ContainsKey(word))
-                        
-                    {
-                        categories++; // if at least a word is in other category we count it and go to another text
-                        //break; // don't write break.
-                    }
 
-                }
-                textToOut += word + ":" +
-                interactor.calculateIdf(catg, word, categories).ToString("0.####")  // word, Number of all library, Number of text which contain this word
-                + "\n";
-                /* IDF*/
+                textToOut += word + ":" 
+                                  + interactor.IDFForOtherCategories(catg, word).ToString("0.####")
+                                  + "\n";
+               
             }
 
             if (log) view.showLongDebugLog(textToOut);

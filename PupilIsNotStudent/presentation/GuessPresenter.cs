@@ -98,25 +98,25 @@ namespace PupilIsNotStudent.presentation
             
             // Re-Learner Update Knowledge
          //   interactor.learn(category, in wordsCategoryToGuess);
+         //interactor.getSplitWords();
 
+         // TODO вставляти вже відсортовані данні
+         // DataGridViewColumn newColumn =
+         /*
+         myGrid.Columns.GetColumnCount(
+         DataGridViewElementStates.Selected)
+         == 1
+         ? myGrid.SelectedColumns[0]
+          : null;
+         //*/
 
-            // TODO вставляти вже відсортовані данні
-            // DataGridViewColumn newColumn =
-            /*
-            myGrid.Columns.GetColumnCount(
-            DataGridViewElementStates.Selected)
-            == 1
-            ? myGrid.SelectedColumns[0]
-             : null;
-            //*/
-
-            //ListSortDirection direction = ListSortDirection.Ascending;
-            /*if (newColumn!= null)
-                    myGrid.Sort(myGr, direction);
-            else
-                MessageBox.Show("Select a single column and try again.",
-                "Error: Invalid Selection", MessageBoxButtons.OK,
-                MessageBoxIcon.Error);*/
+         //ListSortDirection direction = ListSortDirection.Ascending;
+         /*if (newColumn!= null)
+                 myGrid.Sort(myGr, direction);
+         else
+             MessageBox.Show("Select a single column and try again.",
+             "Error: Invalid Selection", MessageBoxButtons.OK,
+             MessageBoxIcon.Error);*/
         }
 
         public void onBtnComputeDisperseEstimationClicked(string textToBeAnalyzed)
