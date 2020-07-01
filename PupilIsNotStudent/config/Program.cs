@@ -8,7 +8,6 @@ namespace PupilIsNotStudent
 {
     static class Program
     {
-        static bool runAutomatedTesting = false;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -18,11 +17,9 @@ namespace PupilIsNotStudent
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-#if DEBUG
-                if (runAutomatedTesting)
-                    Application.Run(new UnitTestFormGuess());
-                else
-                    Application.Run(new MainWindow());
+#if AUTOMATEDTESTING
+            Application.Run(new UnitTestFormGuess());
+                
 #else
             Application.Run(new MainWindow());
 #endif
