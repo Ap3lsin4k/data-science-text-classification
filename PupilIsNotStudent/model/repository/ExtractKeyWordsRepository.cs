@@ -14,14 +14,14 @@ using PupilIsNotStudent.model.core;
 namespace PupilIsNotStudent.model.repository
 {
     //wrapper to WordFreq
-    class ExtractKeyWordRepository
+    class ExtractKeyWordsRepository
     {
         public Dictionary<string, Book> library;  //<category, and parametrs for it>
 
         //todo: make local
         public string json;
 
-        public ExtractKeyWordRepository()
+        public ExtractKeyWordsRepository()
         {
             library = new Dictionary<string, Book>();
         }
@@ -98,24 +98,21 @@ namespace PupilIsNotStudent.model.repository
             return library[shelf].n.OrderByDescending(key => key.Value);
         }
 
-        public double calculateTf(string shelf, string word)
+        public void updateTF(string shelf)
         {
-            return library[shelf].calcTf(word);
+            library[shelf].updateTF();
         }
+
 
         public bool whetherCategoryExist(string shelf)
         {
             return library.ContainsKey(shelf);
         }
 
-        public double getTf(string shelf, string word)
-        {
-            return library[shelf].TF[word];
-        }
-        
+
         public Dictionary<string, Book> getLibrary()
         {
-            return library; // all shelfs in library.
+            return library; // all shelves in library.
         }
 
         // number words in all texts for each category
@@ -127,7 +124,7 @@ namespace PupilIsNotStudent.model.repository
 
 
         // ======IDF======
-        public double IDFForOtherCategories(string shelf, string word)
+        private void IDFForOtherCategories(string shelf, string word)
         {
             byte numOfBooksWhereWordAppears = 1;
             foreach (KeyValuePair<string, Book> book in library)
@@ -142,13 +139,29 @@ namespace PupilIsNotStudent.model.repository
 
             }
 
-            return library[shelf].calcIdf(shelf, getNumberOfShelvesInLibrary(), numOfBooksWhereWordAppears);
+            library[shelf].calcIdf(shelf, getNumberOfShelvesInLibrary(), numOfBooksWhereWordAppears);
         }
 
 
+        private void IDFForEachWordInBook(string shelf)
+        {
+            foreach (var word in library[shelf].n.Keys)
+            {
+                IDFForOtherCategories(shelf, word);
 
+            }
+            
 
+        }
 
+        public void IDFForEachBook()
+        {
+            foreach (string shelf in library.Keys)
+            {
+                IDFForEachWordInBook(shelf);
+
+            }
+        }
 
 
 

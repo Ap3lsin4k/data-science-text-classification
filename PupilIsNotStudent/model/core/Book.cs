@@ -9,7 +9,7 @@ namespace PupilIsNotStudent.model.core
 
         public Dictionary<string, uint> n;  // <word, frequency of appearing>
         public Dictionary<string, double> TF;  // <word, Term frequency in %>
-        public Dictionary<string, double> IDF;  // <word, Inverse document frequency>
+        public Dictionary<string, double> IDF;  // <word, normalized Inverse document frequency>
         public Dictionary<string, double> TFIDF;  // <word, Term frequency – Inverse document frequency>
         DE DE;
 
@@ -47,13 +47,23 @@ namespace PupilIsNotStudent.model.core
             }
         }
 
-        // only once for each unique word
-        public void updateTf(in HashSet<string> words)
+        // for the first time
+        public void updateTF()
+        {
+            foreach (var word in n)
+            {
+                TF[word.Key] = 100.0 * word.Value / numOfAllWords; // to find TF in percentages
+                // implicit cast (int) to (double), to make normal division
+            }
+
+        }
+
+        // relearning
+        public void updateTF(in HashSet<string> words)
         {
             foreach (string word in words)
             {
                 TF[word] = 100.0 * n[word] / numOfAllWords; // to find TF in percentages
-                // implicit cast (int) to (double), to make normal division
             }
             
         }
@@ -117,7 +127,7 @@ namespace PupilIsNotStudent.model.core
             }
             
             HashSet<string> uniqueWords = new HashSet<string>(disorderedWords);
-            updateTf(uniqueWords);
+            updateTF(uniqueWords);
 
         }
     }

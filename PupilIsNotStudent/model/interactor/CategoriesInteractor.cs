@@ -13,13 +13,13 @@ namespace PupilIsNotStudent.model.interactor
     {
         private readonly TextParsingRepository _text;
         private readonly FileRepository _file;
-        private readonly ExtractKeyWordRepository _json;
+        private readonly ExtractKeyWordsRepository _extractKeyWords;
 
-        public CategoriesInteractor(in TextParsingRepository textRepository, in FileRepository fileRepository, in ExtractKeyWordRepository textJsonRepository)
+        public CategoriesInteractor(in TextParsingRepository textRepository, in FileRepository fileRepository, in ExtractKeyWordsRepository textExtractKeyWordsRepository)
         {
             _text = textRepository;
             _file = fileRepository;
-            _json = textJsonRepository;
+            _extractKeyWords = textExtractKeyWordsRepository;
         }
 
 
@@ -49,78 +49,76 @@ namespace PupilIsNotStudent.model.interactor
         //==========JSON REPOSITORY==========
         public void addCategory(string shelf, string[] texts)
         {
-            _json.addCategory(shelf, in texts);
+            _extractKeyWords.addCategory(shelf, in texts);
         }
 
 
         public uint howManyTimesWordAppear(string shelf, string word)
         {
-            return _json.howManyTimesWordAppear(shelf, word);
+            return _extractKeyWords.howManyTimesWordAppear(shelf, word);
         }
 
         public Dictionary<string, uint>.KeyCollection getUniqueWords(string shelf)
         {
-            return _json.getUniqueWords(shelf);
+            return _extractKeyWords.getUniqueWords(shelf);
         }
 
         public IOrderedEnumerable<KeyValuePair<string, uint>> getUniqueWordsOrderByDescending(string shelf)
         {
-            return _json.getUniqueWordsOrderByDescending(shelf);
+            return _extractKeyWords.getUniqueWordsOrderByDescending(shelf);
         }
 
-        public double calculateTf(string shelf, string word)
+
+        public void updateTF(string shelf)
         {
-            return _json.calculateTf(shelf, word);
+            _extractKeyWords.updateTF(shelf);
         }
+
 
         public string[] getCategories()
         {
-            return _json.getCategories();
+            return _extractKeyWords.getCategories();
         }
 
         public bool whetherCategoryExist(string shelf)
         {
-            return _json.whetherCategoryExist(shelf);
+            return _extractKeyWords.whetherCategoryExist(shelf);
         }
-        public double getTf(string shelf, string word)
-        {
-            return _json.getTf(shelf, word);
-        }
+        
         public Dictionary<string, Book> getLibrary()
         {
-            return _json.getLibrary();
+            return _extractKeyWords.getLibrary();
         }
 
-        public double IDFForOtherCategories(string shelf, string word)
+        public void IDFForEachBook()
         {
-            return _json.IDFForOtherCategories(shelf, word);
+            _extractKeyWords.IDFForEachBook();
         }
-
 
         public int getNumberOfShelvesInLibrary()
         {
-            return _json.getNumberOfShelvesInLibrary();
+            return _extractKeyWords.getNumberOfShelvesInLibrary();
         }
         public void calculateTfIdf(string shelf)
         {
-            _json.calculateTfIdf(shelf);
+            _extractKeyWords.calculateTfIdf(shelf);
         }
         public IOrderedEnumerable<KeyValuePair<string, double>> getTfIdfOrderByDescending(string shelf)
         {
-            return _json.getTfIdfOrderByDescending(shelf);
+            return _extractKeyWords.getTfIdfOrderByDescending(shelf);
         }
         public bool tfExist(string shelf)
         {
-            return _json.tfExist(shelf);
+            return _extractKeyWords.tfExist(shelf);
         }
         public bool idfExist(string shelf)
         {
-            return _json.idfExist(shelf);
+            return _extractKeyWords.idfExist(shelf);
         }
 
         public void saveToJsonFile()
         {
-            _json.save();
+            _extractKeyWords.save();
         }
 
     }

@@ -13,10 +13,6 @@ namespace PupilIsNotStudent.presentation
         void setCategories(string[] categories);
 
 
-        void clearLongDebugMessage();
-        void showLongDebugLog(string message);
-
-
         //from file
         void loadEditableText(string richText);
         

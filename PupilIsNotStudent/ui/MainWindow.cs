@@ -31,7 +31,7 @@ private readonly GuessPresenter _guessPresenter; // for the second view
         {
             InitializeComponent();
 
-            var textJson = new model.repository.ExtractKeyWordRepository();
+            var textJson = new model.repository.ExtractKeyWordsRepository();
             _categPresenter = new CategoriesPresenter(this,
                     new model.interactor.CategoriesInteractor(
                             new model.repository.TextParsingRepository(),
@@ -67,17 +67,6 @@ private readonly GuessPresenter _guessPresenter; // for the second view
         //==========CATEGORIES VIEW==========
 
         //==========CATEGORIES VIEW IMPLEMENTATION==========
-
-
-        public void clearLongDebugMessage()
-        {
-            lbBig.Text = "";
-        }
-
-        public void showLongDebugLog(string message)
-        {
-            lbBig.Text = message.Length < 10000 ? message : message.Substring(0, 10000) +"...";
-        }
 
         
         void CategoriesView.loadEditableText(string richText)
@@ -197,8 +186,6 @@ private readonly GuessPresenter _guessPresenter; // for the second view
             _guessPresenter.onBtnLoadTextFromFileClicked();
 
         }
-
-       
     }
 }
 

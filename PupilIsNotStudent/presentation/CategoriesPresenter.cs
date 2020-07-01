@@ -31,11 +31,6 @@ namespace PupilIsNotStudent.presentation
                 return;
             }
 
-            string toPrintInLbLong = "TF\n";
-
-
-            view.clearLongDebugMessage();
-
 
             //feature if the field is not empty then learn
             if (!string.IsNullOrWhiteSpace(textToBeAnalyzed))
@@ -46,22 +41,8 @@ namespace PupilIsNotStudent.presentation
                 */
                 interactor.addCategory(catg, interactor.getSplitWords(textToBeAnalyzed)); // TODO test: test time for List-casting
                 
-
-
-                // TF
-                foreach (KeyValuePair<string, uint> item in interactor.getUniqueWordsOrderByDescending(catg))
-                {
-                    // do something with item.Key and item.Value
-                    // TODO let the view do the concatenation
-                    toPrintInLbLong += item.Key + " : " + interactor.howManyTimesWordAppear(catg, item.Key) + ",    "
-                        + Math.Round(
-                            interactor.calculateTf(catg, item.Key),
-                            2)  // numbers after point
-                        + "%" + "\n";
-                }
-
+                interactor.updateTF(catg);
                 
-                view.showLongDebugLog(toPrintInLbLong);
 
                 view.setCategories(interactor.getCategories());
             }
@@ -71,15 +52,7 @@ namespace PupilIsNotStudent.presentation
 
                 if (interactor.whetherCategoryExist(catg))
                 {
-                    foreach (KeyValuePair<string, uint> item in interactor.getUniqueWordsOrderByDescending(catg))
-                    {
-                        // do something with item.Key and item.Value
-                        toPrintInLbLong += item.Key + " : " + Math.Round(
-                                interactor.getTf(catg, item.Key),
-                                2)  // numbers after point
-                            + "%" + "\n";
-                    }
-                    view.showLongDebugLog(toPrintInLbLong);
+                    view.show("Write some text to update the network");
                 }
                 else
                 {
@@ -91,11 +64,11 @@ namespace PupilIsNotStudent.presentation
 
 
         
-        private void idf(string catg, bool log)
+        private void idf(string shelf)
         {
-            string textToOut = "IDF\n";
+           
             //foreach (WordFreq text in library.Values)
-
+            /*
             foreach (string word in interactor.getUniqueWords(catg))
             {
 
@@ -103,25 +76,20 @@ namespace PupilIsNotStudent.presentation
                                   + interactor.IDFForOtherCategories(catg, word).ToString("0.####")
                                   + "\n";
                
-            }
+            }*/
 
-            if (log) view.showLongDebugLog(textToOut);
         }
 
 
         public void onBtnIdfClicked(string currentCategory)
         {
 
-            view.showLongDebugLog("IDF chose existed category to see more\n");
+            view.show("IDF chose existed category to see more\n");
             
             if (interactor.getNumberOfShelvesInLibrary() != 0)
             {
                 // calculate IDF for each category
-                foreach (KeyValuePair<string, Book> text in interactor.getLibrary())
-                {
-                    // write log if category is current.
-                    idf(text.Key, text.Key == currentCategory);
-                }
+                interactor.IDFForEachBook();
             }
             else
                 view.show("Here is no categories to calculate the Inverse Document Frequency");
@@ -137,13 +105,11 @@ namespace PupilIsNotStudent.presentation
             {
                 toOutLbBig += wordTI.Key + " : " + (wordTI.Value).ToString("0.####") + "\n"; ;
             }
-            if (log) view.showLongDebugLog(toOutLbBig);
         }
 
 
         public void onBtnTfidfClicked(string catg)
         {
-            view.showLongDebugLog("TFIDF please chose existed category to see more\n");
 
             if (interactor.getNumberOfShelvesInLibrary() != 0)
             {

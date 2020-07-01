@@ -13,14 +13,14 @@ namespace PupilIsNotStudent.model.interactor
         private readonly TextParsingRepository _text;
         private readonly FileRepository _file;
         private readonly LogRepository _log;
-        private readonly ExtractKeyWordRepository _json;
+        private readonly ExtractKeyWordsRepository _extractKeyWords;
 
-        public GuessInteractor(in TextParsingRepository textRepository, in FileRepository fileRepository, in LogRepository logRepository, in ExtractKeyWordRepository textJsonRepository)
+        public GuessInteractor(in TextParsingRepository textRepository, in FileRepository fileRepository, in LogRepository logRepository, in ExtractKeyWordsRepository textExtractKeyWordsRepository)
         {
             _text = textRepository;
             _file = fileRepository;
             _log = logRepository;
-            _json = textJsonRepository;
+            _extractKeyWords = textExtractKeyWordsRepository;
         }
 
 
@@ -90,17 +90,17 @@ namespace PupilIsNotStudent.model.interactor
 
         public Dictionary<string, Book> getLibrary()
         {
-            return _json.library;
+            return _extractKeyWords.library;
         }
 
         public bool deserializeFromFile()
         {
-            return _json.deserializeFromFile();
+            return _extractKeyWords.deserializeFromFile();
         }
 
         public string[] getCategories()
         {
-            return _json.getCategories();
+            return _extractKeyWords.getCategories();
         }
     }
 }

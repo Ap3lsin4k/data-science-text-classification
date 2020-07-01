@@ -87,7 +87,7 @@
     <Compile Include="presentation\GuessView.cs" />
     <Compile Include="config\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="model\repository\ExtractKeyWordRepository.cs" />
+    <Compile Include="model\repository\ExtractKeyWordsRepository.cs" />
     <Compile Include="utils\IndicatorsOfAffiliationForText.cs" />
     <Compile Include="model\core\Book.cs" />
     <EmbeddedResource Include="automated-testing\ResourceTextParser.resx">

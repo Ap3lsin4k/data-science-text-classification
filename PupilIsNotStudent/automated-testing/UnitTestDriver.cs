@@ -19,7 +19,7 @@ namespace PupilIsNotStudent.automated_testing
         public UnitTestDriver(UnitTestFormGuess unitTestFormGuess)
         {
             this.unitTestFormGuess = unitTestFormGuess;
-            model.repository.ExtractKeyWordRepository textJson = new model.repository.ExtractKeyWordRepository();
+            model.repository.ExtractKeyWordsRepository textJson = new model.repository.ExtractKeyWordsRepository();
 
             _guessPresenter = new GuessPresenter(this.unitTestFormGuess,
                 new model.interactor.GuessInteractor(
