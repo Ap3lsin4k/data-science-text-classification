@@ -11,7 +11,7 @@ namespace PupilIsNotStudent.model.core
         public Dictionary<string, double> TF;  // <word, Term frequency in %>
         public Dictionary<string, double> IDF;  // <word, normalized Inverse document frequency>
         public Dictionary<string, double> TFIDF;  // <word, Term frequency – Inverse document frequency>
-        DE DE;
+        private DE DE;
 
         // including disordered(aka shuffled, aka repeated) words
         private UInt64 numOfAllWords;
@@ -47,8 +47,10 @@ namespace PupilIsNotStudent.model.core
             }
         }
 
+        // ======Term Frequency======
+
         // for the first time
-        public void updateTF()
+        public void computeTFAltogether()
         {
             foreach (var word in n)
             {
@@ -59,51 +61,53 @@ namespace PupilIsNotStudent.model.core
         }
 
         // relearning
-        public void updateTF(in HashSet<string> words)
+        public void updateTFForNewWords(in HashSet<string> specificWords)
         {
-            foreach (string word in words)
+            foreach (string word in specificWords)
             {
                 TF[word] = 100.0 * n[word] / numOfAllWords; // to find TF in percentages
             }
             
         }
 
-        public double calcTf(string key)
-        {
-            TF[key] = 100.0 * n[key] / numOfAllWords; // to find TF in percentages
-            // implicit cast (int) to (double), to make normal division
-            return TF[key];
-        }
 
-        
-        public double calcIdf(string key, int B, int t) // t is always <= D
+
+        // ======Inverse Doc Frequency======
+
+        // compute for the first time or update
+        public double computeIDF(string word, byte D, byte t) // t is always <= D
         {
             /*
-            base 10 logarithm of (
-                total number of documents(aka shelves aka books) in the collection (D)
+            logarithm of (
+                total number of documents(aka shelves aka books) in the collection(aka library) (D)
                 divided by
                 number of books where term appears (t)
             )
             */
-            IDF[key] = Math.Log10((float)B / (float)t); 
-            return IDF[key];
+            IDF[word] = Math.Log10((float)D / (float)t); 
+            return IDF[word];
         }
 
-        void updateIDF(in HashSet<string> words)
-        {
-            foreach (string word in words)
-            {
-    //            IDF[word] = Math.Log10((float)D / (float)t);
-            }
-        }
 
-        public void calcTfIdf() // inverse document frequency
+        // ======TF*IDF======
+
+        // to create TF*IDF for the first time
+        public void computeTFIDFAltogether()
         {
             foreach (string word in n.Keys)
-                TFIDF[word] = TF[word] * IDF[word];  // TF-IDF = TF*IDF
+                TFIDF[word] = TF[word] * IDF[word];  // aka TF-IDF = TF*IDF
         }
 
-        
+        // to relearn existing TF*IDF. Updates only new words.
+        public void updateTFIDFForSpecificWords(in HashSet<string> specificWords)
+        {
+            foreach (string word in specificWords)
+                TFIDF[word] = TF[word] * IDF[word];  // aka TF-IDF = TF*IDF
+        }
+
+
+
+
         public void calcDe()  //Disperse Evaluation
         {
             DE.mainFormula();
@@ -111,24 +115,10 @@ namespace PupilIsNotStudent.model.core
 
 
         // Relearning
-        public void relearnTf(in string[] disorderedWords)
+        public void relearnTF(in string[] disorderedWords)
         {
-//            memorizeWords(in disorderedWords);
-            numOfAllWords += Convert.ToUInt64(disorderedWords.Length);
-            foreach (string word in disorderedWords)
-            {
-                if (n.ContainsKey(word)){
-                    ++n[word];
-                }
-                else {
-                    n[word] = 1;
-                }
-
-            }
+            memorizeWords(in disorderedWords);
             
-            HashSet<string> uniqueWords = new HashSet<string>(disorderedWords);
-            updateTF(uniqueWords);
-
         }
     }
 }

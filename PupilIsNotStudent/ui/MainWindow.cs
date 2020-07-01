@@ -186,6 +186,7 @@ private readonly GuessPresenter _guessPresenter; // for the second view
             _guessPresenter.onBtnLoadTextFromFileClicked();
 
         }
+
     }
 }
 

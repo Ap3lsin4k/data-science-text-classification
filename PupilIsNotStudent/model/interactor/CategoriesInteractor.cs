@@ -46,36 +46,20 @@ namespace PupilIsNotStudent.model.interactor
 
 
 
-        //==========JSON REPOSITORY==========
+        //==========Extract Key Words Repository==========
         public void addCategory(string shelf, string[] texts)
         {
             _extractKeyWords.addCategory(shelf, in texts);
         }
 
 
-        public uint howManyTimesWordAppear(string shelf, string word)
+        public void computeTFAltogether(string shelf)
         {
-            return _extractKeyWords.howManyTimesWordAppear(shelf, word);
-        }
-
-        public Dictionary<string, uint>.KeyCollection getUniqueWords(string shelf)
-        {
-            return _extractKeyWords.getUniqueWords(shelf);
-        }
-
-        public IOrderedEnumerable<KeyValuePair<string, uint>> getUniqueWordsOrderByDescending(string shelf)
-        {
-            return _extractKeyWords.getUniqueWordsOrderByDescending(shelf);
+            _extractKeyWords.computeTFAltogether(shelf);
         }
 
 
-        public void updateTF(string shelf)
-        {
-            _extractKeyWords.updateTF(shelf);
-        }
-
-
-        public string[] getCategories()
+        public Dictionary<string, Book>.KeyCollection getCategories()
         {
             return _extractKeyWords.getCategories();
         }
@@ -95,7 +79,7 @@ namespace PupilIsNotStudent.model.interactor
             _extractKeyWords.IDFForEachBook();
         }
 
-        public int getNumberOfShelvesInLibrary()
+        public byte getNumberOfShelvesInLibrary()
         {
             return _extractKeyWords.getNumberOfShelvesInLibrary();
         }

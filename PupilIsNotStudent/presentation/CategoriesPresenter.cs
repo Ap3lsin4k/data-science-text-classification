@@ -41,10 +41,10 @@ namespace PupilIsNotStudent.presentation
                 */
                 interactor.addCategory(catg, interactor.getSplitWords(textToBeAnalyzed)); // TODO test: test time for List-casting
                 
-                interactor.updateTF(catg);
+                interactor.computeTFAltogether(catg);
                 
 
-                view.setCategories(interactor.getCategories());
+                view.setCategories(interactor.getCategories().ToArray());
             }
             else
             {
@@ -63,48 +63,18 @@ namespace PupilIsNotStudent.presentation
         }
 
 
-        
-        private void idf(string shelf)
-        {
-           
-            //foreach (WordFreq text in library.Values)
-            /*
-            foreach (string word in interactor.getUniqueWords(catg))
-            {
-
-                textToOut += word + ":" 
-                                  + interactor.IDFForOtherCategories(catg, word).ToString("0.####")
-                                  + "\n";
-               
-            }*/
-
-        }
-
 
         public void onBtnIdfClicked(string currentCategory)
         {
 
-            view.show("IDF chose existed category to see more\n");
-            
             if (interactor.getNumberOfShelvesInLibrary() != 0)
             {
                 // calculate IDF for each category
                 interactor.IDFForEachBook();
+                view.show("Success");
             }
             else
-                view.show("Here is no categories to calculate the Inverse Document Frequency");
-        }
-
-        private void tfIdf(string catg, bool log)
-        {
-            string toOutLbBig = "TFIDF\n";
-
-            interactor.calculateTfIdf(catg);
-
-            foreach (KeyValuePair<string, double> wordTI in interactor.getTfIdfOrderByDescending(catg))
-            {
-                toOutLbBig += wordTI.Key + " : " + (wordTI.Value).ToString("0.####") + "\n"; ;
-            }
+                view.show("There is no category to calculate the Inverse Document Frequency");
         }
 
 
@@ -115,22 +85,25 @@ namespace PupilIsNotStudent.presentation
             {
 
                 // TODO simplify KeyValuePair<> to string
-                foreach (KeyValuePair<string, Book> text in interactor.getLibrary())
+                foreach (string shelf in interactor.getCategories())
                 {
-                    if (interactor.tfExist(text.Key) && interactor.idfExist(text.Key))
+                    if (interactor.tfExist(shelf) && interactor.idfExist(shelf))
                     {
-                        tfIdf(text.Key, text.Key == catg);
+                        interactor.calculateTfIdf(shelf);
                     }
                     else
                     {
-                        view.show("Error. Please click TF for \"" + catg + "\" category. " +
-                            "Than you should click on IDF. " +
-                            "Finally click TFIDF to get it");
+                        view.show("Error. TF exist:"
+                                  + interactor.tfExist(shelf)
+                                  +",\tIDF exist:"
+                                  +interactor.idfExist(shelf)
+                                  +"; for category: \"" + catg + "\". " 
+                                  + "TF and IDF needs to be computed before proceeding.");
                     }
                 }
             }
             else
-                view.show("Here is no categories to calculate TF*IDF");
+                view.show("There is no categories to calculate TF*IDF");
         }
 
         public void onBtnSaveClicked()

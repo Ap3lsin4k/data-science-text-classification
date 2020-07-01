@@ -72,35 +72,15 @@ namespace PupilIsNotStudent.model.repository
             }
         }
 
-        public string[] getCategories()
+        public Dictionary<string, Book>.KeyCollection getCategories()
         {
-            return library.Keys.ToArray();
+            return library.Keys;
         }
 
 
         public void addCategory(string shelf, in string[] texts)
         {
             library[shelf] = new Book(texts);
-        }
-
-        public uint howManyTimesWordAppear(string shelf, string word)
-        {
-            return library[shelf].n[word];
-        }
-
-        public Dictionary<string, uint>.KeyCollection getUniqueWords(string shelf)
-        {
-            return library[shelf].n.Keys;
-        }
-
-        public IOrderedEnumerable<KeyValuePair<string, uint>> getUniqueWordsOrderByDescending(string shelf)
-        {
-            return library[shelf].n.OrderByDescending(key => key.Value);
-        }
-
-        public void updateTF(string shelf)
-        {
-            library[shelf].updateTF();
         }
 
 
@@ -116,14 +96,22 @@ namespace PupilIsNotStudent.model.repository
         }
 
         // number words in all texts for each category
-        public int getNumberOfShelvesInLibrary() 
+        public byte getNumberOfShelvesInLibrary() 
         {
-            return library.Count;
+            return (byte) library.Count;
         }
 
 
 
-        // ======IDF======
+        // ======Term Frequency======
+        public void computeTFAltogether(string shelf)
+        {
+            library[shelf].computeTFAltogether();
+        }
+
+
+
+        // ======Inverse Doc Frequency======
         private void IDFForOtherCategories(string shelf, string word)
         {
             byte numOfBooksWhereWordAppears = 1;
@@ -134,15 +122,15 @@ namespace PupilIsNotStudent.model.repository
                 if (book.Value.n.ContainsKey(word))
                 {
                     ++numOfBooksWhereWordAppears; // if at least a word is in other category we count it and go to another text
-                    //break; // don't write break.
                 }
 
             }
 
-            library[shelf].calcIdf(shelf, getNumberOfShelvesInLibrary(), numOfBooksWhereWordAppears);
+            library[shelf].computeIDF(shelf, getNumberOfShelvesInLibrary(), numOfBooksWhereWordAppears);
         }
 
 
+        // initialize each single word in a book
         private void IDFForEachWordInBook(string shelf)
         {
             foreach (var word in library[shelf].n.Keys)
@@ -150,9 +138,19 @@ namespace PupilIsNotStudent.model.repository
                 IDFForOtherCategories(shelf, word);
 
             }
-            
-
         }
+        // update only new words
+        private void IDFForNewWordsInBook(string shelf, HashSet<string> specificWords)
+        {
+            foreach (var word in specificWords)
+            {
+                IDFForOtherCategories(shelf, word);
+
+            }
+        }
+
+
+
 
         public void IDFForEachBook()
         {
@@ -165,15 +163,18 @@ namespace PupilIsNotStudent.model.repository
 
 
 
+
+        // ======Term Frequency - Inverse Doc Frequency======
         public void calculateTfIdf(string shelf)
         {
-            library[shelf].calcTfIdf();
+            library[shelf].computeTFIDFAltogether();
         }
 
         public IOrderedEnumerable<KeyValuePair<string, double>> getTfIdfOrderByDescending(string shelf)
         {
             return library[shelf].TFIDF.OrderByDescending(key => key.Value);
         }
+
 
         public bool tfExist(string shelf)
         {
@@ -185,11 +186,17 @@ namespace PupilIsNotStudent.model.repository
             return library[shelf].IDF.Count != 0;
         }
 
-        // Relearner
-        void relearn(string shelf, string[] shuffledWords)
+        // ======Relearner======
+        public void relearn(string shelf, in string[] shuffledWords)
         {
+            HashSet<string> uniqueWords = new HashSet<string>(shuffledWords);
+
             library[shelf].memorizeWords(shuffledWords);
-         //   library[shelf].calcTf();
+            
+            library[shelf].updateTFForNewWords(uniqueWords);
+            IDFForNewWordsInBook(shelf, uniqueWords);
+            library[shelf].updateTFIDFForSpecificWords(uniqueWords);
+            
         }
     }
 }

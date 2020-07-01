@@ -98,9 +98,14 @@ namespace PupilIsNotStudent.model.interactor
             return _extractKeyWords.deserializeFromFile();
         }
 
-        public string[] getCategories()
+        public Dictionary<string, Book>.KeyCollection getCategories()
         {
             return _extractKeyWords.getCategories();
+        }
+
+        public void relearn(string shelfToBeModernized, in string[] shuffledWords)
+        {
+            _extractKeyWords.relearn(shelfToBeModernized, in shuffledWords);
         }
     }
 }

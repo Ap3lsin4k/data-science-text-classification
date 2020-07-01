@@ -25,21 +25,6 @@ namespace PupilIsNotStudent.presentation
         }
         //DESTRUCT
 
-        public void onBtnLoadTextFromFileClicked()
-        {
-            if (interactor.openFileDialog())
-            {
-                view.loadEditableText(interactor.readTextFromFile());
-            }
-        }
-
-
-        public void onBtnLoadJsonClicked()
-        {
-            if (load())
-                view.show("Successfully loaded from \"analysis.json\"");
-            // error message prints in the newsJson.load().catch
-        }
 
         public void onBtnGuessCategoryClicked(string textToBeAnalyzed)
         {
@@ -97,7 +82,7 @@ namespace PupilIsNotStudent.presentation
 
             
             // Re-Learner Update Knowledge
-         //   interactor.learn(category, in wordsCategoryToGuess);
+            interactor.relearn("Політика", in wordsCategoryToGuess);
          //interactor.getSplitWords();
 
          // TODO вставляти вже відсортовані данні
@@ -128,12 +113,28 @@ namespace PupilIsNotStudent.presentation
             view.showLongDebugLogDe(resultOfDispersionEstimation);
         }
 
+        public void onBtnLoadTextFromFileClicked()
+        {
+            if (interactor.openFileDialog())
+            {
+                view.loadEditableText(interactor.readTextFromFile());
+            }
+        }
+
+
+        public void onBtnLoadJsonClicked()
+        {
+            if (load())
+                view.show("Successfully loaded from \"analysis.json\"");
+            // error message prints in the newsJson.load().catch
+        }
+
 
 
         private bool load()
         {
             bool success = interactor.deserializeFromFile();
-            view.setCategories(interactor.getCategories());
+            view.setCategories(interactor.getCategories().ToArray());
             return success;
         }
 
