@@ -8,5 +8,7 @@ namespace PupilIsNotStudent.model.repository
 {
     class AkinatorRepository
     {
+
+
     }
 }

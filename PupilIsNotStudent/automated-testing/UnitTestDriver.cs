@@ -195,5 +195,26 @@ namespace PupilIsNotStudent.automated_testing
             var msg = "Error with punctuation or English letters";
             CheckEquals(in expected, in actual, ref msg);
         }
+
+        //Business Rule 10
+        public void Test11()
+        {
+            //should not be equal
+            var msg = "Error with punctuation or English letters";
+            //CheckEquals(in expected, in actual, ref msg);
+        }
+
+        //Business Rule 10
+        public void Test12()
+        {
+
+            string[] actual = textRepository.getSplitStrings(ResourceTextParser.EnglishInUkrainianNews2);
+            string[] expected = new[] { "садовий", "запропонував", "фінансувати", "усі", "лікарні", "як", "такі", "що", "лікують", "covid" };
+            var msg = "Error with punctuation or English letters";
+            CheckEquals(in expected, in actual, ref msg);
+        }
+
+
+
     }
 }

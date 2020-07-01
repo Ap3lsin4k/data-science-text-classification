@@ -5,6 +5,9 @@ Shelf is type of Dictionary. Where key is "name of a book(its category)", and va
 
 library is an array of shelfs.
 
+Book contain different texts(that has common category) from different author.
+When "text" is split to `string[]` it is called "words".
+
 
 Raw text is the text with punctuation such as commas, dots etc.
 Pure text is the words in the lower case.

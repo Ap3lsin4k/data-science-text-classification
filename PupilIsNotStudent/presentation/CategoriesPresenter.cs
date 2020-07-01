@@ -31,7 +31,7 @@ namespace PupilIsNotStudent.presentation
                 return;
             }
 
-            string toOutToLbWords = "Peeled text:\n", toPrintInLbLong = "TF\n";
+            string toPrintInLbLong = "TF\n";
 
 
             view.clearLongDebugMessage();
@@ -39,17 +39,9 @@ namespace PupilIsNotStudent.presentation
 
             if (!string.IsNullOrWhiteSpace(textToBeAnalyzed))
             {
-                // create new category, if it wasn't
-                interactor.addCategory(catg, interactor.getSplitStrings(textToBeAnalyzed).ToList<string>()); // TODO test: test time for List-casting
+                // create new category, if it wasn't & save only unique words
+                interactor.addCategory(catg, interactor.getSplitStrings(textToBeAnalyzed)); // TODO test: test time for List-casting
                 
-                foreach (string word in interactor.getAllWordsFromShelf(catg))
-                {
-                    toOutToLbWords += word + "\n";
-
-                }
-
-                // save only unique words
-                interactor.uniquifyWordsIn(catg); 
 
 
                 // TF
@@ -73,11 +65,6 @@ namespace PupilIsNotStudent.presentation
             {
                 if (interactor.whetherCategoryExist(catg))
                 {
-                    foreach (string word in interactor.getAllWordsFromShelf(catg))
-                    {
-                        toOutToLbWords += word + "\n";
-
-                    }
                     foreach (KeyValuePair<string, uint> item in interactor.getUniqueWordsOrderByDescending(catg))
                     {
                         // do something with item.Key and item.Value
@@ -107,11 +94,12 @@ namespace PupilIsNotStudent.presentation
             foreach (string word in interactor.getUniqueWords(catg))
             {
                 categories = 1;
-                foreach (KeyValuePair<string, Book> text in interactor.getLibrary())
+                foreach (KeyValuePair<string, Book> book in interactor.getLibrary())
                 {
-                    if (text.Key == catg) continue;
-
-                    if (text.Value.n.Keys.Contains(word))
+                    if (book.Key == catg) continue;
+                    
+                    if (book.Value.n.ContainsKey(word))
+                        
                     {
                         categories++; // if at least a word is in other category we count it and go to another text
                         //break; // don't write break.

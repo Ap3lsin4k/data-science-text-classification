@@ -47,20 +47,11 @@ namespace PupilIsNotStudent.model.interactor
 
 
         //==========JSON REPOSITORY==========
-        public void addCategory(string shelf, List<string> texts)
+        public void addCategory(string shelf, string[] texts)
         {
-            _json.addCategory(shelf, texts);
+            _json.addCategory(shelf, in texts);
         }
 
-        public List<string> getAllWordsFromShelf(string shelf)
-        {
-            return _json.getAllWordsFromShelf(shelf);
-        }
-
-        public void uniquifyWordsIn(string shelf)
-        {
-            _json.uniquifyWordsIn(shelf);
-        }
 
         public uint howManyTimesWordAppear(string shelf, string word)
         {

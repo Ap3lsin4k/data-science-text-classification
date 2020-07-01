@@ -78,27 +78,9 @@ namespace PupilIsNotStudent.model.repository
         }
 
 
-        public void addCategory(string shelf, List<string> texts)
+        public void addCategory(string shelf, in string[] texts)
         {
-            library[shelf] = new Book(texts);  // TODO test: casting to List can take much time
-        }
-
-        // words may be repeated
-        public List<string> getAllWordsFromShelf(string shelf)
-        {
-            return library[shelf].allWords;
-        }
-
-        public void uniquifyWordsIn(string shelf)
-        {
-            foreach (string word in getAllWordsFromShelf(shelf))
-            {
-                if (library[shelf].n.ContainsKey(word))
-                    ++library[shelf].n[word];
-                else
-                    library[shelf].n[word] = 1;
-                
-            }
+            library[shelf] = new Book(texts);
         }
 
         public uint howManyTimesWordAppear(string shelf, string word)
@@ -128,7 +110,7 @@ namespace PupilIsNotStudent.model.repository
 
         public double getTf(string shelf, string word)
         {
-            return library[shelf].TF[word];// todo check whether tf exists
+            return library[shelf].TF[word];
         }
         
         public Dictionary<string, Book> getLibrary()
@@ -167,6 +149,7 @@ namespace PupilIsNotStudent.model.repository
             return library[shelf].IDF.Count != 0;
         }
 
-
+        // Re learner
+ //       void memorize(string shelf, string text)
     }
 }

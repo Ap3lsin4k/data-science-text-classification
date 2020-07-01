@@ -43,7 +43,8 @@ namespace PupilIsNotStudent.presentation
 
         public void onBtnGuessCategoryClicked(string textToBeAnalyzed)
         {
-            string[] unknownWords = interactor.splitToWords(textToBeAnalyzed);
+
+            string[] wordsCategoryToGuess = interactor.splitToWords(textToBeAnalyzed);
             view.clearPreviousResults();
 
             // Do not repeat words
@@ -51,14 +52,14 @@ namespace PupilIsNotStudent.presentation
             onBtnComputeDisperseEstimationClicked(textToBeAnalyzed);
 
 
-            Dictionary<string, int> n = interactor.associateOccurrencesWithTerms(ref unknownWords);
+            Dictionary<string, int> n = interactor.associateOccurrencesWithTerms(ref wordsCategoryToGuess);
             IndicatorsOfAffiliationForText scores;
 
 
             foreach (KeyValuePair<string, Book> category in interactor.getLibrary())  // category, a category properties
             {
                 // here we have Category(category.Key) and array of unrepeated words(category.Value.allWords)
-                // also, there is array of repeated words(unknownWords)
+                // also, there is array of repeated words(wordsCategoryToGuess)
               
                 view.initializeNewRow();
                 view.showCategoryNameInCurRow(category.Key);
@@ -93,6 +94,11 @@ namespace PupilIsNotStudent.presentation
 
             // sorting by importance coefficient
             view.sortThroughResultsByTfidf();
+
+            
+            // Re-Learner Update Knowledge
+         //   interactor.learn(category, in wordsCategoryToGuess);
+
 
             // TODO вставляти вже відсортовані данні
             // DataGridViewColumn newColumn =

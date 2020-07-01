@@ -7,13 +7,13 @@ namespace PupilIsNotStudent.model.core
     internal class Book // an news, an text
     {
 
-        public Dictionary<string, uint> n;  // <unique word, frequency of appearing>
+        public Dictionary<string, uint> n;  // <word, frequency of appearing>
         public Dictionary<string, double> TF;  // <word, Term frequency in %>
         public Dictionary<string, double> IDF;  // <word, Inverse document frequency>
         public Dictionary<string, double> TFIDF;  // <word, Term frequency – Inverse document frequency>
         DE DE;
 
-        public List<string> allWords;
+        private UInt64 numOfAllWords; // including repeated
 
         private void initialize()
         {
@@ -22,23 +22,33 @@ namespace PupilIsNotStudent.model.core
             IDF = new Dictionary<string, double>();
             TFIDF = new Dictionary<string, double>();
             DE = new DE();
-            allWords = new List<string>();
         }
         public Book() // constructor to deserialize json
         {
             initialize();
         }
 
-        public Book(List<string> words)  // constructor for common use
+        public Book(in string[] words)  // constructor for common use
         {
             initialize();
 
-            allWords = words;
+            numOfAllWords = Convert.ToUInt64(words.Length);
+
+            foreach (string word in words)
+            {
+                if (n.ContainsKey(word))
+                    ++n[word];
+                else
+                    n[word] = 1;
+
+            }
         }
+        
+
 
         public double calcTf(string key)
         {
-            TF[key] = 100.0 * n[key] / allWords.Count; // to find TF in percentages
+            TF[key] = 100.0 * n[key] / numOfAllWords; // to find TF in percentages
             // implicit cast (int) to (double), to make normal division
             return TF[key];
         }

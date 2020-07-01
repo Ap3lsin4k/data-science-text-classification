@@ -87,6 +87,7 @@ namespace PupilIsNotStudent.model.repository
         }
 
         // ==========TEXT ANALYZER==========
+        // To Extract Key Words Repository
         public Dictionary<string, int> associateOccurrencesWithTerms(ref string[] words)
         {
             Dictionary<string, int> n = new Dictionary<string, int>();
@@ -99,6 +100,8 @@ namespace PupilIsNotStudent.model.repository
             return n;
         }
 
+
+        // To AkinatorRepo
         public string computeDe(List<string> splitText)
         {
             return myDe.analyzeDE(splitText);
