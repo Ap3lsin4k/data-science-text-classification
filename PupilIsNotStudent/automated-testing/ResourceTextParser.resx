@@ -121,10 +121,6 @@
     <value>Дем'ян</value>
     <comment>it must be split to "дем'ян", not "дем", "ян". I.e. the "\'"(apostrophe) is not a splitter</comment>
   </data>
-  <data name="EmptyStringBug1" xml:space="preserve">
-    <value>човен\n</value>
-    <comment>to test against the bug of empty string</comment>
-  </data>
   <data name="EnglishInUkrainianNews1" xml:space="preserve">
     <value>Space X відкладено.</value>
   </data>

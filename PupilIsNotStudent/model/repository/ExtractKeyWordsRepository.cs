@@ -126,7 +126,7 @@ namespace PupilIsNotStudent.model.repository
 
             }
 
-            library[shelf].computeIDF(shelf, getNumberOfShelvesInLibrary(), numOfBooksWhereWordAppears);
+            library[shelf].computeIDF(word, getNumberOfShelvesInLibrary(), numOfBooksWhereWordAppears);
         }
 
 

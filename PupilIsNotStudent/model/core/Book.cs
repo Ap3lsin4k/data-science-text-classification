@@ -36,7 +36,7 @@ namespace PupilIsNotStudent.model.core
         // save unique words. Don't forget to update numOfAllWords (e.g. numOfAllWords += disorderedWords.Length)
         public void memorizeWords(in string[] disorderedWords)
         {
-            numOfAllWords += Convert.ToUInt64(disorderedWords.Length);
+            numOfAllWords += Convert.ToUInt64(disorderedWords.Length); 
             foreach (string word in disorderedWords)
             {
                 if (n.ContainsKey(word))

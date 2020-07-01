@@ -99,17 +99,19 @@ namespace PupilIsNotStudent.automated_testing
 
 
         public void run()
-        {
-           /* Test1();
+        {/*
+            Test1();
             Test2();
             Test3();
             Test4();
             Test5();///
             Test6();
+            //*
             Test7();
-            Test8();*/
+            */Test8();
             Test9();
             Test10();
+            Test11();
         }
 
         //tests
@@ -172,7 +174,7 @@ namespace PupilIsNotStudent.automated_testing
         //Business Rule 8
         public void Test8()
         {
-            string[] actual = textRepository.getSplitWords(ResourceTextParser.EmptyStringBug1);
+            string[] actual = textRepository.getSplitWords("човен\n");
             string[] expected = new []{"човен"};
             var msg = "Text was not split correctly, redundant empty string at the end";
             CheckEquals(in expected, in actual, ref msg);
@@ -196,22 +198,32 @@ namespace PupilIsNotStudent.automated_testing
             CheckEquals(in expected, in actual, ref msg);
         }
 
-        //Business Rule 10
-        public void Test11()
+        //Business Rule 11: should fail before relearning
+        public void Test11_helper()
         {
             //should not be equal
-            var msg = "Error with punctuation or English letters";
-            //CheckEquals(in expected, in actual, ref msg);
+            var msg = "Ignorant program should not guess the category properly";
+            string expected = "Наука";
+
+            _guessPresenter.onBtnGuessCategoryClicked(RawTextExamples.longTextScience1);
+            var actual = unitTestFormGuess.getFirstCategoryNameFromMyGrid();
+            CheckNotEquals(expected, actual, ref msg);
         }
 
-        //Business Rule 10
-        public void Test12()
+        //Business Rule 11: should succeed after relearning
+        public void Test11()
         {
+            //must be called before Test11
+            Test11_helper();
 
-            string[] actual = textRepository.getSplitWords(ResourceTextParser.EnglishInUkrainianNews2);
-            string[] expected = new[] { "садовий", "запропонував", "фінансувати", "усі", "лікарні", "як", "такі", "що", "лікують", "covid" };
-            var msg = "Error with punctuation or English letters";
-            CheckEquals(in expected, in actual, ref msg);
+            var msg = "After relearning program must guess category properly";
+            string expected = "Наука";
+
+            _guessPresenter.onBtnGuessCategoryClicked(RawTextExamples.longTextScience1);
+            var actual = unitTestFormGuess.getFirstCategoryNameFromMyGrid();
+
+            CheckEquals(expected, actual, ref msg);
+
         }
 
 

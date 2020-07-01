@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PupilIsNotStudent.model.core;
 using PupilIsNotStudent.model.interactor;
+using PupilIsNotStudent.model.repository;
 using PupilIsNotStudent.utils;
 
 namespace PupilIsNotStudent.presentation
@@ -80,9 +81,9 @@ namespace PupilIsNotStudent.presentation
             // sorting by importance coefficient
             view.sortThroughResultsByTfidf();
 
-            
+
             // Re-Learner Update Knowledge
-            interactor.relearn("Політика", in wordsCategoryToGuess);
+            if(false) interactor.relearn("Наука", in wordsCategoryToGuess);
          //interactor.getSplitWords();
 
          // TODO вставляти вже відсортовані данні

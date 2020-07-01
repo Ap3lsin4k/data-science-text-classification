@@ -70,15 +70,6 @@ namespace PupilIsNotStudent.automated_testing {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to човен\n.
-        /// </summary>
-        internal static string EmptyStringBug1 {
-            get {
-                return ResourceManager.GetString("EmptyStringBug1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Space X відкладено..
         /// </summary>
         internal static string EnglishInUkrainianNews1 {
