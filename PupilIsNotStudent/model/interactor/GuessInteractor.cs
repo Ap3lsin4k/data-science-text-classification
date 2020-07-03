@@ -14,25 +14,31 @@ namespace PupilIsNotStudent.model.interactor
         private readonly FileRepository _file;
         private readonly LogRepository _log;
         private readonly ExtractKeyWordsRepository _extractKeyWords;
+        private readonly AkinatorRepository _akinator;
 
-        public GuessInteractor(in TextParsingRepository textRepository, in FileRepository fileRepository, in LogRepository logRepository, in ExtractKeyWordsRepository textExtractKeyWordsRepository)
+        public GuessInteractor(in AkinatorRepository akinatorRepository, in TextParsingRepository textRepository, in FileRepository fileRepository, in LogRepository logRepository, in ExtractKeyWordsRepository textExtractKeyWordsRepository)
         {
+            _akinator = akinatorRepository;
             _text = textRepository;
             _file = fileRepository;
             _log = logRepository;
             _extractKeyWords = textExtractKeyWordsRepository;
         }
 
+        //==========AKINATOR aka GUESSER==========
+        public string computeDe(in string[] splitText)
+        {
+            return _akinator.computeDe(splitText);
+        }
+
+        public utils.IndicatorsOfAffiliationForText computeAffiliationOfTextToCategory(Dictionary<string, int>.KeyCollection unrepeatedWords, Dictionary<string, double> tfIdf)
+        {
+            return _akinator.computeAffiliationOfTextToCategory(unrepeatedWords, tfIdf);
+        }
 
         //==========TEXT REPOSITORY==========
 
-        public List<string> getRawTextSplit(string notClearedText)
-        {
-            return _text.getRawTextSplit(notClearedText);
-        }
-
-
-        public string[] splitToWords(string rawText)
+        public string[] getSplitWords(string rawText)
         {
             return _text.getSplitWords(rawText);
         }
@@ -43,15 +49,7 @@ namespace PupilIsNotStudent.model.interactor
             return _text.associateOccurrencesWithTerms(ref words);
         }
 
-        public string computeDe(List<string> splitText)
-        {
-            return _text.computeDe(splitText);
-        }
-
-        public utils.IndicatorsOfAffiliationForText computeAffiliationOfTextToCategory(Dictionary<string, int>.KeyCollection unrepeatedWords, Dictionary<string, double> tfIdf)
-        {
-            return _text.computeAffiliationOfTextToCategory(unrepeatedWords, tfIdf);
-        }
+       
 
 
         //==========FILE REPOSITORY==========

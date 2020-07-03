@@ -30,7 +30,7 @@ namespace PupilIsNotStudent.presentation
         public void onBtnGuessCategoryClicked(string textToBeAnalyzed)
         {
 
-            string[] wordsCategoryToGuess = interactor.splitToWords(textToBeAnalyzed);
+            string[] wordsCategoryToGuess = interactor.getSplitWords(textToBeAnalyzed);
             view.clearPreviousResults();
 
             // Do not repeat words
@@ -108,7 +108,7 @@ namespace PupilIsNotStudent.presentation
         public void onBtnComputeDisperseEstimationClicked(string textToBeAnalyzed)
         {
             // string peeledText = getRawText(richTBtoAnalyze.Text.ToString());//todo optimise speed
-            string resultOfDispersionEstimation = interactor.computeDe(interactor.getRawTextSplit(textToBeAnalyzed));
+            string resultOfDispersionEstimation = interactor.computeDe(interactor.getSplitWords(textToBeAnalyzed));
            
 
             view.showLongDebugLogDe(resultOfDispersionEstimation);

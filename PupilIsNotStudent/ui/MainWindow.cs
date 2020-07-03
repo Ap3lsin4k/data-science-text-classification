@@ -40,9 +40,10 @@ private readonly GuessPresenter _guessPresenter; // for the second view
                         )
                 );
 
-            _guessPresenter = new GuessPresenter(this,
-                    new model.interactor.GuessInteractor(
-                            new model.repository.TextParsingRepository(),
+            _guessPresenter = new GuessPresenter(this, 
+                new model.interactor.GuessInteractor(
+                    new model.repository.AkinatorRepository(), 
+                    new model.repository.TextParsingRepository(),
                             new model.repository.FileRepository(),
                             new model.repository.LogRepository(),
                             in textJson

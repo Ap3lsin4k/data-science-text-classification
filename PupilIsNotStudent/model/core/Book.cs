@@ -6,12 +6,11 @@ namespace PupilIsNotStudent.model.core
     // Entity
     internal class Book // an news, an text
     {
-
+        // AVG length is 4000 items
         public Dictionary<string, uint> n;  // <word, frequency of appearing>
         public Dictionary<string, double> TF;  // <word, Term frequency in %>
         public Dictionary<string, double> IDF;  // <word, normalized Inverse document frequency>
         public Dictionary<string, double> TFIDF;  // <word, Term frequency – Inverse document frequency>
-        private DE DE;
 
         // including disordered(aka shuffled, aka repeated) words
         private UInt64 numOfAllWords;
@@ -23,7 +22,6 @@ namespace PupilIsNotStudent.model.core
             TF = new Dictionary<string, double>();
             IDF = new Dictionary<string, double>();
             TFIDF = new Dictionary<string, double>();
-            DE = new DE();
             numOfAllWords = 0;
         }
 
@@ -108,10 +106,6 @@ namespace PupilIsNotStudent.model.core
 
 
 
-        public void calcDe()  //Disperse Evaluation
-        {
-            DE.mainFormula();
-        }
 
 
         // Relearning

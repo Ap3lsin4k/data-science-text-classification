@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Resources;
-using System.Text;
-using System.Threading.Tasks;
+using PupilIsNotStudent.automated_testing;
 using PupilIsNotStudent.model.repository;
 using PupilIsNotStudent.presentation;
-using PupilIsNotStudent.model.interactor;
 
-namespace PupilIsNotStudent.automated_testing
+namespace PupilIsNotStudent
 {
     class UnitTestDriver
     {
@@ -23,9 +20,10 @@ namespace PupilIsNotStudent.automated_testing
 
             _guessPresenter = new GuessPresenter(this.unitTestFormGuess,
                 new model.interactor.GuessInteractor(
-                            new model.repository.TextParsingRepository(),
-                            new model.repository.FileRepository(),
-                            new model.repository.LogRepository(),
+                    new AkinatorRepository(), 
+                            new TextParsingRepository(),
+                            new FileRepository(),
+                            new LogRepository(),
                             in textJson
                         ));
             textRepository = new TextParsingRepository();
@@ -164,8 +162,8 @@ namespace PupilIsNotStudent.automated_testing
         //Business Rule 7
         public void Test7()
         {
-            List<string> splitText = textRepository.getRawTextSplit(ResourceTextParser.ApostropheDemyan);
-            var expected = new List<string> {"дем'ян"};
+            string[] splitText = textRepository.getSplitWords(ResourceTextParser.ApostropheDemyan);
+            var expected = new[] {"дем'ян"};
             var msg = "Text is not split correctly";
             CheckEquals(in expected, in splitText, ref msg);
         }

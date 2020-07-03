@@ -10,10 +10,6 @@ namespace PupilIsNotStudent.model.repository
 
     class TextParsingRepository
     {
-        const int keyWordsLimit = 155;
-        
-        DE myDe = new DE();
-
 
         //==========TEXT PARSER==========
         // only Cyrillic letters. Change separators to only one " "
@@ -48,7 +44,7 @@ namespace PupilIsNotStudent.model.repository
         }
 
 
-        public List<string> getRawTextSplit(string notClearedText)
+        private List<string> getRawTextSplit(string notClearedText)
         {
             return getRawText(notClearedText).Split().ToList<string>();
         }
@@ -101,56 +97,8 @@ namespace PupilIsNotStudent.model.repository
         }
 
 
-        // To AkinatorRepo
-        public string computeDe(List<string> splitText)
-        {
-            return myDe.analyzeDE(splitText);
-        }
 
-        public utils.IndicatorsOfAffiliationForText computeAffiliationOfTextToCategory(Dictionary<string, int>.KeyCollection unrepeatedWords, Dictionary<string, double> tfIdf)
-        {
-            utils.IndicatorsOfAffiliationForText scores = new utils.IndicatorsOfAffiliationForText();
 
-            //logging purposes
-            scores.doesDeExist = true;
- 
-        
-            foreach (string word in unrepeatedWords) // the unrepeated word in unknown category
-            {
-                int break_counter = 0;
-                // more semantic comes first
-                foreach (KeyValuePair<string, double> wordCategory in tfIdf.OrderByDescending(key => key.Value))
-                {
 
-                    break_counter++;
-                    if (break_counter >= keyWordsLimit)
-                    {
-                        break;
-                    }
-                    //TFIDF unknown category word is wordCateg
-                    if (word == wordCategory.Key) // if word from unknown category equals word from category we know
-                    {
-                        ++scores.commonTerms;
-                        scores.normalizedTfidf += wordCategory.Value;
-                        
-                        if (myDe.words.ContainsKey(wordCategory.Key))
-                        {
-                            scores.de += myDe.words[word].dispersionEstimation;
-                         //   interactor.writeLog(word + ", TFIDF: " + wordCategory.Value + ", DE: " + myDe.words[word].dispersionEstimation);
-                        }
-                        else
-                        {
-                            scores.doesDeExist = false;
-                            scores.addTermWithBrokenDe(word);
-                        }
-
-                    }
-
-                }
-
-            }
-            
-            return scores;
-        }
     }
 }

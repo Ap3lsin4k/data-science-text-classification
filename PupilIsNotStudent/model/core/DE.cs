@@ -34,7 +34,7 @@ namespace PupilIsNotStudent
             this.words.Clear();
         }
 
-        public void init(List<string> wordsToAnalyse)
+        public void init(in string[] wordsToAnalyse)
         {
             int n = 1;
             foreach (string aWord in wordsToAnalyse)
@@ -47,7 +47,7 @@ namespace PupilIsNotStudent
                 words[aWord].NKs.Add(n);
                 ++n;// move text pivot to the next word
             }
-            numberOfAllWords= wordsToAnalyse.Count; // now number of all = n-1;
+            numberOfAllWords= wordsToAnalyse.Length; // number of all = n-1; (?)
         }
 
 
@@ -155,8 +155,7 @@ namespace PupilIsNotStudent
                 outDebug += 
                     dict.Key 
                     +":"
-                    + Math.Round(dict.Value.dispersionEstimation, 1)
-                                .ToString() 
+                    + Math.Round(dict.Value.dispersionEstimation, 1) 
                     + "\n";
             }
 
@@ -178,7 +177,7 @@ namespace PupilIsNotStudent
 
             */
 
-        public string analyzeDE(List<string> unknownCategoryWords)
+        public string analyzeDE(in string[] unknownCategoryWords)
         {
             preinit();
             init(unknownCategoryWords);
