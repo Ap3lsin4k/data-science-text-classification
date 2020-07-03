@@ -56,7 +56,6 @@ namespace PupilIsNotStudent.model.repository
                 if (deserialize != null)
                 {
                     this.library = deserialize;
-                    //MessageBox.Show("Succesfully loaded"); TODO decoment
                 }
                 else  // if json file is invalid
                 {
@@ -68,7 +67,7 @@ namespace PupilIsNotStudent.model.repository
             catch(Exception e)
             {
                 this.library = new Dictionary<string, Book>();
-                MessageBox.Show("Could not find analysis.json file. I will create object. Don't forget to press Save!");
+                MessageBox.Show("Could not find file: \"analysis.json\". Creating a new object. Don't forget to press Save!");
                 return false;
             }
         }

@@ -45,18 +45,14 @@ namespace PupilIsNotStudent.presentation
 
             foreach (KeyValuePair<string, Book> category in interactor.getLibrary())  // category, a category properties
             {
-                // here we have Category(category.Key) and array of unrepeated words(category.Value.allWords)
-                // also, there is array of repeated words(wordsCategoryToGuess)
+                // here we have CategoryName(category.Key)
               
                 view.initializeNewRow();
                 view.showCategoryNameInCurRow(category.Key);
                 interactor.openNewLogFile(category.Key);
 
                 scores = interactor.computeAffiliationOfTextToCategory(in uniqueWords, category.Value.TFIDF);
-                //                myGrid.Rows[ind].Cells[1].Value = countOfCommonElem;
-
-                // myGrid.Rows[ind].Cells[1].Value = Math.Round(tfidfTotalScore, 4);//Math.Round(100.0 * countOfCommonElem / Math.Min(category.Value.TFIDF.Count, keyWordsLimit), 1);
-                //(float)100 * countOfCommonElem / (n.Count);  // percent
+              
                 view.showTfidfInCurRow(Math.Round(scores.normalizedTfidf, 4));
                 
 
@@ -84,7 +80,7 @@ namespace PupilIsNotStudent.presentation
 
 
             // Re-Learner Update Knowledge
-            if(false) interactor.relearn("Наука", in wordsCategoryToGuess);
+            if(true) interactor.relearn("Наука", in wordsCategoryToGuess);
         }
 
         public void onBtnComputeDisperseEstimationClicked(string textToBeAnalyzed)
@@ -107,17 +103,15 @@ namespace PupilIsNotStudent.presentation
 
         public void onBtnLoadJsonClicked()
         {
-
-            
             if (load())
                 view.show("Successfully loaded from \"analysis.json\"");
-            // error message prints in the newsJson.load().catch
         }
 
 
 
         private bool load()
         {
+            // error message is in the newsJson.load().catch
             bool success = interactor.deserializeFromFile();
             view.setCategories(interactor.getCategories().ToArray());
             return success;

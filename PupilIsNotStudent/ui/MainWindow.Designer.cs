@@ -139,7 +139,7 @@
             this.btnLoadTextFromFileToFirstModule.TabIndex = 5;
             this.btnLoadTextFromFileToFirstModule.Text = "Load Text from File";
             this.btnLoadTextFromFileToFirstModule.UseVisualStyleBackColor = true;
-            this.btnLoadTextFromFileToFirstModule.Click += new System.EventHandler(this.btnLoadTextFromFile_Click);
+            this.btnLoadTextFromFileToFirstModule.Click += new System.EventHandler(this.btnCategories_LoadTextFromFile_Click);
             // 
             // rtbKnownText
             // 

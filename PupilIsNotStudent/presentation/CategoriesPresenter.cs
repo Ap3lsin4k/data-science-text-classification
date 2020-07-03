@@ -41,7 +41,7 @@ namespace PupilIsNotStudent.presentation
                  * create new category &save only unique words
                  * rewrite if category already exists
                 */
-                interactor.addCategory(catg, interactor.getSplitWords(textToBeAnalyzed)); // TODO test: test time for List-casting
+                interactor.addCategory(catg, interactor.getSplitWords(textToBeAnalyzed));
                 
                 interactor.computeTFAltogether(catg);
                 
@@ -54,7 +54,7 @@ namespace PupilIsNotStudent.presentation
 
                 if (interactor.whetherCategoryExist(catg))
                 {
-                    view.show("Write some text to update the network");
+                    view.show("Write some texts to update the network");
                 }
                 else
                 {

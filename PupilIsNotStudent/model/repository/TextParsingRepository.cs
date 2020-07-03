@@ -32,17 +32,7 @@ namespace PupilIsNotStudent.model.repository
         {
             return getPureText(notClearedText).ToString().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
         }
-
-        private static readonly HashSet<int> s_RussianCodes = new HashSet<int>(
-            new int[] { 1028, 1108, 1030, 1110, 1031, 1111, 1168, 1169, 32, 39 }
-                .Concat(Enumerable
-                    .Range(1040, 1103 - 1040 + 1)
-                    .Except(new int[] { 1066, 1067, 1098 }))
-                .Concat(Enumerable.Range(65, 90 - 65 + 1))
-                .Concat(Enumerable.Range(97, 122 - 97 + 1))
-        );
-
-        public static bool isRussianCodes(char symbol) => s_RussianCodes.Contains(symbol);
+        
 
 
         private bool isCyrillic(int letterCode)
@@ -74,6 +64,6 @@ namespace PupilIsNotStudent.model.repository
                         ;
             }
 
-        }//*/
+        }
     }
 }

@@ -8,7 +8,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-// work with files
 using PupilIsNotStudent.presentation;
 using PupilIsNotStudent.model;
 
@@ -19,8 +18,6 @@ namespace PupilIsNotStudent
     {
 
       
-        // category, and words in each text
-//        Dictionary<string, WordFreq> library = new Dictionary<string, WordFreq>();
 private readonly CategoriesPresenter _categPresenter; // for the first view
 private readonly GuessPresenter _guessPresenter; // for the second view
 
@@ -179,77 +176,14 @@ private readonly GuessPresenter _guessPresenter; // for the second view
         {
             _guessPresenter.onBtnLoadJsonClicked();
         }
-        
 
-       
         private void btnLoadTextFromFile_Click(object sender, EventArgs e)
         {
             _guessPresenter.onBtnLoadTextFromFileClicked();
 
         }
 
+
+
     }
 }
-
-
-/*
-    Кирилиця Десятковий код Шістнадцятеричний код Символ Символьне позначення Ё Ё Ё А А А Б Б Б В В В Г Г Г Д Д Д Е Е Е Ж Ж Ж З З З И И И Й Й Й К К К Л Л Л М М М Н Н Н О О О П П П Р Р Р С С С Т Т Т У У У Ф Ф Ф Х Х Х Ц Ц Ц Ч Ч Ч Ш Ш Ш Щ Щ Щ Ъ Ъ Ъ Ы Ы Ы Ь Ь Ь Э Э Э Ю Ю Ю Я Я Я а а а б б б в в в г г г д д д е е е ж ж ж з з з и и и й й й к к к л л л м м м н н н о о о п п п р р р с с с т т т у у у ф ф ф х х х ц ц ц ч ч ч ш ш ш щ щ щ ъ ы ь э ю я ё 
-                  if(1040 <= letterCode && letterCode <= 1103)
-                {
-
-                    peeledText += sumbol;
-                }   
-*/
-/*
- * using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace Text_analyzer
-{
-    public partial class Form1 : Form
-    {
-
-        private string peeledText = "";
-        public Form1()
-        {
-            InitializeComponent();
-        }
-
-
-        private void btnNext_Click(object sender, EventArgs e)
-        {
-            string news = rtbKnownText.Text.ToString();
-
-            lbRawNews.Text = "";
-            peeledText = "";
-            foreach (char sumbol in news)
-            {
-                int letterCode = (int)sumbol;
-                lbRawNews.Text = lbRawNews.Text + letterCode + " ";
-                peeledText += sumbol;
-            }
-
-            MessageBox.Show(peeledText);
-        }
-
-
-
-        private bool isCyrillic(int letterCode)
-        {
-                    
-
-        }
-    }
-}
-
-/*
-    Кирилиця Десятковий код Шістнадцятеричний код Символ Символьне позначення Ё Ё Ё А А А Б Б Б В В В Г Г Г Д Д Д Е Е Е Ж Ж Ж З З З И И И Й Й Й К К К Л Л Л М М М Н Н Н О О О П П П Р Р Р С С С Т Т Т У У У Ф Ф Ф Х Х Х Ц Ц Ц Ч Ч Ч Ш Ш Ш Щ Щ Щ Ъ Ъ Ъ Ы Ы Ы Ь Ь Ь Э Э Э Ю Ю Ю Я Я Я а а а б б б в в в г г г д д д е е е ж ж ж з з з и и и й й й к к к л л л м м м н н н о о о п п п р р р с с с т т т у у у ф ф ф х х х ц ц ц ч ч ч ш ш ш щ щ щ ъ ы ь э ю я ё 
-     
-*/
