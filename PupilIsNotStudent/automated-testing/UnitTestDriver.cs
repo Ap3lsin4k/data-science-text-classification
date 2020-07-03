@@ -226,19 +226,19 @@ namespace PupilIsNotStudent
 
         }
 
-        public void TestPerformance()
-        {
-            Stopwatch sw = new Stopwatch();
+public void TestPerformance()
+{
+    Stopwatch sw = new Stopwatch();
 
-            sw.Start();
-            _textRepository.getRawText(RawTextExamples.veryLongText);
+    sw.Start();
+    _textRepository.getPureText(RawTextExamples.veryLongText);
 
-            sw.Stop();
+    sw.Stop();
 
-            unitTestFormGuess.show(sw.Elapsed.ToString());
-            //unitTestFormGuess.show(a[0]);
+    unitTestFormGuess.show(sw.Elapsed.ToString());
+    //unitTestFormGuess.show(a[0]);
 
-        }
+}
 
 
     }

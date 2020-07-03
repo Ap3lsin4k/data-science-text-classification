@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,37 @@ namespace PupilIsNotStudent.model.interactor
 
 
         //==========TEXT REPOSITORY==========
+        public void getPureText(string notClearedText)
+        {
+            _text.getPureText(notClearedText);
+        }
+
+        public string TestPerformance(string notClearedText)
+        {
+            Stopwatch sw = new Stopwatch();
+            double totalmiliseconds=0;
+            double first = 0;
+            int iter = 500;
+            for (int i = 0; i < iter; ++i)
+            {
+                sw.Reset();
+                sw.Start();
+                _text.getPureText(notClearedText);
+                sw.Stop();
+                totalmiliseconds += sw.Elapsed.TotalMilliseconds;
+                if (first == 0)
+                {
+                    first = totalmiliseconds;
+                }
+            }
+           // sw.Elapsed.
+
+            //sw.Elapsed.Milliseconds.ToString()
+            return "Avg total milliseconds: " + totalmiliseconds/iter +", First: "+ first+"; Last: "+sw.Elapsed.ToString(@"%s\.ffffff");
+            //unitTestFormGuess.show(a[0]);
+
+        }
+
 
         public string[] getSplitWords(string rawText)
         {

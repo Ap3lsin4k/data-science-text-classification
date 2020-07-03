@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms.VisualStyles;
+using PupilIsNotStudent.automated_testing;
 using PupilIsNotStudent.model.core;
 using PupilIsNotStudent.model.interactor;
 using PupilIsNotStudent.model.repository;
@@ -102,8 +104,11 @@ namespace PupilIsNotStudent.presentation
         }
 
 
+
         public void onBtnLoadJsonClicked()
         {
+
+            
             if (load())
                 view.show("Successfully loaded from \"analysis.json\"");
             // error message prints in the newsJson.load().catch

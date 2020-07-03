@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PupilIsNotStudent.automated_testing;
 using PupilIsNotStudent.model.core;
 using PupilIsNotStudent.model.interactor;
 
@@ -104,10 +106,13 @@ namespace PupilIsNotStudent.presentation
                 view.show("There is no categories to calculate TF*IDF");
         }
 
+
         public void onBtnSaveClicked()
         {
+            view.show("Time to execute `GetPureText`: " +interactor.TestPerformance(RawTextExamples.veryLongText));
+            /*
             interactor.saveToJsonFile();
-            view.show("Successfully saved");
+            view.show("Successfully saved");*/
 
         }
 
