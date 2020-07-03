@@ -98,20 +98,20 @@ namespace PupilIsNotStudent
 
 
         public void run()
-        {/*
+        {
             Test1();
             Test2();
             Test3();
             Test4();
-            Test5();///
+            Test5();
             Test6();
-            //*
+            /*/
             Test7();
             Test8();
             Test9();
             Test10();
-            Test11();*/
-            TestPerformance();
+            Test11();
+            //*/
         }
 
         //tests
@@ -226,19 +226,6 @@ namespace PupilIsNotStudent
 
         }
 
-public void TestPerformance()
-{
-    Stopwatch sw = new Stopwatch();
-
-    sw.Start();
-    _textRepository.getPureText(RawTextExamples.veryLongText);
-
-    sw.Stop();
-
-    unitTestFormGuess.show(sw.Elapsed.ToString());
-    //unitTestFormGuess.show(a[0]);
-
-}
 
 
     }

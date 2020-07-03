@@ -109,11 +109,8 @@ namespace PupilIsNotStudent.presentation
 
         public void onBtnSaveClicked()
         {
-            view.show("Time to execute `GetPureText`: " +interactor.TestPerformance(RawTextExamples.veryLongText));
-            /*
             interactor.saveToJsonFile();
-            view.show("Successfully saved");*/
-
+            view.show("Successfully saved");
         }
 
         public void onBtnLoadTextFromFileClicked()

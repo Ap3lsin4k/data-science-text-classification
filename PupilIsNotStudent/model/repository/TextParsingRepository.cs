@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace PupilIsNotStudent.model.repository
 {
@@ -11,85 +12,25 @@ namespace PupilIsNotStudent.model.repository
 
         //==========TEXT PARSER==========
         // only Cyrillic letters. Change separators to only one " "
-        public void getPureText(string notClearedText)
+        private StringBuilder getPureText(string notClearedText)
         {
-            //string news = Regex.Replace(notClearedText, @"\s+", " ");
             StringBuilder peeledText = new StringBuilder(notClearedText.Length);
 
 
             foreach (var symbol in notClearedText)
             {
                 peeledText.Append(
-                isCyrillic(symbol) ?
-                char.ToLower(symbol)
-                    :' ');
-
-                /*/
-                
-                int letterCode = symbol;
-
-                switch (letterCode)
-                {
-                    case 1028: // Є
-                    case 1108: // є
-                    case 1030: // І
-                    case 1110: // і
-                    case 1031: // Ї
-                    case 1111: // ї
-                    case 1168: // Ґ
-                    case 1169: // ґ
-                    case 32:  // " "
-                    case 39:  // ' //case 45:  // -
-                        peeledText.Append(char.ToLower(symbol));
-                        break;
-                    default:
-                        peeledText.Append(1040 <= letterCode && letterCode <= 1103 && // Cyrillic
-                                          letterCode != 1066 && // Ъ
-                                          letterCode != 1067 && // Ы
-                                          letterCode != 1098
-                                          ||
-                                          65 <= letterCode && letterCode <= 90
-                                          ||
-                                          97 <= letterCode && letterCode <= 122
-                            ? char.ToLower(symbol) : ' ');
-                        /*
-                    
-                        1040 <= letterCode && letterCode <= 1103 && // Cyrillic
-                        letterCode != 1066 && // Ъ
-                        letterCode != 1067 && // Ы
-                        letterCode != 1098 // ъ
-                        ||
-                        65 <= letterCode && letterCode <= 90
-                        ||
-                        97 <= letterCode && letterCode <= 122
-                    ?
-
-                        char.ToLower(symbol))
-
-                    :
-                    " ");
-
-                        break;
-                    }
-                        */
+                    isCyrillic(symbol)
+                        ? char.ToLower(symbol)
+                        : ' ');
             }
-
-            
-
-        // To get rid of empty string{..., "...", "", "..", ...} at the end of the array.
-
-   //         peeledText = Regex.Replace(peeledText, @"\s+", " "); // To delete redundant space
-     //       if (peeledText[peeledText.Length - 1] == ' ')
-       //         peeledText = peeledText.Substring(0, peeledText.Length - 1);
-            
-          //  return peeledText;
+            return peeledText;
         }
-
 
         // Takes not cleared(aka raw) text
         public string[] getSplitWords(string notClearedText)
         {
-            return new[]{"s"};//getRawText(notClearedText).Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            return getPureText(notClearedText).ToString().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
         }
 
         private static readonly HashSet<int> s_RussianCodes = new HashSet<int>(
