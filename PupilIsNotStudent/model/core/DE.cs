@@ -9,7 +9,6 @@ namespace PupilIsNotStudent
 {
     class DE
     {
-        //TODO static
         public class NKavgA
         {
             public List<int> NKs = new List<int>();  //an array with function pushback(add) list of indexes where the term A is 
@@ -21,7 +20,7 @@ namespace PupilIsNotStudent
         public Dictionary<string, NKavgA> words;
         public int numberOfAllWords = -1;
 
-        //todo unreapeated words
+        //todo unique words
 
 
         public DE()
@@ -43,7 +42,7 @@ namespace PupilIsNotStudent
                 {            // create new word
                     words[aWord] = new NKavgA();
                 }
-                // add the position of the next occurence of the word
+                // add the position of the next occurrence of the word
                 words[aWord].NKs.Add(n);
                 ++n;// move text pivot to the next word
             }
@@ -57,7 +56,7 @@ namespace PupilIsNotStudent
              k: 0  1   2    3
              n: 1  3  113  127
               */
-            // distance between ocurrance of term
+            // distance between occurrences of term
             return A[k + 1] - A[k];  // m-n; where m, n are neighbor position of the "A" word
        }
 
@@ -81,7 +80,7 @@ namespace PupilIsNotStudent
             in case text is round
             5671234
             .A...A.
-            second delta is length - last occurance, + first occurence = (7-6) + (3) = 1 + 3 = 4
+            second delta is length - last occurrence, + first occurrence = (7-6) + (3) = 1 + 3 = 4
             Note "+1" because of zero-indexing
             */
             sum += (numberOfAllWords - words[A].NKs[k]) + words[A].NKs[0];
@@ -97,7 +96,7 @@ namespace PupilIsNotStudent
            
             return words[A].averageAs;
         }
-        //todo optimise we count delta two times
+        //todo optimize don't count delta two times
         private double squareAvgA(string A) //<ΔA^2> = AVG(ΔA^2, ΔA^2, ΔA^2...)
         {
             int sum = 0, k;
@@ -126,13 +125,11 @@ namespace PupilIsNotStudent
         public string mainFormula()  //Math.Sqrt(<ΔA^2> - <ΔA>^2) / <ΔA>
         {
        
-            string myTempKey="";
             foreach (var word in words.Keys)// = 0; k < ns.NKs.Count - 1; ++k)
             {
                 double A = avgA(word);  // <ΔA>
                 double A2 = squareAvgA(word);  //<ΔA^2>
                 words[word].dispersionEstimation = Math.Sqrt(A2 - A * A) / A; // calculate DE for each term in text
-                myTempKey = word; //debug
             }
             //TODO the last key is ""
 

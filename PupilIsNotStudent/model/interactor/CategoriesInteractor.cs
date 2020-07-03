@@ -68,11 +68,6 @@ namespace PupilIsNotStudent.model.interactor
         {
             return _extractKeyWords.whetherCategoryExist(shelf);
         }
-        
-        public Dictionary<string, Book> getLibrary()
-        {
-            return _extractKeyWords.getLibrary();
-        }
 
         public void IDFForEachBook()
         {

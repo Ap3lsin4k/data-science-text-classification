@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace PupilIsNotStudent.model.repository
 {
-    class AkinatorRepository
+    internal class AkinatorRepository
     {
 
-        const byte keyWordsLimit = 155;
+        private const byte keyWordsLimit = 155;
         private readonly DE _DE;
 
         public AkinatorRepository()
@@ -25,11 +25,11 @@ namespace PupilIsNotStudent.model.repository
 
 
         // To AkinatorRepo
-        public utils.IndicatorsOfAffiliationForText computeAffiliationOfTextToCategory(Dictionary<string, int>.KeyCollection unrepeatedWords, Dictionary<string, double> tfIdf)
+        public utils.IndicatorsOfAffiliationForText computeAffiliationOfTextToCategory(HashSet<string> unrepeatedWords, Dictionary<string, double> tfIdf)
         {
-            utils.IndicatorsOfAffiliationForText scores = new utils.IndicatorsOfAffiliationForText();
+            var scores = new utils.IndicatorsOfAffiliationForText();
 
-            //logging purposes
+            // for logging
             scores.doesDeExist = true;
 
 
@@ -45,7 +45,7 @@ namespace PupilIsNotStudent.model.repository
                     {
                         break;
                     }
-                    //TFIDF unknown category word is wordCateg
+                    //TFIDF unknown category word is wordCategory
                     if (word == wordCategory.Key) // if word from unknown category equals word from category we know
                     {
                         ++scores.commonTerms;
@@ -54,7 +54,6 @@ namespace PupilIsNotStudent.model.repository
                         if (_DE.words.ContainsKey(wordCategory.Key))
                         {
                             scores.de += _DE.words[word].dispersionEstimation;
-                            //   interactor.writeLog(word + ", TFIDF: " + wordCategory.Value + ", DE: " + myDe.words[word].dispersionEstimation);
                         }
                         else
                         {

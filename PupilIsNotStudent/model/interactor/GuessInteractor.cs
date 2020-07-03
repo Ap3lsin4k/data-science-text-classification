@@ -31,9 +31,9 @@ namespace PupilIsNotStudent.model.interactor
             return _akinator.computeDe(splitText);
         }
 
-        public utils.IndicatorsOfAffiliationForText computeAffiliationOfTextToCategory(Dictionary<string, int>.KeyCollection unrepeatedWords, Dictionary<string, double> tfIdf)
+        public utils.IndicatorsOfAffiliationForText computeAffiliationOfTextToCategory(in HashSet<string> newTextUnrepeatedWords, Dictionary<string, double> tfIdf)
         {
-            return _akinator.computeAffiliationOfTextToCategory(unrepeatedWords, tfIdf);
+            return _akinator.computeAffiliationOfTextToCategory(newTextUnrepeatedWords, tfIdf);
         }
 
         //==========TEXT REPOSITORY==========
@@ -44,10 +44,7 @@ namespace PupilIsNotStudent.model.interactor
         }
 
 
-        public Dictionary<string, int> associateOccurrencesWithTerms(ref string[] words)
-        {
-            return _text.associateOccurrencesWithTerms(ref words);
-        }
+
 
        
 
@@ -84,7 +81,8 @@ namespace PupilIsNotStudent.model.interactor
         }
 
 
-        //==========JSON REPOSITORY==========
+        //==========EXTRACT KEY WORDS REPOSITORY==========
+
 
         public Dictionary<string, Book> getLibrary()
         {

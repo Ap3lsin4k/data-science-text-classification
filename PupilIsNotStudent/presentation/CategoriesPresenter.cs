@@ -83,8 +83,6 @@ namespace PupilIsNotStudent.presentation
 
             if (interactor.getNumberOfShelvesInLibrary() != 0)
             {
-
-                // TODO simplify KeyValuePair<> to string
                 foreach (string shelf in interactor.getCategories())
                 {
                     if (interactor.tfExist(shelf) && interactor.idfExist(shelf))

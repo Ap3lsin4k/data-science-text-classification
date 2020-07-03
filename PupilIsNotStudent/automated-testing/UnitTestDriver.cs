@@ -4,13 +4,14 @@ using System.Linq;
 using PupilIsNotStudent.automated_testing;
 using PupilIsNotStudent.model.repository;
 using PupilIsNotStudent.presentation;
+using System.Diagnostics;
 
 namespace PupilIsNotStudent
 {
     class UnitTestDriver
     {
         private readonly GuessPresenter _guessPresenter;
-        private readonly TextParsingRepository textRepository;
+        private readonly TextParsingRepository _textRepository;
         UnitTestFormGuess unitTestFormGuess;
 
         public UnitTestDriver(UnitTestFormGuess unitTestFormGuess)
@@ -26,7 +27,7 @@ namespace PupilIsNotStudent
                             new LogRepository(),
                             in textJson
                         ));
-            textRepository = new TextParsingRepository();
+            _textRepository = new TextParsingRepository();
         }
 
         #region
@@ -106,10 +107,11 @@ namespace PupilIsNotStudent
             Test6();
             //*
             Test7();
-            */Test8();
+            Test8();
             Test9();
             Test10();
-            Test11();
+            Test11();*/
+            TestPerformance();
         }
 
         //tests
@@ -162,7 +164,7 @@ namespace PupilIsNotStudent
         //Business Rule 7
         public void Test7()
         {
-            string[] splitText = textRepository.getSplitWords(ResourceTextParser.ApostropheDemyan);
+            string[] splitText = _textRepository.getSplitWords(ResourceTextParser.ApostropheDemyan);
             var expected = new[] {"дем'ян"};
             var msg = "Text is not split correctly";
             CheckEquals(in expected, in splitText, ref msg);
@@ -172,7 +174,7 @@ namespace PupilIsNotStudent
         //Business Rule 8
         public void Test8()
         {
-            string[] actual = textRepository.getSplitWords("човен\n");
+            string[] actual = _textRepository.getSplitWords("човен\n");
             string[] expected = new []{"човен"};
             var msg = "Text was not split correctly, redundant empty string at the end";
             CheckEquals(in expected, in actual, ref msg);
@@ -181,7 +183,7 @@ namespace PupilIsNotStudent
         //Business Rule 9
         public void Test9()
         {
-            string[] actual = textRepository.getSplitWords(ResourceTextParser.EnglishInUkrainianNews1);
+            string[] actual = _textRepository.getSplitWords(ResourceTextParser.EnglishInUkrainianNews1);
             string[] expected = new[] { "space", "x", "відкладено" };
             var msg = "Should support English words was not parsed correctly";
             CheckEquals(in expected, in actual, ref msg);
@@ -190,7 +192,7 @@ namespace PupilIsNotStudent
         //Business Rule 10
         public void Test10()
         {
-            string[] actual = textRepository.getSplitWords(ResourceTextParser.EnglishInUkrainianNews2);
+            string[] actual = _textRepository.getSplitWords(ResourceTextParser.EnglishInUkrainianNews2);
             string[] expected = new[] { "садовий", "запропонував", "фінансувати", "усі", "лікарні", "як", "такі", "що", "лікують", "covid" };
             var msg = "Error with punctuation or English letters";
             CheckEquals(in expected, in actual, ref msg);
@@ -224,6 +226,19 @@ namespace PupilIsNotStudent
 
         }
 
+        public void TestPerformance()
+        {
+            Stopwatch sw = new Stopwatch();
+
+            sw.Start();
+            _textRepository.getRawText(RawTextExamples.veryLongText);
+
+            sw.Stop();
+
+            unitTestFormGuess.show(sw.Elapsed.ToString());
+            //unitTestFormGuess.show(a[0]);
+
+        }
 
 
     }

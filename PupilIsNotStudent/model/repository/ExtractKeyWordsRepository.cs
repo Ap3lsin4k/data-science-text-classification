@@ -26,6 +26,7 @@ namespace PupilIsNotStudent.model.repository
             library = new Dictionary<string, Book>();
         }
 
+        // =====JSON=====
         public void save()
         {
             //save json to file
@@ -72,6 +73,8 @@ namespace PupilIsNotStudent.model.repository
             }
         }
 
+
+        // Extract Key Words
         public Dictionary<string, Book>.KeyCollection getCategories()
         {
             return library.Keys;
@@ -90,16 +93,12 @@ namespace PupilIsNotStudent.model.repository
         }
 
 
-        public Dictionary<string, Book> getLibrary()
-        {
-            return library; // all shelves in library.
-        }
-
         // number words in all texts for each category
         public byte getNumberOfShelvesInLibrary() 
         {
             return (byte) library.Count;
         }
+
 
 
 
@@ -148,8 +147,6 @@ namespace PupilIsNotStudent.model.repository
 
             }
         }
-
-
 
 
         public void IDFForEachBook()

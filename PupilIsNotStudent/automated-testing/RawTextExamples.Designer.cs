@@ -141,5 +141,20 @@ namespace PupilIsNotStudent.automated_testing {
                 return ResourceManager.GetString("longTextTourism", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Посол України в Естонській Республіці Мар’яна Беца вручила копії вірчих грамот директору Департаменту державного протоколу МЗС Естонії Лаурі Бамбусу.
+        ///
+        ///Про це повідомляє прес-служба Посольства України в Естонії.
+        ///
+        ///«Під час бесіди було відзначено позитивну динаміку двостороннього політичного діалогу та обговорено інструменти протидії російській агресії», – зазначається у повідомленні.
+        ///
+        ///У посольстві поінформували, що Беца висловила вдячність Естонії за незмінну міцну підтримку суверенітету та територіальн [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string veryLongText {
+            get {
+                return ResourceManager.GetString("veryLongText", resourceCulture);
+            }
+        }
     }
 }

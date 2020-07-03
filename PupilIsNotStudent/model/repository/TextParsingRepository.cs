@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -44,13 +43,6 @@ namespace PupilIsNotStudent.model.repository
         }
 
 
-        private List<string> getRawTextSplit(string notClearedText)
-        {
-            return getRawText(notClearedText).Split().ToList<string>();
-        }
-        
-
-
         private bool isCyrillic(int letterCode)
         {
             switch (letterCode)
@@ -81,24 +73,5 @@ namespace PupilIsNotStudent.model.repository
             }
 
         }
-
-        // ==========TEXT ANALYZER==========
-        // To Extract Key Words Repository
-        public Dictionary<string, int> associateOccurrencesWithTerms(ref string[] words)
-        {
-            Dictionary<string, int> n = new Dictionary<string, int>();
-            foreach (string word in words)
-            {
-                if (n.ContainsKey(word)) ++n[word];
-                else n[word] = 1;
-
-            }
-            return n;
-        }
-
-
-
-
-
     }
 }
