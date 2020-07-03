@@ -80,7 +80,7 @@ namespace PupilIsNotStudent.presentation
 
 
             // Re-Learner Update Knowledge
-            if(true) interactor.relearn("Наука", in wordsCategoryToGuess);
+            if(false) interactor.relearn("Наука", in wordsCategoryToGuess);
         }
 
         public void onBtnComputeDisperseEstimationClicked(string textToBeAnalyzed)
