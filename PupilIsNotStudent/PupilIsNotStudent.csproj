@@ -70,19 +70,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourceTextParser.resx</DependentUpon>
     </Compile>
-    <Compile Include="automated-testing\UnitTestFormGuess.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="automated-testing\UnitTestFormGuess.Designer.cs">
-      <DependentUpon>UnitTestFormGuess.cs</DependentUpon>
-    </Compile>
     <Compile Include="automated-testing\RawTextExamples.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RawTextExamples.resx</DependentUpon>
     </Compile>
-    <Compile Include="automated-testing\UnitTestDriver.cs" />
-    <Compile Include="model\core\DE.cs" />
+    <Compile Include="model\core\DisperseEstimation.cs" />
     <Compile Include="model\repository\AkinatorRepository.cs" />
     <Compile Include="ui\MainWindow.cs">
       <SubType>Form</SubType>
@@ -107,9 +100,6 @@
     <EmbeddedResource Include="automated-testing\ResourceTextParser.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceTextParser.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="automated-testing\UnitTestFormGuess.resx">
-      <DependentUpon>UnitTestFormGuess.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="automated-testing\RawTextExamples.resx">
       <Generator>ResXFileCodeGenerator</Generator>

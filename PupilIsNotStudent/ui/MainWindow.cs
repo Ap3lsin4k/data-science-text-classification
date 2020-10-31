@@ -75,7 +75,7 @@ private readonly GuessPresenter _guessPresenter; // for the second view
         // ==========USER ACTIONS==========
         private void btnTf_Click(object sender, EventArgs e)
         {
-            _categPresenter.onBtnTfClicked(cbCategories.Text, rtbKnownText.Text);
+            _categPresenter.onBtnTermFrequencyClicked(cbCategories.Text, rtbKnownText.Text);
           
         }
 
@@ -87,13 +87,13 @@ private readonly GuessPresenter _guessPresenter; // for the second view
 
         private void btnTfIdf_Click(object sender, EventArgs e)
         {
-            _categPresenter.onBtnTfidfClicked(cbCategories.Text);
+            _categPresenter.onBtnTermFrequencyidfClicked(cbCategories.Text);
         }
 
 
         private void btnCategories_LoadTextFromFile_Click(object sender, EventArgs e)
         {
-            _categPresenter.onBtnLoadTextFromFileClicked();
+            _categPresenter.onBtnLoadTexTermFrequencyromFileClicked();
         }
 
 

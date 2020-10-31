@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PupilIsNotStudent.model.core;
 
 namespace PupilIsNotStudent.model.repository
 {
@@ -10,17 +11,17 @@ namespace PupilIsNotStudent.model.repository
     {
 
         private const byte keyWordsLimit = 155;
-        private readonly DE _DE;
+        private readonly DisperseEstimation _disperseEstimation;
 
         public AkinatorRepository()
         {
-            _DE = new DE();
+            _disperseEstimation = new DisperseEstimation();
         }
 
 
         public string computeDe(in string[] splitText)
         {
-            return _DE.analyzeDE(splitText);
+            return _disperseEstimation.analyzeDE(splitText);
         }
 
 
@@ -51,9 +52,9 @@ namespace PupilIsNotStudent.model.repository
                         ++scores.commonTerms;
                         scores.normalizedTfidf += wordCategory.Value;
 
-                        if (_DE.words.ContainsKey(wordCategory.Key))
+                        if (_disperseEstimation.words.ContainsKey(wordCategory.Key))
                         {
-                            scores.de += _DE.words[word].dispersionEstimation;
+                            scores.de += _disperseEstimation.words[word].dispersionEstimation;
                         }
                         else
                         {

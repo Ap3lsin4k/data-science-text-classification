@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
-namespace PupilIsNotStudent
+namespace PupilIsNotStudent.model.core
 {
-    class DE
+    class DisperseEstimation
     {
-        public class NKavgA
+        public class IndexInText
         {
             public List<int> NKs = new List<int>();  //an array with function pushback(add) list of indexes where the term A is 
             public double averageAs; // AVG(NKs[1]-NKs[0], NKs[2]-NKs[1],..., NKs[K]-NKs[K-1])  // average terms
@@ -17,17 +14,25 @@ namespace PupilIsNotStudent
             public double dispersionEstimation;
         }
 
-        public Dictionary<string, NKavgA> words;
-        public int numberOfAllWords = -1;
+        public Dictionary<string, IndexInText> words;
+        private int numberOfAllWords = -1;
 
-        //todo unique words
+        //todo unique words | what that means? todos going to be deleted or moved into backlog
 
 
-        public DE()
+        public DisperseEstimation()
         {
-            this.words = new Dictionary<string, NKavgA>();
+            this.words = new Dictionary<string, IndexInText>();
         }
-        public void preinit()
+
+        public string analyzeDE(in string[] unknownCategoryWords)
+        {
+            preinit();
+            init(unknownCategoryWords);
+            return mainFormula(); //DE of a random word
+        }
+
+        private void preinit()
         {
             // Clear dictionary to add new words
             this.words.Clear();
@@ -40,7 +45,7 @@ namespace PupilIsNotStudent
             {
                 if (!words.ContainsKey(aWord))
                 {            // create new word
-                    words[aWord] = new NKavgA();
+                    words[aWord] = new IndexInText();
                 }
                 // add the position of the next occurrence of the word
                 words[aWord].NKs.Add(n);
@@ -61,6 +66,7 @@ namespace PupilIsNotStudent
        }
 
         //A is term like "word"
+
         private double avgA(string A)  // <ΔA> = AVG(ΔA, ΔA, ΔA...)
         {
             int sum = 0, k, length= words[A].NKs.Count;
@@ -96,7 +102,9 @@ namespace PupilIsNotStudent
            
             return words[A].averageAs;
         }
+
         //todo optimize don't count delta two times
+
         private double squareAvgA(string A) //<ΔA^2> = AVG(ΔA^2, ΔA^2, ΔA^2...)
         {
             int sum = 0, k;
@@ -161,7 +169,7 @@ namespace PupilIsNotStudent
             return outDebug;
         }
 
-            /*
+        /*
              *         public double mainFormula()  //Math.Sqrt(<ΔA^2> - <ΔA>^2) / <ΔA>
             {
             foreach (var word in words.Keys)// = 0; k < ns.NKs.Count - 1; ++k)
@@ -173,13 +181,5 @@ namespace PupilIsNotStudent
             }
 
             */
-
-        public string analyzeDE(in string[] unknownCategoryWords)
-        {
-            preinit();
-            init(unknownCategoryWords);
-            return mainFormula(); //DE of a random word
-        }
-        
     }
 }

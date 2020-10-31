@@ -64,7 +64,7 @@ namespace PupilIsNotStudent.model.repository
                 }
                 return true;
             }
-            catch(Exception e)
+            catch(Exception)
             {
                 this.library = new Dictionary<string, Book>();
                 MessageBox.Show("Could not find file: \"analysis.json\". Creating a new object. Don't forget to press Save!");
@@ -102,9 +102,9 @@ namespace PupilIsNotStudent.model.repository
 
 
         // ======Term Frequency======
-        public void computeTFAltogether(string shelf)
+        public void computeTermFrequencyAltogether(string shelf)
         {
-            library[shelf].computeTFAltogether();
+            library[shelf].computeTermFrequencyAltogether();
         }
 
 
@@ -161,20 +161,20 @@ namespace PupilIsNotStudent.model.repository
 
 
         // ======Term Frequency - Inverse Doc Frequency======
-        public void calculateTfIdf(string shelf)
+        public void CalculateTermFrequencyIDF(string shelf)
         {
-            library[shelf].computeTFIDFAltogether();
+            library[shelf].computeTermFrequencyIDFAltogether();
         }
 
-        public IOrderedEnumerable<KeyValuePair<string, double>> getTfIdfOrderByDescending(string shelf)
+        public IOrderedEnumerable<KeyValuePair<string, double>> getTermFrequencyIdfOrderByDescending(string shelf)
         {
             return library[shelf].TFIDF.OrderByDescending(key => key.Value);
         }
 
 
-        public bool tfExist(string shelf)
+        public bool TermFrequencyExist(string shelf)
         {
-            return library[shelf].TF.Count != 0;
+            return library[shelf].TermFrequency.Count != 0;
         }
 
         public bool idfExist(string shelf)
@@ -185,13 +185,13 @@ namespace PupilIsNotStudent.model.repository
         // ======Relearner======
         public void relearn(string shelf, in string[] shuffledWords)
         {
-            HashSet<string> uniqueWords = new HashSet<string>(shuffledWords);
+            var uniqueWords = new HashSet<string>(shuffledWords);
 
             library[shelf].memorizeWords(shuffledWords);
             
-            library[shelf].updateTFForNewWords(uniqueWords);
+            library[shelf].updateTermFrequencyForNewWords(uniqueWords);
             IDFForNewWordsInBook(shelf, uniqueWords);
-            library[shelf].updateTFIDFForSpecificWords(uniqueWords);
+            library[shelf].updateTermFrequencyIDFForSpecificWords(uniqueWords);
             
         }
     }

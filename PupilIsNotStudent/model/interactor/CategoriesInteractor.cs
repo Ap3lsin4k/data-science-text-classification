@@ -40,7 +40,7 @@ namespace PupilIsNotStudent.model.interactor
             return _file.openFileDialog();
         }
 
-        public string readTextFromFile()
+        public string readTexTermFrequencyromFile()
         {
             return _file.readAllText();
         }
@@ -54,9 +54,9 @@ namespace PupilIsNotStudent.model.interactor
         }
 
 
-        public void computeTFAltogether(string shelf)
+        public void computeTermFrequencyAltogether(string shelf)
         {
-            _extractKeyWords.computeTFAltogether(shelf);
+            _extractKeyWords.computeTermFrequencyAltogether(shelf);
         }
 
 
@@ -79,17 +79,17 @@ namespace PupilIsNotStudent.model.interactor
         {
             return _extractKeyWords.getNumberOfShelvesInLibrary();
         }
-        public void calculateTfIdf(string shelf)
+        public void calculateTermFrequencyIdf(string shelf)
         {
-            _extractKeyWords.calculateTfIdf(shelf);
+            _extractKeyWords.CalculateTermFrequencyIDF(shelf);
         }
-        public IOrderedEnumerable<KeyValuePair<string, double>> getTfIdfOrderByDescending(string shelf)
+        public IOrderedEnumerable<KeyValuePair<string, double>> getTermFrequencyIdfOrderByDescending(string shelf)
         {
-            return _extractKeyWords.getTfIdfOrderByDescending(shelf);
+            return _extractKeyWords.getTermFrequencyIdfOrderByDescending(shelf);
         }
-        public bool tfExist(string shelf)
+        public bool TermFrequencyExist(string shelf)
         {
-            return _extractKeyWords.tfExist(shelf);
+            return _extractKeyWords.TermFrequencyExist(shelf);
         }
         public bool idfExist(string shelf)
         {

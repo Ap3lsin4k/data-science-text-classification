@@ -23,9 +23,9 @@ namespace PupilIsNotStudent.presentation
             this.interactor = interactor;
         }
 
-        public void onBtnTfClicked(string catg, string textToBeAnalyzed)
+        public void onBtnTermFrequencyClicked(string catg, string textToBeAnalyzed)
         {
-            // calculate TF to all categories and then press IDF. Then TFIDF.
+            // calculate TermFrequency to all categories and then press IDF. Then TermFrequencyIDF.
             
             if (string.IsNullOrWhiteSpace(catg))
             {
@@ -43,7 +43,7 @@ namespace PupilIsNotStudent.presentation
                 */
                 interactor.addCategory(catg, interactor.getSplitWords(textToBeAnalyzed));
                 
-                interactor.computeTFAltogether(catg);
+                interactor.computeTermFrequencyAltogether(catg);
                 
 
                 view.setCategories(interactor.getCategories().ToArray());
@@ -80,30 +80,30 @@ namespace PupilIsNotStudent.presentation
         }
 
 
-        public void onBtnTfidfClicked(string catg)
+        public void onBtnTermFrequencyidfClicked(string catg)
         {
 
             if (interactor.getNumberOfShelvesInLibrary() != 0)
             {
                 foreach (string shelf in interactor.getCategories())
                 {
-                    if (interactor.tfExist(shelf) && interactor.idfExist(shelf))
+                    if (interactor.TermFrequencyExist(shelf) && interactor.idfExist(shelf))
                     {
-                        interactor.calculateTfIdf(shelf);
+                        interactor.calculateTermFrequencyIdf(shelf);
                     }
                     else
                     {
-                        view.show("Error. TF exist:"
-                                  + interactor.tfExist(shelf)
+                        view.show("Error. TermFrequency exist:"
+                                  + interactor.TermFrequencyExist(shelf)
                                   +",\tIDF exist:"
                                   +interactor.idfExist(shelf)
                                   +"; for category: \"" + catg + "\". " 
-                                  + "TF and IDF needs to be computed before proceeding.");
+                                  + "TermFrequency and IDF needs to be computed before proceeding.");
                     }
                 }
             }
             else
-                view.show("There is no categories to calculate TF*IDF");
+                view.show("There is no categories to calculate TermFrequency*IDF");
         }
 
 
@@ -113,7 +113,7 @@ namespace PupilIsNotStudent.presentation
             view.show("Successfully saved");
         }
 
-        public void onBtnLoadTextFromFileClicked()
+        public void onBtnLoadTexTermFrequencyromFileClicked()
         {
             /*
              * open explorer to choose a file. It freezes all the process until the OK button will be pressed.
@@ -121,7 +121,7 @@ namespace PupilIsNotStudent.presentation
              */
             if (interactor.openFileDialog())
             {
-                string text = interactor.readTextFromFile();
+                string text = interactor.readTexTermFrequencyromFile();
                 view.loadEditableText(text);
             }
         }

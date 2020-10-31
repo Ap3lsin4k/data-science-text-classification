@@ -8,7 +8,7 @@ namespace PupilIsNotStudent.model.core
     {
         // AVG length is 4000 items
         public Dictionary<string, uint> n;  // <word, frequency of appearing>
-        public Dictionary<string, double> TF;  // <word, Term frequency in %>
+        public Dictionary<string, double> TermFrequency;  // <word, Term frequency in %>
         public Dictionary<string, double> IDF;  // <word, normalized Inverse document frequency>
         public Dictionary<string, double> TFIDF;  // <word, Term frequency – Inverse document frequency>
 
@@ -19,7 +19,7 @@ namespace PupilIsNotStudent.model.core
         public Book()
         {
             n = new Dictionary<string, uint>();
-            TF = new Dictionary<string, double>();
+            TermFrequency = new Dictionary<string, double>();
             IDF = new Dictionary<string, double>();
             TFIDF = new Dictionary<string, double>();
             numOfAllWords = 0;
@@ -48,22 +48,22 @@ namespace PupilIsNotStudent.model.core
         // ======Term Frequency======
 
         // for the first time
-        public void computeTFAltogether()
+        public void computeTermFrequencyAltogether()
         {
             foreach (var word in n)
             {
-                TF[word.Key] = 100.0 * word.Value / numOfAllWords; // to find TF in percentages
+                TermFrequency[word.Key] = 100.0 * word.Value / numOfAllWords; // to find TermFrequency in percentages
                 // implicit cast (int) to (double), to make normal division
             }
 
         }
 
         // relearning
-        public void updateTFForNewWords(in HashSet<string> specificWords)
+        public void updateTermFrequencyForNewWords(in HashSet<string> specificWords)
         {
             foreach (string word in specificWords)
             {
-                TF[word] = 100.0 * n[word] / numOfAllWords; // to find TF in percentages
+                TermFrequency[word] = 100.0 * n[word] / numOfAllWords; // to find TermFrequency in percentages
             }
             
         }
@@ -87,20 +87,20 @@ namespace PupilIsNotStudent.model.core
         }
 
 
-        // ======TF*IDF======
+        // ======TermFrequency*IDF======
 
-        // to create TF*IDF for the first time
-        public void computeTFIDFAltogether()
+        // to create TermFrequency*IDF for the first time
+        public void computeTermFrequencyIDFAltogether()
         {
             foreach (string word in n.Keys)
-                TFIDF[word] = TF[word] * IDF[word];  // aka TF-IDF = TF*IDF
+                TFIDF[word] = TermFrequency[word] * IDF[word];  // aka TermFrequency-IDF = TermFrequency*IDF
         }
 
-        // to relearn existing TF*IDF. Updates only new words.
-        public void updateTFIDFForSpecificWords(in HashSet<string> specificWords)
+        // to relearn existing TermFrequency*IDF. Updates only new words.
+        public void updateTermFrequencyIDFForSpecificWords(in HashSet<string> specificWords)
         {
             foreach (string word in specificWords)
-                TFIDF[word] = TF[word] * IDF[word];  // aka TF-IDF = TF*IDF
+                TFIDF[word] = TermFrequency[word] * IDF[word];  // aka TermFrequency-IDF = TermFrequency*IDF
         }
 
 
@@ -109,7 +109,7 @@ namespace PupilIsNotStudent.model.core
 
 
         // Relearning
-        public void relearnTF(in string[] disorderedWords)
+        public void relearnTermFrequency(in string[] disorderedWords)
         {
             memorizeWords(in disorderedWords);
             
