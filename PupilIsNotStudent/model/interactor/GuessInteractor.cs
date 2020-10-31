@@ -31,9 +31,9 @@ namespace PupilIsNotStudent.model.interactor
             return _akinator.computeDe(splitText);
         }
 
-        public utils.IndicatorsOfAffiliationForText computeAffiliationOfTextToCategory(in HashSet<string> newTextUnrepeatedWords, Dictionary<string, double> tfIdf)
+        public utils.IndicatorsOfAffiliationForText computeAffiliationOfTextToCategory(in HashSet<string> newTextUnrepeatedWords, Dictionary<string, double> TFIDF)
         {
-            return _akinator.computeAffiliationOfTextToCategory(newTextUnrepeatedWords, tfIdf);
+            return _akinator.computeAffiliationOfTextToCategory(newTextUnrepeatedWords, TFIDF);
         }
 
         //==========TEXT REPOSITORY==========

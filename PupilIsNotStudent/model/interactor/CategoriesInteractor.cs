@@ -79,21 +79,21 @@ namespace PupilIsNotStudent.model.interactor
         {
             return _extractKeyWords.getNumberOfShelvesInLibrary();
         }
-        public void calculateTermFrequencyIdf(string shelf)
+        public void calculateTermFrequencyInverseDocumentFrequency(string shelf)
         {
-            _extractKeyWords.CalculateTermFrequencyIDF(shelf);
+            _extractKeyWords.CalculateTermFrequencyInverseDocumentFrequency(shelf);
         }
-        public IOrderedEnumerable<KeyValuePair<string, double>> getTermFrequencyIdfOrderByDescending(string shelf)
+        public IOrderedEnumerable<KeyValuePair<string, double>> getTermFrequencyInverseDocumentFrequencyOrderByDescending(string shelf)
         {
-            return _extractKeyWords.getTermFrequencyIdfOrderByDescending(shelf);
+            return _extractKeyWords.getTermFrequencyInverseDocumentFrequencyOrderByDescending(shelf);
         }
         public bool TermFrequencyExist(string shelf)
         {
             return _extractKeyWords.TermFrequencyExist(shelf);
         }
-        public bool idfExist(string shelf)
+        public bool InverseDocumentFrequencyExist(string shelf)
         {
-            return _extractKeyWords.idfExist(shelf);
+            return _extractKeyWords.InverseDocumentFrequencyExist(shelf);
         }
 
         public void saveToJsonFile()

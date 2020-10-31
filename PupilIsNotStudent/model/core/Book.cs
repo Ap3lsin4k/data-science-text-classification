@@ -90,7 +90,7 @@ namespace PupilIsNotStudent.model.core
         // ======TermFrequency*IDF======
 
         // to create TermFrequency*IDF for the first time
-        public void computeTermFrequencyIDFAltogether()
+        public void computeTFIDFAltogether()
         {
             foreach (string word in n.Keys)
                 TFIDF[word] = TermFrequency[word] * IDF[word];  // aka TermFrequency-IDF = TermFrequency*IDF

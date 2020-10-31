@@ -66,7 +66,7 @@ namespace PupilIsNotStudent.presentation
 
 
 
-        public void onBtnIdfClicked(string currentCategory)
+        public void onBtnInverseDocumentFrequencyClicked(string currentCategory)
         {
 
             if (interactor.getNumberOfShelvesInLibrary() != 0)
@@ -80,30 +80,30 @@ namespace PupilIsNotStudent.presentation
         }
 
 
-        public void onBtnTermFrequencyidfClicked(string catg)
+        public void onBtnTermFrequencyInverseDocumentFrequencyClicked(string catg)
         {
 
             if (interactor.getNumberOfShelvesInLibrary() != 0)
             {
                 foreach (string shelf in interactor.getCategories())
                 {
-                    if (interactor.TermFrequencyExist(shelf) && interactor.idfExist(shelf))
+                    if (interactor.TermFrequencyExist(shelf) && interactor.InverseDocumentFrequencyExist(shelf))
                     {
-                        interactor.calculateTermFrequencyIdf(shelf);
+                        interactor.calculateTermFrequencyInverseDocumentFrequency(shelf);
                     }
                     else
                     {
                         view.show("Error. TermFrequency exist:"
                                   + interactor.TermFrequencyExist(shelf)
-                                  +",\tIDF exist:"
-                                  +interactor.idfExist(shelf)
+                                  +",\tInverseDocumentFrequency exist:"
+                                  +interactor.InverseDocumentFrequencyExist(shelf)
                                   +"; for category: \"" + catg + "\". " 
-                                  + "TermFrequency and IDF needs to be computed before proceeding.");
+                                  + "TermFrequency and InverseDocumentFrequency needs to be computed before proceeding.");
                     }
                 }
             }
             else
-                view.show("There is no categories to calculate TermFrequency*IDF");
+                view.show("There is no categories to calculate TermFrequency*InverseDocumentFrequency");
         }
 
 

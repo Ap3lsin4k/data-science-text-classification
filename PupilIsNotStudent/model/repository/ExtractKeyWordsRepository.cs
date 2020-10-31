@@ -161,12 +161,12 @@ namespace PupilIsNotStudent.model.repository
 
 
         // ======Term Frequency - Inverse Doc Frequency======
-        public void CalculateTermFrequencyIDF(string shelf)
+        public void CalculateTermFrequencyInverseDocumentFrequency(string shelf)
         {
-            library[shelf].computeTermFrequencyIDFAltogether();
+            library[shelf].computeTFIDFAltogether();
         }
 
-        public IOrderedEnumerable<KeyValuePair<string, double>> getTermFrequencyIdfOrderByDescending(string shelf)
+        public IOrderedEnumerable<KeyValuePair<string, double>> getTermFrequencyInverseDocumentFrequencyOrderByDescending(string shelf)
         {
             return library[shelf].TFIDF.OrderByDescending(key => key.Value);
         }
@@ -177,7 +177,7 @@ namespace PupilIsNotStudent.model.repository
             return library[shelf].TermFrequency.Count != 0;
         }
 
-        public bool idfExist(string shelf)
+        public bool InverseDocumentFrequencyExist(string shelf)
         {
             return library[shelf].IDF.Count != 0;
         }
