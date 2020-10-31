@@ -12,27 +12,25 @@ namespace PupilIsNotStudent.presentation
 {
     internal class CategoriesPresenter
     {
+        // TextJsonRepository newsJson;
+        private readonly CategoriesView _view;
+        private readonly CategoriesInteractor _interactor;
 
-       // TextJsonRepository newsJson;
-       private readonly CategoriesView view;
-       private readonly CategoriesInteractor interactor;
-
-
-        public CategoriesPresenter(CategoriesView view, CategoriesInteractor interactor) {
-            this.view = view;
-            this.interactor = interactor;
+        public CategoriesPresenter(CategoriesView view, CategoriesInteractor interactor)
+        {
+            this._view = view;
+            this._interactor = interactor;
         }
 
-        public void onBtnTermFrequencyClicked(string catg, string textToBeAnalyzed)
+        public void OnBtnTermFrequencyClicked(string catg, string textToBeAnalyzed)
         {
             // calculate TermFrequency to all categories and then press IDF. Then TermFrequencyIDF.
-            
+
             if (string.IsNullOrWhiteSpace(catg))
             {
-                view.show("Please enter or chose the category");
+                _view.show("Please enter or chose the category");
                 return;
             }
-
 
             //feature if the field is not empty then learn
             if (!string.IsNullOrWhiteSpace(textToBeAnalyzed))
@@ -41,90 +39,81 @@ namespace PupilIsNotStudent.presentation
                  * create new category &save only unique words
                  * rewrite if category already exists
                 */
-                interactor.addCategory(catg, interactor.getSplitWords(textToBeAnalyzed));
-                
-                interactor.computeTermFrequencyAltogether(catg);
-                
+                _interactor.addCategory(catg, _interactor.getSplitWords(textToBeAnalyzed));
 
-                view.setCategories(interactor.getCategories().ToArray());
+                _interactor.computeTermFrequencyAltogether(catg);
+
+                _view.setCategories(_interactor.getCategories().ToArray());
             }
             else
             {
                 //feature if the textBox is empty then show saved data
 
-                if (interactor.whetherCategoryExist(catg))
+                if (_interactor.whetherCategoryExist(catg))
                 {
-                    view.show("Write some texts to update the network");
+                    _view.show("Write some texts to update the network");
                 }
                 else
                 {
-                    view.show("The category \"" + catg + "\" was not created. To create this category enter text of news in the TextBox");
+                    _view.show("The category \"" + catg +
+                               "\" was not created. To create this category enter text of news in the TextBox");
                 }
-
             }
         }
 
-
-
-        public void onBtnInverseDocumentFrequencyClicked(string currentCategory)
+        public void OnBtnInverseDocumentFrequencyClicked(string currentCategory)
         {
-
-            if (interactor.getNumberOfShelvesInLibrary() != 0)
+            if (_interactor.getNumberOfShelvesInLibrary() != 0)
             {
                 // calculate IDF for each category
-                interactor.IDFForEachBook();
-                view.show("Success");
+                _interactor.IDFForEachBook();
+                _view.show("Success");
             }
             else
-                view.show("There is no category to calculate the Inverse Document Frequency");
+                _view.show("There is no category to calculate the Inverse Document Frequency");
         }
 
-
-        public void onBtnTermFrequencyInverseDocumentFrequencyClicked(string catg)
+        public void OnBtnTermFrequencyInverseDocumentFrequencyClicked(string catg)
         {
-
-            if (interactor.getNumberOfShelvesInLibrary() != 0)
+            if (_interactor.getNumberOfShelvesInLibrary() != 0)
             {
-                foreach (string shelf in interactor.getCategories())
+                foreach (string shelf in _interactor.getCategories())
                 {
-                    if (interactor.TermFrequencyExist(shelf) && interactor.InverseDocumentFrequencyExist(shelf))
+                    if (_interactor.TermFrequencyExist(shelf) && _interactor.InverseDocumentFrequencyExist(shelf))
                     {
-                        interactor.calculateTermFrequencyInverseDocumentFrequency(shelf);
+                        _interactor.calculateTermFrequencyInverseDocumentFrequency(shelf);
                     }
                     else
                     {
-                        view.show("Error. TermFrequency exist:"
-                                  + interactor.TermFrequencyExist(shelf)
-                                  +",\tInverseDocumentFrequency exist:"
-                                  +interactor.InverseDocumentFrequencyExist(shelf)
-                                  +"; for category: \"" + catg + "\". " 
-                                  + "TermFrequency and InverseDocumentFrequency needs to be computed before proceeding.");
+                        _view.show("Error. TermFrequency exist:" + _interactor.TermFrequencyExist(shelf) +
+                                   ",\tInverseDocumentFrequency exist:" +
+                                   _interactor.InverseDocumentFrequencyExist(shelf) + "; for category: \"" + catg +
+                                   "\". " +
+                                   "TermFrequency and InverseDocumentFrequency needs to be computed before proceeding.");
                     }
                 }
             }
             else
-                view.show("There is no categories to calculate TermFrequency*InverseDocumentFrequency");
+                _view.show("There is no categories to calculate TermFrequency*InverseDocumentFrequency");
         }
 
-
-        public void onBtnSaveClicked()
+        public void OnBtnSaveClicked()
         {
-            interactor.saveToJsonFile();
-            view.show("Successfully saved");
+            _interactor.saveToJsonFile();
+            _view.show("Successfully saved");
         }
 
-        public void onBtnLoadTexTermFrequencyromFileClicked()
+        public void OnBtnLoadTextFromFileClicked()
         {
             /*
              * open explorer to choose a file. It freezes all the process until the OK button will be pressed.
              * "false" means that user pressed "Cancel"
              */
-            if (interactor.openFileDialog())
+            if (_interactor.openFileDialog())
             {
-                string text = interactor.readTexTermFrequencyromFile();
-                view.loadEditableText(text);
+                string text = _interactor.readTexTermFrequencyromFile();
+                _view.loadEditableText(text);
             }
         }
-
     }
 }

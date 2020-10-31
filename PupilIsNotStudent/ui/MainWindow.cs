@@ -75,31 +75,31 @@ private readonly GuessPresenter _guessPresenter; // for the second view
         // ==========USER ACTIONS==========
         private void btnTf_Click(object sender, EventArgs e)
         {
-            _categPresenter.onBtnTermFrequencyClicked(cbCategories.Text, rtbKnownText.Text);
+            _categPresenter.OnBtnTermFrequencyClicked(cbCategories.Text, rtbKnownText.Text);
           
         }
 
         private void btnIdf_Click(object sender, EventArgs e)
         {
-            _categPresenter.onBtnInverseDocumentFrequencyClicked(cbCategories.Text);
+            _categPresenter.OnBtnInverseDocumentFrequencyClicked(cbCategories.Text);
         }
 
 
         private void btnTfIdf_Click(object sender, EventArgs e)
         {
-            _categPresenter.onBtnTermFrequencyInverseDocumentFrequencyClicked(cbCategories.Text);
+            _categPresenter.OnBtnTermFrequencyInverseDocumentFrequencyClicked(cbCategories.Text);
         }
 
 
         private void btnCategories_LoadTextFromFile_Click(object sender, EventArgs e)
         {
-            _categPresenter.onBtnLoadTexTermFrequencyromFileClicked();
+            _categPresenter.OnBtnLoadTextFromFileClicked();
         }
 
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            _categPresenter.onBtnSaveClicked();
+            _categPresenter.OnBtnSaveClicked();
         }
 
 
