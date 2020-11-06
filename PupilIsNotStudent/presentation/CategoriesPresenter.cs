@@ -44,6 +44,8 @@ namespace PupilIsNotStudent.presentation
                 _interactor.computeTermFrequencyAltogether(catg);
 
                 _view.setCategories(_interactor.getCategories().ToArray());
+                
+                _view.show("Success");
             }
             else
             {
@@ -82,6 +84,8 @@ namespace PupilIsNotStudent.presentation
                     if (_interactor.TermFrequencyExist(shelf) && _interactor.InverseDocumentFrequencyExist(shelf))
                     {
                         _interactor.calculateTermFrequencyInverseDocumentFrequency(shelf);
+                        
+                        _view.show("Success");
                     }
                     else
                     {
