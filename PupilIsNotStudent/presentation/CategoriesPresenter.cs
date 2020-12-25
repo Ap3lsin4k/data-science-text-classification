@@ -84,8 +84,6 @@ namespace PupilIsNotStudent.presentation
                     if (_interactor.TermFrequencyExist(shelf) && _interactor.InverseDocumentFrequencyExist(shelf))
                     {
                         _interactor.calculateTermFrequencyInverseDocumentFrequency(shelf);
-                        
-                        _view.show("Success");
                     }
                     else
                     {
@@ -96,6 +94,8 @@ namespace PupilIsNotStudent.presentation
                                    "TermFrequency and InverseDocumentFrequency needs to be computed before proceeding.");
                     }
                 }
+                _view.show("Finished computing Term Frequency * Inverse Document Frequency");
+
             }
             else
                 _view.show("There is no categories to calculate TermFrequency*InverseDocumentFrequency");
