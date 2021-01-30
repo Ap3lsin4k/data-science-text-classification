@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PupilIsNotStudent.model.core;
 using PupilIsNotStudent.model.repository;
+using PupilIsNotStudent.utils;
 
 namespace PupilIsNotStudent.model.interactor
 {
@@ -26,21 +27,25 @@ namespace PupilIsNotStudent.model.interactor
         }
 
         //==========AKINATOR aka GUESSER==========
-        public string computeDe(in string[] splitText)
+        public string ComputeDe(in string[] splitText)
         {
-            return _akinator.computeDe(splitText);
+            return _akinator.ComputeDe(splitText);
         }
 
-        public utils.IndicatorsOfAffiliationForText computeAffiliationOfTextToCategory(in HashSet<string> newTextUnrepeatedWords, Dictionary<string, double> TFIDF)
+        public utils.IndicatorsOfAffiliationForText ComputeAffiliationOfTextToCategory(in HashSet<string> newTextUnrepeatedWords, Dictionary<string, double> tfidf, string categoryName)
         {
-            return _akinator.computeAffiliationOfTextToCategory(newTextUnrepeatedWords, TFIDF);
+            _log.CreateNewFile(categoryName);
+            var indicatorsOfAffiliationForText =
+                _akinator.ComputeAffiliationOfTextToCategory(newTextUnrepeatedWords, tfidf, _log);
+            _log.CloseFile();
+            return indicatorsOfAffiliationForText;
         }
 
         //==========TEXT REPOSITORY==========
 
-        public string[] getSplitWords(string rawText)
+        public string[] GetSplitWords(string rawText)
         {
-            return _text.getSplitWords(rawText);
+            return _text.GetSplitWords(rawText);
         }
 
 
@@ -51,57 +56,57 @@ namespace PupilIsNotStudent.model.interactor
 
         //==========FILE REPOSITORY==========
 
-        public bool openFileDialog()
+        public bool OpenFileDialog()
         {
             //return true if Dialog Result is "OK"
-            return _file.openFileDialog();
+            return _file.OpenFileDialog();
         }
 
-        public string readTextFromFile()
+        public string ReadTextFromFile()
         {
-            return _file.readAllText();
+            return _file.ReadAllText();
         }
 
 
         //==========LOG REPOSITORY==========
 
-        public void openNewLogFile(string name)
+        public void OpenNewLogFile(string name)
         {
-            _log.createNewFile(name);
+            _log.CreateNewFile(name);
         }
 
-        public void writeLog(string logMessage)
+        public void WriteLog(string logMessage)
         {
-            _log.write(logMessage);
+            _log.Write(logMessage);
         }
 
-        public void closeLogFile()
+        public void CloseLogFile()
         {
-            _log.closeFile();
+            _log.CloseFile();
         }
 
 
         //==========EXTRACT KEY WORDS REPOSITORY==========
 
 
-        public Dictionary<string, Book> getLibrary()
+        public Dictionary<string, Book> GetLibrary()
         {
-            return _extractKeyWords.library;
+            return _extractKeyWords.Library;
         }
 
-        public bool deserializeFromFile()
+        public bool DeserializeFromFile()
         {
-            return _extractKeyWords.deserializeFromFile();
+            return _extractKeyWords.DeserializeFromFile();
         }
 
-        public Dictionary<string, Book>.KeyCollection getCategories()
+        public Dictionary<string, Book>.KeyCollection GetCategories()
         {
-            return _extractKeyWords.getCategories();
+            return _extractKeyWords.GetCategories();
         }
 
-        public void relearn(string shelfToBeModernized, in string[] shuffledWords)
+        public void Relearn(string shelfToBeModernized, in string[] shuffledWords)
         {
-            _extractKeyWords.relearn(shelfToBeModernized, in shuffledWords);
+            _extractKeyWords.Relearn(shelfToBeModernized, in shuffledWords);
         }
     }
 }

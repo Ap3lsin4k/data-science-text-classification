@@ -14,7 +14,7 @@ using PupilIsNotStudent.model;
 
 namespace PupilIsNotStudent
 {
-    public partial class MainWindow : Form, CategoriesView, GuessView
+    public partial class MainWindow : Form, ICategoriesView, IGuessView
     {
 
       
@@ -50,12 +50,12 @@ private readonly GuessPresenter _guessPresenter; // for the second view
 
         //==========COMMON==========
 
-        public void show(string tip)
+        public void Show(string tip)
         {
             MessageBox.Show(tip);
         }
 
-        public void setCategories(string[] categories)
+        public void SetCategories(string[] categories)
         {
             cbCategories.Items.Clear();
             cbCategories.Items.AddRange(categories);
@@ -67,7 +67,7 @@ private readonly GuessPresenter _guessPresenter; // for the second view
         //==========CATEGORIES VIEW IMPLEMENTATION==========
 
         
-        void CategoriesView.loadEditableText(string richText)
+        void ICategoriesView.LoadEditableText(string richText)
         {
             rtbKnownText.Text = richText;
         }
@@ -110,48 +110,48 @@ private readonly GuessPresenter _guessPresenter; // for the second view
         
         //==========GUESS VIEW IMPLEMENTATION==========
 
-        void GuessView.loadEditableText(string richText)
+        void IGuessView.LoadEditableText(string richText)
         {
             richTBtoAnalyze.Text = richText;
         }
 
-        public void clearPreviousResults()
+        public void ClearPreviousResults()
         {
             myGrid.Rows.Clear();
         }
 
-        public void sortThroughResultsByTfidf()
+        public void SortThroughResultsByTfidf()
         {
             // 0 - Name, 1 - TFIDF, 2 - DE, 3 - DE*TFIDF
             myGrid.Sort(myGrid.Columns[1], ListSortDirection.Descending);
         }
 
-        public void showLongDebugLogDe(string deResults)
+        public void ShowLongDebugLogDe(string deResults)
         {
             lbDEresult.Text = "DE\n" + deResults;
         }
 
-        public void initializeNewRow()
+        public void InitializeNewRow()
         {
             _currentRowInMyGridIndex = myGrid.Rows.Add();
         }
 
-        public void showCategoryNameInCurRow(string categoryName)
+        public void ShowCategoryNameInCurRow(string categoryName)
         {
             myGrid.Rows[_currentRowInMyGridIndex].Cells[0].Value = categoryName;  // category
         }
 
-        public void showTfidfInCurRow(double tfidfScore)
+        public void ShowTfidfInCurRow(double tfidfScore)
         {
             myGrid.Rows[_currentRowInMyGridIndex].Cells[1].Value = tfidfScore;
         }
 
-        public void showDeInCurRow(double deScore)
+        public void ShowDeInCurRow(double deScore)
         {
             myGrid.Rows[_currentRowInMyGridIndex].Cells[2].Value = deScore;
         }
 
-        public void showTotalScoreInCurRow(double probabilityOfAffiliation)
+        public void ShowTotalScoreInCurRow(double probabilityOfAffiliation)
         {
             myGrid.Rows[_currentRowInMyGridIndex].Cells[3].Value = probabilityOfAffiliation;
         }
@@ -163,23 +163,23 @@ private readonly GuessPresenter _guessPresenter; // for the second view
 
         private void btnAnalysis_Click(object sender, EventArgs e)
         {
-            _guessPresenter.onBtnGuessCategoryClicked(richTBtoAnalyze.Text);
+            _guessPresenter.OnBtnGuessCategoryClicked(richTBtoAnalyze.Text);
         }
 
 
         private void btnDE_Click(object sender, EventArgs e)
         {
-            _guessPresenter.onBtnComputeDisperseEstimationClicked(richTBtoAnalyze.Text);
+            _guessPresenter.OnBtnComputeDisperseEstimationClicked(richTBtoAnalyze.Text);
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            _guessPresenter.onBtnLoadJsonClicked();
+            _guessPresenter.OnBtnLoadJsonClicked();
         }
 
         private void btnLoadTextFromFile_Click(object sender, EventArgs e)
         {
-            _guessPresenter.onBtnLoadTextFromFileClicked();
+            _guessPresenter.OnBtnLoadTextFromFileClicked();
 
         }
 

@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace PupilIsNotStudent.presentation
 {
-    interface CategoriesView
+    interface ICategoriesView
     {
         // common
-        void show(string tip);
-        void setCategories(string[] categories);
+        void Show(string tip);
+        void SetCategories(string[] categories);
 
 
         //from file
-        void loadEditableText(string richText);
+        void LoadEditableText(string richText);
         
     }
 }

@@ -15,27 +15,27 @@ namespace PupilIsNotStudent.presentation
 {
     class GuessPresenter
     {
-        private readonly GuessView view;
-        private readonly GuessInteractor interactor;
+        private readonly IGuessView _view;
+        private readonly GuessInteractor _interactor;
 
-        public GuessPresenter(GuessView view, GuessInteractor interactor)
+        public GuessPresenter(IGuessView view, GuessInteractor interactor)
         {
-            this.view = view;
-            this.interactor = interactor;
-            load();
+            this._view = view;
+            this._interactor = interactor;
+            Load();
         }
         //DESTRUCT
 
 
-        public void onBtnGuessCategoryClicked(string textToBeAnalyzed)
+        public void OnBtnGuessCategoryClicked(string textToBeAnalyzed)
         {
 
-            string[] wordsCategoryToGuess = interactor.getSplitWords(textToBeAnalyzed);
-            view.clearPreviousResults();
+            string[] wordsCategoryToGuess = _interactor.GetSplitWords(textToBeAnalyzed);
+            _view.ClearPreviousResults();
 
             // Do not repeat words
             
-            onBtnComputeDisperseEstimationClicked(textToBeAnalyzed);
+            OnBtnComputeDisperseEstimationClicked(textToBeAnalyzed);
 
 
  //           string[] uniqueWords = interactor.associateOccurrencesWithTerms(ref wordsCategoryToGuess);
@@ -43,77 +43,78 @@ namespace PupilIsNotStudent.presentation
             var uniqueWords = new HashSet<string>(wordsCategoryToGuess);
             IndicatorsOfAffiliationForText scores;
 
-            foreach (KeyValuePair<string, Book> category in interactor.getLibrary())  // category, a category properties
+            foreach (KeyValuePair<string, Book> category in _interactor.GetLibrary())  // category, a category properties
             {
                 // here we have CategoryName(category.Key)
               
-                view.initializeNewRow();
-                view.showCategoryNameInCurRow(category.Key);
-                interactor.openNewLogFile(category.Key);
+                _view.InitializeNewRow();
+                _view.ShowCategoryNameInCurRow(category.Key);
+                //interactor.openNewLogFile(category.Key);
 
-                scores = interactor.computeAffiliationOfTextToCategory(in uniqueWords, category.Value.TFIDF);
-              
-                view.showTfidfInCurRow(Math.Round(scores.normalizedTfidf, 4));
+                scores = _interactor.ComputeAffiliationOfTextToCategory(in uniqueWords, category.Value.TFIDF,
+                    category.Key);
+                //interactor.closeLogFile();
+                
+                _view.ShowTfidfInCurRow(Math.Round(scores.NormalizedTfidf, 4));
                 
 
-                if (scores.doesDeExist)
+                if (scores.DoesDeExist)
                 {
-                    view.showDeInCurRow(Math.Round(scores.de, 4));
-                    view.showTotalScoreInCurRow(Math.Round(scores.normalizedTfidf * scores.de, 4));
+                    _view.ShowDeInCurRow(Math.Round(scores.De, 4));
+                    _view.ShowTotalScoreInCurRow(Math.Round(scores.NormalizedTfidf * scores.De, 4));
                 }
                 else
                 {
                     string brokenWords="";
 
-                    foreach(string word in scores.getTermsWithBrokenDe())
+                    foreach(string word in scores.GetTermsWithBrokenDe())
                     {
                         brokenWords += '"' + word + "\", ";
                     }
-                    view.show("The key(s) " + brokenWords + " was not found in the Dictionary of DispersionEstimation");
+                    _view.Show("The key(s) " + brokenWords + " was not found in the Dictionary of DispersionEstimation");
                 }
                 // end writing log
-                interactor.closeLogFile();
             }
 
             // sorting by importance coefficient
-            view.sortThroughResultsByTfidf();
+            _view.SortThroughResultsByTfidf();
 
 
             // Re-Learner Update Knowledge
-            if(false) interactor.relearn("Наука", in wordsCategoryToGuess);
+            if(false) _interactor.Relearn("Наука", in wordsCategoryToGuess);
         }
 
-        public void onBtnComputeDisperseEstimationClicked(string textToBeAnalyzed)
+        public void OnBtnComputeDisperseEstimationClicked(string textToBeAnalyzed)
         {
-            string resultOfDispersionEstimation = interactor.computeDe(interactor.getSplitWords(textToBeAnalyzed));
+            string resultOfDispersionEstimation = _interactor.ComputeDe(_interactor.GetSplitWords(textToBeAnalyzed));
            
 
-            view.showLongDebugLogDe(resultOfDispersionEstimation);
+            _view.ShowLongDebugLogDe(resultOfDispersionEstimation);
         }
 
-        public void onBtnLoadTextFromFileClicked()
+        public void OnBtnLoadTextFromFileClicked()
         {
-            if (interactor.openFileDialog())
+            if (_interactor.OpenFileDialog())
             {
-                view.loadEditableText(interactor.readTextFromFile());
+                _view.LoadEditableText(_interactor.ReadTextFromFile());
             }
         }
 
 
 
-        public void onBtnLoadJsonClicked()
+        public void OnBtnLoadJsonClicked()
         {
-            if (load())
-                view.show("Successfully loaded from \"analysis.json\"");
+            if (Load())
+                _view.Show("Successfully loaded from \"analysis.json\"");
         }
 
 
 
-        private bool load()
+        private bool Load()
         {
             // error message is in the newsJson.load().catch
-            bool success = interactor.deserializeFromFile();
-            view.setCategories(interactor.getCategories().ToArray());
+            bool success = _interactor.DeserializeFromFile();
+            _view.SetCategories(_interactor.GetCategories().ToArray());
             return success;
         }
 

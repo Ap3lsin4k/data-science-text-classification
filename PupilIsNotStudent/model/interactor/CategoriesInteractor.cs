@@ -26,48 +26,48 @@ namespace PupilIsNotStudent.model.interactor
 
         //==========TEXT REPOSITORY==========
         
-        public string[] getSplitWords(string rawText)
+        public string[] GetSplitWords(string rawText)
         {
-            return _text.getSplitWords(rawText);
+            return _text.GetSplitWords(rawText);
         }
 
 
         //==========FILE REPOSITORY==========
 
-        public bool openFileDialog()
+        public bool OpenFileDialog()
         {
             //return true if Dialog Result is "OK"
-            return _file.openFileDialog();
+            return _file.OpenFileDialog();
         }
 
-        public string readTexTermFrequencyromFile()
+        public string ReadTexTermFrequencyromFile()
         {
-            return _file.readAllText();
+            return _file.ReadAllText();
         }
 
 
 
         //==========Extract Key Words Repository==========
-        public void addCategory(string shelf, string[] texts)
+        public void AddCategory(string shelf, string[] texts)
         {
-            _extractKeyWords.addCategory(shelf, in texts);
+            _extractKeyWords.AddCategory(shelf, in texts);
         }
 
 
-        public void computeTermFrequencyAltogether(string shelf)
+        public void ComputeTermFrequencyAltogether(string shelf)
         {
-            _extractKeyWords.computeTermFrequencyAltogether(shelf);
+            _extractKeyWords.ComputeTermFrequencyAltogether(shelf);
         }
 
 
-        public Dictionary<string, Book>.KeyCollection getCategories()
+        public Dictionary<string, Book>.KeyCollection GetCategories()
         {
-            return _extractKeyWords.getCategories();
+            return _extractKeyWords.GetCategories();
         }
 
-        public bool whetherCategoryExist(string shelf)
+        public bool WhetherCategoryExist(string shelf)
         {
-            return _extractKeyWords.whetherCategoryExist(shelf);
+            return _extractKeyWords.WhetherCategoryExist(shelf);
         }
 
         public void IDFForEachBook()
@@ -75,17 +75,17 @@ namespace PupilIsNotStudent.model.interactor
             _extractKeyWords.IDFForEachBook();
         }
 
-        public byte getNumberOfShelvesInLibrary()
+        public byte GetNumberOfShelvesInLibrary()
         {
-            return _extractKeyWords.getNumberOfShelvesInLibrary();
+            return _extractKeyWords.GetNumberOfShelvesInLibrary();
         }
-        public void calculateTermFrequencyInverseDocumentFrequency(string shelf)
+        public void CalculateTermFrequencyInverseDocumentFrequency(string shelf)
         {
             _extractKeyWords.CalculateTermFrequencyInverseDocumentFrequency(shelf);
         }
-        public IOrderedEnumerable<KeyValuePair<string, double>> getTermFrequencyInverseDocumentFrequencyOrderByDescending(string shelf)
+        public IOrderedEnumerable<KeyValuePair<string, double>> GetTermFrequencyInverseDocumentFrequencyOrderByDescending(string shelf)
         {
-            return _extractKeyWords.getTermFrequencyInverseDocumentFrequencyOrderByDescending(shelf);
+            return _extractKeyWords.GetTermFrequencyInverseDocumentFrequencyOrderByDescending(shelf);
         }
         public bool TermFrequencyExist(string shelf)
         {
@@ -96,9 +96,9 @@ namespace PupilIsNotStudent.model.interactor
             return _extractKeyWords.InverseDocumentFrequencyExist(shelf);
         }
 
-        public void saveToJsonFile()
+        public void SaveToJsonFile()
         {
-            _extractKeyWords.save();
+            _extractKeyWords.Save();
         }
 
     }

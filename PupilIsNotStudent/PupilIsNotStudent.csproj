@@ -97,6 +97,7 @@
     <Compile Include="model\repository\ExtractKeyWordsRepository.cs" />
     <Compile Include="utils\IndicatorsOfAffiliationForText.cs" />
     <Compile Include="model\core\Book.cs" />
+    <Compile Include="utils\Writer.cs" />
     <EmbeddedResource Include="automated-testing\ResourceTextParser.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceTextParser.Designer.cs</LastGenOutput>

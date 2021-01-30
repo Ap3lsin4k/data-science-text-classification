@@ -8,26 +8,26 @@ namespace PupilIsNotStudent.utils
 {
     class IndicatorsOfAffiliationForText
     {
-        public ushort commonTerms;
-        public double normalizedTfidf, de;
+        public ushort CommonTerms;
+        public double NormalizedTfidf, De;
 
         //for debug purposes
-        public bool doesDeExist;
-        List<string> termsHasNoDe;
+        public bool DoesDeExist;
+        List<string> _termsHasNoDe;
 
         public IndicatorsOfAffiliationForText()
         {
-            termsHasNoDe = new List<string>();
+            _termsHasNoDe = new List<string>();
         }
 
-        public void addTermWithBrokenDe(string term)
+        public void AddTermWithBrokenDe(string term)
         {
-            termsHasNoDe.Add(term);
+            _termsHasNoDe.Add(term);
         }
 
-        public List<string> getTermsWithBrokenDe()
+        public List<string> GetTermsWithBrokenDe()
         {
-            return termsHasNoDe;
+            return _termsHasNoDe;
         }
     }
 }

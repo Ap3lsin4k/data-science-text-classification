@@ -6,26 +6,26 @@ using System.Threading.Tasks;
 
 namespace PupilIsNotStudent.presentation
 {
-    interface GuessView
+    interface IGuessView
     {
         // common
-        void show(string message);
-        void setCategories(string[] categories);
+        void Show(string message);
+        void SetCategories(string[] categories);
         
-        void loadEditableText(string richText);
+        void LoadEditableText(string richText);
 
 
-        void clearPreviousResults();
-        void sortThroughResultsByTfidf();
+        void ClearPreviousResults();
+        void SortThroughResultsByTfidf();
 
 
         // Disperse Estimation values and words
-        void showLongDebugLogDe(string deResults);
+        void ShowLongDebugLogDe(string deResults);
 
-        void initializeNewRow(); // myGrid.Rows.Add()
-        void showCategoryNameInCurRow(string categoryName); //  myGrid.Rows[ind].Cells[0].Value = category.Key;  // category
-        void showTfidfInCurRow(double tfidfScore);
-        void showDeInCurRow(double deScore);
-        void showTotalScoreInCurRow(double probabilityOfAffiliation);
+        void InitializeNewRow(); // myGrid.Rows.Add()
+        void ShowCategoryNameInCurRow(string categoryName); //  myGrid.Rows[ind].Cells[0].Value = category.Key;  // category
+        void ShowTfidfInCurRow(double tfidfScore);
+        void ShowDeInCurRow(double deScore);
+        void ShowTotalScoreInCurRow(double probabilityOfAffiliation);
     }
 }

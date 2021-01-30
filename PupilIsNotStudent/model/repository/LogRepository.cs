@@ -4,13 +4,14 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PupilIsNotStudent.utils;
 
 namespace PupilIsNotStudent.model.repository
 {
     // Wrapper for StreamWriter
-    class LogRepository
+    class LogRepository : IWriter
     {
-        private StreamWriter log;
+        private StreamWriter _log;
 
         public LogRepository()
         {
@@ -18,20 +19,20 @@ namespace PupilIsNotStudent.model.repository
         }
 
 
-        public void createNewFile(string name)
+        public void CreateNewFile(string name)
         {
             FileInfo f = new FileInfo("log/" + name + ".txt");
-            log = f.CreateText();
+            _log = f.CreateText();
         }
 
-        public void write(string logMessage)
+        public void CloseFile()
         {
-            log.WriteLine(logMessage);
+            _log.Close();
         }
 
-        public void closeFile()
+        public void Write(string logMessage)
         {
-            log.Close();
+            _log.WriteLine(logMessage);
         }
     }
 }

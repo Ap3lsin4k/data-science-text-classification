@@ -4,76 +4,76 @@ using System.Linq;
 
 namespace PupilIsNotStudent.model.core
 {
-    class DisperseEstimation
+    internal class DisperseEstimation
     {
         public class IndexInText
         {
             public List<int> NKs = new List<int>();  //an array with function pushback(add) list of indexes where the term A is 
-            public double averageAs; // AVG(NKs[1]-NKs[0], NKs[2]-NKs[1],..., NKs[K]-NKs[K-1])  // average terms
-            public double sqAvgAs;  // AVG((NKs[1]-NKs[0])^2, (NKs[2]-NKs[1])^2, ..., (NKs[K]-NKs[K-1])^2)  // square average distance between occurance of terms
-            public double dispersionEstimation;
+            public double AverageAs; // AVG(NKs[1]-NKs[0], NKs[2]-NKs[1],..., NKs[K]-NKs[K-1])  // average terms
+            public double SqAvgAs;  // AVG((NKs[1]-NKs[0])^2, (NKs[2]-NKs[1])^2, ..., (NKs[K]-NKs[K-1])^2)  // square average distance between occurance of terms
+            public double DispersionEstimation;
         }
 
-        public Dictionary<string, IndexInText> words;
-        private int numberOfAllWords = -1;
+        public Dictionary<string, IndexInText> Words;
+        private int _numberOfAllWords = -1;
 
         //todo unique words | what that means? todos going to be deleted or moved into backlog
 
 
         public DisperseEstimation()
         {
-            this.words = new Dictionary<string, IndexInText>();
+            this.Words = new Dictionary<string, IndexInText>();
         }
 
-        public string analyzeDE(in string[] unknownCategoryWords)
+        public string AnalyzeDe(in string[] unknownCategoryWords)
         {
-            preinit();
-            init(unknownCategoryWords);
-            return mainFormula(); //DE of a random word
+            Preinit();
+            Init(unknownCategoryWords);
+            return MainFormula(); //DE of a random word
         }
 
-        private void preinit()
+        private void Preinit()
         {
             // Clear dictionary to add new words
-            this.words.Clear();
+            this.Words.Clear();
         }
 
-        public void init(in string[] wordsToAnalyse)
+        public void Init(in string[] wordsToAnalyse)
         {
             int n = 1;
             foreach (string aWord in wordsToAnalyse)
             {
-                if (!words.ContainsKey(aWord))
+                if (!Words.ContainsKey(aWord))
                 {            // create new word
-                    words[aWord] = new IndexInText();
+                    Words[aWord] = new IndexInText();
                 }
                 // add the position of the next occurrence of the word
-                words[aWord].NKs.Add(n);
+                Words[aWord].NKs.Add(n);
                 ++n;// move text pivot to the next word
             }
-            numberOfAllWords= wordsToAnalyse.Length; // number of all = n-1; (?)
+            _numberOfAllWords= wordsToAnalyse.Length; // number of all = n-1; (?)
         }
 
 
-        int deltaA(List<int> A, int k)
+        int DeltaA(List<int> a, int k)
         {
             /*
              k: 0  1   2    3
              n: 1  3  113  127
               */
             // distance between occurrences of term
-            return A[k + 1] - A[k];  // m-n; where m, n are neighbor position of the "A" word
+            return a[k + 1] - a[k];  // m-n; where m, n are neighbor position of the "A" word
        }
 
         //A is term like "word"
 
-        private double avgA(string A)  // <ΔA> = AVG(ΔA, ΔA, ΔA...)
+        private double AvgA(string a)  // <ΔA> = AVG(ΔA, ΔA, ΔA...)
         {
-            int sum = 0, k, length= words[A].NKs.Count;
+            int sum = 0, k, length= Words[a].NKs.Count;
 
             for (k = 0; k < length - 1; ++k)
             {
-                sum += deltaA(words[A].NKs, k);  // m-n
+                sum += DeltaA(Words[a].NKs, k);  // m-n
             }
             //k == words[A].NKs.Count - 1 // last index = length-1 due to indexation that begins with 0
 
@@ -89,7 +89,7 @@ namespace PupilIsNotStudent.model.core
             second delta is length - last occurrence, + first occurrence = (7-6) + (3) = 1 + 3 = 4
             Note "+1" because of zero-indexing
             */
-            sum += (numberOfAllWords - words[A].NKs[k]) + words[A].NKs[0];
+            sum += (_numberOfAllWords - Words[a].NKs[k]) + Words[a].NKs[0];
             //...A....A1...A2.....A3...
             /*
             //last delta equal (length()-A3)+A
@@ -97,26 +97,26 @@ namespace PupilIsNotStudent.model.core
 
             //save average A for each term
             //todo check if length is not zero
-            words[A].averageAs = (double)sum / length; // AVG = sum divided by number of variables(n)
+            Words[a].AverageAs = (double)sum / length; // AVG = sum divided by number of variables(n)
            
            
-            return words[A].averageAs;
+            return Words[a].AverageAs;
         }
 
         //todo optimize don't count delta two times
 
-        private double squareAvgA(string A) //<ΔA^2> = AVG(ΔA^2, ΔA^2, ΔA^2...)
+        private double SquareAvgA(string a) //<ΔA^2> = AVG(ΔA^2, ΔA^2, ΔA^2...)
         {
             int sum = 0, k;
-            int length = words[A].NKs.Count, deltaMN;
+            int length = Words[a].NKs.Count, deltaMn;
 
             for (k = 0; k < length - 1; ++k)
             {
-                deltaMN = deltaA(words[A].NKs, k);
-                sum += deltaMN * deltaMN;  // (m-n) squared
+                deltaMn = DeltaA(Words[a].NKs, k);
+                sum += deltaMn * deltaMn;  // (m-n) squared
             }
-            deltaMN = (numberOfAllWords - words[A].NKs[k]) + (words[A].NKs[0]);
-            sum += deltaMN * deltaMN;
+            deltaMn = (_numberOfAllWords - Words[a].NKs[k]) + (Words[a].NKs[0]);
+            sum += deltaMn * deltaMn;
 
             /*
              obsolete
@@ -126,23 +126,23 @@ namespace PupilIsNotStudent.model.core
             else
                 words[A].sqAvgAs = words.Count; // TODO fix for single words in text
                 */
-            words[A].sqAvgAs = (double)sum / length;
-            return words[A].sqAvgAs;
+            Words[a].SqAvgAs = (double)sum / length;
+            return Words[a].SqAvgAs;
         }
 
-        public string mainFormula()  //Math.Sqrt(<ΔA^2> - <ΔA>^2) / <ΔA>
+        public string MainFormula()  //Math.Sqrt(<ΔA^2> - <ΔA>^2) / <ΔA>
         {
-       
-            foreach (var word in words.Keys)// = 0; k < ns.NKs.Count - 1; ++k)
+            //math.sqrt((A[0] * A[0] + A[1] * A[1]) / 2 - avg(A) ** 2)/avg(A)
+            foreach (var word in Words.Keys)// = 0; k < ns.NKs.Count - 1; ++k)
             {
-                double A = avgA(word);  // <ΔA>
-                double A2 = squareAvgA(word);  //<ΔA^2>
-                words[word].dispersionEstimation = Math.Sqrt(A2 - A * A) / A; // calculate DE for each term in text
+                double a = AvgA(word);  // <ΔA>
+                double a2 = SquareAvgA(word);  //<ΔA^2>
+                Words[word].DispersionEstimation = Math.Sqrt(a2 - a * a) / a; // calculate DE for each term in text
             }
             //TODO the last key is ""
 
             string outDebug = "";
-
+    
             /*
             
             {
@@ -155,12 +155,12 @@ namespace PupilIsNotStudent.model.core
             }
 
              * */
-            foreach (var dict in words.OrderByDescending(key => key.Value.dispersionEstimation))
+            foreach (var dict in Words.OrderByDescending(key => key.Value.DispersionEstimation))
             {
                 outDebug += 
                     dict.Key 
                     +":"
-                    + Math.Round(dict.Value.dispersionEstimation, 1) 
+                    + Math.Round(dict.Value.DispersionEstimation, 1) 
                     + "\n";
             }
 

@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PupilIsNotStudent.model.core;
+using PupilIsNotStudent.utils;
 
 namespace PupilIsNotStudent.model.repository
 {
     internal class AkinatorRepository
     {
 
-        private const byte keyWordsLimit = 155;
+        private const byte KeyWordsLimit = 155;
         private readonly DisperseEstimation _disperseEstimation;
 
         public AkinatorRepository()
@@ -19,55 +20,47 @@ namespace PupilIsNotStudent.model.repository
         }
 
 
-        public string computeDe(in string[] splitText)
+        public string ComputeDe(in string[] splitText)
         {
-            return _disperseEstimation.analyzeDE(splitText);
+            return _disperseEstimation.AnalyzeDe(splitText);
         }
 
 
         // To AkinatorRepo
-        public utils.IndicatorsOfAffiliationForText computeAffiliationOfTextToCategory(HashSet<string> unrepeatedWords, Dictionary<string, double> tfIdf)
+        public utils.IndicatorsOfAffiliationForText ComputeAffiliationOfTextToCategory(HashSet<string> unrepeatedWords, Dictionary<string, double> keywordsForCategory, IWriter affiliationDeLog)
         {
             var scores = new utils.IndicatorsOfAffiliationForText();
 
             // for logging
-            scores.doesDeExist = true;
+            scores.DoesDeExist = true;
 
-
-            foreach (string word in unrepeatedWords) // the unrepeated word in unknown category
+            foreach (KeyValuePair<string, double> wordCategory in keywordsForCategory.OrderByDescending(key => key.Value).Take(KeyWordsLimit))
             {
-                byte break_counter = 0;
-                // more semantic comes first
-                foreach (KeyValuePair<string, double> wordCategory in tfIdf.OrderByDescending(key => key.Value))
+                foreach (string word in unrepeatedWords) // the unrepeated word in unknown category
                 {
-
-                    break_counter++;
-                    if (break_counter >= keyWordsLimit)
-                    {
-                        break;
-                    }
                     //TFIDF unknown category word is wordCategory
                     if (word == wordCategory.Key) // if word from unknown category equals word from category we know
                     {
-                        ++scores.commonTerms;
-                        scores.normalizedTfidf += wordCategory.Value;
+                        ++scores.CommonTerms;
+                        scores.NormalizedTfidf += wordCategory.Value;
 
-                        if (_disperseEstimation.words.ContainsKey(wordCategory.Key))
+                        if (_disperseEstimation.Words.ContainsKey(wordCategory.Key))
                         {
-                            scores.de += _disperseEstimation.words[word].dispersionEstimation;
+                            scores.De += _disperseEstimation.Words[word].DispersionEstimation;
+                            affiliationDeLog.Write(word+_disperseEstimation.Words[word].DispersionEstimation.ToString());
                         }
                         else
                         {
-                            scores.doesDeExist = false;
-                            scores.addTermWithBrokenDe(word);
+                            scores.DoesDeExist = false;
+                            scores.AddTermWithBrokenDe(word);
                         }
 
                     }
 
                 }
 
+                // more semantic comes first
             }
-
             return scores;
         }
     }

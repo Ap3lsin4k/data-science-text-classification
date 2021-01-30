@@ -13,10 +13,10 @@ namespace PupilIsNotStudent.presentation
     internal class CategoriesPresenter
     {
         // TextJsonRepository newsJson;
-        private readonly CategoriesView _view;
+        private readonly ICategoriesView _view;
         private readonly CategoriesInteractor _interactor;
 
-        public CategoriesPresenter(CategoriesView view, CategoriesInteractor interactor)
+        public CategoriesPresenter(ICategoriesView view, CategoriesInteractor interactor)
         {
             this._view = view;
             this._interactor = interactor;
@@ -28,7 +28,7 @@ namespace PupilIsNotStudent.presentation
 
             if (string.IsNullOrWhiteSpace(catg))
             {
-                _view.show("Please enter or chose the category");
+                _view.Show("Please enter or chose the category");
                 return;
             }
 
@@ -39,25 +39,25 @@ namespace PupilIsNotStudent.presentation
                  * create new category &save only unique words
                  * rewrite if category already exists
                 */
-                _interactor.addCategory(catg, _interactor.getSplitWords(textToBeAnalyzed));
+                _interactor.AddCategory(catg, _interactor.GetSplitWords(textToBeAnalyzed));
 
-                _interactor.computeTermFrequencyAltogether(catg);
+                _interactor.ComputeTermFrequencyAltogether(catg);
 
-                _view.setCategories(_interactor.getCategories().ToArray());
+                _view.SetCategories(_interactor.GetCategories().ToArray());
                 
-                _view.show("Success");
+                _view.Show("Success");
             }
             else
             {
                 //feature if the textBox is empty then show saved data
 
-                if (_interactor.whetherCategoryExist(catg))
+                if (_interactor.WhetherCategoryExist(catg))
                 {
-                    _view.show("Write some texts to update the network");
+                    _view.Show("Write some texts to update the network");
                 }
                 else
                 {
-                    _view.show("The category \"" + catg +
+                    _view.Show("The category \"" + catg +
                                "\" was not created. To create this category enter text of news in the TextBox");
                 }
             }
@@ -65,46 +65,46 @@ namespace PupilIsNotStudent.presentation
 
         public void OnBtnInverseDocumentFrequencyClicked(string currentCategory)
         {
-            if (_interactor.getNumberOfShelvesInLibrary() != 0)
+            if (_interactor.GetNumberOfShelvesInLibrary() != 0)
             {
                 // calculate IDF for each category
                 _interactor.IDFForEachBook();
-                _view.show("Success");
+                _view.Show("Success");
             }
             else
-                _view.show("There is no category to calculate the Inverse Document Frequency");
+                _view.Show("There is no category to calculate the Inverse Document Frequency");
         }
 
         public void OnBtnTermFrequencyInverseDocumentFrequencyClicked(string catg)
         {
-            if (_interactor.getNumberOfShelvesInLibrary() != 0)
+            if (_interactor.GetNumberOfShelvesInLibrary() != 0)
             {
-                foreach (string shelf in _interactor.getCategories())
+                foreach (string shelf in _interactor.GetCategories())
                 {
                     if (_interactor.TermFrequencyExist(shelf) && _interactor.InverseDocumentFrequencyExist(shelf))
                     {
-                        _interactor.calculateTermFrequencyInverseDocumentFrequency(shelf);
+                        _interactor.CalculateTermFrequencyInverseDocumentFrequency(shelf);
                     }
                     else
                     {
-                        _view.show("Error. TermFrequency exist:" + _interactor.TermFrequencyExist(shelf) +
+                        _view.Show("Error. TermFrequency exist:" + _interactor.TermFrequencyExist(shelf) +
                                    ",\tInverseDocumentFrequency exist:" +
                                    _interactor.InverseDocumentFrequencyExist(shelf) + "; for category: \"" + catg +
                                    "\". " +
                                    "TermFrequency and InverseDocumentFrequency needs to be computed before proceeding.");
                     }
                 }
-                _view.show("Finished computing Term Frequency * Inverse Document Frequency");
+                _view.Show("Finished computing Term Frequency * Inverse Document Frequency");
 
             }
             else
-                _view.show("There is no categories to calculate TermFrequency*InverseDocumentFrequency");
+                _view.Show("There is no categories to calculate TermFrequency*InverseDocumentFrequency");
         }
 
         public void OnBtnSaveClicked()
         {
-            _interactor.saveToJsonFile();
-            _view.show("Successfully saved");
+            _interactor.SaveToJsonFile();
+            _view.Show("Successfully saved");
         }
 
         public void OnBtnLoadTextFromFileClicked()
@@ -113,10 +113,10 @@ namespace PupilIsNotStudent.presentation
              * open explorer to choose a file. It freezes all the process until the OK button will be pressed.
              * "false" means that user pressed "Cancel"
              */
-            if (_interactor.openFileDialog())
+            if (_interactor.OpenFileDialog())
             {
-                string text = _interactor.readTexTermFrequencyromFile();
-                _view.loadEditableText(text);
+                string text = _interactor.ReadTexTermFrequencyromFile();
+                _view.LoadEditableText(text);
             }
         }
     }

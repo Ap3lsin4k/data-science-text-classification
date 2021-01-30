@@ -11,27 +11,27 @@ namespace PupilIsNotStudent.model.repository
     // wrapper for OpenFileDialog
     class FileRepository
     {
-        OpenFileDialog fileDialog;
+        OpenFileDialog _fileDialog;
         public FileRepository()
         {
 
-            fileDialog = new OpenFileDialog();
+            _fileDialog = new OpenFileDialog();
         }
 
-        public bool openFileDialog()
+        public bool OpenFileDialog()
         {
             // opens the dialog in last folder it remembers
 
-            fileDialog.Filter = "txt files (*.txt)|*.txt|Allfiles (*.*)|*.*";
-            fileDialog.FilterIndex = 1;
+            _fileDialog.Filter = "txt files (*.txt)|*.txt|Allfiles (*.*)|*.*";
+            _fileDialog.FilterIndex = 1;
 
             // It freezes the program while showing the dialog
-            return fileDialog.ShowDialog() == DialogResult.OK;
+            return _fileDialog.ShowDialog() == DialogResult.OK;
         }
 
-        public string readAllText()
+        public string ReadAllText()
         {
-            return File.ReadAllText(fileDialog.FileName, GetEncoding(fileDialog.FileName)); // Windows-1251
+            return File.ReadAllText(_fileDialog.FileName, GetEncoding(_fileDialog.FileName)); // Windows-1251
         }
 
 

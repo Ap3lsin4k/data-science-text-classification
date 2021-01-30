@@ -16,57 +16,57 @@ namespace PupilIsNotStudent.model.repository
     //wrapper to WordFreq
     class ExtractKeyWordsRepository
     {
-        public Dictionary<string, Book> library;  //<category, and parametrs for it>
+        public Dictionary<string, Book> Library;  //<category, and parametrs for it>
 
         //todo: make local
-        public string json;
+        public string Json;
 
         public ExtractKeyWordsRepository()
         {
-            library = new Dictionary<string, Book>();
+            Library = new Dictionary<string, Book>();
         }
 
         // =====JSON=====
-        public void save()
+        public void Save()
         {
             //save json to file
-            this.json = JsonConvert.SerializeObject(this.library);
+            this.Json = JsonConvert.SerializeObject(this.Library);
 
             FileInfo f = new FileInfo("analysis.json");
             StreamWriter w = f.CreateText();
-            w.Write(this.json);
+            w.Write(this.Json);
             w.Close();
         }
 
-        public void show()
+        public void Show()
         {
-            this.json = JsonConvert.SerializeObject(this.library);
-            MessageBox.Show(json);
+            this.Json = JsonConvert.SerializeObject(this.Library);
+            MessageBox.Show(Json);
         }
 
-        public bool deserializeFromFile()
+        public bool DeserializeFromFile()
         {
             try
             {
                 //load from file
-                this.json = File.ReadAllText("analysis.json");
+                this.Json = File.ReadAllText("analysis.json");
 
                 Dictionary<string, Book> deserialize = 
-                    JsonConvert.DeserializeObject<Dictionary<string, Book>>(this.json);
+                    JsonConvert.DeserializeObject<Dictionary<string, Book>>(this.Json);
                 if (deserialize != null)
                 {
-                    this.library = deserialize;
+                    this.Library = deserialize;
                 }
                 else  // if json file is invalid
                 {
-                    this.library = new Dictionary<string, Book>();
+                    this.Library = new Dictionary<string, Book>();
                     MessageBox.Show("Deserialize was failed. I will create new object. Don't forget to press Save!");
                 }
                 return true;
             }
             catch(Exception)
             {
-                this.library = new Dictionary<string, Book>();
+                this.Library = new Dictionary<string, Book>();
                 MessageBox.Show("Could not find file: \"analysis.json\". Creating a new object. Don't forget to press Save!");
                 return false;
             }
@@ -74,37 +74,37 @@ namespace PupilIsNotStudent.model.repository
 
 
         // Extract Key Words
-        public Dictionary<string, Book>.KeyCollection getCategories()
+        public Dictionary<string, Book>.KeyCollection GetCategories()
         {
-            return library.Keys;
+            return Library.Keys;
         }
 
 
-        public void addCategory(string shelf, in string[] texts)
+        public void AddCategory(string shelf, in string[] texts)
         {
-            library[shelf] = new Book(texts);
+            Library[shelf] = new Book(texts);
         }
 
 
-        public bool whetherCategoryExist(string shelf)
+        public bool WhetherCategoryExist(string shelf)
         {
-            return library.ContainsKey(shelf);
+            return Library.ContainsKey(shelf);
         }
 
 
         // number words in all texts for each category
-        public byte getNumberOfShelvesInLibrary() 
+        public byte GetNumberOfShelvesInLibrary() 
         {
-            return (byte) library.Count;
+            return (byte) Library.Count;
         }
 
 
 
 
         // ======Term Frequency======
-        public void computeTermFrequencyAltogether(string shelf)
+        public void ComputeTermFrequencyAltogether(string shelf)
         {
-            library[shelf].computeTermFrequencyAltogether();
+            Library[shelf].ComputeTermFrequencyAltogether();
         }
 
 
@@ -113,25 +113,25 @@ namespace PupilIsNotStudent.model.repository
         private void IDFForOtherCategories(string shelf, string word)
         {
             byte numOfBooksWhereWordAppears = 1;
-            foreach (KeyValuePair<string, Book> book in library)
+            foreach (KeyValuePair<string, Book> book in Library)
             {
                 if (book.Key == shelf) continue;
 
-                if (book.Value.n.ContainsKey(word))
+                if (book.Value.N.ContainsKey(word))
                 {
                     ++numOfBooksWhereWordAppears; // if at least a word is in other category we count it and go to another text
                 }
 
             }
 
-            library[shelf].computeIDF(word, getNumberOfShelvesInLibrary(), numOfBooksWhereWordAppears);
+            Library[shelf].ComputeIDF(word, GetNumberOfShelvesInLibrary(), numOfBooksWhereWordAppears);
         }
 
 
         // initialize each single word in a book
         private void IDFForEachWordInBook(string shelf)
         {
-            foreach (var word in library[shelf].n.Keys)
+            foreach (var word in Library[shelf].N.Keys)
             {
                 IDFForOtherCategories(shelf, word);
 
@@ -150,7 +150,7 @@ namespace PupilIsNotStudent.model.repository
 
         public void IDFForEachBook()
         {
-            foreach (string shelf in library.Keys)
+            foreach (string shelf in Library.Keys)
             {
                 IDFForEachWordInBook(shelf);
 
@@ -163,35 +163,35 @@ namespace PupilIsNotStudent.model.repository
         // ======Term Frequency - Inverse Doc Frequency======
         public void CalculateTermFrequencyInverseDocumentFrequency(string shelf)
         {
-            library[shelf].computeTFIDFAltogether();
+            Library[shelf].ComputeTFIDFAltogether();
         }
 
-        public IOrderedEnumerable<KeyValuePair<string, double>> getTermFrequencyInverseDocumentFrequencyOrderByDescending(string shelf)
+        public IOrderedEnumerable<KeyValuePair<string, double>> GetTermFrequencyInverseDocumentFrequencyOrderByDescending(string shelf)
         {
-            return library[shelf].TFIDF.OrderByDescending(key => key.Value);
+            return Library[shelf].TFIDF.OrderByDescending(key => key.Value);
         }
 
 
         public bool TermFrequencyExist(string shelf)
         {
-            return library[shelf].TermFrequency.Count != 0;
+            return Library[shelf].TermFrequency.Count != 0;
         }
 
         public bool InverseDocumentFrequencyExist(string shelf)
         {
-            return library[shelf].IDF.Count != 0;
+            return Library[shelf].IDF.Count != 0;
         }
 
         // ======Relearner======
-        public void relearn(string shelf, in string[] shuffledWords)
+        public void Relearn(string shelf, in string[] shuffledWords)
         {
             var uniqueWords = new HashSet<string>(shuffledWords);
 
-            library[shelf].memorizeWords(shuffledWords);
+            Library[shelf].MemorizeWords(shuffledWords);
             
-            library[shelf].updateTermFrequencyForNewWords(uniqueWords);
+            Library[shelf].UpdateTermFrequencyForNewWords(uniqueWords);
             IDFForNewWordsInBook(shelf, uniqueWords);
-            library[shelf].updateTermFrequencyIDFForSpecificWords(uniqueWords);
+            Library[shelf].UpdateTermFrequencyIDFForSpecificWords(uniqueWords);
             
         }
     }

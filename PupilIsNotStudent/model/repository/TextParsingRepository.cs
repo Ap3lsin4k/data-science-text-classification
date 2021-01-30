@@ -6,13 +6,12 @@ using System.Text.RegularExpressions;
 
 namespace PupilIsNotStudent.model.repository
 {
-
-    class TextParsingRepository
+    public class TextParsingRepository
     {
 
         //==========TEXT PARSER==========
         // only Cyrillic letters. Change separators to only one " "
-        private StringBuilder getPureText(string notClearedText)
+        protected StringBuilder GetPureText(string notClearedText)
         {
             StringBuilder peeledText = new StringBuilder(notClearedText.Length);
 
@@ -20,7 +19,7 @@ namespace PupilIsNotStudent.model.repository
             foreach (var symbol in notClearedText)
             {
                 peeledText.Append(
-                    isCyrillic(symbol)
+                    IsCyrillic(symbol)
                         ? char.ToLower(symbol)
                         : ' ');
             }
@@ -28,14 +27,13 @@ namespace PupilIsNotStudent.model.repository
         }
 
         // Takes not cleared(aka raw) text
-        public string[] getSplitWords(string notClearedText)
+        public string[] GetSplitWords(string notClearedText)
         {
-            return getPureText(notClearedText).ToString().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            return GetPureText(notClearedText).ToString().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
         }
-        
 
 
-        private bool isCyrillic(int letterCode)
+        public bool IsCyrillic(int letterCode)
         {
             switch (letterCode)
             {
@@ -49,6 +47,7 @@ namespace PupilIsNotStudent.model.repository
                 case 1169: // ґ
                 case 32:  // " "
                 case 39:  // '
+                case '’': // ’
                           //case 45:  // -
                     return true;
                 default:
