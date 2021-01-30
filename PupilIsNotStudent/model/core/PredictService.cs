@@ -8,13 +8,13 @@ using PupilIsNotStudent.utils;
 
 namespace PupilIsNotStudent.model.repository
 {
-    internal class AkinatorRepository
+    internal class AkinatorService
     {
 
         private const byte KeyWordsLimit = 155;
         private readonly DisperseEstimation _disperseEstimation;
 
-        public AkinatorRepository()
+        public AkinatorService()
         {
             _disperseEstimation = new DisperseEstimation();
         }
@@ -24,10 +24,9 @@ namespace PupilIsNotStudent.model.repository
         {
             return _disperseEstimation.AnalyzeDe(splitText);
         }
-
-
+        
         // To AkinatorRepo
-        public utils.IndicatorsOfAffiliationForText ComputeAffiliationOfTextToCategory(HashSet<string> unrepeatedWords, Dictionary<string, double> keywordsForCategory, IWriter affiliationDeLog)
+        public utils.IndicatorsOfAffiliationForText ComputeAffiliationOfTextToCategory(HashSet<string> unrepeatedWords, Dictionary<string, double> keywordsForCategory, IWriter log=null)
         {
             var scores = new utils.IndicatorsOfAffiliationForText();
 
@@ -47,7 +46,7 @@ namespace PupilIsNotStudent.model.repository
                         if (_disperseEstimation.Words.ContainsKey(wordCategory.Key))
                         {
                             scores.De += _disperseEstimation.Words[word].DispersionEstimation;
-                            affiliationDeLog.Write(word+_disperseEstimation.Words[word].DispersionEstimation.ToString());
+                            log.Write(word+_disperseEstimation.Words[word].DispersionEstimation.ToString());
                         }
                         else
                         {

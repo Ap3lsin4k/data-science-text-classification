@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PupilIsNotStudent.utils;
+﻿using System.IO;
 
-namespace PupilIsNotStudent.model.repository
+namespace PupilIsNotStudent.utils
 {
     // Wrapper for StreamWriter
-    class LogRepository : IWriter
+    public class LoggerAspectSingletone : IWriter
     {
         private StreamWriter _log;
 
-        public LogRepository()
+        public LoggerAspectSingletone()
         {
             Directory.CreateDirectory("log");
         }
@@ -33,6 +27,11 @@ namespace PupilIsNotStudent.model.repository
         public void Write(string logMessage)
         {
             _log.WriteLine(logMessage);
+        }
+
+        public static LoggerAspectSingletone GetInstance()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
