@@ -58,21 +58,9 @@ namespace PupilIsNotStudent.presentation
                 _view.ShowTfidfInCurRow(Math.Round(scores.NormalizedTfidf, 4));
                 
 
-                if (scores.DoesDeExist)
-                {
-                    _view.ShowDeInCurRow(Math.Round(scores.De, 4));
-                    _view.ShowTotalScoreInCurRow(Math.Round(scores.NormalizedTfidf * scores.De, 4));
-                }
-                else
-                {
-                    string brokenWords="";
-
-                    foreach(string word in scores.GetTermsWithBrokenDe())
-                    {
-                        brokenWords += '"' + word + "\", ";
-                    }
-                    _view.Show("The key(s) " + brokenWords + " was not found in the Dictionary of DispersionEstimation");
-                }
+                _view.ShowDeInCurRow(Math.Round(scores.De, 4));
+                _view.ShowTotalScoreInCurRow(Math.Round(scores.NormalizedTfidf * scores.De, 4));
+                
                 // end writing log
             }
 

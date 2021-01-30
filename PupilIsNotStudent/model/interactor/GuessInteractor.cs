@@ -13,31 +13,26 @@ namespace PupilIsNotStudent.model.interactor
     {
         private readonly TextParsingRepository _text;
         private readonly FileRepository _file;
-        private readonly LogRepository _log;
         private readonly ExtractKeyWordsRepository _extractKeyWords;
-        private readonly AkinatorRepository _akinator;
-
-        public GuessInteractor(in AkinatorRepository akinatorRepository, in TextParsingRepository textRepository, in FileRepository fileRepository, in LogRepository logRepository, in ExtractKeyWordsRepository textExtractKeyWordsRepository)
+        private readonly PredictService _predict;
+        
+        public GuessInteractor(in PredictService predictService, in TextParsingRepository textRepository, in FileRepository fileRepository, in ExtractKeyWordsRepository textExtractKeyWordsRepository)
         {
-            _akinator = akinatorRepository;
+            _predict = predictService;
             _text = textRepository;
             _file = fileRepository;
-            _log = logRepository;
             _extractKeyWords = textExtractKeyWordsRepository;
         }
 
         //==========AKINATOR aka GUESSER==========
         public string ComputeDe(in string[] splitText)
         {
-            return _akinator.ComputeDe(splitText);
+            return _predict.ComputeDe(splitText);
         }
 
         public utils.IndicatorsOfAffiliationForText ComputeAffiliationOfTextToCategory(in HashSet<string> newTextUnrepeatedWords, Dictionary<string, double> tfidf, string categoryName)
         {
-            _log.CreateNewFile(categoryName);
-            var indicatorsOfAffiliationForText =
-                _akinator.ComputeAffiliationOfTextToCategory(newTextUnrepeatedWords, tfidf, _log);
-            _log.CloseFile();
+            var indicatorsOfAffiliationForText = _predict.ComputeAffiliationOfTextToCategory(newTextUnrepeatedWords, tfidf, LoggerAspectSingleton.GetInstance("log", categoryName));
             return indicatorsOfAffiliationForText;
         }
 
@@ -47,11 +42,6 @@ namespace PupilIsNotStudent.model.interactor
         {
             return _text.GetSplitWords(rawText);
         }
-
-
-
-
-       
 
 
         //==========FILE REPOSITORY==========
@@ -66,25 +56,6 @@ namespace PupilIsNotStudent.model.interactor
         {
             return _file.ReadAllText();
         }
-
-
-        //==========LOG REPOSITORY==========
-
-        public void OpenNewLogFile(string name)
-        {
-            _log.CreateNewFile(name);
-        }
-
-        public void WriteLog(string logMessage)
-        {
-            _log.Write(logMessage);
-        }
-
-        public void CloseLogFile()
-        {
-            _log.CloseFile();
-        }
-
 
         //==========EXTRACT KEY WORDS REPOSITORY==========
 

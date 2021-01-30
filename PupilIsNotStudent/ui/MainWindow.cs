@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PupilIsNotStudent.presentation;
 using PupilIsNotStudent.model;
+using PupilIsNotStudent.model.core;
+using PupilIsNotStudent.utils;
 
 
 namespace PupilIsNotStudent
@@ -39,11 +41,10 @@ private readonly GuessPresenter _guessPresenter; // for the second view
 
             _guessPresenter = new GuessPresenter(this, 
                 new model.interactor.GuessInteractor(
-                    new model.repository.AkinatorRepository(), 
+                    new PredictService(), 
                     new model.repository.TextParsingRepository(),
                             new model.repository.FileRepository(),
-                            new model.repository.LogRepository(),
-                            in textJson
+                    in textJson
                         )
                 );
         }

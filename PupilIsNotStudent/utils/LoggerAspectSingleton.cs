@@ -3,35 +3,60 @@
 namespace PupilIsNotStudent.utils
 {
     // Wrapper for StreamWriter
-    public class LoggerAspectSingletone : IWriter
+    public class LoggerAspectSingleton : IWriter
     {
         private StreamWriter _log;
+        private static LoggerAspectSingleton _uniqueInstance;
+        private static string _workingDir;
+        private static string _currentFile;
 
-        public LoggerAspectSingletone()
+        private LoggerAspectSingleton()
         {
-            Directory.CreateDirectory("log");
+        }
+        
+        public static LoggerAspectSingleton GetInstance(string workingDir, string currentFile)
+        {
+            if (_uniqueInstance == null) 
+                _uniqueInstance = new LoggerAspectSingleton();
+
+            SetWorkingDirAndCleanAllFiles(workingDir);
+            LoggerAspectSingleton._currentFile = currentFile;
+
+            return _uniqueInstance;
         }
 
-
-        public void CreateNewFile(string name)
+        private static void SetWorkingDirAndCleanAllFiles(string workingDir)
         {
-            FileInfo f = new FileInfo("log/" + name + ".txt");
-            _log = f.CreateText();
+            LoggerAspectSingleton._workingDir = workingDir;
+            if (Directory.Exists(workingDir))
+            {
+                string[] files = Directory.GetFiles(workingDir);
+                foreach (string file in files)
+                {
+                    File.Delete(file);
+                }
+            }
+            else
+            {
+                Directory.CreateDirectory(LoggerAspectSingleton._workingDir);
+            }
+            
         }
 
-        public void CloseFile()
+        public void WriteAndClose(string fileNameWithoutExtension, string logMessage)
         {
+//           if (!Directory.Exists(_workingDir)) 
+            Directory.CreateDirectory(_workingDir);
+
+            FileInfo f = new FileInfo(_workingDir +"/"+ fileNameWithoutExtension + ".txt");
+            _log = f.AppendText();
+            _log.WriteLine(logMessage);
             _log.Close();
         }
 
         public void Write(string logMessage)
         {
-            _log.WriteLine(logMessage);
-        }
-
-        public static LoggerAspectSingletone GetInstance()
-        {
-            throw new System.NotImplementedException();
+            WriteAndClose(LoggerAspectSingleton._currentFile, logMessage);
         }
     }
 }

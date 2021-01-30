@@ -22,7 +22,7 @@ namespace PupilIsNotStudent.model.core
 
         public DisperseEstimation()
         {
-            this.Words = new Dictionary<string, IndexInText>();
+            Words = new Dictionary<string, IndexInText>();
         }
 
         public string AnalyzeDe(in string[] unknownCategoryWords)
@@ -35,7 +35,7 @@ namespace PupilIsNotStudent.model.core
         private void Preinit()
         {
             // Clear dictionary to add new words
-            this.Words.Clear();
+            Words.Clear();
         }
 
         public void Init(in string[] wordsToAnalyse)

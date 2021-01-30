@@ -1,20 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PupilIsNotStudent.model.core;
 using PupilIsNotStudent.utils;
 
-namespace PupilIsNotStudent.model.repository
+namespace PupilIsNotStudent.model.core
 {
-    internal class AkinatorService
+    internal class PredictService
     {
 
         private const byte KeyWordsLimit = 155;
         private readonly DisperseEstimation _disperseEstimation;
 
-        public AkinatorService()
+        public PredictService()
         {
             _disperseEstimation = new DisperseEstimation();
         }
@@ -26,40 +23,36 @@ namespace PupilIsNotStudent.model.repository
         }
         
         // To AkinatorRepo
-        public utils.IndicatorsOfAffiliationForText ComputeAffiliationOfTextToCategory(HashSet<string> unrepeatedWords, Dictionary<string, double> keywordsForCategory, IWriter log=null)
+        public IndicatorsOfAffiliationForText ComputeAffiliationOfTextToCategory(HashSet<string> unrepeatedWords, Dictionary<string, double> keywordsForCategory, IWriter log)
         {
-            var scores = new utils.IndicatorsOfAffiliationForText();
-
-            // for logging
-            scores.DoesDeExist = true;
-
-            foreach (KeyValuePair<string, double> wordCategory in keywordsForCategory.OrderByDescending(key => key.Value).Take(KeyWordsLimit))
+            var scores = new IndicatorsOfAffiliationForText();
+            
+            var slice = (Dictionary<string, double>) keywordsForCategory.OrderByDescending(key => key.Value).Take(KeyWordsLimit);
+            
+            foreach (string word in unrepeatedWords) // the unrepeated word in unknown category
             {
-                foreach (string word in unrepeatedWords) // the unrepeated word in unknown category
+                double tfIdf;
+                if (slice.TryGetValue(word, out tfIdf))
                 {
-                    //TFIDF unknown category word is wordCategory
-                    if (word == wordCategory.Key) // if word from unknown category equals word from category we know
+                    ++scores.CommonTerms;
+                    scores.NormalizedTfidf += tfIdf;
+
+                    if (_disperseEstimation.Words.ContainsKey(word))
                     {
-                        ++scores.CommonTerms;
-                        scores.NormalizedTfidf += wordCategory.Value;
-
-                        if (_disperseEstimation.Words.ContainsKey(wordCategory.Key))
-                        {
-                            scores.De += _disperseEstimation.Words[word].DispersionEstimation;
-                            log.Write(word+_disperseEstimation.Words[word].DispersionEstimation.ToString());
-                        }
-                        else
-                        {
-                            scores.DoesDeExist = false;
-                            scores.AddTermWithBrokenDe(word);
-                        }
-
+                        scores.De += _disperseEstimation.Words[word].DispersionEstimation;
+                        log.Write(word+": "+_disperseEstimation.Words[word].DispersionEstimation.ToString());
+                    }
+                    else
+                    {
+                        log.Write(word+": error. cannot find DE.");
+                        // this situation must not be possible
+                        throw new Exception("Must initialize DE array properly. ");
                     }
 
                 }
 
-                // more semantic comes first
             }
+            
             return scores;
         }
     }

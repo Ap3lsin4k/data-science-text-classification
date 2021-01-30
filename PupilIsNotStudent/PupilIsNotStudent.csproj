@@ -75,8 +75,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RawTextExamples.resx</DependentUpon>
     </Compile>
+    <Compile Include="model\core\PredictService.cs" />
     <Compile Include="model\core\DisperseEstimation.cs" />
-    <Compile Include="model\repository\AkinatorRepository.cs" />
     <Compile Include="ui\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,7 +86,6 @@
     <Compile Include="model\interactor\CategoriesInteractor.cs" />
     <Compile Include="model\interactor\GuessInteractor.cs" />
     <Compile Include="model\repository\FileRepository.cs" />
-    <Compile Include="model\repository\LogRepository.cs" />
     <Compile Include="model\repository\TextParsingRepository.cs" />
     <Compile Include="presentation\CategoriesView.cs" />
     <Compile Include="presentation\GuessPresenter.cs" />
@@ -97,6 +96,7 @@
     <Compile Include="model\repository\ExtractKeyWordsRepository.cs" />
     <Compile Include="utils\IndicatorsOfAffiliationForText.cs" />
     <Compile Include="model\core\Book.cs" />
+    <Compile Include="utils\LoggerAspectSingleton.cs" />
     <Compile Include="utils\Writer.cs" />
     <EmbeddedResource Include="automated-testing\ResourceTextParser.resx">
       <Generator>ResXFileCodeGenerator</Generator>
