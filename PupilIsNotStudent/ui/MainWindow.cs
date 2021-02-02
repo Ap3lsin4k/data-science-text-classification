@@ -167,11 +167,6 @@ private readonly GuessPresenter _guessPresenter; // for the second view
             _guessPresenter.OnBtnComputeDisperseEstimationClicked(richTBtoAnalyze.Text);
         }
 
-        private void btnLoad_Click(object sender, EventArgs e)
-        {
-            _guessPresenter.OnBtnLoadJsonClicked();
-        }
-
         private void btnLoadTextFromFile_Click(object sender, EventArgs e)
         {
             _guessPresenter.OnBtnLoadTextFromFileClicked();

@@ -88,16 +88,6 @@ namespace PupilIsNotStudent.presentation
             }
         }
 
-
-
-        public void OnBtnLoadJsonClicked()
-        {
-            if (Load())
-                _view.Show("Successfully loaded from \"analysis.json\"");
-        }
-
-
-
         private bool Load()
         {
             // error message is in the newsJson.load().catch
