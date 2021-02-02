@@ -98,12 +98,6 @@ private readonly GuessPresenter _guessPresenter; // for the second view
         }
 
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            _categPresenter.OnBtnSaveClicked();
-        }
-
-
 
 
 

@@ -105,12 +105,6 @@ namespace PupilIsNotStudent.presentation
                 _view.Show("There is no categories to calculate TermFrequency*InverseDocumentFrequency");
         }
 
-        public void OnBtnSaveClicked()
-        {
-            _interactor.SaveToJsonFile();
-            _view.Show("Successfully saved");
-        }
-
         public void OnBtnLoadTextFromFileClicked()
         {
             /*
