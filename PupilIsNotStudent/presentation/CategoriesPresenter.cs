@@ -44,12 +44,14 @@ namespace PupilIsNotStudent.presentation
                 _interactor.ComputeTermFrequencyAltogether(catg);
 
                 _view.SetCategories(_interactor.GetCategories().ToArray());
-                
+
+                _interactor.SaveToJsonFile();
+
                 _view.Show("Success");
             }
             else
             {
-                //feature if the textBox is empty then show saved data
+                // todo feature if the textBox is empty then show saved data
 
                 if (_interactor.WhetherCategoryExist(catg))
                 {
@@ -69,6 +71,8 @@ namespace PupilIsNotStudent.presentation
             {
                 // calculate IDF for each category
                 _interactor.IDFForEachBook();
+                _interactor.SaveToJsonFile();
+
                 _view.Show("Success");
             }
             else
@@ -95,7 +99,7 @@ namespace PupilIsNotStudent.presentation
                     }
                 }
                 _view.Show("Finished computing Term Frequency * Inverse Document Frequency");
-
+                _interactor.SaveToJsonFile();
             }
             else
                 _view.Show("There is no categories to calculate TermFrequency*InverseDocumentFrequency");
