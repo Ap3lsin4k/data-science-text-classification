@@ -183,7 +183,7 @@
             this.btnTfIdf.Name = "btnTfIdf";
             this.btnTfIdf.Size = new System.Drawing.Size(262, 73);
             this.btnTfIdf.TabIndex = 18;
-            this.btnTfIdf.Text = "TFIDF";
+            this.btnTfIdf.Text = "Train from Folder";
             this.btnTfIdf.UseVisualStyleBackColor = true;
             this.btnTfIdf.Click += new System.EventHandler(this.btnTfIdf_Click);
             // 
@@ -196,7 +196,7 @@
             this.btnIdf.Name = "btnIdf";
             this.btnIdf.Size = new System.Drawing.Size(261, 73);
             this.btnIdf.TabIndex = 17;
-            this.btnIdf.Text = "IDF";
+            this.btnIdf.Text = "IDF and TFIDF";
             this.btnIdf.UseVisualStyleBackColor = true;
             this.btnIdf.Click += new System.EventHandler(this.btnIdf_Click);
             // 

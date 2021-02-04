@@ -105,6 +105,11 @@ namespace PupilIsNotStudent.presentation
                 _view.Show("There is no categories to calculate TermFrequency*InverseDocumentFrequency");
         }
 
+        internal void OnFitTermFreqInverseDocFreqFromFolder()
+        {
+            _interactor.FitTermFreqInverseDocFreqFromFolder();
+        }
+
         public void OnBtnLoadTextFromFileClicked()
         {
             /*

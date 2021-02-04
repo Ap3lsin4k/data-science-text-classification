@@ -101,5 +101,9 @@ namespace PupilIsNotStudent.model.interactor
             _extractKeyWords.Save();
         }
 
+        internal void FitTermFreqInverseDocFreqFromFolder()
+        {
+            
+        }
     }
 }

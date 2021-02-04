@@ -83,12 +83,13 @@ private readonly GuessPresenter _guessPresenter; // for the second view
         private void btnIdf_Click(object sender, EventArgs e)
         {
             _categPresenter.OnBtnInverseDocumentFrequencyClicked(cbCategories.Text);
+            _categPresenter.OnBtnTermFrequencyInverseDocumentFrequencyClicked(cbCategories.Text);
         }
 
 
         private void btnTfIdf_Click(object sender, EventArgs e)
         {
-            _categPresenter.OnBtnTermFrequencyInverseDocumentFrequencyClicked(cbCategories.Text);
+            _categPresenter.OnFitTermFreqInverseDocFreqFromFolder();
         }
 
 
