@@ -10,7 +10,7 @@ namespace PupilIsNotStudent.presentation
     {
         // common
         void Show(string message);
-        void SetCategories(string[] categories);
+        void SetCategoryNames(string[] categories);
         
         void LoadEditableText(string richText);
 

@@ -7,7 +7,7 @@ namespace PupilIsNotStudent
 {
     public static class TrainingDocView
     {
-        public static void ProcessBrowserDir(Action<string[], string[]> UseFiles)
+        public static void ProcessBrowserDir(Action<List<string>, List<string>> UseFiles)
         {
             using (var fbd = new FolderBrowserDialog())
             {

@@ -92,7 +92,7 @@ namespace PupilIsNotStudent.presentation
         {
             // error message is in the newsJson.load().catch
             bool success = _interactor.DeserializeFromFile();
-            _view.SetCategories(_interactor.GetCategories().ToArray());
+            _view.SetCategoryNames(_interactor.GetCategories().ToArray());
             return success;
         }
 

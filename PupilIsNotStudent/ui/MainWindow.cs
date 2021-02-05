@@ -47,7 +47,7 @@ private readonly GuessPresenter _guessPresenter; // for the second view
             MessageBox.Show(tip);
         }
 
-        public void SetCategoriesNames(string[] categories)
+        public void SetCategoryNames(string[] categories)
         {
             cbCategories.Items.Clear();
             cbCategories.Items.AddRange(categories);

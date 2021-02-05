@@ -10,7 +10,7 @@ namespace PupilIsNotStudent.presentation
     {
         // common
         void Show(string tip);
-        void SetCategoriesNames(string[] categories);
+        void SetCategoryNames(string[] categories);
 
 
         //from file

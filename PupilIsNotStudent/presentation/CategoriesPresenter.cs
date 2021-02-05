@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using PupilIsNotStudent.automated_testing;
-using PupilIsNotStudent.model.core;
 using PupilIsNotStudent.model.interactor;
 
 
@@ -33,12 +25,12 @@ namespace PupilIsNotStudent.presentation
         }
 
 
-        private void FitFromFiles(string[] filePaths)
+        private void FitFromFiles(List<string> categoryNames, List<string> texts)
         {
-            foreach (string path in filePaths)
+            for (int i=0; i< categoryNames.Count(); ++i)
             {
-                AppendTrainingDoc(TrainingDocView.GetCategoryNameFromPath(path), 
-                    File.ReadAllText(path));
+                AppendTrainingDoc(categoryNames[i], 
+                    texts[i]);
             }
 
             OnSavingTrainDocsFinished();
@@ -88,7 +80,7 @@ namespace PupilIsNotStudent.presentation
 
             _interactor.ComputeTermFrequencyAltogether(catg);
 
-            _view.SetCategoriesNames(_interactor.GetCategories().ToArray());
+            _view.SetCategoryNames(_interactor.GetCategories().ToArray());
 
             _interactor.SaveToJsonFile();
 
