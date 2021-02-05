@@ -95,7 +95,7 @@
     <Compile Include="config\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="model\repository\ExtractKeyWordsRepository.cs" />
-    <Compile Include="ui\ux\TrainingDocs.cs" />
+    <Compile Include="ui\ux\TrainingDocView.cs" />
     <Compile Include="utils\IndicatorsOfAffiliationForText.cs" />
     <Compile Include="model\core\Book.cs" />
     <Compile Include="utils\LoggerAspectSingleton.cs" />

@@ -10,7 +10,6 @@ using PupilIsNotStudent.automated_testing;
 using PupilIsNotStudent.model.core;
 using PupilIsNotStudent.model.interactor;
 
-delegate void FitFromFiles(string[] filePaths);
 
 namespace PupilIsNotStudent.presentation
 {
@@ -29,7 +28,7 @@ namespace PupilIsNotStudent.presentation
         internal void OnFitTermFreqInverseDocFreqFromFolder()
         {
             _interactor.FitTermFreqInverseDocFreqFromFolder();
-            TrainingDocs.AsUserOpenFolderWithTrainingFiles(FitFromFiles);
+            TrainingDocView.ProcessBrowserDir(FitFromFiles);
 
         }
 
@@ -38,7 +37,8 @@ namespace PupilIsNotStudent.presentation
         {
             foreach (string path in filePaths)
             {
-                AppendTrainingDoc(TrainingDocs.GetCategoryNameFromPath(path), File.ReadAllText(path));
+                AppendTrainingDoc(TrainingDocView.GetCategoryNameFromPath(path), 
+                    File.ReadAllText(path));
             }
 
             OnSavingTrainDocsFinished();
@@ -59,6 +59,8 @@ namespace PupilIsNotStudent.presentation
             if (!string.IsNullOrWhiteSpace(textToBeAnalyzed))
             {
                 AppendTrainingDoc(catg, textToBeAnalyzed);
+                _view.Show("Success");
+
             }
             else
             {
@@ -86,11 +88,10 @@ namespace PupilIsNotStudent.presentation
 
             _interactor.ComputeTermFrequencyAltogether(catg);
 
-            _view.SetCategories(_interactor.GetCategories().ToArray());
+            _view.SetCategoriesNames(_interactor.GetCategories().ToArray());
 
             _interactor.SaveToJsonFile();
 
-            _view.Show("Success");
         }
 
         public void OnBtnInverseDocumentFrequencyClicked()

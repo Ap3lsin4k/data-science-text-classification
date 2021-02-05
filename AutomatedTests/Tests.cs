@@ -13,7 +13,7 @@ namespace TestProject
         {
             Assert.True(this.IsCyrillic('’'));
             Assert.AreEqual("don’t", this.GetPureText("don’t").ToString());
-            Assert.AreEqual("Business", TrainingDocs.GetCategoryNameFromPath(@"C:\Business. Inde.txt"));
+            Assert.AreEqual("Business", TrainingDocView.GetCategoryNameFromPath(@"C:\Business. Inde.txt"));
         }
 
 
