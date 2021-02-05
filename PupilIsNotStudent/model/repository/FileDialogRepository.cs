@@ -14,7 +14,6 @@ namespace PupilIsNotStudent.model.repository
         OpenFileDialog _fileDialog;
         public FileRepository()
         {
-
             _fileDialog = new OpenFileDialog();
         }
 
@@ -23,7 +22,7 @@ namespace PupilIsNotStudent.model.repository
             // opens the dialog in last folder it remembers
 
             _fileDialog.Filter = "txt files (*.txt)|*.txt|Allfiles (*.*)|*.*";
-            _fileDialog.FilterIndex = 1;
+            _fileDialog.FilterIndex = 1; //which filtering option is shown first to the user
 
             // It freezes the program while showing the dialog
             return _fileDialog.ShowDialog() == DialogResult.OK;

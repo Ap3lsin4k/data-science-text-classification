@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 using PupilIsNotStudent.model.core;
 using PupilIsNotStudent.model.repository;
 
@@ -103,7 +101,6 @@ namespace PupilIsNotStudent.model.interactor
 
         internal void FitTermFreqInverseDocFreqFromFolder()
         {
-            
         }
     }
 }

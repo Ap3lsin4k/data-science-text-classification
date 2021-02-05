@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using PupilIsNotStudent.automated_testing;
 using PupilIsNotStudent.model.core;
 using PupilIsNotStudent.model.interactor;
@@ -108,19 +110,29 @@ namespace PupilIsNotStudent.presentation
         internal void OnFitTermFreqInverseDocFreqFromFolder()
         {
             _interactor.FitTermFreqInverseDocFreqFromFolder();
+            using(var fbd = new FolderBrowserDialog())
+            {
+                DialogResult result = fbd.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    string[] files = Directory.GetFiles(fbd.SelectedPath);
+
+                    foreach (string file in files)
+                    {
+                        string categoryName=file.Substring(file.LastIndexOf('/'),file.IndexOf(','));
+                        StringBuilder categoryTrainingText = new StringBuilder(File.ReadAllText(file));
+                        System.Windows.Forms.MessageBox.Show("Files found: " + file.ToString(), "Message");
+
+//                        string part=file..SubString(0,.IndexOf(','));
+
+                    }
+                    System.Windows.Forms.MessageBox.Show("Files found: " + files.Length.ToString(), "Message");
+                }
+            }
+
         }
 
-        public void OnBtnLoadTextFromFileClicked()
-        {
-            /*
-             * open explorer to choose a file. It freezes all the process until the OK button will be pressed.
-             * "false" means that user pressed "Cancel"
-             */
-            if (_interactor.OpenFileDialog())
-            {
-                string text = _interactor.ReadTexTermFrequencyromFile();
-                _view.LoadEditableText(text);
-            }
-        }
+
     }
 }

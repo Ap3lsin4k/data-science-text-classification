@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using PupilIsNotStudent.presentation;
-using PupilIsNotStudent.model;
 using PupilIsNotStudent.model.core;
-using PupilIsNotStudent.utils;
 
 
 namespace PupilIsNotStudent
@@ -80,22 +71,21 @@ private readonly GuessPresenter _guessPresenter; // for the second view
           
         }
 
-        private void btnIdf_Click(object sender, EventArgs e)
+        private void btnSaveAllCategories_Click(object sender, EventArgs e)
         {
             _categPresenter.OnBtnInverseDocumentFrequencyClicked(cbCategories.Text);
             _categPresenter.OnBtnTermFrequencyInverseDocumentFrequencyClicked(cbCategories.Text);
         }
 
 
-        private void btnTfIdf_Click(object sender, EventArgs e)
+        private void btnFindKeywordsFromFiles_Click(object sender, EventArgs e)
         {
-            _categPresenter.OnFitTermFreqInverseDocFreqFromFolder();
         }
 
 
         private void btnCategories_LoadTextFromFile_Click(object sender, EventArgs e)
         {
-            _categPresenter.OnBtnLoadTextFromFileClicked();
+            _categPresenter.OnFitTermFreqInverseDocFreqFromFolder();
         }
 
 

@@ -143,7 +143,7 @@
             this.btnIdf.TabIndex = 17;
             this.btnIdf.Text = "Save all categories";
             this.btnIdf.UseVisualStyleBackColor = true;
-            this.btnIdf.Click += new System.EventHandler(this.btnIdf_Click);
+            this.btnIdf.Click += new System.EventHandler(this.btnSaveAllCategories_Click);
             // 
             // btnTf
             // 
