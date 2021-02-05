@@ -10,6 +10,8 @@ using PupilIsNotStudent.automated_testing;
 using PupilIsNotStudent.model.core;
 using PupilIsNotStudent.model.interactor;
 
+delegate void FitFromFiles(string[] filePaths);
+
 namespace PupilIsNotStudent.presentation
 {
     internal class CategoriesPresenter
@@ -23,6 +25,25 @@ namespace PupilIsNotStudent.presentation
             this._view = view;
             this._interactor = interactor;
         }
+        
+        internal void OnFitTermFreqInverseDocFreqFromFolder()
+        {
+            _interactor.FitTermFreqInverseDocFreqFromFolder();
+            TrainingDocs.AsUserOpenFolderWithTrainingFiles(FitFromFiles);
+
+        }
+
+
+        private void FitFromFiles(string[] filePaths)
+        {
+            foreach (string path in filePaths)
+            {
+                AppendTrainingDoc(TrainingDocs.GetCategoryNameFromPath(path), File.ReadAllText(path));
+            }
+
+            OnSavingTrainDocsFinished();
+        }
+
 
         public void OnBtnTermFrequencyClicked(string catg, string textToBeAnalyzed)
         {
@@ -37,19 +58,7 @@ namespace PupilIsNotStudent.presentation
             //feature if the field is not empty then learn
             if (!string.IsNullOrWhiteSpace(textToBeAnalyzed))
             {
-                /*
-                 * create new category &save only unique words
-                 * rewrite if category already exists
-                */
-                _interactor.AddCategory(catg, _interactor.GetSplitWords(textToBeAnalyzed));
-
-                _interactor.ComputeTermFrequencyAltogether(catg);
-
-                _view.SetCategories(_interactor.GetCategories().ToArray());
-
-                _interactor.SaveToJsonFile();
-
-                _view.Show("Success");
+                AppendTrainingDoc(catg, textToBeAnalyzed);
             }
             else
             {
@@ -67,7 +76,24 @@ namespace PupilIsNotStudent.presentation
             }
         }
 
-        public void OnBtnInverseDocumentFrequencyClicked(string currentCategory)
+        private void AppendTrainingDoc(string catg, string textToBeAnalyzed)
+        {
+            /*
+                 * create new category &save only unique words
+                 * rewrite if category already exists
+                */
+            _interactor.AppendCategory(catg, _interactor.GetSplitWords(textToBeAnalyzed));
+
+            _interactor.ComputeTermFrequencyAltogether(catg);
+
+            _view.SetCategories(_interactor.GetCategories().ToArray());
+
+            _interactor.SaveToJsonFile();
+
+            _view.Show("Success");
+        }
+
+        public void OnBtnInverseDocumentFrequencyClicked()
         {
             if (_interactor.GetNumberOfShelvesInLibrary() != 0)
             {
@@ -81,25 +107,11 @@ namespace PupilIsNotStudent.presentation
                 _view.Show("There is no category to calculate the Inverse Document Frequency");
         }
 
-        public void OnBtnTermFrequencyInverseDocumentFrequencyClicked(string catg)
+        public void OnBtnTermFrequencyInverseDocumentFrequencyClicked()
         {
             if (_interactor.GetNumberOfShelvesInLibrary() != 0)
             {
-                foreach (string shelf in _interactor.GetCategories())
-                {
-                    if (_interactor.TermFrequencyExist(shelf) && _interactor.InverseDocumentFrequencyExist(shelf))
-                    {
-                        _interactor.CalculateTermFrequencyInverseDocumentFrequency(shelf);
-                    }
-                    else
-                    {
-                        _view.Show("Error. TermFrequency exist:" + _interactor.TermFrequencyExist(shelf) +
-                                   ",\tInverseDocumentFrequency exist:" +
-                                   _interactor.InverseDocumentFrequencyExist(shelf) + "; for category: \"" + catg +
-                                   "\". " +
-                                   "TermFrequency and InverseDocumentFrequency needs to be computed before proceeding.");
-                    }
-                }
+                TFIDFForEachCategory();
                 _view.Show("Finished computing Term Frequency * Inverse Document Frequency");
                 _interactor.SaveToJsonFile();
             }
@@ -107,32 +119,40 @@ namespace PupilIsNotStudent.presentation
                 _view.Show("There is no categories to calculate TermFrequency*InverseDocumentFrequency");
         }
 
-        internal void OnFitTermFreqInverseDocFreqFromFolder()
+        
+        
+        
+
+
+        public void OnSavingTrainDocsFinished()
         {
-            _interactor.FitTermFreqInverseDocFreqFromFolder();
-            using(var fbd = new FolderBrowserDialog())
+            if (_interactor.GetNumberOfShelvesInLibrary() == 0)
             {
-                DialogResult result = fbd.ShowDialog();
-
-                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
-                {
-                    string[] files = Directory.GetFiles(fbd.SelectedPath);
-
-                    foreach (string file in files)
-                    {
-                        string categoryName=file.Substring(file.LastIndexOf('/'),file.IndexOf(','));
-                        StringBuilder categoryTrainingText = new StringBuilder(File.ReadAllText(file));
-                        System.Windows.Forms.MessageBox.Show("Files found: " + file.ToString(), "Message");
-
-//                        string part=file..SubString(0,.IndexOf(','));
-
-                    }
-                    System.Windows.Forms.MessageBox.Show("Files found: " + files.Length.ToString(), "Message");
-                }
+                _view.Show("There is no categories to calculate TermFrequency*InverseDocumentFrequency");
             }
 
+            _interactor.IDFForEachBook();
+            TFIDFForEachCategory();
+            _interactor.SaveToJsonFile();
         }
 
-
+        private void TFIDFForEachCategory()
+        {
+            foreach (string shelf in _interactor.GetCategories())
+            {
+                if (_interactor.TermFrequencyExist(shelf) && _interactor.InverseDocumentFrequencyExist(shelf))
+                {
+                    _interactor.CalculateTermFrequencyInverseDocumentFrequency(shelf);
+                }
+                else
+                {
+                    _view.Show("Error. TermFrequency exist:" + _interactor.TermFrequencyExist(shelf) +
+                               ",\tInverseDocumentFrequency exist:" +
+                               _interactor.InverseDocumentFrequencyExist(shelf) + "; for category: \"" + shelf +
+                               "\". " +
+                               "TermFrequency and InverseDocumentFrequency needs to be computed before proceeding.");
+                }
+            }
+        }
     }
 }

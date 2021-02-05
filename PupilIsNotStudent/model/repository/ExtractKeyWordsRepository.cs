@@ -80,7 +80,7 @@ namespace PupilIsNotStudent.model.repository
         }
 
 
-        public void AddCategory(string shelf, in string[] texts)
+        public void AppendCategory(string shelf, in string[] texts)
         {
             Library[shelf] = new Book(texts);
         }

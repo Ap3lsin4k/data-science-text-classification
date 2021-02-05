@@ -73,8 +73,9 @@ private readonly GuessPresenter _guessPresenter; // for the second view
 
         private void btnSaveAllCategories_Click(object sender, EventArgs e)
         {
-            _categPresenter.OnBtnInverseDocumentFrequencyClicked(cbCategories.Text);
-            _categPresenter.OnBtnTermFrequencyInverseDocumentFrequencyClicked(cbCategories.Text);
+            _categPresenter.OnSavingTrainDocsFinished();
+            _categPresenter.OnBtnInverseDocumentFrequencyClicked();
+            _categPresenter.OnBtnTermFrequencyInverseDocumentFrequencyClicked();
         }
 
 

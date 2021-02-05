@@ -46,9 +46,9 @@ namespace PupilIsNotStudent.model.interactor
 
 
         //==========Extract Key Words Repository==========
-        public void AddCategory(string shelf, string[] texts)
+        public void AppendCategory(string shelf, string[] texts)
         {
-            _extractKeyWords.AddCategory(shelf, in texts);
+            _extractKeyWords.AppendCategory(shelf, in texts);
         }
 
 
