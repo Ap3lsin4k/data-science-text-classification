@@ -31,11 +31,7 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tlpVertical_Main = new System.Windows.Forms.TableLayoutPanel();
-            this.tlpV_KnownTextAndLoadBtn = new System.Windows.Forms.TableLayoutPanel();
-            this.btnLoadTextFromFileToFirstModule = new System.Windows.Forms.Button();
-            this.rtbKnownText = new System.Windows.Forms.RichTextBox();
             this.tlpH_Buttons = new System.Windows.Forms.TableLayoutPanel();
-            this.btnTfIdf = new System.Windows.Forms.Button();
             this.btnIdf = new System.Windows.Forms.Button();
             this.btnTf = new System.Windows.Forms.Button();
             this.tlpChoseCategory_ComboBox = new System.Windows.Forms.TableLayoutPanel();
@@ -58,10 +54,12 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnDE = new System.Windows.Forms.Button();
             this.btnAnalysis = new System.Windows.Forms.Button();
+            this.rtbKnownText = new System.Windows.Forms.RichTextBox();
+            this.btnLoadTextFromFileToFirstModule = new System.Windows.Forms.Button();
+            this.tlpV_KnownTextAndLoadBtn = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tlpVertical_Main.SuspendLayout();
-            this.tlpV_KnownTextAndLoadBtn.SuspendLayout();
             this.tlpH_Buttons.SuspendLayout();
             this.tlpChoseCategory_ComboBox.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -72,6 +70,7 @@
             this.tlpRTB_DGV.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.myGrid)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tlpV_KnownTextAndLoadBtn.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -115,53 +114,12 @@
             this.tlpVertical_Main.Size = new System.Drawing.Size(1029, 644);
             this.tlpVertical_Main.TabIndex = 19;
             // 
-            // tlpV_KnownTextAndLoadBtn
-            // 
-            this.tlpV_KnownTextAndLoadBtn.ColumnCount = 1;
-            this.tlpV_KnownTextAndLoadBtn.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpV_KnownTextAndLoadBtn.Controls.Add(this.btnLoadTextFromFileToFirstModule, 0, 1);
-            this.tlpV_KnownTextAndLoadBtn.Controls.Add(this.rtbKnownText, 0, 0);
-            this.tlpV_KnownTextAndLoadBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpV_KnownTextAndLoadBtn.Location = new System.Drawing.Point(4, 93);
-            this.tlpV_KnownTextAndLoadBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.tlpV_KnownTextAndLoadBtn.Name = "tlpV_KnownTextAndLoadBtn";
-            this.tlpV_KnownTextAndLoadBtn.RowCount = 2;
-            this.tlpV_KnownTextAndLoadBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpV_KnownTextAndLoadBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 74F));
-            this.tlpV_KnownTextAndLoadBtn.Size = new System.Drawing.Size(1021, 547);
-            this.tlpV_KnownTextAndLoadBtn.TabIndex = 18;
-            // 
-            // btnLoadTextFromFileToFirstModule
-            // 
-            this.btnLoadTextFromFileToFirstModule.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnLoadTextFromFileToFirstModule.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.btnLoadTextFromFileToFirstModule.Location = new System.Drawing.Point(4, 477);
-            this.btnLoadTextFromFileToFirstModule.Margin = new System.Windows.Forms.Padding(4);
-            this.btnLoadTextFromFileToFirstModule.Name = "btnLoadTextFromFileToFirstModule";
-            this.btnLoadTextFromFileToFirstModule.Size = new System.Drawing.Size(1013, 66);
-            this.btnLoadTextFromFileToFirstModule.TabIndex = 5;
-            this.btnLoadTextFromFileToFirstModule.Text = "Load Text from File";
-            this.btnLoadTextFromFileToFirstModule.UseVisualStyleBackColor = true;
-            this.btnLoadTextFromFileToFirstModule.Click += new System.EventHandler(this.btnCategories_LoadTextFromFile_Click);
-            // 
-            // rtbKnownText
-            // 
-            this.rtbKnownText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rtbKnownText.Location = new System.Drawing.Point(4, 4);
-            this.rtbKnownText.Margin = new System.Windows.Forms.Padding(4);
-            this.rtbKnownText.Name = "rtbKnownText";
-            this.rtbKnownText.Size = new System.Drawing.Size(1013, 465);
-            this.rtbKnownText.TabIndex = 6;
-            this.rtbKnownText.Text = "";
-            // 
             // tlpH_Buttons
             // 
-            this.tlpH_Buttons.ColumnCount = 4;
+            this.tlpH_Buttons.ColumnCount = 3;
             this.tlpH_Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 213F));
             this.tlpH_Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tlpH_Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlpH_Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlpH_Buttons.Controls.Add(this.btnTfIdf, 3, 0);
             this.tlpH_Buttons.Controls.Add(this.btnIdf, 2, 0);
             this.tlpH_Buttons.Controls.Add(this.btnTf, 1, 0);
             this.tlpH_Buttons.Controls.Add(this.tlpChoseCategory_ComboBox, 0, 0);
@@ -174,29 +132,16 @@
             this.tlpH_Buttons.Size = new System.Drawing.Size(1021, 81);
             this.tlpH_Buttons.TabIndex = 17;
             // 
-            // btnTfIdf
-            // 
-            this.btnTfIdf.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnTfIdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnTfIdf.Location = new System.Drawing.Point(755, 4);
-            this.btnTfIdf.Margin = new System.Windows.Forms.Padding(4);
-            this.btnTfIdf.Name = "btnTfIdf";
-            this.btnTfIdf.Size = new System.Drawing.Size(262, 73);
-            this.btnTfIdf.TabIndex = 18;
-            this.btnTfIdf.Text = "Train from Folder";
-            this.btnTfIdf.UseVisualStyleBackColor = true;
-            this.btnTfIdf.Click += new System.EventHandler(this.btnTfIdf_Click);
-            // 
             // btnIdf
             // 
             this.btnIdf.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnIdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnIdf.Location = new System.Drawing.Point(486, 4);
+            this.btnIdf.Location = new System.Drawing.Point(621, 4);
             this.btnIdf.Margin = new System.Windows.Forms.Padding(4);
             this.btnIdf.Name = "btnIdf";
-            this.btnIdf.Size = new System.Drawing.Size(261, 73);
+            this.btnIdf.Size = new System.Drawing.Size(396, 73);
             this.btnIdf.TabIndex = 17;
-            this.btnIdf.Text = "IDF and TFIDF";
+            this.btnIdf.Text = "Save all categories";
             this.btnIdf.UseVisualStyleBackColor = true;
             this.btnIdf.Click += new System.EventHandler(this.btnIdf_Click);
             // 
@@ -207,9 +152,9 @@
             this.btnTf.Location = new System.Drawing.Point(217, 4);
             this.btnTf.Margin = new System.Windows.Forms.Padding(4);
             this.btnTf.Name = "btnTf";
-            this.btnTf.Size = new System.Drawing.Size(261, 73);
+            this.btnTf.Size = new System.Drawing.Size(396, 73);
             this.btnTf.TabIndex = 16;
-            this.btnTf.Text = "TF";
+            this.btnTf.Text = "Add one category";
             this.btnTf.UseVisualStyleBackColor = true;
             this.btnTf.Click += new System.EventHandler(this.btnTf_Click);
             // 
@@ -471,6 +416,45 @@
             this.btnAnalysis.UseVisualStyleBackColor = true;
             this.btnAnalysis.Click += new System.EventHandler(this.btnAnalysis_Click);
             // 
+            // rtbKnownText
+            // 
+            this.rtbKnownText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbKnownText.Location = new System.Drawing.Point(4, 4);
+            this.rtbKnownText.Margin = new System.Windows.Forms.Padding(4);
+            this.rtbKnownText.Name = "rtbKnownText";
+            this.rtbKnownText.Size = new System.Drawing.Size(1013, 465);
+            this.rtbKnownText.TabIndex = 6;
+            this.rtbKnownText.Text = "";
+            // 
+            // btnLoadTextFromFileToFirstModule
+            // 
+            this.btnLoadTextFromFileToFirstModule.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnLoadTextFromFileToFirstModule.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.btnLoadTextFromFileToFirstModule.Location = new System.Drawing.Point(4, 477);
+            this.btnLoadTextFromFileToFirstModule.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLoadTextFromFileToFirstModule.Name = "btnLoadTextFromFileToFirstModule";
+            this.btnLoadTextFromFileToFirstModule.Size = new System.Drawing.Size(1013, 66);
+            this.btnLoadTextFromFileToFirstModule.TabIndex = 5;
+            this.btnLoadTextFromFileToFirstModule.Text = "Load Text from File";
+            this.btnLoadTextFromFileToFirstModule.UseVisualStyleBackColor = true;
+            this.btnLoadTextFromFileToFirstModule.Click += new System.EventHandler(this.btnCategories_LoadTextFromFile_Click);
+            // 
+            // tlpV_KnownTextAndLoadBtn
+            // 
+            this.tlpV_KnownTextAndLoadBtn.ColumnCount = 1;
+            this.tlpV_KnownTextAndLoadBtn.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpV_KnownTextAndLoadBtn.Controls.Add(this.btnLoadTextFromFileToFirstModule, 0, 1);
+            this.tlpV_KnownTextAndLoadBtn.Controls.Add(this.rtbKnownText, 0, 0);
+            this.tlpV_KnownTextAndLoadBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpV_KnownTextAndLoadBtn.Location = new System.Drawing.Point(4, 93);
+            this.tlpV_KnownTextAndLoadBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.tlpV_KnownTextAndLoadBtn.Name = "tlpV_KnownTextAndLoadBtn";
+            this.tlpV_KnownTextAndLoadBtn.RowCount = 2;
+            this.tlpV_KnownTextAndLoadBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpV_KnownTextAndLoadBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 74F));
+            this.tlpV_KnownTextAndLoadBtn.Size = new System.Drawing.Size(1021, 547);
+            this.tlpV_KnownTextAndLoadBtn.TabIndex = 18;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -484,7 +468,6 @@
             this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tlpVertical_Main.ResumeLayout(false);
-            this.tlpV_KnownTextAndLoadBtn.ResumeLayout(false);
             this.tlpH_Buttons.ResumeLayout(false);
             this.tlpChoseCategory_ComboBox.ResumeLayout(false);
             this.tlpChoseCategory_ComboBox.PerformLayout();
@@ -498,6 +481,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.myGrid)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.tlpV_KnownTextAndLoadBtn.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -515,7 +499,6 @@
         private System.Windows.Forms.Button btnAnalysis;
         private System.Windows.Forms.TableLayoutPanel tlpVertical_Main;
         private System.Windows.Forms.TableLayoutPanel tlpH_Buttons;
-        private System.Windows.Forms.Button btnTfIdf;
         private System.Windows.Forms.Button btnIdf;
         private System.Windows.Forms.Button btnTf;
         private System.Windows.Forms.TableLayoutPanel tlpChoseCategory_ComboBox;
@@ -526,13 +509,13 @@
         private System.Windows.Forms.DataGridView myGrid;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lbDEresult;
-        private System.Windows.Forms.TableLayoutPanel tlpV_KnownTextAndLoadBtn;
-        private System.Windows.Forms.Button btnLoadTextFromFileToFirstModule;
-        private System.Windows.Forms.RichTextBox rtbKnownText;
         private System.Windows.Forms.DataGridViewTextBoxColumn Topic;
         private System.Windows.Forms.DataGridViewTextBoxColumn numberOfMatches;
         private System.Windows.Forms.DataGridViewTextBoxColumn percentOfMatches;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.TableLayoutPanel tlpV_KnownTextAndLoadBtn;
+        private System.Windows.Forms.Button btnLoadTextFromFileToFirstModule;
+        private System.Windows.Forms.RichTextBox rtbKnownText;
     }
 }
 

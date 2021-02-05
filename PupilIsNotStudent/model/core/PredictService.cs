@@ -22,38 +22,35 @@ namespace PupilIsNotStudent.model.core
             return _disperseEstimation.AnalyzeDe(splitText);
         }
         
-        // To AkinatorRepo
-        public IndicatorsOfAffiliationForText ComputeAffiliationOfTextToCategory(HashSet<string> unrepeatedWords, Dictionary<string, double> keywordsForCategory, IWriter log)
+        public IndicatorsOfAffiliationForText ComputeAffiliationOfTextToCategory(HashSet<string> unrepeatedWords, Dictionary<string, double> keywordsOfCategory, IWriter log)
         {
             var scores = new IndicatorsOfAffiliationForText();
-            
-            var slice = (Dictionary<string, double>) keywordsForCategory.OrderByDescending(key => key.Value).Take(KeyWordsLimit);
-            
-            foreach (string word in unrepeatedWords) // the unrepeated word in unknown category
+
+            // for logging
+            foreach (var wordCategory  in keywordsOfCategory.OrderByDescending(key => key.Value).Take(KeyWordsLimit))
             {
-                double tfIdf;
-                if (slice.TryGetValue(word, out tfIdf))
+                if (unrepeatedWords.Contains(wordCategory.Key) )
                 {
                     ++scores.CommonTerms;
-                    scores.NormalizedTfidf += tfIdf;
+                    scores.NormalizedTfidf += wordCategory.Value;
 
-                    if (_disperseEstimation.Words.ContainsKey(word))
+                    if (_disperseEstimation.Words.ContainsKey(wordCategory.Key))
                     {
-                        scores.De += _disperseEstimation.Words[word].DispersionEstimation;
-                        log.Write(word+": "+_disperseEstimation.Words[word].DispersionEstimation.ToString());
+                        scores.De += _disperseEstimation.Words[wordCategory.Key].DispersionEstimation;
+                        log.Write(wordCategory.Key+_disperseEstimation.Words[wordCategory.Key].DispersionEstimation.ToString());
                     }
                     else
                     {
-                        log.Write(word+": error. cannot find DE.");
+                        log.Write(wordCategory.Key+": error. cannot find DE.");
                         // this situation must not be possible
                         throw new Exception("Must initialize DE array properly. ");
                     }
-
                 }
 
+                // more semantic comes first
             }
-            
             return scores;
+
         }
     }
 }
