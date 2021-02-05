@@ -12,14 +12,17 @@ namespace PupilIsNotStudent.utils
 
         private LoggerAspectSingleton()
         {
+            
         }
-        
+
         public static LoggerAspectSingleton GetInstance(string workingDir, string currentFile)
         {
-            if (_uniqueInstance == null) 
+            if (_uniqueInstance == null)
+            {
                 _uniqueInstance = new LoggerAspectSingleton();
+                SetWorkingDirAndCleanAllFiles(workingDir);
+            }
 
-            SetWorkingDirAndCleanAllFiles(workingDir);
             LoggerAspectSingleton._currentFile = currentFile;
 
             return _uniqueInstance;

@@ -27,6 +27,9 @@ namespace PupilIsNotStudent.model.core
             var scores = new IndicatorsOfAffiliationForText();
 
             // for logging
+            log.Write("word   |   TFIDF   |   DE");
+                
+
             foreach (var wordCategory  in keywordsOfCategory.OrderByDescending(key => key.Value).Take(KeyWordsLimit))
             {
                 if (unrepeatedWords.Contains(wordCategory.Key) )
@@ -37,7 +40,7 @@ namespace PupilIsNotStudent.model.core
                     if (_disperseEstimation.Words.ContainsKey(wordCategory.Key))
                     {
                         scores.De += _disperseEstimation.Words[wordCategory.Key].DispersionEstimation;
-                        log.Write(wordCategory.Key+_disperseEstimation.Words[wordCategory.Key].DispersionEstimation.ToString());
+                        WriteLog(wordCategory);
                     }
                     else
                     {
@@ -49,6 +52,15 @@ namespace PupilIsNotStudent.model.core
 
                 // more semantic comes first
             }
+            
+            void WriteLog(KeyValuePair<string, double> wordCategory)
+            {
+                log.Write(wordCategory.Key + "\t\t"
+                                           + Math.Round(wordCategory.Value, 2) + "\t\t"
+                                           + Math.Round(_disperseEstimation.Words[wordCategory.Key].DispersionEstimation, 2)
+                );
+            }
+            
             return scores;
 
         }
